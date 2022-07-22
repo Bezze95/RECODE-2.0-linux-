@@ -1,0 +1,26 @@
+
+{"msg":"Initial entry","timestamp":1658329337097,"studyUuid":"50bd79e4-ac94-4723-bd5d-2ea9cbd4bdce","serversMac":"E4-70-B8-F7-AE-4A","hashFunction":"SHA-256"}
+{"msg":"Created study","userName":"Admin","timestamp":1658329337098}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658329620862}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658329792193}
+{"msg":"Stored component result data","componentUuid":"0e167827-a889-4360-8052-784dd2c8ad7f","workerId":1,"dataHash":"no data","timestamp":1658329989275}
+{"msg":"Finished study run","workerId":1,"timestamp":1658329989402}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658330010049}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658330181371}
+{"msg":"Stored component result data","componentUuid":"0e167827-a889-4360-8052-784dd2c8ad7f","workerId":1,"dataHash":"no data","timestamp":1658330372948}
+{"msg":"Finished study run","workerId":1,"timestamp":1658330373037}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1658330404166}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658398489060}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658399534029}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658399692856}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658409716327}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658410033161}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658410316169}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658413729766}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658413789656}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1658413941867}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658413941872}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1658414226133}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658414226137}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1658414236390}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1658414236395}

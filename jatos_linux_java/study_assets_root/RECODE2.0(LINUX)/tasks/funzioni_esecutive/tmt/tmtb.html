@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jsPsych/jspsych.js"></script>
+    <script src="jsPsych/plugins/jspsych-canvas-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-canvas-button-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-video-button-response.js"></script>
+    <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+    <script src="jatos.js"></script>
+
+</head>
+<body>
+  <audio id="ding">
+    <source src="funzioni_esecutive/tmt/sounds/ding.mp3">
+  </audio>
+  <audio id="buzzer">
+    <source src="funzioni_esecutive/tmt/sounds/ding.mp3">
+  </audio>
+</body>
+<script>
+
+////////////////////////
+//////////////////////// inizio dello stimolo
+var myding = document.getElementById('ding');
+var mybuzzer = document.getElementById('buzzer');
+
+function sendEmail(subj,text) {
+Email.send({
+     SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+      To : 'conteabba@gmail.com',
+      From : "conteabba@gmail.com",
+      Subject : subj,
+      Body : text
+  })
+}
+
+var instruct1A  = {
+    type: 'html-button-response',
+    controls: true,
+    stimulus: '<p style="font-size: 24px;">Nel prossimo test dovrà premere con il mouse sui numeri uno alla volta in ordine crescente partendo dal numero 1</p>'+
+              '<p style="font-size: 24px;">Dovrà premere nel giusto ordine su tutti i numeri per completare il test.</p>'+
+              '<p style="font-size: 24px;">Nella prossima schermata le verrà mostrato un video esemplificativo.</p>',
+              choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+              on_finish: function(data){
+                if(data.button_pressed == 1){
+                  sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+                  location.reload();}
+              }
+             };
+
+var instruct1B  = {
+    type: 'video-button-response',
+    controls: true,
+    stimulus: [
+        'funzioni_esecutive/tmt/video/tmta.mp4',
+        'funzioni_esecutive/tmt/video/sample_video.ogg'
+    ],
+    prompt: '<p style="font-size: 20px;">Dovrà premere nel giusto ordine su tutti i numeri partendo dal numero 1.</p>'+
+            '<p style="font-size: 20px;">Al secondo errore commesso il test si interromperà automaticamente.</p>'+
+            '<p style="font-size: 25px;">Cerchi di svolgere il compito senza fare errori e il più velocemente possibile</p>',
+    choices: ['Prema per andare avanti'],
+}
+
+var instruct2A  = {
+    type: 'html-button-response',
+    controls: true,
+    stimulus: '<p style="font-size: 24px;">Nel prossimo test dovrà premere con il mouse sui numeri e sulle lettere uno alla volta in ordine crescente.</p>'+
+              '<p style="font-size: 24px;">Dovrà alternare numeri e lettere a cominciare dal numero 1 seguito poi dalla lettera A.</p>'+
+              '<p style="font-size: 24px;">Prema nel giusto ordine su tutti i numeri e su tutte le lettere per completare il test.</p>'+
+              '<p style="font-size: 24px;">Nella prossima schermata le verrà mostrato un video esemplificativo.</p>',
+    choices: ['Prema per andare avanti'],
+}
+
+var instruct2B  = {
+    type: 'video-button-response',
+    controls: true,
+    stimulus: [
+        'funzioni_esecutive/tmt/video/tmtb.mp4',
+        'funzioni_esecutive/tmt/video/sample_video.ogg'
+    ],
+    prompt: '<p style="font-size: 20px;">Dovrà premere nel giusto ordine alternando tra numeri e lettere per completare il test.</p>'+
+            '<p style="font-size: 20px;">Al secondo errore commesso il test si interromperà automaticamente.</p>'+
+            '<p style="font-size: 25px;">Cerchi di svolgere il compito senza fare errori e il più velocemente possibile</p>',
+    choices: ['Prema per andare avanti'],
+}
+
+var numeri = {
+    type: 'canvas-keyboard-response',
+    stimulus: function(c) {
+
+      var canvasWidth = c.width;
+      var canvasHeight = c.height;
+      var ctx = c.getContext("2d");
+      ctx.canvas.style.border = ["0.5px solid rgb(0, 0, 0)"];
+      var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+      var dur = 2000; //ms
+      var positions = [];
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+      function generatePositionsArray(maxX, maxY, safeRadius, irregularity) {
+          // declarations
+          var positionsArray = [];
+          var r, c;
+          var rows;
+          var columns;
+          // count the amount of rows and columns
+          rows = Math.floor(maxY / safeRadius);
+          columns = Math.floor(maxX / safeRadius);
+          // loop through rows
+          for (r = 1; r <= rows; r += 1) {
+              // loop through columns
+              for (c = 1; c <= columns; c += 1) {
+                  // populate array with point object
+                  positionsArray.push({
+                      x: Math.round(maxX * c / columns) + getRandomInt(irregularity * -1, irregularity),
+                      y: Math.round(maxY * r / rows) + getRandomInt(irregularity * -1, irregularity)
+                  });
+              }
+          }
+          // return array
+          return positionsArray;
+      }
+      positions = generatePositionsArray(85, 85, 20, 8);
+      shuffle(positions);
+      var DotXY1 = [(positions[1]["x"])/100*canvasWidth, (positions[1]["y"])/100*canvasHeight];
+      var DotXY2 = [(positions[2]["x"])/100*canvasWidth, (positions[2]["y"])/100*canvasHeight];
+      var DotXY3 = [(positions[3]["x"])/100*canvasWidth, (positions[3]["y"])/100*canvasHeight];
+      var DotXY4 = [(positions[4]["x"])/100*canvasWidth, (positions[4]["y"])/100*canvasHeight];
+      var DotXY5 = [(positions[5]["x"])/100*canvasWidth, (positions[5]["y"])/100*canvasHeight];
+      var DotXY6 = [(positions[6]["x"])/100*canvasWidth, (positions[6]["y"])/100*canvasHeight];
+      var DotXY7 = [(positions[7]["x"])/100*canvasWidth, (positions[7]["y"])/100*canvasHeight];
+      var DotXY8 = [(positions[8]["x"])/100*canvasWidth, (positions[8]["y"])/100*canvasHeight];
+      var DotXY9 = [(positions[9]["x"])/100*canvasWidth, (positions[9]["y"])/100*canvasHeight];
+      var DotXY10 = [(positions[10]["x"])/100*canvasWidth, (positions[10]["y"])/100*canvasHeight];
+      var DotXY11 = [(positions[11]["x"])/100*canvasWidth, (positions[11]["y"])/100*canvasHeight];
+      var DotXY12 = [(positions[12]["x"])/100*canvasWidth, (positions[12]["y"])/100*canvasHeight];
+      var DotXY13 = [(positions[13]["x"])/100*canvasWidth, (positions[13]["y"])/100*canvasHeight];
+      var DotXY14 = [(positions[14]["x"])/100*canvasWidth, (positions[14]["y"])/100*canvasHeight];
+      /*var DotXY15 = [canvasWidth*coords[28], canvasHeight*coords[29]];
+      var DotXY16 = [canvasWidth*coords[30], canvasHeight*coords[31]];
+      var DotXY17 = [canvasWidth*coords[32], canvasHeight*coords[33]];
+      var DotXY18 = [canvasWidth*coords[34], canvasHeight*coords[35]];
+      var DotXY19 = [canvasWidth*coords[36], canvasHeight*coords[37]];
+      var DotXY20 = [canvasWidth*coords[38], canvasHeight*coords[39]];*/
+
+      var clickCoord = [];
+      var colors = ['white','black'];
+
+
+      DrawDot(colors[0], DotXY1, 20, '1');
+      DrawDot(colors[0], DotXY2, 20, '2');
+      DrawDot(colors[0], DotXY3, 20, '3');
+      DrawDot(colors[0], DotXY4, 20, '4');
+      DrawDot(colors[0], DotXY5, 20, '5');
+      DrawDot(colors[0], DotXY6, 20, '6');
+      DrawDot(colors[0], DotXY7, 20, '7');
+      DrawDot(colors[0], DotXY8, 20, '8');
+      DrawDot(colors[0], DotXY9, 20, '9');
+      DrawDot(colors[0], DotXY10, 20, '10');
+      DrawDot(colors[0], DotXY11, 20, '11');
+      DrawDot(colors[0], DotXY12, 20, '12');
+      DrawDot(colors[0], DotXY13, 20, '13');
+      DrawDot(colors[0], DotXY14, 20, '14');
+      /*DrawDot(colors[0], DotXY15, 20, 'H');
+      DrawDot(colors[0], DotXY16, 20, '8');
+      DrawDot(colors[0], DotXY17, 20, 'I');
+      DrawDot(colors[0], DotXY18, 20, '9');
+      DrawDot(colors[0], DotXY19, 20, 'L');
+      DrawDot(colors[0], DotXY20, 20, '10');*/
+
+      var dotcount = 1;
+      var correctcount = 0;
+      var errorcount = 0;
+      c.onclick = function showOnClick() {
+        let rect = c.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+        clickCoord = [x, y];
+        console.log(x,y);
+
+        if (Math.abs(x - DotXY1[0]) < 20  && Math.abs(y - DotXY1[1]) < 20) {if (dotcount ==1) {dotcount++; correctcount++; DrawDot('green', DotXY1,20, ''); myding.play(); console.log(DotXY1);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}}
+        if (Math.abs(x - DotXY2[0]) < 20  && Math.abs(y - DotXY2[1]) < 20) {if (dotcount ==2) {dotcount++; correctcount++; DrawDot('green', DotXY2,20, ''); myding.play(); console.log(DotXY2);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY3[0]) < 20  && Math.abs(y - DotXY3[1]) < 20) {if (dotcount ==3) {dotcount++; correctcount++; DrawDot('green', DotXY3,20, ''); myding.play(); console.log(DotXY3);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY4[0]) < 20  && Math.abs(y - DotXY4[1]) < 20) {if (dotcount ==4) {dotcount++; correctcount++; DrawDot('green', DotXY4,20, ''); myding.play(); console.log(DotXY4);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY5[0]) < 20  && Math.abs(y - DotXY5[1]) < 20) {if (dotcount ==5) {dotcount++; correctcount++; DrawDot('green', DotXY5,20, ''); myding.play(); console.log(DotXY5);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY6[0]) < 20  && Math.abs(y - DotXY6[1]) < 20) {if (dotcount ==6) {dotcount++; correctcount++; DrawDot('green', DotXY6,20, ''); myding.play(); console.log(DotXY6);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY7[0]) < 20  && Math.abs(y - DotXY7[1]) < 20) {if (dotcount ==7) {dotcount++; correctcount++; DrawDot('green', DotXY7,20, ''); myding.play(); console.log(DotXY7);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY8[0]) < 20  && Math.abs(y - DotXY8[1]) < 20) {if (dotcount ==8) {dotcount++; correctcount++; DrawDot('green', DotXY8,20, ''); myding.play(); console.log(DotXY8);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY9[0]) < 20  && Math.abs(y - DotXY9[1]) < 20) {if (dotcount ==9) {dotcount++; correctcount++; DrawDot('green', DotXY9,20, ''); myding.play(); console.log(DotXY9);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY10[0]) < 20  && Math.abs(y - DotXY10[1]) < 20) {if (dotcount ==10) {dotcount++; correctcount++; DrawDot('green', DotXY10,20, ''); myding.play(); console.log(DotXY10);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY11[0]) < 20  && Math.abs(y - DotXY11[1]) < 20) {if (dotcount ==11) {dotcount++; correctcount++; DrawDot('green', DotXY11,20, ''); myding.play(); console.log(DotXY11);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY12[0]) < 20  && Math.abs(y - DotXY12[1]) < 20) {if (dotcount ==12) {dotcount++; correctcount++; DrawDot('green', DotXY12,20, ''); myding.play(); console.log(DotXY12);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY13[0]) < 20  && Math.abs(y - DotXY13[1]) < 20) {if (dotcount ==13) {dotcount++; correctcount++; DrawDot('green', DotXY13,20, ''); myding.play(); console.log(DotXY13);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY14[0]) < 20  && Math.abs(y - DotXY14[1]) < 20) {if (dotcount ==14) {dotcount++; correctcount++; DrawDot('green', DotXY14,20, ''); myding.play(); console.log(DotXY14);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        /*if (Math.abs(x - DotXY15[0]) < 20  && Math.abs(y - DotXY15[1]) < 20) {if (dotcount ==15) {dotcount++; correctcount++; DrawDot('green', DotXY15,20, ''); myding.play(); console.log(DotXY15);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY16[0]) < 20  && Math.abs(y - DotXY16[1]) < 20) {if (dotcount ==16) {dotcount++; correctcount++; DrawDot('green', DotXY16,20, ''); myding.play(); console.log(DotXY16);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY17[0]) < 20  && Math.abs(y - DotXY17[1]) < 20) {if (dotcount ==17) {dotcount++; correctcount++; DrawDot('green', DotXY17,20, ''); myding.play(); console.log(DotXY17);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY18[0]) < 20  && Math.abs(y - DotXY18[1]) < 20) {if (dotcount ==18) {dotcount++; correctcount++; DrawDot('green', DotXY18,20, ''); myding.play(); console.log(DotXY18);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY19[0]) < 20  && Math.abs(y - DotXY19[1]) < 20) {if (dotcount ==19) {dotcount++; correctcount++; DrawDot('green', DotXY19,20, ''); myding.play(); console.log(DotXY19);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY20[0]) < 20  && Math.abs(y - DotXY20[1]) < 20) {if (dotcount ==20) {dotcount++; correctcount++; DrawDot('green', DotXY20,20, ''); myding.play(); console.log(DotXY20);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};*/
+        if (errorcount > 1) {setTimeout(function(){jsPsych.finishTrial({correct: correctcount})}, 500);};
+        if (correctcount  >= 14) {setTimeout(function(){jsPsych.finishTrial({correct: correctcount})}, 500);};
+      };
+
+/////////////////////////// Dots
+
+    function DrawDot(color, dotCenter, radius, letter) {
+
+        ctx.beginPath();
+        ctx.arc(dotCenter[0], dotCenter[1], radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = 'black';
+        ctx.fill();
+        ctx.stroke()
+        ctx.font = '28px serif';
+        ctx.fillStyle = 'black';
+        ctx.fillText(String(letter), dotCenter[0]-10, dotCenter[1]+10, 100);
+      }
+
+      function DrawX(clickCoord) {
+          ctx.beginPath();
+          ctx.fillStyle = 'red';
+          ctx.strokeStyle = 'red';
+          ctx.font = '22px serif';
+          ctx.fillText(String('X'), clickCoord[0]-10, clickCoord[1], 100);
+          ctx.fillStyle = 'white';
+          ctx.strokeStyle = 'white';
+          ctx.font = '22px serif';
+          setTimeout(function(){ctx.fillText(String('X'), clickCoord[0]-10, clickCoord[1], 100); }, 500);
+
+        }
+////////////////////////
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+////////////////////////
+
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+
+////////////////////////
+
+    function makeArr(startValue, stopValue, cardinality) {
+      var arr = [];
+      for (var i = 0; i < cardinality; i++) {
+        arr.push(Math.random() * (stopValue - startValue) + startValue).toFixed(4);
+      }
+      return arr;
+    }
+  },
+  choices: ['space'],
+  response_ends_trial: false,
+  trial_duration: 120000,
+  prompt: '<p>Prema con il tasto sinistro del mouse sui numeri uno alla volta in ordine crescente.</p>'
+};
+
+
+
+var combi = {
+    type: 'canvas-keyboard-response',
+    stimulus: function(c) {
+
+      var canvasWidth = c.width;
+      var canvasHeight = c.height;
+      var ctx = c.getContext("2d");
+      ctx.canvas.style.border = ["0.5px solid rgb(0, 0, 0)"];
+      var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+      var dur = 2000; //ms
+      var positions = [];
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+      function generatePositionsArray(maxX, maxY, safeRadius, irregularity) {
+          // declarations
+          var positionsArray = [];
+          var r, c;
+          var rows;
+          var columns;
+          // count the amount of rows and columns
+          rows = Math.floor(maxY / safeRadius);
+          columns = Math.floor(maxX / safeRadius);
+          // loop through rows
+          for (r = 1; r <= rows; r += 1) {
+              // loop through columns
+              for (c = 1; c <= columns; c += 1) {
+                  // populate array with point object
+                  positionsArray.push({
+                      x: Math.round(maxX * c / columns) + getRandomInt(irregularity * -1, irregularity),
+                      y: Math.round(maxY * r / rows) + getRandomInt(irregularity * -1, irregularity)
+                  });
+              }
+          }
+          // return array
+          return positionsArray;
+      }
+      positions = generatePositionsArray(85, 85, 20, 8);
+      shuffle(positions);
+      var DotXY1 = [(positions[1]["x"])/100*canvasWidth, (positions[1]["y"])/100*canvasHeight];
+      var DotXY2 = [(positions[2]["x"])/100*canvasWidth, (positions[2]["y"])/100*canvasHeight];
+      var DotXY3 = [(positions[3]["x"])/100*canvasWidth, (positions[3]["y"])/100*canvasHeight];
+      var DotXY4 = [(positions[4]["x"])/100*canvasWidth, (positions[4]["y"])/100*canvasHeight];
+      var DotXY5 = [(positions[5]["x"])/100*canvasWidth, (positions[5]["y"])/100*canvasHeight];
+      var DotXY6 = [(positions[6]["x"])/100*canvasWidth, (positions[6]["y"])/100*canvasHeight];
+      var DotXY7 = [(positions[7]["x"])/100*canvasWidth, (positions[7]["y"])/100*canvasHeight];
+      var DotXY8 = [(positions[8]["x"])/100*canvasWidth, (positions[8]["y"])/100*canvasHeight];
+      var DotXY9 = [(positions[9]["x"])/100*canvasWidth, (positions[9]["y"])/100*canvasHeight];
+      var DotXY10 = [(positions[10]["x"])/100*canvasWidth, (positions[10]["y"])/100*canvasHeight];
+      var DotXY11 = [(positions[11]["x"])/100*canvasWidth, (positions[11]["y"])/100*canvasHeight];
+      var DotXY12 = [(positions[12]["x"])/100*canvasWidth, (positions[12]["y"])/100*canvasHeight];
+      var DotXY13 = [(positions[13]["x"])/100*canvasWidth, (positions[13]["y"])/100*canvasHeight];
+      var DotXY14 = [(positions[14]["x"])/100*canvasWidth, (positions[14]["y"])/100*canvasHeight];
+      /*var DotXY15 = [canvasWidth*coords[28], canvasHeight*coords[29]];
+      var DotXY16 = [canvasWidth*coords[30], canvasHeight*coords[31]];
+      var DotXY17 = [canvasWidth*coords[32], canvasHeight*coords[33]];
+      var DotXY18 = [canvasWidth*coords[34], canvasHeight*coords[35]];
+      var DotXY19 = [canvasWidth*coords[36], canvasHeight*coords[37]];
+      var DotXY20 = [canvasWidth*coords[38], canvasHeight*coords[39]];*/
+
+      var clickCoord = [];
+      var colors = ['white','black'];
+
+
+      DrawDot(colors[0], DotXY1, 20, '1');
+      DrawDot(colors[0], DotXY2, 20, 'A');
+      DrawDot(colors[0], DotXY3, 20, '2');
+      DrawDot(colors[0], DotXY4, 20, 'B');
+      DrawDot(colors[0], DotXY5, 20, '3');
+      DrawDot(colors[0], DotXY6, 20, 'C');
+      DrawDot(colors[0], DotXY7, 20, '4');
+      DrawDot(colors[0], DotXY8, 20, 'D');
+      DrawDot(colors[0], DotXY9, 20, '5');
+      DrawDot(colors[0], DotXY10, 20, 'E');
+      DrawDot(colors[0], DotXY11, 20, '6');
+      DrawDot(colors[0], DotXY12, 20, 'F');
+      DrawDot(colors[0], DotXY13, 20, '7');
+      DrawDot(colors[0], DotXY14, 20, 'G');
+      /*DrawDot(colors[0], DotXY15, 20, 'H');
+      DrawDot(colors[0], DotXY16, 20, '8');
+      DrawDot(colors[0], DotXY17, 20, 'I');
+      DrawDot(colors[0], DotXY18, 20, '9');
+      DrawDot(colors[0], DotXY19, 20, 'L');
+      DrawDot(colors[0], DotXY20, 20, '10');*/
+
+      var dotcount = 1;
+      var correctcount = 0;
+      var errorcount = 0;
+      c.onclick = function showOnClick() {
+        let rect = c.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+        clickCoord = [x, y];
+        console.log(x,y);
+
+        if (Math.abs(x - DotXY1[0]) < 20  && Math.abs(y - DotXY1[1]) < 20) {if (dotcount ==1) {dotcount++; correctcount++; DrawDot('green', DotXY1,20, ''); myding.play(); console.log(DotXY1);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}}
+        if (Math.abs(x - DotXY2[0]) < 20  && Math.abs(y - DotXY2[1]) < 20) {if (dotcount ==2) {dotcount++; correctcount++; DrawDot('green', DotXY2,20, ''); myding.play(); console.log(DotXY2);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY3[0]) < 20  && Math.abs(y - DotXY3[1]) < 20) {if (dotcount ==3) {dotcount++; correctcount++; DrawDot('green', DotXY3,20, ''); myding.play(); console.log(DotXY3);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY4[0]) < 20  && Math.abs(y - DotXY4[1]) < 20) {if (dotcount ==4) {dotcount++; correctcount++; DrawDot('green', DotXY4,20, ''); myding.play(); console.log(DotXY4);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY5[0]) < 20  && Math.abs(y - DotXY5[1]) < 20) {if (dotcount ==5) {dotcount++; correctcount++; DrawDot('green', DotXY5,20, ''); myding.play(); console.log(DotXY5);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY6[0]) < 20  && Math.abs(y - DotXY6[1]) < 20) {if (dotcount ==6) {dotcount++; correctcount++; DrawDot('green', DotXY6,20, ''); myding.play(); console.log(DotXY6);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY7[0]) < 20  && Math.abs(y - DotXY7[1]) < 20) {if (dotcount ==7) {dotcount++; correctcount++; DrawDot('green', DotXY7,20, ''); myding.play(); console.log(DotXY7);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY8[0]) < 20  && Math.abs(y - DotXY8[1]) < 20) {if (dotcount ==8) {dotcount++; correctcount++; DrawDot('green', DotXY8,20, ''); myding.play(); console.log(DotXY8);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY9[0]) < 20  && Math.abs(y - DotXY9[1]) < 20) {if (dotcount ==9) {dotcount++; correctcount++; DrawDot('green', DotXY9,20, ''); myding.play(); console.log(DotXY9);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY10[0]) < 20  && Math.abs(y - DotXY10[1]) < 20) {if (dotcount ==10) {dotcount++; correctcount++; DrawDot('green', DotXY10,20, ''); myding.play(); console.log(DotXY10);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY11[0]) < 20  && Math.abs(y - DotXY11[1]) < 20) {if (dotcount ==11) {dotcount++; correctcount++; DrawDot('green', DotXY11,20, ''); myding.play(); console.log(DotXY11);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY12[0]) < 20  && Math.abs(y - DotXY12[1]) < 20) {if (dotcount ==12) {dotcount++; correctcount++; DrawDot('green', DotXY12,20, ''); myding.play(); console.log(DotXY12);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY13[0]) < 20  && Math.abs(y - DotXY13[1]) < 20) {if (dotcount ==13) {dotcount++; correctcount++; DrawDot('green', DotXY13,20, ''); myding.play(); console.log(DotXY13);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY14[0]) < 20  && Math.abs(y - DotXY14[1]) < 20) {if (dotcount ==14) {dotcount++; correctcount++; DrawDot('green', DotXY14,20, ''); myding.play(); console.log(DotXY14);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        /*if (Math.abs(x - DotXY15[0]) < 20  && Math.abs(y - DotXY15[1]) < 20) {if (dotcount ==15) {dotcount++; correctcount++; DrawDot('green', DotXY15,20, ''); myding.play(); console.log(DotXY15);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY16[0]) < 20  && Math.abs(y - DotXY16[1]) < 20) {if (dotcount ==16) {dotcount++; correctcount++; DrawDot('green', DotXY16,20, ''); myding.play(); console.log(DotXY16);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY17[0]) < 20  && Math.abs(y - DotXY17[1]) < 20) {if (dotcount ==17) {dotcount++; correctcount++; DrawDot('green', DotXY17,20, ''); myding.play(); console.log(DotXY17);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY18[0]) < 20  && Math.abs(y - DotXY18[1]) < 20) {if (dotcount ==18) {dotcount++; correctcount++; DrawDot('green', DotXY18,20, ''); myding.play(); console.log(DotXY18);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY19[0]) < 20  && Math.abs(y - DotXY19[1]) < 20) {if (dotcount ==19) {dotcount++; correctcount++; DrawDot('green', DotXY19,20, ''); myding.play(); console.log(DotXY19);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};
+        if (Math.abs(x - DotXY20[0]) < 20  && Math.abs(y - DotXY20[1]) < 20) {if (dotcount ==20) {dotcount++; correctcount++; DrawDot('green', DotXY20,20, ''); myding.play(); console.log(DotXY20);} else {errorcount++; mybuzzer.play();DrawX(clickCoord);}};*/
+        if (errorcount > 1) {setTimeout(function(){jsPsych.finishTrial({correct: correctcount})}, 500);};
+        if (correctcount  >= 14) {setTimeout(function(){jsPsych.finishTrial({correct: correctcount})}, 500);};
+      };
+
+/////////////////////////// Dots
+
+    function DrawDot(color, dotCenter, radius, letter) {
+
+        ctx.beginPath();
+        ctx.arc(dotCenter[0], dotCenter[1], radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = 'black';
+        ctx.fill();
+        ctx.stroke()
+        ctx.font = '28px serif';
+        ctx.fillStyle = 'black';
+        ctx.fillText(String(letter), dotCenter[0]-10, dotCenter[1]+10, 100);
+      }
+
+      function DrawX(clickCoord) {
+          ctx.beginPath();
+          ctx.fillStyle = 'red';
+          ctx.strokeStyle = 'red';
+          ctx.font = '20px serif';
+          ctx.fillText(String('X'), clickCoord[0]-10, clickCoord[1], 100);
+          ctx.fillStyle = 'white';
+          ctx.strokeStyle = 'white';
+          ctx.font = '19px serif';
+          setTimeout(function(){ctx.fillText(String('X'), clickCoord[0]-10, clickCoord[1], 100); }, 500);
+
+        }
+
+
+////////////////////////
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+////////////////////////
+
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+
+////////////////////////
+
+    function makeArr(a,b,n) {
+    if(typeof n === "undefined") n = Math.max(Math.round(b-a)+1,1);
+    if(n<2) { return n===1?[a]:[]; }
+    var i,ret = Array(n);
+    n--;
+    for(i=n;i>=0;i--) { ret[i] = (i*b+(n-i)*a)/n; }
+    return ret;
+}
+
+
+  },
+  choices: ['space'],
+  response_ends_trial: false,
+  trial_duration: 120000,
+  prompt: '<p>Prema con il tasto sinistro del mouse sui numeri e sulle lettere uno alla volta in ordine crescente.</p>'
+};
+
+
+
+jatos.onLoad(function() {
+    jsPsych.init({
+        timeline: [instruct2A, instruct2B, combi],
+        use_webaudio: true,
+        on_finish: function () {
+          var correct_trials = jsPsych.data.get().select('correct').values
+          var tot = 14;
+          
+          if(correct_trials > 11){
+            var feed = 1;
+          } else {
+            var feed = 0;
+          }
+          jatos.studySessionData = feed;
+          var esecutive = Number(sessionStorage.getItem('esecutive'))+feed;
+          sessionStorage.setItem('esecutive', esecutive);
+          var Data = {feed: feed, type: 'tmtb', cresp: correct_trials};
+          jatos.startComponentByPos(4, Data);
+        }
+    });
+  });
+
+</script>
+</html>

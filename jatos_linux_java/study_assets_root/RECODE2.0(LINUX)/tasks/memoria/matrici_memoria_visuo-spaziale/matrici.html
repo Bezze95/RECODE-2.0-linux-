@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Riconoscimento 4AFC</title>
+    <meta charset="UTF-8">
+
+  <script src="jspsych/jspsych.js"></script>
+  <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="jspsych/plugins/jspsych-fullscreen.js"></script>
+  <script src="jspsych/plugins/jspsych-resize.js"></script>
+  <script src="jspsych/plugins/jspsych-audio-keyboard-response.js"></script>
+  <script src="jspsych-psychophysics/jspsych-psychophysics.js"></script>
+  <script src="jspsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jspsych/plugins/jspsych-canvas-button-response.js"></script>
+  <script src="jspsych/plugins/jspsych-survey-text.js"></script>
+  <script src="jspsych/plugins/jspsych-animation.js"></script>
+  <link href="jspsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+	<script type="text/javascript" src="lib/vendors/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="lib/jspsych-pavlovia-3.0.6.js"></script>
+
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let countsquarex = [-1, 1, 0, -1, 1, 0];
+  let countsquarey = [-1, 1, 0, -1, 1, 0];
+  let order = 0;
+  shuffle(arr);
+  shuffle(countsquarex);
+  shuffle(countsquarey);
+
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+  }
+
+  function random_bg_color() {
+  var x = Math.floor(Math.random() * 256);
+  var y = Math.floor(Math.random() * 256);
+  var z = Math.floor(Math.random() * 256);
+  var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+  return(bgColor);
+  }
+
+    var corsi = {
+        timeline: [
+
+            {
+              type: 'psychophysics',
+              background_color: '#ffffff',
+              stimuli: [
+                {
+                  obj_type: 'manual',
+                  show_start_time: 0, // ms after the start of the trial
+                  show_end_time: 1000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {        // horizontal dim
+                      if (i == countsquarex[0] && j == countsquarey[0]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              },
+                {
+                  obj_type: 'manual',
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 2000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {
+                      if (i == countsquarex[1] && j == countsquarey[1]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              },
+                {
+                  obj_type: 'manual',
+                  show_start_time: 2000, // ms after the start of the trial
+                  show_end_time: 3000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context, elapsedTime){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {        // horizontal dim
+                      if (i == countsquarex[2] && j == countsquarey[2]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              },
+                {
+                  obj_type: 'manual',
+                  show_start_time: 3000, // ms after the start of the trial
+                  show_end_time: 4000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context, elapsedTime){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {
+                      if (i == countsquarex[3] && j == countsquarey[3]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              },
+                {
+                  obj_type: 'manual',
+                  show_start_time: 4000, // ms after the start of the trial
+                  show_end_time: 5000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context, elapsedTime){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {
+                      if (i == countsquarex[4] && j == countsquarey[4]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              },
+                {
+                  obj_type: 'manual',
+                  show_start_time: 5000, // ms after the start of the trial
+                  show_end_time: 6000,
+                  startX: 0,
+                  startY: 0,
+                  origin_center: true, // Change the coordinate origin to the center of the window
+                  drawFunc: function(stimulus, canvas, context, elapsedTime){
+                  for (var i = -1; i < 2; i++) {          // vertical dim
+                    for (var j = -1; j < 2; j++) {
+                      if (i == countsquarex[5] && j == countsquarey[5]) {context.fillStyle = random_bg_color();}
+                      else {context.fillStyle = "rgb(100,100,100)";}
+                      context.fillRect(j * 100 + stimulus.currentX, i * 100 + stimulus.currentY, 90, 90); // square positioning
+                    }
+                  }
+                }
+              }],
+              choices: jsPsych.NO_KEYS,
+              trial_duration:6000,
+            }
+          ]};
+
+///////////////////////////////////////
+var intro = {
+    type: 'canvas-button-response',
+    stimulus: function(c) {
+      var canvasWidth = c.width;
+      var canvasHeight = c.height;
+      var dotSxUP = [canvasWidth/2*0.45, canvasHeight/2*0.75];
+      var dotSxDOWN = [canvasWidth/2*0.45, canvasHeight/2*1.75];
+      var dotDxUP = [canvasWidth/2*1.55, canvasHeight/2*0.75];
+      var dotDxDOWN = [canvasWidth/2*1.55, canvasHeight/2*1.75];
+      var dotCenter = [canvasWidth/2, canvasHeight/2*(1.75+0.75)/2];
+      var dotSx = [canvasWidth/2*0.45, canvasHeight/2*(1.75+0.75)/2];
+      var dotDx = [canvasWidth/2*1.55, canvasHeight/2*(1.75+0.75)/2];
+      var dotDown = [canvasWidth/2, canvasHeight/2*1.75];
+      var dotUp = [canvasWidth/2, canvasHeight/2*0.75];
+      var ctx = c.getContext("2d");
+      var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+      var clickCoord = [];
+      var colors = ['black','red'];
+      var linecolors = ['white', 'black'];
+      var lineW = [7, 6];
+      var DotCenterCount= 0;
+      var DotSxUPCount= 0;
+      var DotSxDOWNCount= 0;
+      var DotDxUPCount= 0;
+      var DotDxDOWNCount= 0;
+      var UpCount= 0;
+      var SxCount= 0;
+      var DxCount= 0;
+      var DownCount= 0;
+      var timestart =[];
+
+      ctx.font = "20px Arial";
+      ctx.fillText("Riproduca la sequenza precedentemente memorizzata", canvasWidth/2*0, canvasHeight/2*0.1);
+      ctx.fillText("Clicchi sui quadrati ad uno ad uno con il mouse", canvasWidth/2*0, canvasHeight/2*0.2);
+      ctx.fillText("Al termine prema il bottone in basso per salvare", canvasWidth/2*0, canvasHeight/2*0.4);
+
+
+      DotSxUP(colors[DotSxUPCount%2]);
+      DotSxDOWN(colors[DotSxDOWNCount%2]);
+      DotDxUP(colors[DotDxUPCount%2]);
+      DotDxDOWN(colors[DotDxDOWNCount%2]);
+      DotCenter(colors[DotCenterCount%2]);
+      DotSx(colors[SxCount%2]);
+      DotDx(colors[DxCount%2]);
+      DotDown(colors[DownCount%2]);
+      DotUp(colors[UpCount%2]);
+
+      c.onclick = function showOnClick() {
+        let rect = c.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+        clickCoord = [x, y];
+
+          // change dots color
+
+          if (Math.abs(x - dotSxUP[0]) <50 && Math.abs(y - dotSxUP[1]) <50) {
+            DotSxUPCount++; DotSxUP(colors[DotSxUPCount%2]);
+          }
+          if (Math.abs(x - dotSxDOWN[0]) <50 && Math.abs(y - dotSxDOWN[1]) <50) {
+            DotSxDOWNCount++; DotSxDOWN(colors[DotSxDOWNCount%2]);
+          }
+          if (Math.abs(x - dotDxUP[0]) <50 && Math.abs(y - dotDxUP[1]) <50) {
+            DotDxUPCount++; DotDxUP(colors[DotDxUPCount%2]);
+          }
+          if (Math.abs(x - dotDxDOWN[0]) <50 && Math.abs(y - dotDxDOWN[1]) <50) {
+            DotDxDOWNCount++; DotDxDOWN(colors[DotDxDOWNCount%2]);
+          }
+          if (Math.abs(x - dotCenter[0]) <50 && Math.abs(y - dotCenter[1]) <50) {
+            DotCenterCount++; DotCenter(colors[DotCenterCount%2]);
+          }
+          if (Math.abs(x - dotUp[0]) <50 && Math.abs(y - dotUp[1]) <50) {
+            UpCount++; DotUp(colors[UpCount%2]);
+          }
+          if (Math.abs(x - dotDown[0]) <50 && Math.abs(y - dotDown[1]) <50) {
+            DownCount++; DotDown(colors[DownCount%2]);
+          }
+          if (Math.abs(x - dotSx[0]) <50 && Math.abs(y - dotSx[1]) <50) {
+            SxCount++; DotSx(colors[SxCount%2]);
+          }
+          if (Math.abs(x - dotDx[0]) <50 && Math.abs(y - dotDx[1]) <50) {
+            DxCount++; DotDx(colors[DxCount%2]);
+          }
+
+
+        }
+
+/////////////////////////// Dots
+
+    function DotCenter(color,counter) {
+
+        ctx.beginPath();
+        ctx.fillRect(dotCenter[0]-50, dotCenter[1]-50, 100, 100);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
+        ctx.fill();
+        ctx.stroke()
+      }
+
+    function DotSxUP(color) {
+        ctx.beginPath();
+        ctx.fillRect(dotSxUP[0]-50, dotSxUP[1]-50, 100, 100);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
+        ctx.fill();
+        ctx.stroke()
+      }
+
+    function DotSxDOWN(color) {
+        ctx.beginPath();
+        ctx.fillRect(dotSxDOWN[0]-50, dotSxDOWN[1]-50, 100, 100);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
+        ctx.fill();
+        ctx.stroke()
+      }
+
+    function DotDxUP(color) {
+        ctx.beginPath();
+        ctx.fillRect(dotDxUP[0]-50, dotDxUP[1]-50, 100, 100);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
+        ctx.fill();
+        ctx.stroke()
+      }
+
+    function DotDxDOWN(color) {
+        ctx.beginPath();
+        ctx.fillRect(dotDxDOWN[0]-50, dotDxDOWN[1]-50, 100, 100);
+        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
+        ctx.fill();
+        ctx.stroke()
+      }
+
+      function DotUp(color) {
+          ctx.beginPath();
+          ctx.fillRect(dotUp[0]-50, dotUp[1]-50, 100, 100);
+          ctx.fillStyle = color;
+          ctx.strokeStyle = color;
+          ctx.fill();
+          ctx.stroke()
+        }
+
+        function DotDown(color) {
+            ctx.beginPath();
+            ctx.fillRect(dotDown[0]-50, dotDown[1]-50, 100, 100);
+            ctx.fillStyle = color;
+            ctx.strokeStyle = color;
+            ctx.fill();
+            ctx.stroke()
+          }
+
+          function DotSx(color) {
+              ctx.beginPath();
+              ctx.fillRect(dotSx[0]-50, dotSx[1]-50, 100, 100);
+              ctx.fillStyle = color;
+              ctx.strokeStyle = color;
+              ctx.fill();
+              ctx.stroke()
+            }
+
+            function DotDx(color) {
+                ctx.beginPath();
+                ctx.fillRect(dotDx[0]-50, dotDx[1]-50, 100, 100);
+                ctx.fillStyle = color;
+                ctx.strokeStyle = color;
+                ctx.fill();
+                ctx.stroke()
+              }
+
+
+////////////////////////
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  },
+    choices: ['salva e continua'],
+    prompt: '<p></p>',
+    on_finish: function() {timestart = jsPsych.totalTime()}
+};
+
+
+///////////////////////////////////////
+
+
+    jsPsych.init({
+        timeline: [corsi, intro],
+        use_webaudio: false,
+        on_finish: function() {
+          feed = 1;
+          jatos.studySessionData = feed;
+          var memoria = Number(sessionStorage.getItem('memoria'))+feed;
+          sessionStorage.setItem('memoria', memoria);
+          jatos.startComponentByPos(4);
+        }
+      });
+</script>
+
+</html>

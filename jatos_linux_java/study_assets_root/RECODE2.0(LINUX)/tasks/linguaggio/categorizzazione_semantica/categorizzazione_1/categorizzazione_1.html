@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>denominazione</title>
+    <meta charset="UTF-8">
+
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-multi-select.js" ></script>
+  <script src="jsPsych/plugins/jspsych-preload.js"></script>
+  <script src="/assets/javascripts/jatos.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+  function sendEmail(subj,text) {
+  Email.send({
+       SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+        To : 'conteabba@gmail.com',
+        From : "conteabba@gmail.com",
+        Subject : subj,
+        Body : text
+    })
+  }
+  /*var example = ['img_esempio/banana.jpg.jpg','img_esempio/aglio.jpg','img_esempio/ananas.jpg','img_esempio/cavallo.jpg','img_esempio/gallo.jpg',
+  'img_esempio/granchio.jpg','img_esempio/bocca.jpg','img_esempio/braccio.jpg.jpg','orecchio'];
+  var preload = {
+    type: 'preload',
+    examples: example,
+  };*/
+
+  var button = {
+      type: 'html-button-response',
+      stimulus: '<p style="font-size: 24px; font-weight: bold;">Ora le verranno mostrate una serie di immagini,</p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Il Suo compito è dividere queste figure in 3 gruppi, in base alla categoria di oggetti alla quale appartengono.</p>',
+      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare'],
+      on_finish: function()
+          {
+            document.body.classList.add("stop-scrolling");
+          }
+
+     };
+
+     var button_2 = {
+         type: 'html-button-response',
+         stimulus: '<p style="font-size: 24px; font-weight: bold;">Ecco un piccolo esempio:</p><br><br>'+
+         '<strong>CIBO</strong>:<br>' + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/aglio.jpg'></img>" +
+         "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/ananas.jpg'></img>" + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/banana.jpg'></img><br><br> " +
+         '<strong>ANIMALI</strong>:<br>' +"<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/gallo.jpg'></img>  " + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/cavallo.jpg'></img>  " + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/granchio.jpg'></img><br><br> " +
+         '<strong>PARTI DEL CORPO</strong>:<br>' + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/bocca.jpg'></img>  " + "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/braccio.jpg'></img>" +
+         "<img style='width: 10%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/img_esempio/orecchio.jpg'></img><br><br>",
+         button_html: '<button class="jspsych-btn" style="font-size:15px; color:black;">%choice%</button>',
+         choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+         on_finish: function(data){
+           if(data.button_pressed == 1){
+             sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+             location.reload();}
+       }
+        };
+
+    //var images = ["animali", "parti del corpo", "utensili/oggetti"];
+
+   //options1 = ["animali", "parti del corpo", "cibo", "utensili/oggetti", "mezzi di trasporto", "vestiti"];
+
+      var multi_select_block = {
+          type: 'survey-multi-select',
+          questions: [
+            {
+            //"<img style='width: 30%;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/immagine_completa.jpg' ></img>",
+              prompt: "<img style= 'height:400px;' src='linguaggio/categorizzazione_semantica/categorizzazione_1/immagine_completa.jpg' ></img><br>"+ '<p>Come si chiama questo oggetto? scriva il nome nella casella sottostante</p>',
+              options: ["animali", "parti del corpo", "cibo", "utensili/oggetti", "mezzi di trasporto", "vestiti"],
+              horizontal: false,
+              required: true,
+              name: 'Colors'
+            },
+
+          ],
+          randomize_question_order: true
+      };
+
+jatos.onLoad(function() {
+          var progress = Math.round((1/jatos.studyLength)*jatos.componentPos*100,0);
+          var progressText= "avanzamento " + progress + "%";
+          const updateProgress = progress;
+    jsPsych.init({
+        timeline: [button, button_2, multi_select_block],
+        use_webaudio: true,
+        on_finish: function() {
+          const myArr = jsPsych.data.get().select('responses').values;
+          sessionStorage.getItem('myArr', jsPsych.data.get().select('responses').values)
+          var cresp = 0;
+          var tot = 3;
+          if (myArr[0].includes('animali')) {cresp += 1;}
+          if (myArr[0].includes('corpo')) {cresp += 1;}
+          if (myArr[0].includes('utensili')) {cresp += 1;}
+          if (cresp > 2) {feed = 1} else {feed = 0};
+          jatos.studySessionData = feed;
+          data = jatos.studySessionData;
+          var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+          sessionStorage.setItem('linguaggio', linguaggio);
+          var data = {feed: feed, type: 'denominazione_1', cresp: cresp};
+          jatos.startComponentByPos(4, data);
+
+    }
+  });
+});
+
+    </script>
+</html>

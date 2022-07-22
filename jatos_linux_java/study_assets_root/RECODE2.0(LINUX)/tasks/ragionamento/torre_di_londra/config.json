@@ -1,0 +1,21 @@
+ {
+        "exp_id": "tower-of-london",
+        "name": "Tower of London",
+        "url": "https://www.github.com/expfactory-experiments/tower-of-london",
+        "description":"the tower of london is a test of spatial intelligence.",
+        "instructions": "Click to move the donuts to achieve the resulting configuration.",
+        "contributors": [
+            "Ian Eisenberg",
+            "Zeynep Enkavi",
+            "Patrick Bissett",
+            "Vanessa Sochat",
+            "Russell Poldrack"
+        ],
+        "cognitive_atlas_task_id": "trm_4da87e439c411",
+        "reference": [
+            "http://rstb.royalsocietypublishing.org/content/royptb/298/1089/199.full.pdf",
+            "https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation"
+        ],
+        "template": "jspsych",
+        "time": 5
+}

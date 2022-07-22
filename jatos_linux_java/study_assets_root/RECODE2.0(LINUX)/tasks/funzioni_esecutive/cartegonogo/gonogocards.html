@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
+  <script src="/assets/javascripts/jatos.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+</head>
+<body></body>
+<script>
+
+
+function sendEmail(subj,text) {
+Email.send({
+     SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+      To : 'conteabba@gmail.com',
+      From : "conteabba@gmail.com",
+      Subject : subj,
+      Body : text
+  })
+}
+var instruction = {
+  type: "html-button-response",
+  stimulus:
+  "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
+  "<p style='font-size:30px;'>Adesso le verranno mostrate delle carte una alla volta.</p>"+
+  "<p style='font-size:30px;'>Possono rappresentare numeri o anche figure. Saranno di colore rosso oppure nero.</p>"+
+  "<p style='font-size:30px;'>Prema la freccia sinistra se la carta è rossa. Prema la freccia destra se la carta è nera.</p>"+
+  "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
+  button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+  choices: ['Prema qui per continuare', 'Prema qui per ricevere aiuto'],
+  on_finish: function(data){
+    if(data.button_pressed == 1){
+      sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+      location.reload();}
+  }
+  //prompt: ["<p> Prema il punto dello schermo dove e' apparso l'aereo di colore <strong>" + colore_aereo[getRandomInt(0,5)]],
+ };
+
+
+
+  var cresp = 0;
+
+    var cards = [
+        "\u{1F0A1}", "\u{1F0A2}", "\u{1F0A3}", "\u{1F0A4}", "\u{1F0A5}", "\u{1F0A6}", "\u{1F0A7}", "\u{1F0A8}", "\u{1F0A9}", "\u{1F0AA}", "\u{1F0AB}", "\u{1F0AD}", "\u{1F0AE}",
+        "\u{1F0B1}", "\u{1F0B2}", "\u{1F0B3}", "\u{1F0B4}", "\u{1F0B5}", "\u{1F0B6}", "\u{1F0B7}", "\u{1F0B8}", "\u{1F0B9}", "\u{1F0BA}", "\u{1F0BB}", "\u{1F0BD}", "\u{1F0BE}",
+        "\u{1F0C1}", "\u{1F0C2}", "\u{1F0C3}", "\u{1F0C4}", "\u{1F0C5}", "\u{1F0C6}", "\u{1F0C7}", "\u{1F0C8}", "\u{1F0C9}", "\u{1F0CA}", "\u{1F0CB}", "\u{1F0CD}", "\u{1F0CE}",
+        "\u{1F0D1}", "\u{1F0D2}", "\u{1F0D3}", "\u{1F0D4}", "\u{1F0D5}", "\u{1F0D6}", "\u{1F0D7}", "\u{1F0D8}", "\u{1F0D9}", "\u{1F0DA}", "\u{1F0DB}", "\u{1F0DD}", "\u{1F0DE}",
+    ];
+
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+
+shuffle(cards);
+
+    var trial = {
+        timeline: [
+            {
+                type: 'psychophysics',
+                stimuli: [
+                  {
+                      obj_type: 'text',
+                      startX: 'center',
+                      startY: 'center',
+                      content: '+',
+                      font: "50px 'Arial'",
+                      text_color: 'white',
+                      show_start_time: 0, // ms after the start of the trial
+                      show_end_time: 500 // ms after the start of the trial
+                  },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 'center',
+                        content: jsPsych.timelineVariable('card'),
+                        font: "500px 'Arial'",
+                        text_color: jsPsych.timelineVariable('color'),
+                        show_start_time: 1000, // ms after the start of the trial
+                    }
+                ],
+                choices: ['ArrowLeft', 'ArrowRight'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+                canvas_height: 800,
+                on_finish: function(data){
+                  data.correct = (data.key_press === data.cresponse);
+                },
+                data: {
+                  test_part: 'single_flash',
+                  cresponse: jsPsych.timelineVariable('cresponse'),
+                  card: jsPsych.timelineVariable('card')
+                }
+            },
+            {
+              type: 'html-keyboard-response',
+              stimulus: function(){
+                var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+                if(last_trial_correct){
+                  return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+                } else {
+                  return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+                }
+              },
+              post_trial_gap: 1000,
+              trial_duration: 1000,
+              response_ends_trial: false,
+            }
+        ],
+        timeline_variables: [
+          {card: cards[0], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[1], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[2], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[3], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[4], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[5], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[6], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[7], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[8], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[9], color: 'darkred', cresponse: "arrowleft"},
+          {card: cards[10], color: 'black', cresponse: "arrowright"},
+          {card: cards[11], color: 'black', cresponse: "arrowright"},
+          {card: cards[12], color: 'black', cresponse: "arrowright"},
+          {card: cards[13], color: 'black', cresponse: "arrowright"},
+          {card: cards[14], color: 'black', cresponse: "arrowright"},
+          {card: cards[15], color: 'black', cresponse: "arrowright"},
+          {card: cards[16], color: 'black', cresponse: "arrowright"},
+          {card: cards[17], color: 'black', cresponse: "arrowright"},
+          {card: cards[18], color: 'black', cresponse: "arrowright"},
+          {card: cards[19], color: 'black', cresponse: "arrowright"},
+        ],
+        randomize_order: true,
+        repetitions: 1
+    }
+
+    jsPsych.init({
+        timeline: [instruction, trial],
+        on_finish: function(){
+          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+          if(correct_trials > 15){
+            var feed = 1;
+          } else {
+            var feed = 0;
+          }
+          jatos.studySessionData = feed;
+          var esecutive = Number(sessionStorage.getItem('esecutive'))+feed;
+          sessionStorage.setItem('esecutive', esecutive);
+          var Data = {feed: feed, type: 'gonogocards', cresp: correct_trials};
+			    jatos.startComponentByPos(4, Data);
+        }
+    });
+
+
+</script>
+
+</html>

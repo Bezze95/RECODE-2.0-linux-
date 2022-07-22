@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-keyboard-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-canvas-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+
+        <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+
+        </style>
+    </body>
+    <script>
+        
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+
+            /* to initialize jspsych */
+            var jsPsych = initJsPsych({
+                use_webaudio: false,
+                on_finish: function() {
+                    jsPsych.data.displayData(); //just for the maintainance
+                    /*
+                    var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
+                        if(correct_trials > 10){
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+                    sessionStorage.setItem('attenzione', attenzione);
+                    var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); 
+                } */
+                }
+            })
+        });
+
+        var timeline= [];
+
+        var instructions = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una serie di numeri. <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
+            Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
+            <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
+            choices: ['Fai una prova','Premi qui per andare avanti'],
+            prompt:"<p></p>"
+        }; timeline.push(instructions);
+
+        var stimuli_prova = {
+            type: jsPsychPsychophysics,
+            stimuli: [
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: 'Pronti',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 800, // ms after the start of the trial
+                  show_end_time: 1500,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: 'VIA!',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 2500, // ms after the start of the trial
+                  show_end_time: 3000,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: jsPsych.timelineVariable('letter'),
+                  choices: [2,4],
+                  font: "60px 'Arial'",
+                  text_color: 'black',
+                  show_start_time: 3500, // ms after the start of the trial
+                  show_end_time: 4500,
+                }
+            ],
+            response_start_time: 1000,
+            response_ends_trial: false,
+            trial_duration: 2000,
+            on_finish: function(data){
+                if (data.key_pressed == data.correct_response){
+                    data.accuracy = 1
+                } else {
+                    data.accuracy = 0
+                }
+            }
+
+        }; timeline.push(stimuli_prova);
+
+        var feedback_prova = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: jsPsych.NO_KEYS,
+            trial_duration: 1000,
+            
+
+        }
+
+
+
+
+
+
+        jsPsych.run(timeline);
+    </script>
+
+</html>

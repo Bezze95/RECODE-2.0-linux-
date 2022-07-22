@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Word search game</title>
+    <link rel="stylesheet" href="visual_search/crucipuzzle/css/wordsearch.min.css" />
+    <link rel="stylesheet" href="visual_search/crucipuzzle/css/style.min.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div id="app"></div>
+      <h1 class="logo">Trova le parole</h1>
+      <section id="ws-area"></section>
+      <ul class="ws-words"></ul>
+    </div>
+    <script src="visual_search/crucipuzzle/js/utility.js"></script>
+    <script src="visual_search/crucipuzzle/js/wordsearch.js"></script>
+    <script src="/assets/javascripts/jatos.js"></script>
+    <script type="text/javascript">
+      var gameAreaEl = document.getElementById('ws-area');
+      var gameobj = gameAreaEl.wordSearch();
+      var elem = document.getElementById('app');
+
+      // Put words into `.ws-words`
+      var words = gameobj.settings.wordsList,
+        wordsWrap = document.querySelector('.ws-words');
+      for (i in words) {
+        var liEl = document.createElement('li');
+        liEl.setAttribute('class', 'ws-word');
+        liEl.innerText = words[i];
+        wordsWrap.appendChild(liEl);
+      }
+
+    </script>
+  </body>
+</html>

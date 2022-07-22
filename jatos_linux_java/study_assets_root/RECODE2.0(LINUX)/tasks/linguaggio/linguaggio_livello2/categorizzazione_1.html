@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>denominazione</title>
+    <meta charset="UTF-8">
+
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-multi-select.js" ></script>
+  <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
+  <script src="jsPsych/plugins/jspsych-preload.js"></script>
+  <script src="/assets/javascripts/jatos.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+
+  <style>
+  body {
+    background-color: white;
+    }
+
+   .stop-scrolling{overflow-x: hidden; overflow-y: hidden !important;}
+
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+  function sendEmail(subj,text) {
+  Email.send({
+       SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+        To : 'conteabba@gmail.com',
+        From : "conteabba@gmail.com",
+        Subject : subj,
+        Body : text
+    })
+  }
+  /*var example = ['img_esempio/banana.jpg.jpg','img_esempio/aglio.jpg','img_esempio/ananas.jpg','img_esempio/cavallo.jpg','img_esempio/gallo.jpg',
+  'img_esempio/granchio.jpg','img_esempio/bocca.jpg','img_esempio/braccio.jpg.jpg','orecchio'];
+  var preload = {
+    type: 'preload',
+    examples: example,
+  };*/
+
+  var button = {
+      type: 'html-button-response',
+      stimulus: '<p style="font-size: 24px; font-weight: bold;">Adesso vedrai delle parole che rappresentano degli oggetti che si trovano tutti in una particolare stanza dell’appartamento.</p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Dopo qualche secondo queste parole scompariranno e ne compariranno altre diverse: </p>'+
+      '<p style="font-size: 24px; font-weight: bold;">tra queste, solo una si trova nella stessa stanza indicata dagli oggetti precedenti e lei dovrà indicare quale </p>',
+      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare', 'premi per essere ricontattato'],
+      on_finish: function(data){
+        if(data.button_pressed == 1){
+          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+          location.reload();}
+    }
+     };
+
+
+    //var images = ["animali", "parti del corpo", "utensili/oggetti"];
+
+   //options1 = ["animali", "parti del corpo", "cibo", "utensili/oggetti", "mezzi di trasporto", "vestiti"];
+
+
+
+
+
+      var trial = {
+          timeline: [
+              {
+                type: 'psychophysics',
+                stimuli: [
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage'),
+                      show_start_time: 50,
+                      startX: 'center',
+                      startY: 'center',
+                      scale: 1.0,
+                      origin_center: true
+                    },
+                  ],
+                  response_start_time: 0,
+                  response_ends_trial: false,
+                  trial_duration: 30000,
+                  response_type: 'key',
+                  choices: 'NO_KEYS',
+                  data: {
+                    test_part: 'image',
+                  },
+                },
+                {
+                    type: 'psychophysics',
+                    stimuli: [
+                       {
+                        obj_type: 'text',
+                        content: '',
+                        font: '',
+                        origin_center: true,
+                        startX: 0,
+                        startY: 0,
+                        show_start_time: 0,
+                      },
+    ],
+    response_type: "button",
+    button_choices: jsPsych.timelineVariable('button'),
+    horiz_button_margin: '30px',
+    button_html:['<button class="jspsych-btn" style = "padding: 20px 30px; border:5px solid; border-color: #008080; color: blak;font-size : 50px;">%choice%</button>',
+    '<button class="jspsych-btn" style = "padding: 20px 30px; border:5px solid; border-color: #008080; color: black;font-size : 50px;">%choice%</button>',
+    '<button class="jspsych-btn" style = "padding: 20px 30px; border:5px solid; border-color: #008080; color: black;font-size : 50px;">%choice%</button>',
+    '<button class="jspsych-btn" style = "padding: 20px 30px; border:5px solid; border-color: #008080; color: black;font-size : 50px;">%choice%</button>',
+
+     ],
+    canvas_height:  150,
+    response_start_time: 2000,
+
+      on_finish: function(data){
+        data.correct = data.button_pressed == data.cresponse;
+        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+        if(correct_trials > 0){
+          var feed = 1;
+        } else {
+          var feed = 0;
+        }
+        jatos.studySessionData = feed;
+        var memoria = Number(sessionStorage.getItem('linguaggio'))+feed;
+        sessionStorage.setItem('linguaggio', memoria);
+        var data = {feed: feed, type: 'linguaggio', cresp: correct_trials};
+        jatos.startComponentByPos(4,data);
+      },
+
+    data: {
+      test_part: 'sound',
+      button: jsPsych.timelineVariable('button'),
+      cresponse: jsPsych.timelineVariable('cresponse'),
+      testimage: jsPsych.timelineVariable('testimage'),
+    }
+  },
+],
+background_color: 'white',
+  timeline_variables: [
+    {testimage: "linguaggio/linguaggio_livello2/bagno.png", button: ["fornelli", "piatto", "spazzolino", "letto"], cresponse: "2"},
+    {testimage: "linguaggio/linguaggio_livello2/camera_da_letto.png", button: ["frigorifero", "comodino", "divano", "cucina"], cresponse: "1"},
+    {testimage: "linguaggio/linguaggio_livello2/salotto.png", button: ["doccia", "letto", "frigorifero", "poltrona"], cresponse: "3"},
+    {testimage: "linguaggio/linguaggio_livello2/cucina.png", button: ["bicchieri", "doccia", "divano", "letto"], cresponse: "0"},
+    {testimage: "linguaggio/linguaggio_livello2/camera_da_letto_2.png", button: ["frigorifero", "divano", "coperte", "bagno"], cresponse: "2"},
+    {testimage: "linguaggio/linguaggio_livello2/bagno_2.png", button: ["fornelli", "spazzolino", "divano", "coperte"], cresponse: "1"},
+    {testimage: "linguaggio/linguaggio_livello2/cucina_2.png", button: ["vasca", "letto", "caffettiera", "poltrona"], cresponse: "2"},
+  ],
+  repetitions: 1,
+  randomize_order: true
+};
+
+
+
+
+
+    jsPsych.init({
+        timeline: [button, trial],
+        use_webaudio: true,
+
+      });
+
+    </script>
+</html>
