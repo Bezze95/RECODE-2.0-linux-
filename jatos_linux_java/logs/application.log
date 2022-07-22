@@ -21,3 +21,31 @@
 2022-07-22 15:30:10,444 [INFO] - g.OnStartStop - JATOS started
 2022-07-22 15:30:10,620 [INFO] - p.a.Play - Application started (Prod) (no global state)
 2022-07-22 15:30:11,019 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2022-07-22 15:32:55,900 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2022-07-22 15:32:55,940 [INFO] - gui_access - GET /jatos/login (null)
+2022-07-22 15:32:57,687 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2022-07-22 15:32:57,702 [INFO] - gui_access - POST /jatos/login (null)
+2022-07-22 15:32:57,917 [INFO] - gui_access - GET /jatos (admin)
+2022-07-22 15:32:58,346 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-07-22 15:32:58,365 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-07-22 15:33:00,318 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-07-22 15:33:00,543 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-07-22 15:33:00,648 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1658496780480 (admin)
+2022-07-22 15:33:02,482 [INFO] - gui_access - GET /jatos/1/5/run (admin)
+2022-07-22 15:33:02,539 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-07-22 15:33:02,540 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-07-22 15:33:02,650 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId16, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-07-22 15:33:02,727 [INFO] - publix_access - GET /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/0e167827-a889-4360-8052-784dd2c8ad7f/start
+2022-07-22 15:33:02,752 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 16, componentId 5
+2022-07-22 15:33:03,281 [INFO] - publix_access - GET /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/0e167827-a889-4360-8052-784dd2c8ad7f/initData
+2022-07-22 15:33:03,308 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 16, componentId 5
+2022-07-22 15:33:03,317 [INFO] - publix_access - POST /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/heartbeat
+2022-07-22 15:33:03,323 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 16
+2022-07-22 15:33:03,404 [INFO] - c.p.JatosBatchChannel - .open: studyResult 16
+2022-07-22 15:33:19,080 [INFO] - publix_access - GET /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/0e167827-a889-4360-8052-784dd2c8ad7f/start
+2022-07-22 15:33:19,092 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 16, componentId 5
+2022-07-22 15:33:19,392 [INFO] - publix_access - GET /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/0e167827-a889-4360-8052-784dd2c8ad7f/initData
+2022-07-22 15:33:19,403 [INFO] - publix_access - POST /publix/deaa1c4f-ece4-4032-a0bb-e4a6234f9d29/heartbeat
+2022-07-22 15:33:19,405 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 16, componentId 5
+2022-07-22 15:33:19,407 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 16
+2022-07-22 15:33:19,455 [INFO] - c.p.JatosBatchChannel - .open: studyResult 16
