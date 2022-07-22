@@ -96,7 +96,7 @@
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
                   content: jsPsych.timelineVariable('letter'),
-                  choices: [2,4],
+                  choices: [2,4,],
                   font: "60px 'Arial'",
                   text_color: 'black',
                   show_start_time: 3500, // ms after the start of the trial
@@ -108,12 +108,22 @@
             response_start_time: 3500,
             response_ends_trial: false,
             trial_duration: 4500,
+            data: {
+                test_part: 'trial_prova',
+                visualCresp: jsPsych.timelineVariable('visualCresp')
+            },
             on_finish: function(data){
-                if (data.key_pressed == data.correct_response){
+                if (jsPsych.pluginAPI.compareKeys(data.key_press,data.visualCresp) == true){
                     data.accuracy = 1
                 } else {
                     data.accuracy = 0
                 }
+                /*
+                if (data.key_pressed == data.correct_response){
+                    data.accuracy = 1
+                } else {
+                    data.accuracy = 0
+                }*/
             },
 
         }; 
@@ -136,7 +146,9 @@
             choices: "NO_KEYS",
             trial_duration: 1000,
             
-        };
+        }; 
+
+        
 
         var prova_procedure = {
             timeline: [prova, feedback_prova],
@@ -144,7 +156,9 @@
                 {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: ''},
                 {letter: '2', colorsx: 'white', colordx: 'black', visualCresp: '4'},
                 {letter: '4', colorsx: 'black', colordx: 'black', visualCresp: '2'},
-            ]
+            ],
+            repetitions: 2,
+            randomize_order: true
         }; timeline.push(prova_procedure);
 
 
