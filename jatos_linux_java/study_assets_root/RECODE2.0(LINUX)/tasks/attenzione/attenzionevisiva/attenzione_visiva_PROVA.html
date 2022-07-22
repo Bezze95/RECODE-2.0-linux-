@@ -61,10 +61,16 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Fai una prova','Premi qui per andare avanti'], // -----> inseire opzione per skippare prova  
-            prompt:"<p></p>"
+            choices: ['Fai una prova','Premi qui per andare avanti'], 
+            on_finish: function(data){
+                if (data.response == 0) {
+                    timeline.push(prova_procedure);
+                } 
+            }
+            
         }; timeline.push(instructions);
-    
+
+
 
         var prova = {
             type: jsPsychPsychophysics,
@@ -154,7 +160,7 @@
             ],
             repetitions: 2,
             randomize_order: true
-        }; timeline.push(prova_procedure);
+        }; //timeline.push(prova_procedure);
 
 
 
