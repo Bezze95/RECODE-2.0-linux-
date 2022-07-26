@@ -6,7 +6,10 @@
 
         <script src="https://unpkg.com/jspsych@7.2.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+
 
         <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
         <script src="jatos.js"></script>
@@ -52,9 +55,14 @@
 
         var timeline = [];
 
+        var img_preload = {
+            type: jsPsychPreload,
+            images: ['./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine3.png'],
+        };timeline.push(img_preload);
+
         var instructions = {
             type:jsPsychHtmlButtonResponse,
-            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.
+            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br>
             <br>In ogni immagine ci sono molte figure geometriche.
             <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
             button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
@@ -66,18 +74,28 @@
             }
         }; timeline.push(instructions);
 
-        var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
-
         var prova = {
             type: jsPsychSurveyLikert,
             preamble: jsPsych.timelineVariable('image'),
             questions: [
-                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine?</p>", labels: scale1},
+                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine?</p>", 
+                labels: [
+                    "<p style='font-size:30px;'>4</p>",
+                    "<p style='font-size:30px;'>5</p>", 
+                    "<p style='font-size:30px;'>6</p>", 
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>8</p>"
+                ]},
             ],
-            randomize_question_order: true,
+            //randomize_questions_order: true,
             scale_width: 500,
             on_finish: function(data){
-                data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                if (jsPsych.data.get().last(0).values()[0].response === "1") {
+                    data.accuracy = 1
+                } else {
+                    data.accuracy = 0
+                }
             }
         };
 
@@ -102,16 +120,14 @@
         }; 
 
         var prova_procedure = {
-            timeline: [scale1, prova, feedback_prova],
+            timeline: [prova, feedback_prova],
             timeline_variables: [
-                {image:'<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">', response: '6'},
+                {image:'immagine1.png', response: '6'},
             ],
-            repetitions: 2,
-            randomize_order: true
-        }; //timeline.push(prova_procedure);
+        }; 
 
 
-        var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
+        /* var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
 
         var likert_trial_random_order = {
                 type: 'survey-likert',
@@ -124,7 +140,7 @@
                 on_finish: function(data){
                     data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
                 }
-            };
+            }; */
 
 
 
