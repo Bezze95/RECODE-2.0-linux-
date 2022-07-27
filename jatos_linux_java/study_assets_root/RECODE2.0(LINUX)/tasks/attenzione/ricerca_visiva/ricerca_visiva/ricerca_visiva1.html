@@ -34,7 +34,7 @@
             use_webaudio: false,
 
             on_finish: function() {
-                jsPsych.data.displayData(); //lascio così adesso in via di sviluppo 
+                jsPsych.data.displayData(); //lascio così adesso perché in via di sviluppo 
 
             /*
             var correct_trials = jsPsych.data.get().filter({correct: true}).count();
@@ -69,37 +69,43 @@
             choices: ['Prema qui per fare una prova','Prema qui per continuare'],
             on_finish: function(data) {
                 if (data.response == 0) {
-                    timeline.push(prova_procedure);
+                    timeline.push(prova);
                 }
             }
         }; timeline.push(instructions);
 
         var prova = {
             type: jsPsychSurveyLikert,
-            preamble: jsPsych.timelineVariable('image'),
+            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">',
             questions: [
                 {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine?</p>", 
                 labels: [
                     "<p style='font-size:30px;'>4</p>",
                     "<p style='font-size:30px;'>5</p>", 
-                    "<p style='font-size:30px;'>6</p>", 
+                    "<p style='font-size:30px;' id='correct'>6</p>", 
                     "<p style='font-size:30px;'>7</p>", 
                     "<p style='font-size:30px;'>8</p>"
-                ]},
-            ],
-            //randomize_questions_order: true,
-            scale_width: 500,
-            on_finish: function(data){
-                //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
-                if (jsPsych.data.get().last(0).values()[0].response === "1") {
-                    data.accuracy = 1
-                } else {
-                    data.accuracy = 0
+                ],
+                required: true,
+                
                 }
-            }
-        };
+            ],
+            on_finish: function(data, prova){
+                //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                if (data.response === Q2) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!"
+                }
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+                
 
-        var feedback_prova = {
+            }
+        }; timeline.push(prova);
+
+        /* var feedback_prova = {
             on_start: function(prova){
                 var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
                 if (last_trial_accuracy == 1) {
@@ -117,14 +123,11 @@
             choices: "NO_KEYS",
             trial_duration: 1000,
         
-        }; 
+        }; */
 
-        var prova_procedure = {
+        /* var prova_procedure = {
             timeline: [prova, feedback_prova],
-            timeline_variables: [
-                {image:'immagine1.png', response: '6'},
-            ],
-        }; 
+        }; */
 
 
         /* var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
