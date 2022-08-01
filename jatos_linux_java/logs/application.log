@@ -319,3 +319,46 @@
 2022-08-01 11:05:09,053 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
 2022-08-01 11:05:09,055 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
 2022-08-01 11:05:09,080 [INFO] - c.p.JatosBatchChannel - .open: studyResult 48
+2022-08-01 11:07:09,082 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:07:09,084 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:09:09,109 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:09:09,111 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:11:09,123 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:11:09,125 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:13:09,140 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:13:09,143 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:15:09,158 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:15:09,159 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:17:09,178 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:17:09,179 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:19:09,195 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:19:09,196 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:21:09,210 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:21:09,212 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:23:09,226 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:23:09,228 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:25:09,244 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:25:09,245 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:27:09,258 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:27:09,259 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:29:09,271 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:29:09,272 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:31:09,286 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:31:09,287 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:33:09,304 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:33:09,305 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:35:09,317 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:35:09,319 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:37:09,336 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:37:09,337 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:39:09,351 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:39:09,352 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:41:09,368 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:41:09,369 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:43:09,381 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:43:09,383 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:44:17,341 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-08-01 11:44:17,349 [INFO] - g.OnStartStop - JATOS shutdown
+2022-08-01 11:44:17,362 [INFO] - application - Shutting down connection pool.
+2022-08-01 11:44:17,363 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-08-01 11:44:17,368 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
