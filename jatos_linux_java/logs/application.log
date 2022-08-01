@@ -283,3 +283,39 @@
 2022-08-01 10:57:48,297 [INFO] - publix_access - POST /publix/c92abc5c-9ae3-4be1-92fd-9a07b20fb450/heartbeat
 2022-08-01 10:57:48,299 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 46
 2022-08-01 10:57:48,299 [INFO] - c.p.JatosBatchChannel - .open: studyResult 46
+2022-08-01 10:59:08,785 [INFO] - gui_access - GET /jatos/1/6/run (admin)
+2022-08-01 10:59:08,804 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-01 10:59:08,805 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-01 10:59:08,816 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId47, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-01 10:59:08,837 [INFO] - publix_access - GET /publix/87310aac-d4e4-4239-b117-013494f7f073/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-08-01 10:59:08,841 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 47, componentId 6
+2022-08-01 10:59:09,249 [INFO] - publix_access - GET /publix/87310aac-d4e4-4239-b117-013494f7f073/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-08-01 10:59:09,260 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 47, componentId 6
+2022-08-01 10:59:09,283 [INFO] - publix_access - POST /publix/87310aac-d4e4-4239-b117-013494f7f073/heartbeat
+2022-08-01 10:59:09,285 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 47
+2022-08-01 10:59:09,311 [INFO] - c.p.JatosBatchChannel - .open: studyResult 47
+2022-08-01 10:59:45,397 [INFO] - publix_access - GET /publix/87310aac-d4e4-4239-b117-013494f7f073/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-08-01 10:59:45,401 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 47, componentId 6
+2022-08-01 10:59:46,384 [INFO] - publix_access - GET /publix/87310aac-d4e4-4239-b117-013494f7f073/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-08-01 10:59:46,388 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 47, componentId 6
+2022-08-01 10:59:46,443 [INFO] - publix_access - POST /publix/87310aac-d4e4-4239-b117-013494f7f073/heartbeat
+2022-08-01 10:59:46,448 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 47
+2022-08-01 10:59:46,459 [INFO] - c.p.JatosBatchChannel - .open: studyResult 47
+2022-08-01 11:04:56,611 [INFO] - gui_access - GET /jatos/1/6/run (admin)
+2022-08-01 11:04:56,653 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-01 11:04:56,653 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-01 11:04:56,669 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId48, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-01 11:04:56,690 [INFO] - publix_access - GET /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-08-01 11:04:56,695 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 48, componentId 6
+2022-08-01 11:04:57,112 [INFO] - publix_access - GET /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-08-01 11:04:57,119 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 48, componentId 6
+2022-08-01 11:04:57,189 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:04:57,192 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:04:57,219 [INFO] - c.p.JatosBatchChannel - .open: studyResult 48
+2022-08-01 11:05:08,591 [INFO] - publix_access - GET /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-08-01 11:05:08,593 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 48, componentId 6
+2022-08-01 11:05:09,013 [INFO] - publix_access - GET /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-08-01 11:05:09,017 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 48, componentId 6
+2022-08-01 11:05:09,053 [INFO] - publix_access - POST /publix/ddc68f9c-dc0b-46bf-bbfc-c6efe8acbbcc/heartbeat
+2022-08-01 11:05:09,055 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 48
+2022-08-01 11:05:09,080 [INFO] - c.p.JatosBatchChannel - .open: studyResult 48
