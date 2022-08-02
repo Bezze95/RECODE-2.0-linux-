@@ -131,7 +131,7 @@
         }; 
 
         var feedback_prova = {
-            on_start: function(prova){
+            on_start: function(data){
                 var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
                 if (last_trial_accuracy === 1) {
                     var feedback = "Corretto!"
