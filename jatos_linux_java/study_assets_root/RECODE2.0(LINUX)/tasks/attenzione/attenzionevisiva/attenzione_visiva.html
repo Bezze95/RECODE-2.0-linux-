@@ -76,11 +76,10 @@
                 }
             },
             timeline_variables: [
-                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: 'none'}, // ----->  manca l opzione per la scelta nulla
+                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: 'null'}, // ----->  manca l opzione per la scelta nulla
                 {letter: '2', colorsx: 'white', colordx: 'black', visualCresp: '4'},
                 {letter: '4', colorsx: 'black', colordx: 'black', visualCresp: '2'},
             ],
-            repetitions: 2,
             randomize_order: true
 
         }
@@ -115,13 +114,14 @@
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
                   content: jsPsych.timelineVariable('letter'),
-                  choices: [2,4,],
+                  choices: [2,4],
                   font: "60px 'Arial'",
                   text_color: 'black',
                   show_start_time: 3500, // ms after the start of the trial
                   show_end_time: 4500,
                 }
             ],
+            repetitions: 5,
             background_color: 'white',
             response_type: 'key',
             response_start_time: 3500,
@@ -161,7 +161,7 @@
         }; 
 
         var loop_node = {
-            timeline: [prova],
+            timeline: [prova, feedback_prova],
             loop_function: function(feedback_prova){
                 var feedback = jsPsych.data.get().last(1).values()[0].feedback;
                 if (feedback == "Sbagliato!, ritenta!"){
@@ -171,7 +171,7 @@
                 }
 
             }
-        };
+        }; 
 
         var instructions2 ={
             type: jsPsychHtmlButtonResponse,
@@ -225,7 +225,7 @@
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
                   content: jsPsych.timelineVariable('letter'),
-                  choices: [2,4,],
+                  choices: [2,4],
                   font: "60px 'Arial'",
                   text_color: 'black',
                   show_start_time: 11500, // ms after the start of the trial
@@ -255,7 +255,7 @@
         var trial_procedure = {
             timeline: [trial],
             timeline_variables: [
-                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: ''}, // ----->  manca l opzione per la scelta nulla
+                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: 'null'}, // ----->  manca l opzione per la scelta nulla
                 {letter: '2', colorsx: 'white', colordx: 'black', visualCresp: '4'},
                 {letter: '4', colorsx: 'black', colordx: 'black', visualCresp: '2'},
             ],
@@ -264,6 +264,6 @@
 
       
 
-        jsPsych.run([instructions, if_node, loop_node, instructions2, trial_procedure])
+        jsPsych.run([instructions, if_node, loop_node, instructions2, trial_procedure]); 
     </script>
 </html>    
