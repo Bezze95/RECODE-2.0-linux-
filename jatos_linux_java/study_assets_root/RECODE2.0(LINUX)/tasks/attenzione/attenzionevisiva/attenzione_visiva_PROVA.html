@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ATTENZIONE VISIVA LIV. 1</title>
+        <meta charset="UTF-8" />
+
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+
+        <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+
+        </style>
+        
+    </body>
+    <script>
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        }); 
+        
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+            on_finish: function() {
+                jsPsych.data.displayData();
+
+                                /*
+                var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
+                    if(correct_trials > 10){
+                        var feed = 1;
+                    } else {
+                        var feed = 0;
+                    }
+                jatos.studySessionData = feed;
+                var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+                sessionStorage.setItem('attenzione', attenzione);
+                var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); 
+            } */
+            }
+        });
+
+        
+
+
+
+
+        jsPsych.run([])
+    </script>
+</html>
