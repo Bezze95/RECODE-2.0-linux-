@@ -76,10 +76,11 @@
                 }
             },
             timeline_variables: [
-                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: 'null'}, // ----->  manca l opzione per la scelta nulla
-                {letter: '2', colorsx: 'white', colordx: 'black', visualCresp: '4'},
-                {letter: '4', colorsx: 'black', colordx: 'black', visualCresp: '2'},
+                {letter: '7', visualCresp: null}, // ----->  manca l opzione per la scelta nulla
+                {letter: '2',  visualCresp: '4'},
+                {letter: '4', visualCresp: '2'},
             ],
+            repetitions: 5,
             randomize_order: true
 
         }
@@ -121,7 +122,6 @@
                   show_end_time: 4500,
                 }
             ],
-            repetitions: 5,
             background_color: 'white',
             response_type: 'key',
             response_start_time: 3500,
@@ -160,7 +160,7 @@
             
         }; 
 
-        var loop_node = {
+        /*var loop_node = {
             timeline: [prova, feedback_prova],
             loop_function: function(feedback_prova){
                 var feedback = jsPsych.data.get().last(1).values()[0].feedback;
@@ -171,7 +171,7 @@
                 }
 
             }
-        }; 
+        }; */
 
         var instructions2 ={
             type: jsPsychHtmlButtonResponse,
@@ -255,15 +255,15 @@
         var trial_procedure = {
             timeline: [trial],
             timeline_variables: [
-                {letter: '7', colorsx: 'black', colordx: 'white', visualCresp: 'null'}, // ----->  manca l opzione per la scelta nulla
-                {letter: '2', colorsx: 'white', colordx: 'black', visualCresp: '4'},
-                {letter: '4', colorsx: 'black', colordx: 'black', visualCresp: '2'},
+                {letter: '7', visualCresp: null}, // ----->  manca l opzione per la scelta nulla
+                {letter: '2',  visualCresp: '4'},
+                {letter: '4', visualCresp: '2'},
             ],
             randomize_order: true
         };
 
       
 
-        jsPsych.run([instructions, if_node, loop_node, instructions2, trial_procedure]); 
+        jsPsych.run([instructions, if_node, instructions2, trial_procedure]); 
     </script>
 </html>    
