@@ -57,7 +57,14 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per fare una prova','Premi qui per andare avanti'], 
+            choices: ['Prema qui per fare una prova','Premi qui per andare avanti'],
+            on_finish: function(data){
+                if (data.response == 0) {
+                    timeline.push(prova_procedure);
+                } /* else if (data.response == 1) {
+                    timeline.push(trial_procedure);
+                } */
+            } 
             
         }; timeline.push(instructions); 
 
@@ -139,7 +146,7 @@
         };
 
 
-        var procedure = {
+        var prova_procedure = {
             timeline: [trial, feedback],
             timeline_variables: [
                 {
@@ -156,7 +163,10 @@
                 }
             ],
             randomize_order: true,
-        }; timeline.push(procedure);
+        }; //timeline.push(prova_procedure);
+
+
+
 
 
 
