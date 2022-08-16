@@ -8,7 +8,7 @@
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
         <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
-        <script src="./tasks/attenzione/attenzionevisiva/practice_trial_info.js"></script>
+        <!-- <script src="./tasks/attenzione/attenzionevisiva/practice_trial_info.js"></script>  // METODO DI INSERIMENTO VARIABILI TRAMITE FILE JSON--> 
 
         <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
         <script src="jatos.js"></script>
@@ -116,7 +116,7 @@
                     accuracy = true;
                 }
                 data.accuracy = accuracy;*/
-                if(jsPsych.pluginAPI.compareKeys(data.key_pressed, data.correctResponse) == true) {
+                if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) {
                     accuracy = true;
                 }
                 data.accuracy = accuracy;
@@ -130,7 +130,7 @@
                 var feedback_text = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';
                 var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
                 if (last_response_accuracy == true){
-                    feedback_text = '<span style="color:red; font-size:50px;">Corretto!</span>'; 
+                    feedback_text = '<span style="color:green; font-size:50px;">Corretto!</span>'; 
                 }
                 return feedback_text;
             }, 
@@ -141,7 +141,20 @@
 
         var procedure = {
             timeline: [trial, feedback],
-            timeline_variables: practice_trial_info,
+            timeline_variables: [
+                {
+                    number: '2',
+                    correctResponse: '4' 
+                },
+                {
+                    number: '4',
+                    correctResponse: '2' 
+                },
+                {
+                    number: '7',
+                    correctResponse: null
+                }
+            ],
             randomize_order: true
         }; timeline.push(procedure);
 
