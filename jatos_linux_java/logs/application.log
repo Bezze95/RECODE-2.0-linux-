@@ -95,3 +95,28 @@
 2022-08-16 11:46:24,556 [INFO] - publix_access - POST /publix/4e488545-8a37-446a-856f-fcb3f4fd0876/heartbeat
 2022-08-16 11:46:24,566 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 111
 2022-08-16 11:46:24,614 [INFO] - c.p.JatosBatchChannel - .open: studyResult 111
+2022-08-16 11:47:36,540 [INFO] - publix_access - GET /publix/4e488545-8a37-446a-856f-fcb3f4fd0876/0e167827-a889-4360-8052-784dd2c8ad7f/start
+2022-08-16 11:47:36,547 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 111, componentId 5
+2022-08-16 11:47:36,887 [INFO] - publix_access - GET /publix/4e488545-8a37-446a-856f-fcb3f4fd0876/0e167827-a889-4360-8052-784dd2c8ad7f/initData
+2022-08-16 11:47:36,895 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 111, componentId 5
+2022-08-16 11:47:36,931 [INFO] - publix_access - POST /publix/4e488545-8a37-446a-856f-fcb3f4fd0876/heartbeat
+2022-08-16 11:47:36,941 [INFO] - c.p.JatosBatchChannel - .open: studyResult 111
+2022-08-16 11:47:36,943 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 111
+2022-08-16 11:47:57,637 [INFO] - gui_access - GET /jatos/1/5/results (admin)
+2022-08-16 11:47:57,902 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-16 11:47:58,270 [INFO] - gui_access - GET /jatos/1/5/tableData?_=1660643277845 (admin)
+2022-08-16 11:48:02,998 [INFO] - gui_access - POST /jatos/componentResult/delete (admin)
+2022-08-16 11:48:04,985 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-08-16 11:48:05,501 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-16 11:48:05,617 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1660643285212 (admin)
+2022-08-16 11:53:53,368 [INFO] - gui_access - GET /jatos/1/5/run (admin)
+2022-08-16 11:53:53,399 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-16 11:53:53,400 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-16 11:53:53,429 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId112, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-16 11:53:53,449 [INFO] - publix_access - GET /publix/e3cfde25-ce19-458f-b3ed-146eb411fedc/0e167827-a889-4360-8052-784dd2c8ad7f/start
+2022-08-16 11:53:53,455 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 112, componentId 5
+2022-08-16 11:53:53,862 [INFO] - publix_access - GET /publix/e3cfde25-ce19-458f-b3ed-146eb411fedc/0e167827-a889-4360-8052-784dd2c8ad7f/initData
+2022-08-16 11:53:53,879 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 112, componentId 5
+2022-08-16 11:53:53,903 [INFO] - publix_access - POST /publix/e3cfde25-ce19-458f-b3ed-146eb411fedc/heartbeat
+2022-08-16 11:53:53,908 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 112
+2022-08-16 11:53:53,926 [INFO] - c.p.JatosBatchChannel - .open: studyResult 112
