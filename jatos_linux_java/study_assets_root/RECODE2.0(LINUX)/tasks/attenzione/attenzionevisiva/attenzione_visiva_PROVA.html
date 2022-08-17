@@ -68,7 +68,7 @@
             
         }; timeline.push(instructions); 
 
-        var trial = {
+        var prova = {
             type: jsPsychPsychophysics,
             stimuli: [
                 {
@@ -147,7 +147,7 @@
 
 
         var prova_procedure = {
-            timeline: [trial, feedback],
+            timeline: [prova, feedback],
             timeline_variables: [
                 {
                     number: '2',
@@ -168,14 +168,33 @@
         var prova_node = {
             timeline: [prova_procedure],
             conditional_function: function(){
-                var data = jsPsych.data.getDataByTimelineNode(instructions);
-                if(data.prova ==1){
+                var data_prova = jsPsych.data.getDataByTimelineNode(instructions); // ----->  modificare inserendo data.get().last(1).values()[0] 
+                if(data_prova.prova ==1){
                     return true;
-                } else if(data.prova == 0){
+                } else if(data_prova.prova == 0){
                     return false;
                 }
-            }
+            },
         }; timeline.push(prova_node);
+
+        var instructions1 = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una serie di numeri. <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
+            Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
+            <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
+            choices: ['Premi qui per andare avanti'],
+            on_start:function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions1);
+                } else { jsPsych.finishTrial(data)};
+            }
+
+        }; timeline.push(instructions1);
+
+
+
+
 
 
 
