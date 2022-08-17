@@ -60,10 +60,10 @@
             choices: ['Prema qui per fare una prova','Premi qui per andare avanti'],
             on_finish: function(data){
                 if (data.response == 0) {
-                    timeline.push(prova_procedure);
-                } /* else if (data.response == 1) {
-                    timeline.push(trial_procedure);
-                } */
+                    prova = 1;
+                } else if (data.response == 1) {
+                    prova = 0;
+                }
             } 
             
         }; timeline.push(instructions); 
@@ -163,7 +163,21 @@
                 }
             ],
             randomize_order: true,
-        }; //timeline.push(prova_procedure);
+        }; 
+
+        var prova_node = {
+            timeline: [prova_procedure],
+            conditional_function: function(){
+                var data = jsPsych.data.getDataByTimelineNode(instructions);
+                if(data.prova ==1){
+                    return true;
+                } else if(data.prova == 0){
+                    return false;
+                }
+            }
+        }; timeline.push(prova_node);
+
+
 
 
 
