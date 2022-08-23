@@ -63,7 +63,8 @@
                     prova = 1;
                 } else if (data.response == 1) {
                     prova = 0;
-                }
+                }; data.prova = prova;
+
             } 
             
         }; timeline.push(instructions); 
@@ -137,7 +138,7 @@
                 var feedback_text = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';
                 var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
                 if (last_response_accuracy == true){
-                    feedback_text = '<span style="color:green; font-size:50px;">Corretto!</span>'; 
+                    feedback_text = '<span style="color:green; font-size:50px;">Corretto!</span>'; // -----> da sostituire con target visivo pollice
                 }
                 return feedback_text;
             }, 
@@ -167,9 +168,9 @@
 
         var prova_node = {
             timeline: [prova_procedure],
-            conditional_function: function(){
+            conditional_function: function(data_prova){
                 var data_prova = jsPsych.data.getDataByTimelineNode(instructions); // ----->  modificare inserendo data.get().last(1).values()[0] 
-                if(data_prova.prova ==1){
+                if(data_prova.prova == 1){
                     return true;
                 } else if(data_prova.prova == 0){
                     return false;
@@ -191,6 +192,85 @@
             }
 
         }; timeline.push(instructions1);
+
+        var trial = {
+            type: jsPsychPsychophysics,
+            stimuli: [
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: '+',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 2000,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: function(){
+                    return jsPsych.timelineVariable('number', true);
+                  },
+                  choices: [2,4],
+                  font: "60px 'Arial'",
+                  text_color: 'black',
+                  show_start_time: 2500, // ms after the start of the trial
+                  show_end_time: 3500,
+                }
+            ], 
+            background_color: 'white',
+            response_type: 'key',
+            response_start_time: 3500,
+            response_ends_trial: false,
+            trial_duration: 4500,
+            data: {
+                trial_part: 'trial',
+                correctResponse: jsPsych.timelineVariable('correctResponse'),
+                number: jsPsych.timelineVariable('number'),
+            },
+            on_finish: function(data) {
+                var accuracy = false;
+                /*if (data.correctResponse == jsPsych.pluginAPI.convertKeyCodetoKeyCharacter(data.key_pressed)){
+                    accuracy = true;
+                }
+                data.accuracy = accuracy;*/
+                if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) {
+                    accuracy = true;
+                }
+                data.accuracy = accuracy;
+            }
+            
+        };
+
+        var trial_node = {
+            timeline: [trial],
+            timeline_variables: [
+                {
+                    number: '2',
+                    correctResponse: '4' 
+                },
+                {
+                    number: '4',
+                    correctResponse: '2' 
+                },
+                {
+                    number: '7',
+                    correctResponse: null
+                }
+            ],
+            randomize_order: true,
+            conditional_function: function(data_trial){
+                var data_trial = jsPsych.data.getDataByTimelineNode(instructions); 
+                if(data_trial.prova == 0){
+                    return true;
+                } else if(data_trial.prova == 1){
+                    return false;
+                }
+            },
+        }; timeline.push(trial_node);
 
 
 
