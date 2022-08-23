@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2022-08-17 11:10:11,219 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
 2022-08-17 11:10:11,230 [INFO] - application - Creating Pool for datasource 'default'
 2022-08-17 11:10:11,257 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
@@ -362,3 +363,36 @@
 2022-08-17 12:41:04,180 [INFO] - application - Shutting down connection pool.
 2022-08-17 12:41:04,181 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2022-08-17 12:41:04,185 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+=======
+2022-08-23 15:15:46,338 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2022-08-23 15:15:46,340 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2022-08-23 15:15:46,398 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2022-08-23 15:15:46,398 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2022-08-23 15:15:46,570 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2022-08-23 15:15:46,628 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2022-08-23 15:15:46,630 [INFO] - application - Creating Pool for datasource 'default'
+2022-08-23 15:15:46,635 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2022-08-23 15:15:46,645 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2022-08-23 15:15:46,661 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2022-08-23 15:15:46,801 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2022-08-23 15:15:46,836 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2022-08-23 15:15:46,934 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-23 15:15:47,032 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2022-08-23 15:15:47,052 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-08-23 15:15:47,203 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2022-08-23 15:15:47,203 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2022-08-23 15:15:47,203 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2022-08-23 15:15:47,203 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2022-08-23 15:15:47,609 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-23 15:15:47,754 [INFO] - g.OnStartStop - JATOS started
+2022-08-23 15:15:47,797 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2022-08-23 15:15:48,021 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2022-08-23 15:16:02,547 [INFO] - gui_access - GET /jatos/login (null)
+2022-08-23 15:16:04,304 [INFO] - gui_access - POST /jatos/login (null)
+2022-08-23 15:16:04,449 [INFO] - gui_access - GET /jatos (admin)
+2022-08-23 15:16:04,738 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-08-23 15:16:04,755 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-23 15:16:06,709 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-08-23 15:16:07,009 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-23 15:16:07,049 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661260566942 (admin)
+>>>>>>> Stashed changes
