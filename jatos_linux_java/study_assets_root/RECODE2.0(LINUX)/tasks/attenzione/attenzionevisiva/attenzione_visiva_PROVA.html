@@ -63,7 +63,8 @@
                     prova = 1;
                 } else if (data.response == 1) {
                     prova = 0;
-                }; data.prova = prova;
+                }; 
+                data.prova = prova;
 
             } 
             
@@ -120,10 +121,6 @@
             },
             on_finish: function(data) {
                 var accuracy = false;
-                /*if (data.correctResponse == jsPsych.pluginAPI.convertKeyCodetoKeyCharacter(data.key_pressed)){
-                    accuracy = true;
-                }
-                data.accuracy = accuracy;*/
                 if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) {
                     accuracy = true;
                 }
@@ -168,11 +165,11 @@
 
         var prova_node = {
             timeline: [prova_procedure],
-            conditional_function: function(data_prova){
-                var data_prova = jsPsych.data.getDataByTimelineNode(instructions); // ----->  modificare inserendo data.get().last(1).values()[0] 
-                if(data_prova.prova == 1){
+            conditional_function: function(){
+                var data_prova = jsPsych.data.getDataByTimelineNode(instructions).prova; // ----->  modificare inserendo data.get().last(1).values()[0] 
+                if(data_prova == 1){
                     return true;
-                } else if(data_prova.prova == 0){
+                } else if(data_prova == 0){
                     return false;
                 }
             },
@@ -262,11 +259,11 @@
                 }
             ],
             randomize_order: true,
-            conditional_function: function(data_trial){
-                var data_trial = jsPsych.data.getDataByTimelineNode(instructions); 
-                if(data_trial.prova == 0){
+            conditional_function: function(){
+                var data_trial = jsPsych.data.getDataByTimelineNode(instructions).prova; 
+                if(data_trial == 0){
                     return true;
-                } else if(data_trial.prova == 1){
+                } else if(data_trial == 1){
                     return false;
                 }
             },
