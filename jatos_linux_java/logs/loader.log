@@ -82,3 +82,5 @@ WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$Ref
 WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
+This application is already running (Or delete /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_linux_java/RUNNING_PID file).
+This application is already running (Or delete /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_linux_java/RUNNING_PID file).
