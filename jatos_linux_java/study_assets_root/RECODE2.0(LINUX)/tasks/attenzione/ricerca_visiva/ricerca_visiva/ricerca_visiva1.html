@@ -87,7 +87,7 @@
             ],
             on_finish: function(data){
                 //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
-                if (data.response == 2) {
+                if (data.response.Q0 == 2) {
                     var feedback = "Corretto!"
                 } else {
                     var feedback = "Sbagliato!"
@@ -96,7 +96,9 @@
                 prova.data = {stimulus: feedback};
                 prova.stimulus = feedback_prova_stima;*/
                 data.feedback = feedback;
+                //console.log(feedback);
             }
+            
         }; timeline.push(prova); 
 
 
