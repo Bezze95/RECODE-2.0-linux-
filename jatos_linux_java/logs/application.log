@@ -194,3 +194,26 @@
 2022-08-25 17:44:57,806 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
 2022-08-25 17:46:57,817 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
 2022-08-25 17:46:57,818 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:48:57,829 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:48:57,830 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:50:57,842 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:50:57,843 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:52:57,855 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:52:57,856 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:54:57,869 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:54:57,872 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:56:57,883 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:56:57,885 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 17:58:57,896 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 17:58:57,898 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 18:00:57,910 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 18:00:57,911 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 18:02:57,922 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 18:02:57,923 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 18:04:57,935 [INFO] - publix_access - POST /publix/3d7cc970-2980-4c3e-b5dc-067493f8c530/heartbeat
+2022-08-25 18:04:57,936 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 128
+2022-08-25 18:05:44,632 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-08-25 18:05:44,638 [INFO] - g.OnStartStop - JATOS shutdown
+2022-08-25 18:05:44,656 [INFO] - application - Shutting down connection pool.
+2022-08-25 18:05:44,657 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-08-25 18:05:44,660 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
