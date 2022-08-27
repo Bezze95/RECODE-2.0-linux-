@@ -219,23 +219,17 @@
             
         };
 
+        var variables = 
+            [
+                { number: '2', correctResponse: '4'},
+                { number: '4', correctResponse: '2'},
+                { number: '7', correctResponse: null}
+            ];
+
         var trial_node = {
             timeline: [trial],
-            timeline_variables: [
-                {
-                    number: '2',
-                    correctResponse: '4' 
-                },
-                {
-                    number: '4',
-                    correctResponse: '2' 
-                },
-                {
-                    number: '7',
-                    correctResponse: null
-                }
-            ],
-            randomize_order: true,
+            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,15])
+            
         }; timeline.push(trial_node);
 
 
