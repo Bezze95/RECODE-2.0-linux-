@@ -401,3 +401,8 @@
 2022-08-27 17:01:58,812 [INFO] - c.p.JatosBatchChannel - .open: studyResult 133
 2022-08-27 17:02:51,456 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
 2022-08-27 17:02:51,708 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661612571352 (admin)
+2022-08-27 17:05:18,596 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-08-27 17:05:18,604 [INFO] - g.OnStartStop - JATOS shutdown
+2022-08-27 17:05:18,616 [INFO] - application - Shutting down connection pool.
+2022-08-27 17:05:18,617 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-08-27 17:05:18,619 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
