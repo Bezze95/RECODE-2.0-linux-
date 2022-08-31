@@ -69,3 +69,42 @@
 2022-08-31 10:34:42,002 [INFO] - gui_access - GET /jatos/1 (admin)
 2022-08-31 10:34:42,190 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-08-31 10:34:42,254 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661934882087 (admin)
+2022-08-31 11:04:37,298 [INFO] - gui_access - GET /jatos/1/5/properties (admin)
+2022-08-31 11:04:47,247 [INFO] - gui_access - GET /jatos/1/5/properties (admin)
+2022-08-31 11:05:02,923 [INFO] - gui_access - POST /jatos/1/5/properties (admin)
+2022-08-31 11:05:03,078 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-31 11:05:03,100 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661934882088 (admin)
+2022-08-31 11:05:54,216 [INFO] - gui_access - POST /jatos/1/component (admin)
+2022-08-31 11:05:54,260 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-31 11:05:54,261 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661934882089 (admin)
+2022-08-31 11:06:01,874 [INFO] - gui_access - GET /jatos/1/7/properties (admin)
+2022-08-31 11:06:07,541 [INFO] - gui_access - POST /jatos/1/7/properties (admin)
+2022-08-31 11:06:07,572 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-31 11:06:07,578 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661934882090 (admin)
+2022-08-31 11:06:10,843 [INFO] - gui_access - GET /jatos/1/7/run (admin)
+2022-08-31 11:06:10,882 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-31 11:06:10,882 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-31 11:06:10,977 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId134, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-31 11:06:11,009 [INFO] - publix_access - GET /publix/7cca5899-5263-4210-9bc3-d3953af44014/ebad21b6-1b5a-4218-ae4d-c554b5b5a0a5/start
+2022-08-31 11:06:11,026 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 134, componentId 7
+2022-08-31 11:06:11,399 [INFO] - publix_access - GET /publix/7cca5899-5263-4210-9bc3-d3953af44014/ebad21b6-1b5a-4218-ae4d-c554b5b5a0a5/initData
+2022-08-31 11:06:11,430 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 134, componentId 7
+2022-08-31 11:06:11,472 [INFO] - publix_access - POST /publix/7cca5899-5263-4210-9bc3-d3953af44014/heartbeat
+2022-08-31 11:06:11,476 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 134
+2022-08-31 11:06:11,541 [INFO] - c.p.JatosBatchChannel - .open: studyResult 134
+2022-08-31 11:07:39,989 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2022-08-31 11:07:40,235 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661936859896 (admin)
+2022-08-31 11:11:09,892 [INFO] - gui_access - GET /jatos/1/7/run (admin)
+2022-08-31 11:11:09,912 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-31 11:11:09,912 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-31 11:11:09,955 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId135, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-31 11:11:09,976 [INFO] - publix_access - GET /publix/92a5549a-3885-4705-8c6c-3244def0d5ae/ebad21b6-1b5a-4218-ae4d-c554b5b5a0a5/start
+2022-08-31 11:11:09,987 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 135, componentId 7
+2022-08-31 11:11:10,316 [INFO] - publix_access - GET /publix/92a5549a-3885-4705-8c6c-3244def0d5ae/ebad21b6-1b5a-4218-ae4d-c554b5b5a0a5/initData
+2022-08-31 11:11:10,330 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 135, componentId 7
+2022-08-31 11:11:10,378 [INFO] - publix_access - POST /publix/92a5549a-3885-4705-8c6c-3244def0d5ae/heartbeat
+2022-08-31 11:11:10,382 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 135
+2022-08-31 11:11:10,387 [INFO] - c.p.JatosBatchChannel - .open: studyResult 135
+2022-08-31 11:13:10,400 [INFO] - publix_access - POST /publix/92a5549a-3885-4705-8c6c-3244def0d5ae/heartbeat
+2022-08-31 11:13:10,402 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 135
+2022-08-31 11:13:36,530 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661937216378 (admin)
