@@ -136,3 +136,19 @@
 2022-08-31 16:17:11,791 [INFO] - gui_access - POST /jatos/1/6/properties (admin)
 2022-08-31 16:17:11,826 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-08-31 16:17:11,858 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661954285313 (admin)
+2022-08-31 16:37:29,665 [INFO] - gui_access - GET /jatos/1/6/run (admin)
+2022-08-31 16:37:29,689 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-08-31 16:37:29,690 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-08-31 16:37:29,732 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId137, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-08-31 16:37:29,762 [INFO] - publix_access - GET /publix/4d2367a6-682c-4c3c-ab80-437b6d3b5ee2/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-08-31 16:37:29,770 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 137, componentId 6
+2022-08-31 16:37:34,190 [INFO] - publix_access - GET /publix/4d2367a6-682c-4c3c-ab80-437b6d3b5ee2/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-08-31 16:37:34,210 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 137, componentId 6
+2022-08-31 16:37:34,242 [INFO] - publix_access - POST /publix/4d2367a6-682c-4c3c-ab80-437b6d3b5ee2/heartbeat
+2022-08-31 16:37:34,246 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 137
+2022-08-31 16:37:34,293 [INFO] - c.p.JatosBatchChannel - .open: studyResult 137
+2022-08-31 16:38:01,348 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-08-31 16:38:01,359 [INFO] - g.OnStartStop - JATOS shutdown
+2022-08-31 16:38:01,380 [INFO] - application - Shutting down connection pool.
+2022-08-31 16:38:01,381 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-08-31 16:38:01,385 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
