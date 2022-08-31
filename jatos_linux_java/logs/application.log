@@ -108,3 +108,4 @@
 2022-08-31 11:13:10,400 [INFO] - publix_access - POST /publix/92a5549a-3885-4705-8c6c-3244def0d5ae/heartbeat
 2022-08-31 11:13:10,402 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 135
 2022-08-31 11:13:36,530 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661937216378 (admin)
+2022-08-31 15:12:38,430 [INFO] - gui_access - POST /jatos/login (admin)
