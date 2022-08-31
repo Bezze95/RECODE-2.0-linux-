@@ -132,3 +132,7 @@
 2022-08-31 15:58:00,555 [INFO] - publix_access - POST /publix/e06ad571-411f-41d3-9841-e5c875fcb70e/heartbeat
 2022-08-31 15:58:00,560 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 136
 2022-08-31 15:58:05,464 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661954285312 (admin)
+2022-08-31 16:16:49,132 [INFO] - gui_access - GET /jatos/1/6/properties (admin)
+2022-08-31 16:17:11,791 [INFO] - gui_access - POST /jatos/1/6/properties (admin)
+2022-08-31 16:17:11,826 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-08-31 16:17:11,858 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1661954285313 (admin)
