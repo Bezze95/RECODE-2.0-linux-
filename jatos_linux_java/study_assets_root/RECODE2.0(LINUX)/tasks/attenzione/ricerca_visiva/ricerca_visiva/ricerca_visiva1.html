@@ -148,13 +148,13 @@
                 ],
                 required: true
                 },
-                {prompt: "<p style='font-size:30px;'>Quante STELLE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:30px;'>Quante STELLE A CINQUE PUNTE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
-                    "<p style='font-size:30px;'>4</p>",
-                    "<p style='font-size:30px;'>5</p>", 
-                    "<p style='font-size:30px;'>6</p>", 
-                    "<p style='font-size:30px;'>7</p>", 
-                    "<p style='font-size:30px;'>8</p>"
+                    "<p style='font-size:30px;'>6</p>",
+                    "<p style='font-size:30px;'>2</p>", 
+                    "<p style='font-size:30px;'>12</p>", 
+                    "<p style='font-size:30px;'>9</p>", //CORRETTA
+                    "<p style='font-size:30px;'>23</p>"
                 ],
                 required: true
                 },
@@ -170,9 +170,15 @@
                     var accuracy_Q1 = true;
                 } else {
                     var accuracy_Q1 = false;
-
+                };
+                if (data.response.Q2 == 3){
+                    var accuracy_Q2 = true;
+                } else {
+                    var accuracy_Q2 = false;
+                };
                 data.accuracy_Q0 = accuracy_Q0;
                 data.accuracy_Q1 = accuracy_Q1;
+                data.accuracy_Q2 = accuracy_Q2;
             }
             
         }; timeline.push(trial); 

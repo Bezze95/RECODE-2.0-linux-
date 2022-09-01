@@ -274,3 +274,66 @@
 2022-09-01 12:33:14,830 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
 2022-09-01 12:35:14,841 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
 2022-09-01 12:35:14,843 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:37:14,855 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:37:14,857 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:39:14,867 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:39:14,868 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:41:14,877 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:41:14,879 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:43:14,889 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:43:14,891 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:45:14,901 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:45:14,902 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:47:14,912 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:47:14,913 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:49:14,923 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:49:14,924 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:51:14,934 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:51:14,935 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:53:14,945 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:53:14,947 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:55:14,957 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:55:14,959 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:57:14,969 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:57:14,970 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 12:59:14,980 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 12:59:14,981 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:01:14,991 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:01:14,992 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:03:15,001 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:03:15,003 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:05:15,012 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:05:15,013 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:07:15,023 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:07:15,024 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:09:15,034 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:09:15,035 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:11:15,045 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:11:15,046 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:13:15,056 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:13:15,057 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:15:15,066 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:15:15,068 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:17:15,077 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:17:15,079 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:19:15,088 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:19:15,089 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:21:15,098 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:21:15,099 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:21:39,978 [INFO] - publix_access - GET /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-09-01 13:21:39,981 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 139, componentId 6
+2022-09-01 13:21:40,101 [INFO] - publix_access - GET /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-09-01 13:21:40,106 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 139, componentId 6
+2022-09-01 13:21:40,110 [INFO] - publix_access - POST /publix/084402b8-4c81-4cb3-b7f4-9b07e7ba9228/heartbeat
+2022-09-01 13:21:40,112 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 139
+2022-09-01 13:21:40,125 [INFO] - c.p.JatosBatchChannel - .open: studyResult 139
+2022-09-01 13:22:07,066 [INFO] - c.g.a.AuthenticationAction - User admin has been logged out due to inactivity.
+2022-09-01 13:22:10,383 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1
+2022-09-01 13:22:10,391 [INFO] - gui_access - GET /jatos/login (null)
+2022-09-01 13:22:11,834 [INFO] - gui_access - POST /jatos/login (null)
+2022-09-01 13:22:11,845 [INFO] - gui_access - GET /jatos (admin)
+2022-09-01 13:22:11,947 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-09-01 13:22:11,960 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-09-01 13:22:13,656 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-09-01 13:22:13,730 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-09-01 13:22:13,775 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1662031333691 (admin)
