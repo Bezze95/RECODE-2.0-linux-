@@ -72,15 +72,15 @@
             type: jsPsychSurveyLikert,
             preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">',
             questions: [
-                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
                     "<p style='font-size:30px;'>4</p>",
                     "<p style='font-size:30px;'>5</p>", 
-                    "<p style='font-size:30px;'>6</p>", 
+                    "<p style='font-size:30px;'>6</p>", // CORRETTA
                     "<p style='font-size:30px;'>7</p>", 
                     "<p style='font-size:30px;'>8</p>"
                 ],
-                required: true,
+                required: true
                 
                 }
             ],
@@ -109,6 +109,75 @@
             choices: "NO_KEYS",
             trial_duration: 1500
         }; timeline.push(feedback);
+
+
+        var instructions1 = {
+            type:jsPsychHtmlButtonResponse,
+            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+            choices: ['Prema qui per proseguire'],
+            on_start:function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions1);
+                } else { jsPsych.finishTrial(data)};
+            }
+        }; timeline.push(instructions1);
+
+        var trial = {
+            type: jsPsychSurveyLikert,
+            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png">',
+            questions: [
+                {prompt: "<p style='font-size:30px;'>Quante FRECCE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>9</p>",
+                    "<p style='font-size:30px;'>2</p>", 
+                    "<p style='font-size:30px;'>11</p>", 
+                    "<p style='font-size:30px;'>22</p>", //CORRETTA
+                    "<p style='font-size:30px;'>5</p>"
+                ],
+                required: true
+                },
+                {prompt: "<p style='font-size:30px;'>Quanti CUORI ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>14</p>", //CORRETTA
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>16</p>", 
+                    "<p style='font-size:30px;'>4</p>", 
+                    "<p style='font-size:30px;'>19</p>"
+                ],
+                required: true
+                },
+                {prompt: "<p style='font-size:30px;'>Quante STELLE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>4</p>",
+                    "<p style='font-size:30px;'>5</p>", 
+                    "<p style='font-size:30px;'>6</p>", 
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>8</p>"
+                ],
+                required: true
+                },
+
+            ],
+            on_finish: function(data){
+                if (data.response.Q0 == 3) {
+                    var accuracy_Q0 = true;
+                } else {
+                    var accuracy_Q0 = false;
+                };
+                if (data.response.Q1 == 0) {
+                    var accuracy_Q1 = true;
+                } else {
+                    var accuracy_Q1 = false;
+
+                data.accuracy_Q0 = accuracy_Q0;
+                data.accuracy_Q1 = accuracy_Q1;
+            }
+            
+        }; timeline.push(trial); 
+
+        
 
 
    
