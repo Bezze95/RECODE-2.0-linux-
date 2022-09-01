@@ -344,3 +344,8 @@
 2022-09-01 13:32:56,600 [INFO] - gui_access - POST /jatos/1/component (admin)
 2022-09-01 13:32:56,617 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-09-01 13:32:56,624 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1662031333692 (admin)
+2022-09-01 13:33:25,164 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-09-01 13:33:25,171 [INFO] - g.OnStartStop - JATOS shutdown
+2022-09-01 13:33:25,182 [INFO] - application - Shutting down connection pool.
+2022-09-01 13:33:25,183 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-09-01 13:33:25,185 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
