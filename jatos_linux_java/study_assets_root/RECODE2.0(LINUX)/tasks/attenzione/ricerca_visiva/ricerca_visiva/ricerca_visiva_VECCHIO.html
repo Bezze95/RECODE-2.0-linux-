@@ -85,12 +85,19 @@
                 }
             ],
             on_finish: function(data){
+                //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
                 if (data.response.Q0 == 2) {
                     var accuracy = true;
                 } else {
                     var accuracy = false;
                 }
                 data.accuracy = accuracy;
+               
+                /*var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;*/
+               
+                //console.log(feedback);
             }
             
         }; timeline.push(prova); 
@@ -111,7 +118,47 @@
         }; timeline.push(feedback);
 
 
-   
+
+        /* var feedback_prova = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+        
+        };
+
+        var prova_procedure = {
+            timeline: [prova, feedback_prova],
+        }; */
+
+
+        /* var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
+
+        var likert_trial_random_order = {
+                type: 'survey-likert',
+                preamble: '<img src="ricerca_visiva/ricerca_visiva/immagine1.png">',
+                questions: [
+                    {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine?</p>", labels: scale1},
+                ],
+                randomize_question_order: true,
+                scale_width: 500,
+                on_finish: function(data){
+                    data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                }
+            }; */
+
 
 
 
