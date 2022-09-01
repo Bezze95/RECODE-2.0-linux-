@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MEMORIA VERBALE LIV. 1</title>
+        <meta charset="UTF-8" />
+
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.1"></script>
+
+
+        <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+
+        </style>
+
+    </body>
+    <script>
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        });    
+
+            /* to initialize jspsych */
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+
+            on_finish: function() {
+                jsPsych.data.displayData(); //lascio così adesso in via di sviluppo 
+
+                /*
+                var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
+                    if(correct_trials > 10){
+                        var feed = 1;
+                    } else {
+                        var feed = 0;
+                    }
+                jatos.studySessionData = feed;
+                var memoria_verbale = Number(sessionStorage.getItem('memoria_verbale'))+feed;
+                sessionStorage.setItem('memoria_verbale', memoria_verbale);
+                var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); 
+            } */
+            }
+
+        });
+
+        var timeline = [];
+
+        var preload = {
+            type: jsPsychPreload,
+            images: [
+                './tasks/memoria/volto nome_riconoscimento,memoria/volto_1.png', './tasks/memoria/volto nome_riconoscimento,memoria/volto_2.png',
+                './tasks/memoria/volto nome_riconoscimento,memoria/volto_3.png', './tasks/memoria/volto nome_riconoscimento,memoria/volto_4.png',
+                './tasks/memoria/volto nome_riconoscimento,memoria/volto_5.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_6.png',
+                './tasks/memoria/volto nome_riconoscimento,memoria/volto_7.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_8.png',
+                './tasks/memoria/volto nome_riconoscimento,memoria/volto_9.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_10.png'
+            ]
+        }; timeline.push(preload);
+
+        var instructions = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. </p>`,
+            button_choices: ['Prema qui per fare una PROVA','Prema qui per proseguire direttamente'],
+            on_finish: function(data){
+                if (data.response == 0) {
+                    timeline.push(prova_procedure);
+                } 
+            }
+        }; timeline.push(instructions);
+
+        var prova_img = {
+            type: jsPsychImageKeyboardResponse,
+            stimulus: jsPsych.timelineVariable(img),
+            choices: "NO_KEYS",
+            trial_duration: 3000,
+            data: {
+                test_part: 'prova',
+                nome: jsPsych.timelineVariable('nome'),
+                cognome: jsPsych.timelineVariable('cognome')
+            },
+            on_finish: function(data){
+                if (jsPsych.pluginAPI.compareKeys(data.key_press,data.visualCresp) == true){
+                    data.accuracy = 1
+                } else {
+                    data.accuracy = 0
+                }
+            },
+
+        };
+
+        var prova = {
+            type: jsPsychHtmlSurveyHtmlForm,
+            preamble: `<p> Riporti qui Nome e Cognome della persona appena presentata.</p>`,
+            
+
+        };
+
+        var prova_feedback = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+        };
+
+        var prova_procedure = {
+            timeline: [prova, prova_feedback],
+            timeline_variables: 
+                {img: './tasks/memoria/volto nome_riconoscimento,memoria/volto_1.png', nome:'Mario', cognome:'Rossi'},
+            randomize_order: true
+            
+        }
+
+        jsPsych.run(timeline);
+    </script>
+</html>
