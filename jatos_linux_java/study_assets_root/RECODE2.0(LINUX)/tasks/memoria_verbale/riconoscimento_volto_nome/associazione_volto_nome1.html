@@ -81,11 +81,11 @@
 
         var prova_img = {
             type: jsPsychImageButtonResponse,
-            stimulus: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', // -----> inserire timeline variables 
+            stimulus: jsPsych.timelineVariable('img1'),
             // da definire dimensioni immagine
             prompt: `<p style="font-size: 24px; font-weight: bold;">Osservi e memorizi attentamente le informazioni presenti nell'immagine presente sullo schermo </p>`,
             choices: ['Prema qui per proseguire'],
-        }; timeline.push(prova_img);
+        }; 
 
         var prova_answer = {
             type: jsPsychSurveyText,
@@ -93,8 +93,69 @@
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome'},
                 {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione'}
             ],
+            on_finish: function(data){
+                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                    var accuracy_nome = 1
+                } else {
+                    var accuracy_nome = 0
+                } 
+                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                    var accuracy_professione = 1
+                } else {
+                    var accuracy_professione = 0
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
 
-        }; timeline.push(prova_answer);
+            }
+        }; 
+
+        var feedback_nome = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy_nome;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Nome Corretto!"
+                } else {
+                    var feedback = "Nome Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+
+        };
+
+        var feedback_professione = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy_professione;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Professione Corretta!"
+                } else {
+                    var feedback = "Professione Sbagliata!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+
+        };
+
+        var prova = {
+            timeline: [prova_img, prova_answer, feedback_nome, feedback_professione],
+            timeline_variables:
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico'},
+            randomize_order: true
+        }; timeline.push(prova);
 
         
         jsPsych.run(timeline);
