@@ -6,10 +6,10 @@
 
         <script src="https://unpkg.com/jspsych@7.2.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.1"></script>
-        
+        <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
 
 
 
@@ -80,23 +80,59 @@
         }; timeline.push(instructions);
 
         var prova_img = {
-            type: jsPsychImageButtonResponse,
-            stimulus: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', // -----> inserire timeline variables 
-            // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">Osservi e memorizi attentamente le informazioni presenti nell'immagine presente sullo schermo </p>`,
-            choices: ['Prema qui per proseguire'],
-        }; timeline.push(prova_img);
+            type: jsPsychImageKeyboardResponse,
+            stimulus: jsPsych.timelineVariable('img'),
+            choices: "NO_KEYS",
+            trial_duration: 3000,
+            data: {
+                test_part: 'prova',
+                nome: jsPsych.timelineVariable('nome'),
+                cognome: jsPsych.timelineVariable('cognome')
+            },
+            on_finish: function(data){
+                if (jsPsych.pluginAPI.compareKeys(data.key_press,data.visualCresp) == true){
+                    data.accuracy = 1
+                } else {
+                    data.accuracy = 0
+                }
+            },
 
-        var prova_answer = {
-            type: jsPsychSurveyText,
-            questions: [
-                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome'},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione'}
-            ],
+        }; //timeline.push(prova_img);
 
-        }; timeline.push(prova_answer);
+        var prova = {
+            type: jsPsychSurveyHtmlForm,
+            preamble: `<p> Riporti qui Nome e Cognome della persona appena presentata.</p>`,
+            html: '<p> NOME: <input name="nome" type="text" /> e COGNOME: <input name="cognome" type="text" /> </p>'
 
-        
+        };
+
+        var prova_feedback = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+        };
+
+        var prova_procedure = {
+            timeline: [prova_img, prova, prova_feedback],
+            timeline_variables: 
+                {img: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome:'Mario', cognome:'Rossi'},
+            randomize_order: true
+            
+        }; timeline.push(prova_procedure)
+
         jsPsych.run(timeline);
     </script>
 </html>
