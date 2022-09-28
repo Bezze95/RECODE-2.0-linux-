@@ -60,11 +60,11 @@
         var preload = {
             type: jsPsychPreload,
             images: [
-                './tasks/memoria/volto nome_riconoscimento,memoria/volto_1.png', './tasks/memoria/volto nome_riconoscimento,memoria/volto_2.png',
-                './tasks/memoria/volto nome_riconoscimento,memoria/volto_3.png', './tasks/memoria/volto nome_riconoscimento,memoria/volto_4.png',
-                './tasks/memoria/volto nome_riconoscimento,memoria/volto_5.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_6.png',
-                './tasks/memoria/volto nome_riconoscimento,memoria/volto_7.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_8.png',
-                './tasks/memoria/volto nome_riconoscimento,memoria/volto_9.png','./tasks/memoria/volto nome_riconoscimento,memoria/volto_10.png'
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_2.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_3.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_4.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_5.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_6.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png'
             ]
         }; timeline.push(preload);
 
@@ -73,17 +73,13 @@
             stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
             Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
             Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. </p>`,
-            button_choices: ['Prema qui per fare una PROVA','Prema qui per proseguire direttamente'],
-            on_finish: function(data){
-                if (data.response == 0) {
-                    timeline.push(prova_procedure);
-                } 
-            }
+            button_choices: ['Prema qui per fare una PROVA'],
+            
         }; timeline.push(instructions);
 
         var prova_img = {
             type: jsPsychImageKeyboardResponse,
-            stimulus: jsPsych.timelineVariable(img),
+            stimulus: jsPsych.timelineVariable('img'),
             choices: "NO_KEYS",
             trial_duration: 3000,
             data: {
@@ -99,12 +95,12 @@
                 }
             },
 
-        };
+        }; //timeline.push(prova_img);
 
         var prova = {
             type: jsPsychHtmlSurveyHtmlForm,
             preamble: `<p> Riporti qui Nome e Cognome della persona appena presentata.</p>`,
-            
+            html: '<p> NOME: <input name="nome" type="text" /> e COGNOME: <input name="cognome" type="text" /> </p>'
 
         };
 
@@ -128,12 +124,12 @@
         };
 
         var prova_procedure = {
-            timeline: [prova, prova_feedback],
+            timeline: [prova_img, prova, prova_feedback],
             timeline_variables: 
-                {img: './tasks/memoria/volto nome_riconoscimento,memoria/volto_1.png', nome:'Mario', cognome:'Rossi'},
+                {img: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome:'Mario', cognome:'Rossi'},
             randomize_order: true
             
-        }
+        }; timeline.push(prova_procedure)
 
         jsPsych.run(timeline);
     </script>
