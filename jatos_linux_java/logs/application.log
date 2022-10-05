@@ -85,3 +85,21 @@
 2022-10-05 13:12:17,596 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
 2022-10-05 13:12:17,601 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
 2022-10-05 13:12:17,682 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145
+2022-10-05 13:14:17,658 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:14:17,661 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:16:17,704 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:16:17,715 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:17:51,491 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/start
+2022-10-05 13:17:51,499 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 145, componentId 9
+2022-10-05 13:17:52,403 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/initData
+2022-10-05 13:17:52,413 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 145, componentId 9
+2022-10-05 13:17:52,529 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:17:52,532 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:17:52,570 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145
+2022-10-05 13:19:08,963 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/start
+2022-10-05 13:19:08,971 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 145, componentId 9
+2022-10-05 13:19:09,886 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/initData
+2022-10-05 13:19:09,896 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 145, componentId 9
+2022-10-05 13:19:10,012 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:19:10,015 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:19:10,039 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145

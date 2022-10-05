@@ -174,6 +174,46 @@
             
         }; timeline.push(instructions1);
 
+        var img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('img1'),
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">Osservi e memorizi attentamente le informazioni presenti nell'immagine presente sullo schermo </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var answer = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome'},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione'}
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                    var accuracy_nome = 1
+                } else {
+                    var accuracy_nome = 0
+                } 
+                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                    var accuracy_professione = 1
+                } else {
+                    var accuracy_professione = 0
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+
+            }
+        };
+
+        var trial = {
+            timeline: [img, answer],
+            timeline_variables:[
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico'}, // -----> comprendere possibilità maiuscole e minuscole 
+            ],
+            randomize_order: true
+
+        }; timeline.push(trial);
+
 
         
         jsPsych.run(timeline);
