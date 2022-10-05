@@ -62,3 +62,26 @@
 2022-10-05 13:04:56,614 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145
 2022-10-05 13:06:56,611 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
 2022-10-05 13:06:56,614 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:08:07,198 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/start
+2022-10-05 13:08:07,208 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 145, componentId 9
+2022-10-05 13:08:08,165 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/initData
+2022-10-05 13:08:08,290 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 145, componentId 9
+2022-10-05 13:08:08,428 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:08:08,433 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:08:08,513 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145
+2022-10-05 13:10:08,497 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:10:08,500 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:11:59,973 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/start
+2022-10-05 13:11:59,986 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 145, componentId 9
+2022-10-05 13:12:00,972 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/initData
+2022-10-05 13:12:00,981 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 145, componentId 9
+2022-10-05 13:12:01,104 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:12:01,108 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:12:01,136 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145
+2022-10-05 13:12:16,579 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/start
+2022-10-05 13:12:16,586 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 145, componentId 9
+2022-10-05 13:12:17,543 [INFO] - publix_access - GET /publix/615d3c30-6640-4f84-9e71-8076a1339383/3794b064-08af-48d3-8614-113cf364c569/initData
+2022-10-05 13:12:17,559 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 145, componentId 9
+2022-10-05 13:12:17,596 [INFO] - publix_access - POST /publix/615d3c30-6640-4f84-9e71-8076a1339383/heartbeat
+2022-10-05 13:12:17,601 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 145
+2022-10-05 13:12:17,682 [INFO] - c.p.JatosBatchChannel - .open: studyResult 145

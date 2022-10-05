@@ -154,10 +154,26 @@
         var prova = {
             timeline: [prova_img, prova_answer, feedback_nome, feedback_professione],
             timeline_variables:[
-                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico'},
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico'}, // -----> comprendere possibilità maiuscole e minuscole 
             ],
             randomize_order: true
         }; timeline.push(prova);
+
+
+        var instructions1 = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. </p>`,
+            choices: ['Prema qui per proseguire'],
+            on_start:function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions1);
+                } else { jsPsych.finishTrial(data)};
+            }
+            
+        }; timeline.push(instructions1);
+
 
         
         jsPsych.run(timeline);
