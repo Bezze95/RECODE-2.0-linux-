@@ -180,3 +180,8 @@
 2022-10-05 14:11:42,804 [INFO] - publix_access - POST /publix/539ad0e1-ce47-4c1a-97bd-a5b7f54b5b82/heartbeat
 2022-10-05 14:11:42,805 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 150
 2022-10-05 14:11:42,938 [INFO] - c.p.JatosBatchChannel - .open: studyResult 150
+2022-10-05 14:12:24,347 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-10-05 14:12:24,359 [INFO] - g.OnStartStop - JATOS shutdown
+2022-10-05 14:12:24,379 [INFO] - application - Shutting down connection pool.
+2022-10-05 14:12:24,381 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-10-05 14:12:24,384 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
