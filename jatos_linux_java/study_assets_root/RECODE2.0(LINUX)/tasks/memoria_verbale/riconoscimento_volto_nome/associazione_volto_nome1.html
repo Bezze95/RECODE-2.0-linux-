@@ -9,6 +9,7 @@
         <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
         
 
 
@@ -111,7 +112,7 @@
         }; 
 
         var feedback_nome = {
-            on_start: function(prova){
+            on_start: function(prova_nome){
                 var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy_nome;
                 if (last_trial_accuracy == 1) {
                     var feedback = "Nome Corretto!"
@@ -120,8 +121,8 @@
                 };
 
                 var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-                prova.data = {stimulus: feedback};
-                prova.stimulus = feedback_prova_stima;
+                prova_nome.data = {stimulus: feedback};
+                prova_nome.stimulus = feedback_prova_stima;
             },
             data:"",
             type: jsPsychHtmlKeyboardResponse,
@@ -131,8 +132,8 @@
         };
 
         var feedback_professione = {
-            on_start: function(prova){
-                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy_professione;
+            on_start: function(prova_professione){
+                var last_trial_accuracy = jsPsych.data.get().last(2).values()[0].accuracy_professione;
                 if (last_trial_accuracy == 1) {
                     var feedback = "Professione Corretta!"
                 } else {
@@ -140,8 +141,8 @@
                 };
 
                 var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-                prova.data = {stimulus: feedback};
-                prova.stimulus = feedback_prova_stima;
+                prova_professione.data = {stimulus: feedback};
+                prova_professione.stimulus = feedback_prova_stima;
             },
             data:"",
             type: jsPsychHtmlKeyboardResponse,
@@ -152,8 +153,9 @@
 
         var prova = {
             timeline: [prova_img, prova_answer, feedback_nome, feedback_professione],
-            timeline_variables:
+            timeline_variables:[
                 {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico'},
+            ],
             randomize_order: true
         }; timeline.push(prova);
 
