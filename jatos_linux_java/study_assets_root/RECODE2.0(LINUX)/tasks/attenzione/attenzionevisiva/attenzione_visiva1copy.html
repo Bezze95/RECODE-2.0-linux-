@@ -61,7 +61,7 @@
         }; //timeline.push(instructions);
 
         var conditional_node = {
-            timeline: [prova_procedure],
+            timeline: [prova_procedure], // -----> puo essere che la variabile non possa avere altre variabili al suo interno e che quindi vadano aggiunte tutte manualmente 
             conditional_function: function(){
                 var response_button = jsPsych.data.get().last(1).values()[0].response;
                 if (response_button == 0){
