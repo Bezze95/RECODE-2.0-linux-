@@ -60,19 +60,6 @@
             choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
         }; //timeline.push(instructions);
 
-        var conditional_node = {
-            timeline: [prova_procedure], // -----> puo essere che la variabile non possa avere altre variabili al suo interno e che quindi vadano aggiunte tutte manualmente 
-            conditional_function: function(){
-                var response_button = jsPsych.data.get().last(1).values()[0].response;
-                if (response_button == 0){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        };
-
-
 
         var prova = {
             type: jsPsychPsychophysics,
@@ -147,9 +134,8 @@
             trial_duration: 1500
         };
 
-
-        var prova_procedure = {
-            timeline: [prova, feedback],
+        var conditional_node = {
+            timeline: [prova, feedback],  
             timeline_variables: [
                 {
                     number: '2',
@@ -165,8 +151,15 @@
                 }
             ],
             randomize_order: true,
-        }; //timeline.push(prova_procedure);
-
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(3).values()[0].response;
+                if (response_button == 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
       
 
         var instructions1 = {
@@ -175,14 +168,45 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Premi qui per andare avanti'],
+            choices: ['Prema qui per andare avanti', 'Prema qui per ripetere la prova'],
             on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
-                    timeline.push(instructions1);
-                } else { jsPsych.finishTrial(data)};
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
             }
+        }; 
 
-        }; //timeline.push(instructions1);
+        var loop_prova = {
+            timeline:[prova, feedback],
+            timeline_variables: [
+                {
+                    number: '2',
+                    correctResponse: '4' 
+                },
+                {
+                    number: '4',
+                    correctResponse: '2' 
+                },
+                {
+                    number: '7',
+                    correctResponse: null
+                }
+            ],
+            randomize_order: true,
+            loop_function: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            on_timeline_finish: function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+        };
 
         var trial = {
             type: jsPsychPsychophysics,
@@ -249,7 +273,7 @@
 
 
 
-        var timeline = [instructions, conditional_node, instructions1, trial_node];
+        var timeline = [instructions, conditional_node, instructions1, loop_prova, trial_node];
 
         jsPsych.run(timeline)
     </script>
