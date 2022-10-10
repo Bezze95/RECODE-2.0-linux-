@@ -49,17 +49,17 @@
             } */
             }
         });
-        var timeline = [];
+        
 
         var instructions = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una serie di numeri. <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Ogni volta che vede il numero 5, prema il tasto 3. <br> Quando vede un altro numero, non deve fare niente.
-            <br> <br> <br> Quindi: se vede 2 Lei prema 4, se vede 4 Lei prema 2 e se vede 5 Lei prema 3. </p>`,
+            <br> <br> <br> Quindi: se vede 2 Lei prema 4, se vede 4 Lei prema 2  e se vede 5 Lei prema 3. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per fare una prova'],
-            
-        }; timeline.push(instructions); 
+            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+        }; 
+
 
         var prova = {
             type: jsPsychPsychophysics,
@@ -134,9 +134,8 @@
             trial_duration: 1500
         };
 
-
-        var prova_procedure = {
-            timeline: [prova, feedback],
+        var conditional_node = {
+            timeline: [prova, feedback],  
             timeline_variables: [
                 { number: '2', correctResponse: '4'},
                 { number: '4', correctResponse: '2'},
@@ -144,8 +143,15 @@
                 { number: '8', correctResponse: null}
             ],
             randomize_order: true,
-        }; timeline.push(prova_procedure);
-
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(3).values()[0].response;
+                if (response_button == 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
       
 
         var instructions1 = {
@@ -154,18 +160,52 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Ogni volta che vede il numero 5, prema il tasto 3. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4, se vede 4 Lei prema 2 e se vede 5 Lei prema 3. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Premi qui per andare avanti'],
+            choices: ['Prema qui per andare avanti', 'Prema qui per ripetere la prova'],
             on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
-                    timeline.push(instructions1);
-                } else { jsPsych.finishTrial(data)};
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
             }
+        }; 
 
-        }; timeline.push(instructions1);
+        var loop_prova = {
+            timeline:[prova, feedback],
+            timeline_variables: [
+                { number: '2', correctResponse: '4'},
+                { number: '4', correctResponse: '2'},
+                { number: '5', correctResponse: '3'},
+                { number: '8', correctResponse: null}
+            ],
+            randomize_order: true,
+            loop_function: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            on_timeline_finish: function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+        };
 
         var trial = {
             type: jsPsychPsychophysics,
             stimuli: [
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: '+',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 2000,
+                },
                 {
                   obj_type: 'text',
                   startX: 'center', // location of the cross's center in the canvas
@@ -176,15 +216,15 @@
                   choices: [2,4],
                   font: "60px 'Arial'",
                   text_color: 'black',
-                  show_start_time: 1000, // ms after the start of the trial
-                  show_end_time: 4000,
+                  show_start_time: 2500, // ms after the start of the trial
+                  show_end_time: 6000,
                 }
             ], 
             background_color: 'white',
             response_type: 'key',
             response_start_time: 500,
             response_ends_trial: true,
-            trial_duration: 4000,
+            trial_duration: 6000,
             data: {
                 trial_part: 'trial',
                 correctResponse: jsPsych.timelineVariable('correctResponse'),
@@ -208,16 +248,19 @@
                 { number: '8', correctResponse: null},
                 { number: '1', correctResponse: null},
                 { number: '6', correctResponse: null}
-
             ];
 
         var trial_node = {
             timeline: [trial],
-            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [2,3,5,5,5,5]) // ---> è un problema perché non posso dividere 10 per 3 ed ottenere numeri interi  
+            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,15])
             
-        }; timeline.push(trial_node);
+        }; 
 
 
+
+
+
+        var timeline = [instructions, conditional_node, instructions1, loop_prova, trial_node];
 
         jsPsych.run(timeline)
     </script>
