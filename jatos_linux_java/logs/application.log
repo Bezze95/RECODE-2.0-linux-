@@ -573,3 +573,21 @@
 2022-10-10 17:52:00,031 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 161
 2022-10-10 17:52:28,589 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
 2022-10-10 17:52:28,680 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1665417148576 (admin)
+2022-10-10 18:00:58,384 [INFO] - gui_access - GET /jatos/1/11/run (admin)
+2022-10-10 18:00:58,391 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-10-10 18:00:58,391 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-10-10 18:00:58,396 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId162, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-10-10 18:00:58,403 [INFO] - publix_access - GET /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/1d0af8d1-3ce1-4ef3-b19e-888a6ab2655e/start
+2022-10-10 18:00:58,404 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 162, componentId 11
+2022-10-10 18:00:58,596 [INFO] - publix_access - GET /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/1d0af8d1-3ce1-4ef3-b19e-888a6ab2655e/initData
+2022-10-10 18:00:58,598 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 162, componentId 11
+2022-10-10 18:00:58,633 [INFO] - c.p.JatosBatchChannel - .open: studyResult 162
+2022-10-10 18:00:58,634 [INFO] - publix_access - POST /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/heartbeat
+2022-10-10 18:00:58,635 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 162
+2022-10-10 18:01:20,387 [INFO] - publix_access - GET /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/1d0af8d1-3ce1-4ef3-b19e-888a6ab2655e/start
+2022-10-10 18:01:20,388 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 162, componentId 11
+2022-10-10 18:01:20,546 [INFO] - publix_access - GET /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/1d0af8d1-3ce1-4ef3-b19e-888a6ab2655e/initData
+2022-10-10 18:01:20,548 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 162, componentId 11
+2022-10-10 18:01:20,569 [INFO] - publix_access - POST /publix/0bb50713-a895-4092-8f0b-c50afc2acbca/heartbeat
+2022-10-10 18:01:20,570 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 162
+2022-10-10 18:01:20,571 [INFO] - c.p.JatosBatchChannel - .open: studyResult 162

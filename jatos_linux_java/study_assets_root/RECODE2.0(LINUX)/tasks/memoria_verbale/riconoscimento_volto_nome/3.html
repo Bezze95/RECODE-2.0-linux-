@@ -92,8 +92,8 @@
             type: jsPsychSurveyText,
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
-                {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
+                {prompt:"Qual è l'hobby della persona appena vista?", name: 'Hobby', required: true},
+                {prompt:"Qual è l'animale domestico della persona appena vista?", name: 'Animale', required: true}
             ],
             on_finish: function(data){
                 if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
@@ -101,19 +101,19 @@
                 } else {
                     var accuracy_nome = 0
                 } 
-                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
-                    var accuracy_professione = 1
+                if (data.response.Hobby == jsPsych.timelineVariable ('hobby')){
+                    var accuracy_hobby = 1
                 } else {
-                    var accuracy_professione = 0
+                    var accuracy_hobby = 0
                 };
-                if (data.response.Città == jsPsych.timelineVariable ('città')){
-                    var accuracy_città = 1
+                if (data.response.Animale == jsPsych.timelineVariable ('animale')){
+                    var accuracy_animale = 1
                 } else {
-                    var accuracy_città = 0
+                    var accuracy_animale = 0
                 };
                 data.accuracy_nome = accuracy_nome;
-                data.accuracy_professione = accuracy_professione;
-                data.accuracy_città = accuracy_città;
+                data.accuracy_hobby = accuracy_hobby;
+                data.accuracy_animale = accuracy_animale;
 
             }
         }; 
@@ -138,18 +138,18 @@
 
         };
 
-        var feedback_professione = {
-            on_start: function(prova_professione){
-                var last_trial_accuracy = jsPsych.data.get().last(2).values()[0].accuracy_professione;
+        var feedback_hobby = {
+            on_start: function(prova_hobby){
+                var last_trial_accuracy = jsPsych.data.get().last(2).values()[0].accuracy_hobby;
                 if (last_trial_accuracy == 1) {
-                    var feedback = "Professione Corretta!"
+                    var feedback = "Hobby Corretto!"
                 } else {
-                    var feedback = "Professione Sbagliata!, ritenta!"
+                    var feedback = "Hobby Sbagliato!, ritenta!"
                 };
 
                 var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-                prova_professione.data = {stimulus: feedback};
-                prova_professione.stimulus = feedback_prova_stima;
+                prova_hobby.data = {stimulus: feedback};
+                prova_hobby.stimulus = feedback_prova_stima;
             },
             data:"",
             type: jsPsychHtmlKeyboardResponse,
@@ -158,18 +158,18 @@
 
         };
 
-        var feedback_città = {
-            on_start: function(prova_città){
-                var last_trial_accuracy = jsPsych.data.get().last(3).values()[0].accuracy_città;
+        var feedback_animale = {
+            on_start: function(prova_animale){
+                var last_trial_accuracy = jsPsych.data.get().last(3).values()[0].accuracy_animale;
                 if (last_trial_accuracy == 1) {
-                    var feedback = "Città Corretta!"
+                    var feedback = "Animale Corretto!"
                 } else {
-                    var feedback = "Città Sbagliata!, ritenta!"
+                    var feedback = "Animale Sbagliato!, ritenta!"
                 };
 
                 var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-                prova_città.data = {stimulus: feedback};
-                prova_città.stimulus = feedback_prova_stima;
+                prova_animale.data = {stimulus: feedback};
+                prova_animale.stimulus = feedback_prova_stima;
             },
             data:"",
             type: jsPsychHtmlKeyboardResponse,
@@ -179,9 +179,9 @@
         };
 
         var prova = {
-            timeline: [prova_img, prova_answer, feedback_nome, feedback_professione, feedback_città],
+            timeline: [prova_img, prova_answer, feedback_nome, feedback_hobby, feedback_animale],
             timeline_variables:[
-                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', hobby: 'saltare sui tubi', animale: 'drago'}, // -----> comprendere possibilità maiuscole e minuscole 
             ],
             randomize_order: true
         }; timeline.push(prova);
@@ -225,8 +225,8 @@
             type: jsPsychSurveyText,
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
-                {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
+                {prompt:"Qual è l'hobby della persona appena vista?", name: 'Hobby', required: true},
+                {prompt:"Qual è l'animale domestico della persona appena vista?", name: 'Animale', required: true}
             ],
             on_finish: function(data){
                 if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
@@ -234,19 +234,19 @@
                 } else {
                     var accuracy_nome = 0
                 } 
-                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
-                    var accuracy_professione = 1
+                if (data.response.Hobby == jsPsych.timelineVariable ('hobby')){
+                    var accuracy_hobby = 1
                 } else {
-                    var accuracy_professione = 0
+                    var accuracy_hobby = 0
                 };
-                if (data.response.Città == jsPsych.timelineVariable ('città')){
-                    var accuracy_città = 1
+                if (data.response.Animale == jsPsych.timelineVariable ('animale')){
+                    var accuracy_animale = 1
                 } else {
-                    var accuracy_città = 0
+                    var accuracy_animale = 0
                 };
                 data.accuracy_nome = accuracy_nome;
-                data.accuracy_professione = accuracy_professione;
-                data.accuracy_città = accuracy_città;
+                data.accuracy_hobby = accuracy_hobby;
+                data.accuracy_animale = accuracy_animale;
 
             }
         };
@@ -254,7 +254,7 @@
         var trial = {
             timeline: [img, interference, answer],
             timeline_variables:[
-                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', hobby: 'saltare sui tubi', animale: 'drago'}, // -----> comprendere possibilità maiuscole e minuscole 
             ],
             randomize_order: true
 
