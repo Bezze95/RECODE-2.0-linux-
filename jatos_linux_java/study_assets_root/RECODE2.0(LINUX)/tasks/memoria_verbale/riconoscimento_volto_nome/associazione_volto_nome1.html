@@ -191,7 +191,7 @@
             ],
             randomize_order: true,
             loop_function: function(data){
-                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                var response_button = jsPsych.data.get().last(1).values()[0].response; // -----> PROBLEMA non prende variabile e mette obbligatoria la prova anche sull esercizio
                 if (response_button == 1){
                     return true;
                 } else {
