@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MEMORIA VERBALE LIV. 1</title>
+        <title>MEMORIA VERBALE LIV. 2</title>
         <meta charset="UTF-8" />
 
         <script src="https://unpkg.com/jspsych@7.2.3"></script>
@@ -22,7 +22,7 @@
         <style>
             body {
                 background-color: white;
-            } 
+            }
 
         </style>
 
@@ -58,7 +58,7 @@
 
         });
 
-       
+        var timeline = [];
 
         var preload = {
             type: jsPsychPreload,
@@ -69,17 +69,16 @@
                 './tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png',
                 './tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png'
             ]
-        }; 
+        }; timeline.push(preload);
 
         var instructions = {
             type: jsPsychHtmlButtonResponse,
             stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
             Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
             Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+            choices: ['Prema qui per fare una PROVA'],
             
-        }; 
+        }; timeline.push(instructions);
 
         var prova_img = {
             type: jsPsychImageButtonResponse,
@@ -179,21 +178,13 @@
 
         };
 
-        var conditional_node = {
+        var prova = {
             timeline: [prova_img, prova_answer, feedback_nome, feedback_professione, feedback_città],
             timeline_variables:[
                 {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
             ],
-            randomize_order: true,
-            conditional_function: function(){
-                var response_button = jsPsych.data.get().last(6).values()[0].response; // -----> PROBLEMA non prende variabile e salta prova  
-                if (response_button == 0){
-                    return true;
-                } else {
-                    return false;
-                }
-            }    
-        };
+            randomize_order: true
+        }; timeline.push(prova);
 
 
         var instructions1 = {
@@ -202,37 +193,14 @@
             Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
             Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. 
             <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni!</p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            choices: ['Prema qui per proseguire'],
             on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
-                    jsPsych.finishTrial(data);
-                }
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions1);
+                } else { jsPsych.finishTrial(data)};
             }
             
-        }; 
-
-        var loop_prova = {
-            timeline: [prova_img, prova_answer, feedback_nome, feedback_professione, feedback_città],
-            timeline_variables:[
-                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
-            ],
-            randomize_order: true,
-            loop_function: function(data){
-                var response_button = jsPsych.data.get().last(1).values()[0].response;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            on_timeline_finish: function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
-                    jsPsych.finishTrial(data);
-                }
-            }
-
-        };
+        }; timeline.push(instructions1);
 
         var img = {
             type: jsPsychImageButtonResponse,
@@ -290,11 +258,10 @@
             ],
             randomize_order: true
 
-        }; 
+        }; timeline.push(trial);
 
 
-        var timeline = [preload, instructions, conditional_node, instructions1, loop_prova, trial ];
-
+        
         jsPsych.run(timeline);
     </script>
 </html>
