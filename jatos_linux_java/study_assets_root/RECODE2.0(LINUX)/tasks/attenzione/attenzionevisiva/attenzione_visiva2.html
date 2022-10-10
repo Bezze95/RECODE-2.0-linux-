@@ -195,18 +195,7 @@
         var trial = {
             type: jsPsychPsychophysics,
             stimuli: [
-                {
-                  obj_type: 'text',
-                  startX: 'center', // location of the cross's center in the canvas
-                  startY: 'center',
-                  content: '+',
-                  font: "60px 'Arial'",
-                  line_length: 30,
-                  line_color: 'black', 
-                  show_start_time: 1000, // ms after the start of the trial
-                  show_end_time: 2000,
-                },
-                {
+            {
                   obj_type: 'text',
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
@@ -216,15 +205,15 @@
                   choices: [2,4],
                   font: "60px 'Arial'",
                   text_color: 'black',
-                  show_start_time: 2500, // ms after the start of the trial
-                  show_end_time: 6000,
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 4000,
                 }
             ], 
             background_color: 'white',
             response_type: 'key',
             response_start_time: 500,
             response_ends_trial: true,
-            trial_duration: 6000,
+            trial_duration: 4000,
             data: {
                 trial_part: 'trial',
                 correctResponse: jsPsych.timelineVariable('correctResponse'),
@@ -252,7 +241,7 @@
 
         var trial_node = {
             timeline: [trial],
-            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,15])
+            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [2,3,5,5,5,5]) // ---> problema perche non posso dividere 10 per 3 ed ottenere numeri interi  
             
         }; 
 
