@@ -49,7 +49,7 @@
             } */
             }
         });
-        
+        var timeline = [];
 
         var instructions = {
             type: jsPsychHtmlButtonResponse,
@@ -57,9 +57,9 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Ogni volta che vede il numero 5, prema il tasto 3. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4, se vede 4 Lei prema 2 e se vede 5 Lei prema 3. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
-        }; 
-
+            choices: ['Prema qui per fare una prova'],
+            
+        }; timeline.push(instructions); 
 
         var prova = {
             type: jsPsychPsychophysics,
@@ -134,8 +134,9 @@
             trial_duration: 1500
         };
 
-        var conditional_node = {
-            timeline: [prova, feedback],  
+
+        var prova_procedure = {
+            timeline: [prova, feedback],
             timeline_variables: [
                 { number: '2', correctResponse: '4'},
                 { number: '4', correctResponse: '2'},
@@ -143,15 +144,8 @@
                 { number: '8', correctResponse: null}
             ],
             randomize_order: true,
-            conditional_function: function(){
-                var response_button = jsPsych.data.get().last(3).values()[0].response;
-                if (response_button == 0){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        };
+        }; timeline.push(prova_procedure);
+
       
 
         var instructions_CONGRUENTE = {
@@ -160,42 +154,19 @@
             Ogni volta che vede il numero 3, prema il tasto 3. <br> Quando vede un altro numero, non deve fare niente. 
             <br> <br> <br> Quindi: se vede 1 Lei prema 1 e se vede 3 Lei prema 3. <br> ATTENZIONE! Le istruzioni cambieranno durante l'esercizio! </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per andare avanti', 'Prema qui per ripetere la prova'],
+            choices: ['Premi qui per andare avanti'],
             on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
-                    jsPsych.finishTrial(data);
-                }
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions_CONGRUENTE);
+                } else { jsPsych.finishTrial(data)};
             }
-        }; 
 
-        var loop_prova = {
-            timeline:[prova, feedback],
-            timeline_variables: [
-                { number: '2', correctResponse: '4'},
-                { number: '4', correctResponse: '2'},
-                { number: '5', correctResponse: '3'},
-                { number: '8', correctResponse: null}
-            ],
-            randomize_order: true,
-            loop_function: function(data){
-                var response_button = jsPsych.data.get().last(1).values()[0].response;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            on_timeline_finish: function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
-                    jsPsych.finishTrial(data);
-                }
-            }
-        };
+        }; timeline.push(instructions_CONGRUENTE);
 
         var trial_CONGRUENTE = {
             type: jsPsychPsychophysics,
             stimuli: [
-            {
+                {
                   obj_type: 'text',
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
@@ -215,7 +186,7 @@
             response_ends_trial: true,
             trial_duration: 4000,
             data: {
-                trial_part: 'trial',
+                trial_part: 'trial_CONGRUENTE',
                 correctResponse: jsPsych.timelineVariable('correctResponse'),
                 number: jsPsych.timelineVariable('number'),
             },
@@ -236,13 +207,16 @@
                 { number: '7', correctResponse: null},
                 { number: '2', correctResponse: null},
                 { number: '4', correctResponse: null}
+
             ];
 
-        var trial_node_CONGRUENTE = {
+        var trial_node1 = {
             timeline: [trial_CONGRUENTE],
             timeline_variables: jsPsych.randomization.sampleWithReplacement(variables1, 25, [5,5,5,5,5])   
             
-        }; 
+        }; timeline.push(trial_node1);
+
+
 
         var instructions_INCONGRUENTE = {
             type: jsPsychHtmlButtonResponse,
@@ -250,13 +224,13 @@
             Ogni volta che vede il numero 3, prema il tasto 1. <br> Quando vede un altro numero, non deve fare niente. 
             <br> <br> <br> Quindi: se vede 1 Lei prema 3 e se vede 3 Lei prema 1. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per andare avanti']
-        }; 
+            choices: ['Premi qui per andare avanti'],
+        }; timeline.push(instructions_INCONGRUENTE);
 
         var trial_INCONGRUENTE = {
             type: jsPsychPsychophysics,
             stimuli: [
-            {
+                {
                   obj_type: 'text',
                   startX: 'center', // location of the cross's center in the canvas
                   startY: 'center',
@@ -276,7 +250,7 @@
             response_ends_trial: true,
             trial_duration: 4000,
             data: {
-                trial_part: 'trial',
+                trial_part: 'trial_INCONGRUENTE',
                 correctResponse: jsPsych.timelineVariable('correctResponse'),
                 number: jsPsych.timelineVariable('number'),
             },
@@ -300,20 +274,15 @@
 
             ];
 
-        var trial_node_INCONGRUENTE = {
+        var trial_node2 = {
             timeline: [trial_INCONGRUENTE],
             timeline_variables: jsPsych.randomization.sampleWithReplacement(variables2, 25, [5,5,5,5,5])   
             
-        }; 
+        }; timeline.push(trial_node2);
 
 
 
 
-
-        var timeline = [
-            instructions, conditional_node, instructions_CONGRUENTE, loop_prova, trial_node_CONGRUENTE, 
-            instructions_INCONGRUENTE, trial_node_INCONGRUENTE  
-        ];
 
         jsPsych.run(timeline)
     </script>
