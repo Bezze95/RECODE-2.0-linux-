@@ -80,3 +80,16 @@
 2022-10-11 10:42:18,586 [INFO] - c.p.JatosBatchChannel - .open: studyResult 163
 2022-10-11 10:44:18,587 [INFO] - publix_access - POST /publix/bfc63dc0-cd7c-485e-977d-4bdef8875df9/heartbeat
 2022-10-11 10:44:18,588 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 163
+2022-10-11 10:44:40,500 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2022-10-11 10:44:40,587 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1665477880487 (admin)
+2022-10-11 10:44:46,765 [INFO] - gui_access - GET /jatos/1/1/run (admin)
+2022-10-11 10:44:46,775 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-10-11 10:44:46,775 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-10-11 10:44:46,785 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId164, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-10-11 10:44:46,794 [INFO] - publix_access - GET /publix/3fba7779-f6a1-45c6-acc3-add4326843b0/04bfb1ad-30b9-4409-b13a-d63e14b35e37/start
+2022-10-11 10:44:46,797 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 164, componentId 1
+2022-10-11 10:44:46,904 [INFO] - publix_access - GET /publix/3fba7779-f6a1-45c6-acc3-add4326843b0/04bfb1ad-30b9-4409-b13a-d63e14b35e37/initData
+2022-10-11 10:44:46,907 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 164, componentId 1
+2022-10-11 10:44:46,919 [INFO] - publix_access - POST /publix/3fba7779-f6a1-45c6-acc3-add4326843b0/heartbeat
+2022-10-11 10:44:46,921 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 164
+2022-10-11 10:44:46,924 [INFO] - c.p.JatosBatchChannel - .open: studyResult 164
