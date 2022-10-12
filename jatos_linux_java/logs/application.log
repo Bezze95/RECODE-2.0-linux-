@@ -218,3 +218,32 @@
 2022-10-12 15:20:47,611 [INFO] - c.p.JatosBatchChannel - .open: studyResult 168
 2022-10-12 15:20:48,057 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
 2022-10-12 15:20:48,067 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:22:48,110 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:22:48,112 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:24:48,132 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:24:48,134 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:25:26,083 [INFO] - publix_access - GET /publix/8839f618-8b23-4db0-aefd-974719abdf8a/a7a7a54c-6d52-43db-a4f8-cc023a2589ee/start
+2022-10-12 15:25:26,089 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 168, componentId 13
+2022-10-12 15:25:26,429 [INFO] - publix_access - GET /publix/8839f618-8b23-4db0-aefd-974719abdf8a/a7a7a54c-6d52-43db-a4f8-cc023a2589ee/initData
+2022-10-12 15:25:26,443 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 168, componentId 13
+2022-10-12 15:25:26,480 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:25:26,481 [INFO] - c.p.JatosBatchChannel - .open: studyResult 168
+2022-10-12 15:25:26,482 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:27:26,522 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:27:26,526 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:29:26,557 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:29:26,561 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:31:26,587 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:31:26,590 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:32:26,216 [INFO] - publix_access - GET /publix/8839f618-8b23-4db0-aefd-974719abdf8a/a7a7a54c-6d52-43db-a4f8-cc023a2589ee/start
+2022-10-12 15:32:26,224 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 168, componentId 13
+2022-10-12 15:32:26,699 [INFO] - publix_access - GET /publix/8839f618-8b23-4db0-aefd-974719abdf8a/a7a7a54c-6d52-43db-a4f8-cc023a2589ee/initData
+2022-10-12 15:32:26,705 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 168, componentId 13
+2022-10-12 15:32:26,813 [INFO] - publix_access - POST /publix/8839f618-8b23-4db0-aefd-974719abdf8a/heartbeat
+2022-10-12 15:32:26,833 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 168
+2022-10-12 15:32:26,911 [INFO] - c.p.JatosBatchChannel - .open: studyResult 168
+2022-10-12 16:32:51,043 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-10-12 16:32:51,063 [INFO] - g.OnStartStop - JATOS shutdown
+2022-10-12 16:32:51,105 [INFO] - application - Shutting down connection pool.
+2022-10-12 16:32:51,107 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-10-12 16:32:51,113 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.

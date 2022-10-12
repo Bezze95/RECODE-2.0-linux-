@@ -95,31 +95,8 @@
     jatos.startComponentByPos(4,Data); 
   }*/
   
-  var preload_images = {
-    type: jsPsychPreload,
-    images: ['./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre2.jpg'
-    ],
-    show_detailed_errors: true
-
-  }; 
   
-  var images = ['./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg',
+  var img = ['./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg',
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba2.jpg',
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio2.jpg',
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota2.jpg',
@@ -136,8 +113,16 @@
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente2.jpg',
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga2.jpg',
     './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre2.jpg'
-    ];
-    images = jsPsych.randomization.shuffle(images);
+    ]; 
+
+    var preload_images = {
+      type: jsPsychPreload,
+      images: img,
+      show_detailed_errors: true
+    }; 
+
+    var images = jsPsych.randomization.shuffle(img);
+
 
 
   var button = {
