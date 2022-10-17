@@ -53,20 +53,19 @@
 
         });
 
-        var timeline = [];
 
         var img_preload = {
             type: jsPsychPreload,
             images: ['./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine3.png'],
-        };timeline.push(img_preload);
+        }; 
 
         var instructions = {
             type:jsPsychHtmlButtonResponse,
             stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
             <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
             button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-            choices: ['Prema qui per fare una prova'],
-        }; timeline.push(instructions);
+            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+        }; //timeline.push(instructions);
 
         var prova = {
             type: jsPsychSurveyLikert,
@@ -93,7 +92,7 @@
                 data.accuracy = accuracy;
             }
             
-        }; timeline.push(prova); 
+        }; 
 
         var feedback = {
             type: jsPsychHtmlKeyboardResponse,
@@ -108,7 +107,19 @@
             },
             choices: "NO_KEYS",
             trial_duration: 1500
-        }; timeline.push(feedback);
+        }; 
+
+        var conditional_node = {
+            timeline: [prova, feedback],
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(3).values()[0].response;
+                if (response_button == 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
 
 
         var instructions1 = {
@@ -116,13 +127,30 @@
             stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
             <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
             button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-            choices: ['Prema qui per proseguire'],
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
             on_start:function(){
                 if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
                     timeline.push(instructions1);
                 } else { jsPsych.finishTrial(data)};
             }
-        }; timeline.push(instructions1);
+        }; 
+
+        var loop_prova = {
+            timeline: [prova, feedback],
+            loop_function: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            on_timeline_finish: function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+        };
 
         var trial = {
             type: jsPsychSurveyLikert,
@@ -181,7 +209,7 @@
                 data.accuracy_Q2 = accuracy_Q2;
             }
             
-        }; timeline.push(trial); 
+        };  
 
         
 
@@ -189,9 +217,9 @@
    
 
 
+    var timeline = [img_preload, instructions, conditional_node, instructions1, loop_prova, trial];
 
-
-        jsPsych.run(timeline)
+    jsPsych.run(timeline)
 
     </script>
 
