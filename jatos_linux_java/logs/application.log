@@ -31,3 +31,14 @@
 2022-11-21 11:00:36,223 [INFO] - gui_access - GET /jatos/1 (admin)
 2022-11-21 11:00:36,317 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-11-21 11:00:36,349 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669024836262 (admin)
+2022-11-21 11:06:47,148 [INFO] - gui_access - GET /jatos/1/6/run (admin)
+2022-11-21 11:06:47,171 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-11-21 11:06:47,171 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-11-21 11:06:47,199 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId165, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-11-21 11:06:47,214 [INFO] - publix_access - GET /publix/37697d72-47ff-4c10-9631-e1710f4a004d/2e5bde0a-3b01-4b44-a31b-9d5533e27786/start
+2022-11-21 11:06:47,223 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 165, componentId 6
+2022-11-21 11:06:53,923 [INFO] - publix_access - GET /publix/37697d72-47ff-4c10-9631-e1710f4a004d/2e5bde0a-3b01-4b44-a31b-9d5533e27786/initData
+2022-11-21 11:06:53,933 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 165, componentId 6
+2022-11-21 11:06:53,954 [INFO] - publix_access - POST /publix/37697d72-47ff-4c10-9631-e1710f4a004d/heartbeat
+2022-11-21 11:06:53,957 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 165
+2022-11-21 11:06:53,986 [INFO] - c.p.JatosBatchChannel - .open: studyResult 165
