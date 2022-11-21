@@ -42,3 +42,4 @@
 2022-11-21 11:06:53,954 [INFO] - publix_access - POST /publix/37697d72-47ff-4c10-9631-e1710f4a004d/heartbeat
 2022-11-21 11:06:53,957 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 165
 2022-11-21 11:06:53,986 [INFO] - c.p.JatosBatchChannel - .open: studyResult 165
+2022-11-21 11:22:39,228 [INFO] - gui_access - GET /jatos/1/export (admin)
