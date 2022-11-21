@@ -1,55 +1,33 @@
-2022-10-17 16:06:16,741 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
-2022-10-17 16:06:16,745 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
-2022-10-17 16:06:16,800 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
-2022-10-17 16:06:16,800 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
-2022-10-17 16:06:16,981 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
-2022-10-17 16:06:17,037 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
-2022-10-17 16:06:17,039 [INFO] - application - Creating Pool for datasource 'default'
-2022-10-17 16:06:17,043 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
-2022-10-17 16:06:17,052 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
-2022-10-17 16:06:17,068 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
-2022-10-17 16:06:17,168 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
-2022-10-17 16:06:17,206 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
-2022-10-17 16:06:17,301 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-10-17 16:06:17,421 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2022-10-17 16:06:17,437 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
-2022-10-17 16:06:17,629 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
-2022-10-17 16:06:17,629 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
-2022-10-17 16:06:17,630 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
-2022-10-17 16:06:17,630 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
-2022-10-17 16:06:18,001 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-10-17 16:06:18,138 [INFO] - g.OnStartStop - JATOS started
-2022-10-17 16:06:18,178 [INFO] - p.a.Play - Application started (Prod) (no global state)
-2022-10-17 16:06:18,392 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
-2022-10-17 16:06:43,639 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2022-10-17 16:06:43,665 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1
-2022-10-17 16:06:43,709 [INFO] - gui_access - GET /jatos/login (null)
-2022-10-17 16:07:13,448 [INFO] - gui_access - POST /jatos/login (null)
-2022-10-17 16:07:13,506 [INFO] - gui_access - GET /jatos (admin)
-2022-10-17 16:07:13,647 [INFO] - gui_access - GET /jatos/branding (admin)
-2022-10-17 16:07:13,675 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:07:23,715 [INFO] - gui_access - GET /jatos/1 (admin)
-2022-10-17 16:07:23,824 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:07:23,860 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1666015643775 (admin)
-2022-10-17 16:07:31,396 [INFO] - gui_access - GET /jatos/1/results (admin)
-2022-10-17 16:07:31,493 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:07:31,534 [INFO] - gui_access - GET /jatos/1/resultsTableData?_=1666015651459 (admin)
-2022-10-17 16:07:36,960 [INFO] - gui_access - POST /jatos/studyResult/delete (admin)
-2022-10-17 16:07:40,155 [INFO] - gui_access - GET /jatos/1 (admin)
-2022-10-17 16:07:40,228 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:07:40,263 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1666015660205 (admin)
-2022-10-17 16:07:41,793 [INFO] - gui_access - GET /jatos/1/properties (admin)
-2022-10-17 16:15:52,458 [INFO] - gui_access - POST /jatos/1/properties (admin)
-2022-10-17 16:15:52,572 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:23:50,377 [INFO] - gui_access - GET /jatos/1/properties (admin)
-2022-10-17 16:30:16,673 [INFO] - gui_access - GET /jatos/1/properties (admin)
-2022-10-17 16:30:24,618 [INFO] - gui_access - POST /jatos/1/properties (admin)
-2022-10-17 16:30:24,621 [INFO] - u.c.JsonUtils - .isValid: error probably due to invalid JSON
-2022-10-17 16:31:03,690 [INFO] - gui_access - POST /jatos/1/properties (admin)
-2022-10-17 16:31:03,704 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:31:06,167 [INFO] - gui_access - GET /jatos/1/properties (admin)
-2022-10-17 16:32:00,944 [INFO] - gui_access - POST /jatos/1/properties (admin)
-2022-10-17 16:32:00,958 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2022-10-17 16:34:29,022 [INFO] - gui_access - GET /jatos/1/properties (admin)
-2022-10-17 16:41:37,524 [INFO] - gui_access - POST /jatos/1/properties (admin)
-2022-10-17 16:41:37,537 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-21 11:00:17,401 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2022-11-21 11:00:17,404 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2022-11-21 11:00:17,468 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2022-11-21 11:00:17,468 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2022-11-21 11:00:17,663 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2022-11-21 11:00:17,730 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2022-11-21 11:00:17,734 [INFO] - application - Creating Pool for datasource 'default'
+2022-11-21 11:00:17,740 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2022-11-21 11:00:17,752 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2022-11-21 11:00:17,770 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2022-11-21 11:00:17,882 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2022-11-21 11:00:17,917 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2022-11-21 11:00:18,021 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-21 11:00:18,171 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-11-21 11:00:18,221 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2022-11-21 11:00:18,421 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2022-11-21 11:00:18,422 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2022-11-21 11:00:18,422 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2022-11-21 11:00:18,422 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2022-11-21 11:00:18,803 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-21 11:00:18,959 [INFO] - g.OnStartStop - JATOS started
+2022-11-21 11:00:19,004 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2022-11-21 11:00:19,231 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2022-11-21 11:00:28,782 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2022-11-21 11:00:28,814 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /
+2022-11-21 11:00:28,844 [INFO] - gui_access - GET /jatos/login (null)
+2022-11-21 11:00:34,123 [INFO] - gui_access - POST /jatos/login (null)
+2022-11-21 11:00:34,192 [INFO] - gui_access - GET /jatos (admin)
+2022-11-21 11:00:34,374 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-11-21 11:00:34,376 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-21 11:00:36,223 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-11-21 11:00:36,317 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-21 11:00:36,349 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669024836262 (admin)
