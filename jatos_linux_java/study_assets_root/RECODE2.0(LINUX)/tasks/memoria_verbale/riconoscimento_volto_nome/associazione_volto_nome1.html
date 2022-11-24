@@ -42,8 +42,8 @@
                 jsPsych.data.displayData(); //lascio così adesso in via di sviluppo 
 
                 /*
-                var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
-                    if(correct_trials > 10){
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    if(correct_trials > 0){
                         var feed = 1;
                     } else {
                         var feed = 0;
@@ -51,7 +51,7 @@
                 jatos.studySessionData = feed;
                 var memoria_verbale = Number(sessionStorage.getItem('memoria_verbale'))+feed;
                 sessionStorage.setItem('memoria_verbale', memoria_verbale);
-                var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+                var Data = {feed: feed, type: 'memoria_verbale_associazionevoltonome_level1', cresp: correct_trials};
                 jatos.startComponentByPos(4,Data); 
             } */
             }
@@ -233,6 +233,12 @@
                 };
                 data.accuracy_nome = accuracy_nome;
                 data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione = true) {
+                    var corretct = true;
+                } else {
+                    var corretct = false;
+                };
+                data.correct = corretct;
 
             }
         };

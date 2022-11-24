@@ -32,3 +32,104 @@
 2022-11-24 10:58:02,135 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-11-24 10:58:02,180 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669283882085 (admin)
 2022-11-24 11:07:48,601 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2022-11-24 12:07:45,197 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-11-24 12:07:45,203 [INFO] - g.OnStartStop - JATOS shutdown
+2022-11-24 12:07:45,212 [INFO] - application - Shutting down connection pool.
+2022-11-24 12:07:45,212 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-11-24 12:07:45,213 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-11-24 15:50:43,820 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2022-11-24 15:50:43,822 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2022-11-24 15:50:43,878 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2022-11-24 15:50:43,878 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2022-11-24 15:50:44,063 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2022-11-24 15:50:44,115 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2022-11-24 15:50:44,117 [INFO] - application - Creating Pool for datasource 'default'
+2022-11-24 15:50:44,122 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2022-11-24 15:50:44,130 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2022-11-24 15:50:44,145 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2022-11-24 15:50:44,243 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2022-11-24 15:50:44,274 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2022-11-24 15:50:44,364 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-24 15:50:44,488 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-11-24 15:50:44,489 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2022-11-24 15:50:44,702 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2022-11-24 15:50:44,703 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2022-11-24 15:50:44,703 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2022-11-24 15:50:44,703 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2022-11-24 15:50:45,078 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-24 15:50:45,225 [INFO] - g.OnStartStop - JATOS started
+2022-11-24 15:50:45,269 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2022-11-24 15:50:45,506 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2022-11-24 15:51:01,913 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2022-11-24 15:51:01,948 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1
+2022-11-24 15:51:02,021 [INFO] - gui_access - GET /jatos/login (null)
+2022-11-24 15:51:03,959 [INFO] - gui_access - POST /jatos/login (null)
+2022-11-24 15:51:04,030 [INFO] - gui_access - GET /jatos (admin)
+2022-11-24 15:51:04,215 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-11-24 15:51:04,251 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:51:16,836 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-11-24 15:51:16,969 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:51:17,007 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476914 (admin)
+2022-11-24 15:55:16,597 [INFO] - gui_access - POST /jatos/1/component (admin)
+2022-11-24 15:55:16,691 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:55:16,694 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476915 (admin)
+2022-11-24 15:55:53,571 [INFO] - gui_access - POST /jatos/1/component (admin)
+2022-11-24 15:55:53,589 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:55:53,589 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476916 (admin)
+2022-11-24 15:56:10,613 [INFO] - gui_access - GET /jatos/1/14/properties (admin)
+2022-11-24 15:56:17,180 [INFO] - gui_access - POST /jatos/1/14/properties (admin)
+2022-11-24 15:56:17,195 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:56:17,195 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476917 (admin)
+2022-11-24 15:56:30,080 [INFO] - gui_access - GET /jatos/1/14/properties (admin)
+2022-11-24 15:56:36,113 [INFO] - gui_access - POST /jatos/1/14/properties (admin)
+2022-11-24 15:56:36,126 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:56:36,126 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476918 (admin)
+2022-11-24 15:56:46,297 [INFO] - gui_access - GET /jatos/1/15/properties (admin)
+2022-11-24 15:56:53,050 [INFO] - gui_access - POST /jatos/1/15/properties (admin)
+2022-11-24 15:56:53,061 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301476919 (admin)
+2022-11-24 15:56:53,061 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:56:55,138 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-11-24 15:56:55,236 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:56:55,275 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815189 (admin)
+2022-11-24 15:57:08,502 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=14&newPosition=7 (admin)
+2022-11-24 15:57:08,519 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815190 (admin)
+2022-11-24 15:57:08,519 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:17,726 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=15&newPosition=8 (admin)
+2022-11-24 15:57:17,747 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:17,747 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815191 (admin)
+2022-11-24 15:57:26,987 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=13&newPosition=11 (admin)
+2022-11-24 15:57:27,002 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815192 (admin)
+2022-11-24 15:57:27,002 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:38,257 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=5&newPosition=5 (admin)
+2022-11-24 15:57:38,272 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815193 (admin)
+2022-11-24 15:57:38,272 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:41,468 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=7&newPosition=6 (admin)
+2022-11-24 15:57:41,483 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:41,483 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815194 (admin)
+2022-11-24 15:57:44,548 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=8&newPosition=7 (admin)
+2022-11-24 15:57:44,565 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 15:57:44,565 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669301815195 (admin)
+2022-11-24 16:32:17,019 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2022-11-24 16:41:18,823 [INFO] - gui_access - GET /jatos/1/3/run (admin)
+2022-11-24 16:41:18,841 [INFO] - publix_access - GET /publix/J9Aa9DA46eV
+2022-11-24 16:41:18,841 [INFO] - c.p.PublixInterceptor - .run: studyCode J9Aa9DA46eV
+2022-11-24 16:41:18,895 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode J9Aa9DA46eV, studyResultId166, studyId 1, batchId 1, logged-in username admin, workerId 1
+2022-11-24 16:41:18,909 [INFO] - publix_access - GET /publix/9e610cc0-3644-4ca3-b2c8-ac4f3545cb13/548587d4-786b-4451-b0e8-8d7dea07bc99/start
+2022-11-24 16:41:18,916 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 166, componentId 3
+2022-11-24 16:41:18,997 [INFO] - g.ErrorHandler - not found: Requested page  /jspsych-psychophysics-master/jspsych-psychophysics.js couldn't be found.
+2022-11-24 16:41:19,067 [INFO] - publix_access - GET /publix/9e610cc0-3644-4ca3-b2c8-ac4f3545cb13/548587d4-786b-4451-b0e8-8d7dea07bc99/initData
+2022-11-24 16:41:19,071 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 166, componentId 3
+2022-11-24 16:41:19,086 [INFO] - publix_access - POST /publix/9e610cc0-3644-4ca3-b2c8-ac4f3545cb13/heartbeat
+2022-11-24 16:41:19,087 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 166
+2022-11-24 16:41:19,109 [INFO] - c.p.JatosBatchChannel - .open: studyResult 166
+2022-11-24 17:30:34,983 [INFO] - gui_access - POST /jatos/login (admin)
+2022-11-24 17:30:40,891 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2022-11-24 17:31:47,465 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-11-24 17:31:47,653 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 17:31:47,692 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669307507584 (admin)
+2022-11-24 17:39:09,690 [INFO] - gui_access - POST /jatos/1/properties (admin)
+2022-11-24 17:39:09,710 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 17:39:16,859 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-11-24 17:39:16,953 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-11-24 17:39:16,979 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669307956912 (admin)
+2022-11-24 17:39:19,940 [INFO] - gui_access - GET /jatos/1/properties (admin)
