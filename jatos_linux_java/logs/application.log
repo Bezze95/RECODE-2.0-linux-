@@ -31,3 +31,4 @@
 2022-11-24 10:58:02,031 [INFO] - gui_access - GET /jatos/1 (admin)
 2022-11-24 10:58:02,135 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-11-24 10:58:02,180 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669283882085 (admin)
+2022-11-24 11:07:48,601 [INFO] - gui_access - GET /jatos/1/properties (admin)

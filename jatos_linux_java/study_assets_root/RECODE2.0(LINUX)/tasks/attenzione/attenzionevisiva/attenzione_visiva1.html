@@ -35,8 +35,8 @@
                 jsPsych.data.displayData();
 
                                 /*
-                var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
-                    if(correct_trials > 10){
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    if(correct_trials > 0){
                         var feed = 1;
                     } else {
                         var feed = 0;
@@ -44,7 +44,7 @@
                 jatos.studySessionData = feed;
                 var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
                 sessionStorage.setItem('attenzione', attenzione);
-                var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+                var Data = {feed: feed, type: 'attenzione_attenzionevisiva_level1', cresp: correct_trials};
                 jatos.startComponentByPos(4,Data); 
             } */
             }
@@ -252,6 +252,12 @@
                     accuracy = true;
                 }
                 data.accuracy = accuracy;
+                if (data.accuracy == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
             }
             
         };

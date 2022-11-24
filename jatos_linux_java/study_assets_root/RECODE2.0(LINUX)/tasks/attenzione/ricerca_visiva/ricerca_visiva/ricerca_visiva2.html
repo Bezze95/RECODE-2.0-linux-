@@ -46,7 +46,7 @@
                 jatos.studySessionData = feed;
                 var ricerca = Number(sessionStorage.getItem('ricerca'))+feed;
                 sessionStorage.setItem('ricerca', ricerca);
-                var Data = {feed: feed, type: 'ricerca_visivaprimo_livello', cresp: correct_trials};
+                var Data = {feed: feed, type: 'ricerca_ricercavisiva_level2', cresp: correct_trials};
                 jatos.startComponentByPos(4,Data);
             } */
             }
@@ -207,6 +207,12 @@
                 data.accuracy_Q0 = accuracy_Q0;
                 data.accuracy_Q1 = accuracy_Q1;
                 data.accuracy_Q2 = accuracy_Q2;
+                if (data.accuracy_Q0, data.accuracy_Q1, data.accuracy_Q2 == true){ // -----> ci sarebbe da decidere quanti risposte corrette considerare il compito superato 
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
             }
             
         };  
