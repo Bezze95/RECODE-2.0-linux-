@@ -59,7 +59,7 @@
 			timeline: [instruction],
 			display_element: "top",
 			on_finish: function() {
-				jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data));
+				jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data)); // ----->  https://www.jatos.org/jatos.js-Reference.html#jatosstartcomponentbypos 
 			}
 		})
 		function playSound(sound,image){
@@ -135,13 +135,13 @@
 		}
 
 	
-		// Used like so
+		// Used like so 
 		function range(start, end) {
 			return Array(end - start + 1).fill().map((_, idx) => start + idx)
 		}
 	
 		if (jatos.batchSession.get("level_attenzione") > 1) {
-		  var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_2).slice(0,2)} else {
+		  var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_2).slice(0,2)} else { // -----> da aggiornare a 3 livelli invece che 2 
 				var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_1).slice(0,2)}
 	
 		if (jatos.batchSession.get("level_esecutive") > 1) {
@@ -188,7 +188,7 @@
 		sessionStorage.setItem('nextComponentPosition', nextComponentPosition);
 		sessionStorage.setItem('componentCounter', componentCounter);
 	
-		var empty = [];
+		var empty = []; // ----->  non so a cosa serva  
 		sessionStorage.setItem('attenzione', empty);
 		sessionStorage.setItem('esecutive', empty);
 		sessionStorage.setItem('linguaggio', empty);
