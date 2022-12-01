@@ -1,5 +1,34 @@
-2022-11-29 09:41:35,433 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
-2022-11-29 09:41:35,440 [INFO] - g.OnStartStop - JATOS shutdown
-2022-11-29 09:41:35,453 [INFO] - application - Shutting down connection pool.
-2022-11-29 09:41:35,453 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2022-11-29 09:41:35,455 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-12-01 15:15:37,879 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2022-12-01 15:15:37,881 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2022-12-01 15:15:37,935 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2022-12-01 15:15:37,935 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2022-12-01 15:15:38,135 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2022-12-01 15:15:38,191 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2022-12-01 15:15:38,194 [INFO] - application - Creating Pool for datasource 'default'
+2022-12-01 15:15:38,198 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2022-12-01 15:15:38,208 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2022-12-01 15:15:38,224 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2022-12-01 15:15:38,336 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2022-12-01 15:15:38,374 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2022-12-01 15:15:38,496 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-01 15:15:38,638 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-01 15:15:38,679 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2022-12-01 15:15:38,910 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2022-12-01 15:15:38,910 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2022-12-01 15:15:38,910 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2022-12-01 15:15:38,911 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2022-12-01 15:15:39,306 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-01 15:15:39,480 [INFO] - g.OnStartStop - JATOS started
+2022-12-01 15:15:39,528 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2022-12-01 15:15:39,779 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2022-12-01 15:16:44,915 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2022-12-01 15:16:44,946 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1
+2022-12-01 15:16:44,995 [INFO] - gui_access - GET /jatos/login (null)
+2022-12-01 15:16:46,633 [INFO] - gui_access - POST /jatos/login (null)
+2022-12-01 15:16:46,701 [INFO] - gui_access - GET /jatos (admin)
+2022-12-01 15:16:46,928 [INFO] - gui_access - GET /jatos/branding (admin)
+2022-12-01 15:16:46,929 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-01 15:16:55,924 [INFO] - gui_access - GET /jatos/1 (admin)
+2022-12-01 15:16:56,078 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-01 15:16:56,117 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1669904216017 (admin)
+2022-12-01 15:25:47,937 [INFO] - gui_access - GET /jatos/1/properties (admin)
