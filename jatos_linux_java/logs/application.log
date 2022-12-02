@@ -41,3 +41,8 @@
 2022-12-02 17:22:35,087 [INFO] - gui_access - POST /jatos/1/properties (admin)
 2022-12-02 17:22:35,165 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-12-02 17:40:09,028 [INFO] - gui_access - POST /jatos/login (admin)
+2022-12-02 17:49:07,139 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-12-02 17:49:07,146 [INFO] - g.OnStartStop - JATOS shutdown
+2022-12-02 17:49:07,154 [INFO] - application - Shutting down connection pool.
+2022-12-02 17:49:07,155 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-12-02 17:49:07,156 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
