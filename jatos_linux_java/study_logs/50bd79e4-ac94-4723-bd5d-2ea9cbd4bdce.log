@@ -194,3 +194,6 @@
 {"msg":"Study description changed","studyDescriptionHash":"12008408293053f48f00f65d472c9c67d4272dc9156bef08ea74020969926d87","userName":"Admin","timestamp":1666017120948}
 {"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1669025207199}
 {"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1669304478895}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1670339306478}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1670339480255}
+{"msg":"Started study run with Jatos worker","batchId":1,"studyCode":"J9Aa9DA46eV","workerId":1,"timestamp":1670339818692}

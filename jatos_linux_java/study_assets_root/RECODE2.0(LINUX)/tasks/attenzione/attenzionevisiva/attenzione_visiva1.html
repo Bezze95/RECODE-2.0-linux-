@@ -57,7 +57,7 @@
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
             <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
-            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'], // -----> invertire bottoni per mantenere ordine logico 
         }; //timeline.push(instructions);
 
 
@@ -134,6 +134,8 @@
             trial_duration: 1500
         };
 
+        // -----> inserire un instruction nel loop in modo tale da creare un loop unico per la prova mantenendo fuori l esercizio  
+
         var conditional_node = {
             timeline: [prova, feedback],  
             timeline_variables: [
@@ -152,7 +154,7 @@
             ],
             randomize_order: true,
             conditional_function: function(){
-                var response_button = jsPsych.data.get().last(3).values()[0].response;
+                var response_button = jsPsych.data.get().last(3).values()[0].response; // -----> mettere data.get togliendo jsPsych togliendo last
                 if (response_button == 0){
                     return true;
                 } else {
@@ -170,7 +172,7 @@
             button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
             choices: ['Prema qui per andare avanti', 'Prema qui per ripetere la prova'],
             on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){ // -----> da eliminare xk anziani 
                     jsPsych.finishTrial(data);
                 }
             }
