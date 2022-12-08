@@ -2,3 +2,4 @@
 {"msg":"Initial entry","timestamp":1670509939436,"studyUuid":"c0cc207f-9310-44a5-aa70-6f4a7b49d0f9","serversMac":"F0-2F-74-DB-B7-AD","hashFunction":"SHA-256"}
 {"msg":"Created study","userName":"Admin","timestamp":1670509939437}
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670510076978}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670511774915}
