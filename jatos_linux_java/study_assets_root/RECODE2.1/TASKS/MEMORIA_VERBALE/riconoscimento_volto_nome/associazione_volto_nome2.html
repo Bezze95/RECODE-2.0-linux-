@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MEMORIA VERBALE LIV. 1</title>
+        <meta charset="UTF-8" />
+
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+        
+
+
+
+        <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            } 
+
+        </style>
+
+    </body>
+    <script>
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        });    
+
+            /* to initialize jspsych */
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+
+            on_finish: function() {
+                jsPsych.data.displayData(); //lascio così adesso in via di sviluppo 
+
+                /*
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    if(correct_trials > 0){
+                        var feed = 1;
+                    } else {
+                        var feed = 0;
+                    }
+                jatos.studySessionData = feed;
+                var memoria_verbale = Number(sessionStorage.getItem('memoria_verbale'))+feed;
+                sessionStorage.setItem('memoria_verbale', memoria_verbale);
+                var Data = {feed: feed, type: 'memoria_verbale_associazionevoltonome_level2', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); 
+            } */
+            }
+
+        });
+
+       
+
+        var preload = {
+            type: jsPsychPreload,
+            images: [
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_2.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_3.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_4.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_5.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_6.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png',
+                './tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png', './tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png'
+            ]
+        }; 
+
+        var instructions = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
+            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+            
+        }; 
+
+        var prova_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('img1'),
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">Osservi e memorizi attentamente le informazioni presenti nell'immagine presente sullo schermo </p>`,
+            choices: ['Prema qui per proseguire'],
+        }; 
+
+        var prova_answer = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                    var accuracy_nome = 1
+                } else {
+                    var accuracy_nome = 0
+                } 
+                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                    var accuracy_professione = 1
+                } else {
+                    var accuracy_professione = 0
+                };
+                if (data.response.Città == jsPsych.timelineVariable ('città')){
+                    var accuracy_città = 1
+                } else {
+                    var accuracy_città = 0
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione;
+                data.accuracy_città = accuracy_città;
+
+            }
+        }; 
+
+        var feedback_nome = {
+            on_start: function(prova_nome){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy_nome;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Nome Corretto!"
+                } else {
+                    var feedback = "Nome Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_nome.data = {stimulus: feedback};
+                prova_nome.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+
+        };
+
+        var feedback_professione = {
+            on_start: function(prova_professione){
+                var last_trial_accuracy = jsPsych.data.get().last(2).values()[0].accuracy_professione;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Professione Corretta!"
+                } else {
+                    var feedback = "Professione Sbagliata!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_professione.data = {stimulus: feedback};
+                prova_professione.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+
+        };
+
+        var feedback_città = {
+            on_start: function(prova_città){
+                var last_trial_accuracy = jsPsych.data.get().last(3).values()[0].accuracy_città;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Città Corretta!"
+                } else {
+                    var feedback = "Città Sbagliata!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_città.data = {stimulus: feedback};
+                prova_città.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+
+        };
+
+        var conditional_node = {
+            timeline: [prova_img, prova_answer, feedback_nome, feedback_professione, feedback_città],
+            timeline_variables:[
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
+            ],
+            randomize_order: true,
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(6).values()[0].response; // -----> PROBLEMA non prende variabile e salta prova  
+                if (response_button == 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }    
+        };
+
+
+        var instructions1 = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà dei passaporti di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto. 
+            <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni!</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_start:function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+            
+        }; 
+
+        var loop_prova = {
+            timeline: [prova_img, prova_answer, feedback_nome, feedback_professione, feedback_città],
+            timeline_variables:[
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
+            ],
+            randomize_order: true,
+            loop_function: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            on_timeline_finish: function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+
+        };
+
+        var img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('img1'),
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">Osservi e memorizi attentamente le informazioni presenti nell'immagine presente sullo schermo </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var interference = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt: "24 / 8", required: true} // -----> esiste un modo per far si che si possa rispondere solo con numeri e non lettere? 
+            ],
+            preamble: "Riporti il risultato della seguente operazione matematica:"
+
+            // -----> ci interessa che il risultato sia giusto o sbagliato? 
+
+        };
+
+        var answer = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                    var accuracy_nome = 1
+                } else {
+                    var accuracy_nome = 0
+                } 
+                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                    var accuracy_professione = 1
+                } else {
+                    var accuracy_professione = 0
+                };
+                if (data.response.Città == jsPsych.timelineVariable ('città')){
+                    var accuracy_città = 1
+                } else {
+                    var accuracy_città = 0
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione;
+                data.accuracy_città = accuracy_città;
+                if (data.accuracy_nome, data.accuracy_professione, data.accuracy_città = true) {
+                    var corretct = true;
+                } else {
+                    var corretct = false;
+                };
+                data.correct = corretct;
+
+            }
+        };
+
+        var trial = {
+            timeline: [img, interference, answer],
+            timeline_variables:[
+                {img1: './tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png', nome: 'Mario', professione: 'idraulico', città: 'Roma'}, // -----> comprendere possibilità maiuscole e minuscole 
+            ],
+            randomize_order: true
+
+        }; 
+
+
+        var timeline = [preload, instructions, conditional_node, instructions1, loop_prova, trial ];
+
+        jsPsych.run(timeline);
+    </script>
+</html>
