@@ -165,3 +165,56 @@
 2022-12-08 16:18:42,430 [INFO] - gui_access - POST /jatos/2/component (admin)
 2022-12-08 16:18:42,443 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2022-12-08 16:18:42,443 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939578 (admin)
+2022-12-08 16:41:19,931 [INFO] - gui_access - POST /jatos/login (admin)
+2022-12-08 17:06:15,948 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:06:15,960 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:06:15,964 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939579 (admin)
+2022-12-08 17:06:22,525 [INFO] - gui_access - GET /jatos/2/23/run (admin)
+2022-12-08 17:06:22,531 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2022-12-08 17:06:22,531 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2022-12-08 17:06:22,534 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId172, studyId 2, batchId 2, logged-in username admin, workerId 1
+2022-12-08 17:06:22,540 [INFO] - publix_access - GET /publix/cd959032-9668-4c03-9fbe-d6f8443bd626/b1c7907d-d47a-459b-b3a1-86bcc9fbefd8/start
+2022-12-08 17:06:22,542 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 172, componentId 23
+2022-12-08 17:06:22,688 [INFO] - publix_access - GET /publix/cd959032-9668-4c03-9fbe-d6f8443bd626/b1c7907d-d47a-459b-b3a1-86bcc9fbefd8/initData
+2022-12-08 17:06:22,692 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 172, componentId 23
+2022-12-08 17:06:22,703 [INFO] - publix_access - POST /publix/cd959032-9668-4c03-9fbe-d6f8443bd626/heartbeat
+2022-12-08 17:06:22,704 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 172
+2022-12-08 17:06:22,707 [INFO] - c.p.JatosBatchChannel - .open: studyResult 172
+2022-12-08 17:06:28,474 [INFO] - gui_access - GET /jatos/2/41/run (admin)
+2022-12-08 17:06:28,480 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2022-12-08 17:06:28,480 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2022-12-08 17:06:28,483 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId173, studyId 2, batchId 2, logged-in username admin, workerId 1
+2022-12-08 17:06:28,488 [INFO] - publix_access - GET /publix/1b08a723-0d57-418d-bd45-d2418ae7b9ae/c02882e5-555f-48fe-81ac-55d8bf5ed631/start
+2022-12-08 17:06:28,490 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 173, componentId 41
+2022-12-08 17:06:28,597 [INFO] - publix_access - GET /publix/1b08a723-0d57-418d-bd45-d2418ae7b9ae/c02882e5-555f-48fe-81ac-55d8bf5ed631/initData
+2022-12-08 17:06:28,599 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 173, componentId 41
+2022-12-08 17:06:28,612 [INFO] - publix_access - POST /publix/1b08a723-0d57-418d-bd45-d2418ae7b9ae/heartbeat
+2022-12-08 17:06:28,613 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 173
+2022-12-08 17:06:28,615 [INFO] - c.p.JatosBatchChannel - .open: studyResult 173
+2022-12-08 17:07:05,106 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:07:05,119 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:07:05,119 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939580 (admin)
+2022-12-08 17:07:37,362 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:07:37,374 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:07:37,374 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939581 (admin)
+2022-12-08 17:08:46,169 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:08:46,185 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:08:46,185 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939582 (admin)
+2022-12-08 17:09:26,945 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:09:26,958 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939583 (admin)
+2022-12-08 17:09:26,958 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:10:01,210 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:10:01,221 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:10:01,221 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939584 (admin)
+2022-12-08 17:11:18,201 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:11:43,170 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:12:24,993 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:12:25,006 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:12:25,006 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939585 (admin)
+2022-12-08 17:13:05,103 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:13:36,736 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:13:36,750 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 17:13:36,750 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939586 (admin)
+2022-12-08 17:14:33,594 [INFO] - gui_access - POST /jatos/2/component (admin)
+2022-12-08 17:14:33,606 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939587 (admin)
+2022-12-08 17:14:33,606 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
