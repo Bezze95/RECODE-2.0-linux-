@@ -218,3 +218,4 @@
 2022-12-08 17:14:33,594 [INFO] - gui_access - POST /jatos/2/component (admin)
 2022-12-08 17:14:33,606 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1670509939587 (admin)
 2022-12-08 17:14:33,606 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2022-12-08 18:57:20,970 [INFO] - gui_access - POST /jatos/login (admin)
