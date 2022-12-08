@@ -30,25 +30,23 @@
         }); 
         
         var jsPsych = initJsPsych({
-            use_webaudio: false,
-            on_finish: function() {
-                jsPsych.data.displayData();
+                use_webaudio: false,
+                on_finish: function() {
+                    /*jsPsych.data.displayData();*/
 
-                                /*
-                var correct_trials = jsPsych.data.get().filter({correct_CONGRUENTE: true, correct_INCONGRUENTE: true}).count();
-                    if(correct_trials > 0){
-                        var feed = 1;
-                    } else {
-                        var feed = 0;
-                    }
-                jatos.studySessionData = feed;
-                var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
-                sessionStorage.setItem('attenzione', attenzione);
-                var Data = {feed: feed, type: 'attenzione_attenzionevisiva_level3', cresp: correct_trials};
-                jatos.startComponentByPos(4,Data); 
-            } */
-            }
-        });
+                    var correct_trials = jsPsych.data.get().filter({correct_ALL: true}).count();
+                        if(correct_trials > 0){
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+                    sessionStorage.setItem('attenzione', attenzione);
+                    var Data = {feed: feed, type: 'ATTENZIONE_attenzionevisiva_level3', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                } 
+            });
         
 
         var instructions = {
@@ -298,9 +296,21 @@
                     correct_INCONGRUENTE = false;
                 };
                 data.correct_INCONGRUENTE = correct_INCONGRUENTE;
+                if (jsPsych.data.get().filter({correct_CONGRUENTE: true})){
+                    var CONGRUENTE = true;
+                }
+                if (jsPsych.data.get().filter({correct_INCONGRUENTE: true})){
+                    var INCONGRUENTE = true;
+                }
+                if (CONGRUENTE && INCONGRUENTE == true){
+                    var ALL = true;
+                } else {
+                    var ALL = false;
+                };
+                data.correct_ALL = ALL;
             }
-            
         };
+
 
         var variables2 = 
             [
@@ -317,6 +327,22 @@
             timeline_variables: jsPsych.randomization.sampleWithReplacement(variables2, 25, [5,5,5,5,5])   
             
         }; 
+
+        var risultati = []
+        on_finishfunction(data){
+            if (jsPsych.data.get().filter({correct_CONGRUENTE: true})){
+                var CONGRUENTE = true;
+            }
+            if (jsPsych.data.get().filter({correct_INCONGRUENTE: true})){
+                var INCONGRUENTE = true;
+            }
+            if (CONGRUENTE && INCONGRUENTE == true){
+                var ALL = true;
+            } else {
+                var ALL = false;
+            };
+            data.correct = ALL;
+        };
 
 
 
