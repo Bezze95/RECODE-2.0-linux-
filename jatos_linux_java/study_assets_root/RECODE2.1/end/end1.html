@@ -54,7 +54,7 @@
             <button class="button button" onclick="endFunction()">TERMINA LA SESSIONE</button>
     
             <script>
-                //to save user_feels data --> FUCNTION TO TRY AND MODIFY! //
+                //to save user_feels data --> // ----->  FUCNTION TO TRY AND MODIFY! //
                 document.getElementById("save").addEventListener("click", function (){
                     var user = document.getElementById("user_feels").value ;
                     //localStorage["user"] = user ;
@@ -95,42 +95,34 @@
     
                     var score = 0;
                     var attenzione = Number(sessionStorage.getItem('attenzione'));
-                    var esecutive = Number(sessionStorage.getItem('esecutive'));
-                    var linguaggio = Number(sessionStorage.getItem('esecutive'));
-                    var memoria = Number(sessionStorage.getItem('memoria'));
-                    var lavoro = Number(sessionStorage.getItem('lavoro'));
-                    var	ragionamento = Number(sessionStorage.getItem('ragionamento'));
-                    var ricerca = Number(sessionStorage.getItem('ricerca'));
-                    score = (attenzione + esecutive + linguaggio + memoria + lavoro + ragionamento + ricerca);
+                    var linguaggio = Number(sessionStorage.getItem('linguaggio'));
+                    var memoria_verbale = Number(sessionStorage.getItem('memoria_verbale'));
+                    var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'));
+                    
+                    score = (attenzione + linguaggio + memoria_verbale + memoria_visiva);
                     document.getElementById("total").innerHTML = ["Il punteggio totale ottenuto è: " + String(score.toFixed())];
                     document.getElementById("partial").innerHTML =
-                        ['Attenzione: ' + String(attenzione.toFixed()) + ' | ' +
-                        'Funzioni esecutive: ' + String(esecutive.toFixed()) + ' | ' +
-                        'linguaggio: ' + String(linguaggio.toFixed()) + ' | ' +
-                        'Memoria: ' + String(memoria.toFixed()) + ' | ' +
-                        'Memoria di lavoro: ' + String(lavoro.toFixed()) + ' | ' +
-                        'Ragionamento: ' + String(ragionamento.toFixed()) + ' | ' +
-                        'Ricerca visiva: ' + String(ricerca.toFixed())];
-    
+                        [
+                            'Attenzione: ' + String(attenzione.toFixed()) + ' | ' +
+                            'linguaggio: ' + String(linguaggio.toFixed()) + ' | ' +
+                            'Memoria Verbale: ' + String(memoria_verbale.toFixed()) + ' | ' +
+                            'Memoria Visiva: ' + String(memoria_visiva.toFixed()) + ' | '
+                        ]
+                       
                     function endFunction() {
                         var data = {
                             attenzione:attenzione,
-                            esecutive:esecutive,
                             linguaggio:linguaggio,
-                            memoria:memoria,
-                            lavoro:lavoro,
-                            ragionamento:ragionamento,
-                            ricerca:ricerca,
+                            memoria_verbale:memoria_verbale,
+                            memoria_visiva:memoria_visiva,
                             gradimento:gradimento
                         };
     
                         jatos.batchSession.set("level_attenzione", attenzione)
-                        .then(() => jatos.batchSession.set("level_esecutive", esecutive))
                         .then(() => jatos.batchSession.set("level_linguaggio", linguaggio))
-                        .then(() => jatos.batchSession.set("level_memoria", memoria))
-                        .then(() => jatos.batchSession.set("level_lavoro", lavoro))
-                        .then(() => jatos.batchSession.set("level_ragionamento", ragionamento))
-                        .then(() => jatos.batchSession.set("level_ricerca", ricerca));
+                        .then(() => jatos.batchSession.set("level_memoria_verbale", memoria_verbale))
+                        .then(() => jatos.batchSession.set("level_memoria_visiva", memoria_visiva))
+                        
                         jatos.endStudy(data, true, JSON.stringify(data));
                     }
                 </script>
