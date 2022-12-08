@@ -41,9 +41,9 @@
                             var feed = 0;
                         }
                     jatos.studySessionData = feed;
-                    var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
-                    sessionStorage.setItem('linguaggio', linguaggio);
-                    var Data = {feed: feed, type: 'LINGUAGGIO_catsemantica_level2', cresp: correct_trials};
+                    var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+                    sessionStorage.setItem('memoria_visiva', memoria_visiva);
+                    var Data = {feed: feed, type: 'MEMORIA_VISIVA_ricorda_dettagli_level2', cresp: correct_trials};
                     jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
                 } 
             });

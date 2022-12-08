@@ -41,9 +41,9 @@
                             var feed = 0;
                         }
                     jatos.studySessionData = feed;
-                    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
-                    sessionStorage.setItem('attenzione', attenzione);
-                    var Data = {feed: feed, type: 'ATTENZIONE_catsemantica_level3', cresp: correct_trials};
+                    var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+                    sessionStorage.setItem('linguaggio', linguaggio);
+                    var Data = {feed: feed, type: 'LINGUAGGIO_catsemantica_level3', cresp: correct_trials};
                     jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
                 } 
             });

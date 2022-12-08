@@ -30,26 +30,23 @@
     }); 
     
     var jsPsych = initJsPsych({
-        use_webaudio: false,
-        on_finish: function() {
-            jsPsych.data.displayData();
+                use_webaudio: false,
+                on_finish: function() {
+                    /*jsPsych.data.displayData();*/
 
-                            /*
-            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                if(correct_trials > 0){
-                    var feed = 1;
-                } else {
-                    var feed = 0;
-                }
-            jatos.studySessionData = feed;
-            var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
-            sessionStorage.setItem('attenzione', attenzione);
-            var Data = {feed: feed, type: 'attenzione_attenzionevisiva_level1', cresp: correct_trials};
-            jatos.startComponentByPos(4,Data); #PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos 
-        } */
-        }
-    });
-
+                    var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                        if(correct_trials > 0){
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+                    sessionStorage.setItem('memoria_visiva', memoria_visiva);
+                    var Data = {feed: feed, type: 'MEMORIA_VISIVA_storiella_level1', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                } 
+            });
 
     var buco = {
         type: jsPsychHtmlButtonResponse,
