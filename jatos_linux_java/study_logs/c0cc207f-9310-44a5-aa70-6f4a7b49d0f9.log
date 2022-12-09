@@ -18,3 +18,6 @@
 {"msg":"Finished study run","workerId":1,"timestamp":1670595295209}
 {"msg":"Removed result data and files","userName":"Admin","timestamp":1670595307352}
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670597107312}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670599551700}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670599599382}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670600625620}
