@@ -9,3 +9,12 @@
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670523559078}
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670578698518}
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670595070136}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670595245910}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670595267029}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1670595282719}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1670595291909}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670595291911}
+{"msg":"Stored component result data","componentUuid":"c02882e5-555f-48fe-81ac-55d8bf5ed631","workerId":1,"dataHash":"no data","timestamp":1670595295163}
+{"msg":"Finished study run","workerId":1,"timestamp":1670595295209}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1670595307352}
+{"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1670597107312}
