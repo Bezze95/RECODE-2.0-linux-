@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>INTRODUZIONE DI BENVENUTO</title>
+		<meta charset="UTF-8" />
+
+		<div id='logo_unipd' style="text-align:center">
+			<img src="./intro/university_logo.png" alt='logo_unipd' height="120pt">
+		</div>
+
+	<!-- servizio di email e recall -->
+		<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+	</head>
+
+	<style>
+		.button {
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+			.button {background-color: #4CAF50;} /* Green */
+			.help {background-color: #960018;} /* Green */
+	</style>
+
+	<body>
+		<div id='instructions'>
+			<h2 style="text-align:center">Clicca sull'immagine sotto per ascoltare il messaggio.<h2></div>
+		</div>
+		<div id="image_avatar" style="text-align:center">
+			<a onclick="playSound('sound','speaker');">
+				<audio id="sound">
+					<source src="./intro/intro.m4a">
+				</audio>
+				<img id="speaker" src="./intro/pointer-click.png" height="300pt">
+			</a>
+		</div>
+		<div id="footer" style="text-align:center">
+			<h2>Premi il bottone verde per andare avanti, il rosso per ricevere assistenza.</h2>
+			<button class="button button" type="button" id="start-experiment" > VAI AGLI ESERCIZI </button>
+			<button id="start-call-button" class="button help" onclick="sendEmail(jatos.studyProperties.title,'help START')">PREMI PER CONTATTARCI</button>
+		</div>
+	</body>
+
+
+	<script>
+
+		/*function playSound(sound,image){
+			var myAudio = document.getElementById(sound);
+			var myGif = document.getElementById(image);
+			if (myAudio.paused) {
+					myAudio.play();
+					myGif.src="./intro/speaker.gif";
+					myAudio.addEventListener("ended", function stopGif(){
+						myAudio.currentTime = 0;
+						myGif.src="./intro/pointer-click.png";
+					});
+				} 
+			else {
+				myAudio.pause();
+				myGif.src="./intro/speaker-off.png";
+				myAudio.removeEventListener("ended", function stopGif(){
+					myAudio.currentTime = 0;
+					myGif.src="./intro/pointer-click.png";
+				});
+			}	
+		};*/
+
+		function sendEmail(subj,text) {
+		Email.send({
+			   SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+				To : 'conteabba@gmail.com',
+				From : "conteabba@gmail.com",
+				Subject : subj,
+				Body : text
+			})
+			let button = document.getElementById('start-call-button');
+			document.querySelector("#footer > h2").innerText='Abbiamo ricevuto la tua segnalazione, ti ricontatteremo appena possibile.'+
+			'\n \n Clicca sul bottone verde per tornare agli esercizi o in alternativa sul bottone rosso per avviare una videochiamata.'
+				button.innerHTML = 'AVVIA LA VIDEOCHIAMATA';
+				button.onclick = startCall;
+		};
+
+		
+
+	</script>
+	
+
+
+
+</html>

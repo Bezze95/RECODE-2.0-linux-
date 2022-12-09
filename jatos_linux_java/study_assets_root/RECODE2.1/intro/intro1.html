@@ -4,136 +4,47 @@
 		<title>
 		BENVENUTO
 		</title>
-		<div id='logo_unipd' style="text-align:center">
-			<img src="./intro/university_logo.png" alt='logo_unipd' height="120pt">
-		</div>
-		
+				
 		<script src="jatos.js"></script>
     	<script src="https://unpkg.com/jspsych@7.2.3"></script>
-		<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+		<script src="https://unpkg.com/@jspsych/plugin-external-html@1.1.1"></script>
+
+
 		<link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
 
-	<!-- servizio di email e recall -->
-		<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
-		<script src="https://smtpjs.com/v3/smtp.js"></script>
 
 	</head>
 
-	<style>
-		.button {
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin: 4px 2px;
-			cursor: pointer;
-		}
-			.button {background-color: #4CAF50;} /* Green */
-			.help {background-color: #960018;} /* Green */
-	</style>
-
 	<body>
-		<div id='instructions'>
-			<h2 style="text-align:center">Clicca sull'immagine sotto per ascoltare il messaggio.<h2></div>
-		</div>
-		<div id="image_avatar" style="text-align:center">
-			<a onclick="playSound('sound','speaker');">
-				<audio id="sound">
-					<source src="./intro/intro.m4a">
-				</audio>
-				<img id="speaker" src="./intro/pointer-click.png" height="300pt">
-			</a>
-		</div>
-		<div id="footer" style="text-align:center">
-			<h2>Premi il bottone verde per andare avanti, il rosso per ricevere assistenza.</h2>
-			<button class="button button" onclick="endFunction();" > VAI AGLI ESERCIZI </button>
-			<button id="start-call-button" class="button help" onclick="sendEmail(jatos.studyProperties.title,'help START')">PREMI PER CONTATTARCI</button>
-		</div>		
+		<style>
+			body {
+				background-color: white;
+			}
+	
+		</style>
 	
 	</body>	
 
 	<script type="text/javascript">
-		var jsPsych = initJsPsych({
-			timeline: [instruction],
-			display_element: "top",
-			on_finish: function() {
-				jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data)); // ----->  https://www.jatos.org/jatos.js-Reference.html#jatosstartcomponentbypos 
-			}
-		})
-		function playSound(sound,image){
-			var myAudio = document.getElementById(sound);
-			var myGif = document.getElementById(image);
-			if (myAudio.paused) {
-					myAudio.play();
-					myGif.src="./intro/speaker.gif";
-					myAudio.addEventListener("ended", function stopGif(){
-						myAudio.currentTime = 0;
-						myGif.src="./intro/pointer-click.png";
-					});
-				} 
-			else {
-				myAudio.pause();
-				myGif.src="./intro/speaker-off.png";
-				myAudio.removeEventListener("ended", function stopGif(){
-					myAudio.currentTime = 0;
-					myGif.src="./intro/pointer-click.png";
-				});
-			}
-			
-		}
-	
-		function endFunction() {
-			var componentCounter = 0;
-			function shuffle(array) {
-				var currentIndex = array.length, temporaryValue, randomIndex;
-				while (0 !== currentIndex) {
-					randomIndex = Math.floor(Math.random() * currentIndex);
-					currentIndex -= 1;
-					temporaryValue = array[currentIndex];
-					array[currentIndex] = array[randomIndex];
-					array[randomIndex] = temporaryValue;
-				}
-				return array;
-			}
-		};
 
-	// ----->  da decidere se tenere oppure no 
-	/*  function startCall() {
-			sendEmail(jatos.studyProperties.title,'https://recode.daily.co/new-prebuilt-test')
-		  window.callFrame = window.DailyIframe.createFrame();
-		  callFrame.join({ url: 'https://recode.daily.co/new-prebuilt-test' });
-			let button = document.getElementById('start-call-button');
-		button.innerHTML = 'TERMINA LA VIDEOCHIAMATA';
-		button.onclick = () => {
-			sendEmail(jatos.studyProperties.title,'call closed')
-		callFrame.leave();
-		  button.innerHTML = 'AVVIA LA VIDEOCHIAMATA';
-		  button.onclick = startCall;
-				var iframes = document.querySelectorAll('iframe');
-		  for (var i = 0; i < iframes.length; i++) {
-			  iframes[i].parentNode.removeChild(iframes[i]);
-	
-			}
-		} */
+		var jsPsych = initJsPsych({
+				on_finish: function() {
+					var componentCounter = 0;
+					function shuffle(array) {
+						var currentIndex = array.length, temporaryValue, randomIndex;
+						while (0 !== currentIndex) {
+							randomIndex = Math.floor(Math.random() * currentIndex);
+							currentIndex -= 1;
+							temporaryValue = array[currentIndex];
+							array[currentIndex] = array[randomIndex];
+							array[randomIndex] = temporaryValue;
+						}
+						return array;
+					}
+					jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data)); // ----->  https://www.jatos.org/jatos.js-Reference.html#jatosstartcomponentbypos 
+				}
+		});
 		
-	
-		function sendEmail(subj,text) {
-		Email.send({
-			   SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
-				To : 'conteabba@gmail.com',
-				From : "conteabba@gmail.com",
-				Subject : subj,
-				Body : text
-			})
-			let button = document.getElementById('start-call-button');
-			document.querySelector("#footer > h2").innerText='Abbiamo ricevuto la tua segnalazione, ti ricontatteremo appena possibile.'+
-			'\n \n Clicca sul bottone verde per tornare agli esercizi o in alternativa sul bottone rosso per avviare una videochiamata.'
-				button.innerHTML = 'AVVIA LA VIDEOCHIAMATA';
-				button.onclick = startCall;
-		}
 
 	
 		// Used like so to create a PROGRESSIVE ARRAY (?)
@@ -205,21 +116,18 @@
 		
 		
 	
-		var instruction = {
-			type: jsPsychHtmlKeyboardResponse,
-			stimulus:
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:30px;'><strong>&nbsp;</strong></p>"+
-			"<p style='font-size:50px;'>Tra qualche secondo inizieremo con il primo esercizio.</p>",
-			choices: [''],
-			trial_duration:5000,
+		var instructions = {
+			type: jsPsychExternalHtml,
+			url: "./intro/just_intro.html",
+			cont_btn: "start-experiment",
+			execute_script: true,
 		};
 
-	
+		var timeline = [instructions];
+
+
+
+	jsPsych.run(timeline)
 	</script>		
 		
 
