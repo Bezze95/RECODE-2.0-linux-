@@ -89,3 +89,19 @@
 2022-12-20 18:03:27,791 [INFO] - publix_access - POST /publix/a532faeb-6aff-4398-95a2-6301fc3400a1/heartbeat
 2022-12-20 18:03:27,795 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 210
 2022-12-20 18:03:27,799 [INFO] - c.p.JatosBatchChannel - .open: studyResult 210
+2022-12-20 18:07:11,064 [INFO] - gui_access - GET /jatos/2/17/run (admin)
+2022-12-20 18:07:11,085 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2022-12-20 18:07:11,085 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2022-12-20 18:07:11,099 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId211, studyId 2, batchId 2, logged-in username admin, workerId 1
+2022-12-20 18:07:11,118 [INFO] - publix_access - GET /publix/3efb9818-0008-428d-bf18-e261d1df1106/d087a62a-595f-4b83-ba1f-47b2dc189482/start
+2022-12-20 18:07:11,136 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 211, componentId 17
+2022-12-20 18:07:11,666 [INFO] - publix_access - GET /publix/3efb9818-0008-428d-bf18-e261d1df1106/d087a62a-595f-4b83-ba1f-47b2dc189482/initData
+2022-12-20 18:07:11,685 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 211, componentId 17
+2022-12-20 18:07:11,794 [INFO] - c.p.JatosBatchChannel - .open: studyResult 211
+2022-12-20 18:07:11,834 [INFO] - publix_access - POST /publix/3efb9818-0008-428d-bf18-e261d1df1106/heartbeat
+2022-12-20 18:07:11,836 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 211
+2022-12-20 18:08:45,205 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-12-20 18:08:45,219 [INFO] - g.OnStartStop - JATOS shutdown
+2022-12-20 18:08:45,235 [INFO] - application - Shutting down connection pool.
+2022-12-20 18:08:45,236 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-12-20 18:08:45,240 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
