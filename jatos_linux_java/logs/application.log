@@ -78,3 +78,8 @@
 2022-12-21 00:29:53,613 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 217
 2022-12-21 00:31:53,641 [INFO] - publix_access - POST /publix/24763ee3-17a0-4113-adef-a73b7bef73ba/heartbeat
 2022-12-21 00:31:53,644 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 217
+2022-12-21 00:32:58,749 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2022-12-21 00:32:58,757 [INFO] - g.OnStartStop - JATOS shutdown
+2022-12-21 00:32:58,773 [INFO] - application - Shutting down connection pool.
+2022-12-21 00:32:58,774 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-12-21 00:32:58,781 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
