@@ -152,7 +152,7 @@
             ],
             randomize_order: true,
             conditional_function: function(){
-                var response_button = jsPsych.data.get().last(3).values()[0].response; // -----> mettere data.get togliendo jsPsych togliendo last
+                var response_button = jsPsych.data.get().last(3).values()[0].response; // -----> mettere jsPsych.data.getDataByTimelineNode togliendo jsPsych togliendo last
                 if (response_button == 0){
                     return true;
                 } else {
