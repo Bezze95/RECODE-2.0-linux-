@@ -6,7 +6,8 @@
 
     <script src="jatos.js"></script>
     <script src="https://unpkg.com/jspsych@7.2.3"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
 
 
@@ -23,10 +24,13 @@
   </body>
 
   <script>
+
+    var componentCounter = 0;
+
     var jsPsych = initJsPsych({
-      use_webaudio: false,
+      use_webaudio: true,
       on_finish: function(){
-        var componentCounter = 0;
+
         function shuffle(array) {
           var currentIndex = array.length, temporaryValue, randomIndex;
           while (0 !== currentIndex) {
@@ -112,21 +116,37 @@
       type: jsPsychPreload,
       audio: ["./intro/intro.m4a"],
       show_detailed_errors: true
-    }
+    };
 
     var instructions = {
-      type: jsPsychAudioKeyboardResponse,
-      stimulus: "./intro/intro.m4a",
-      choice: ['Spacebar','Enter'],
-      response_ends_trial: true,
-      response_allowed_while_playing: false,
-      prompt: '<h2 style="text-align-center"> Prema la barra spaziatrice per proseguire oppure prema il tasto invio per riascoltare </h2>'
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<h2 style="text-align-center"> Prema il tasto INVIO per proseguire oppure prema la BARRA SPAZIATRICE per riascoltare il messaggio di benvenuto </h2>',
+      choices: ['Enter','Spacebar'],
+    };
+
+    var audio = null;
+
+    var audio_play = {
+      type: jsPsychCallFunction,
+      func: function(){
+        audio = new Audio();
+        audio.src = "./intro/intro.m4a";
+        audio.loop = false;
+        audio.play();
+      }
+    };
+
+    var audio_stop = {
+      type: jsPsychCallFunction,
+      func: function(){
+        audio.stop();
+      }
     };
 
    var loop_node = {
-    timeline: [instructions],
+    timeline: [instructions,audio],
     loop_function: function(data){
-        if(jsPsych.pluginAPI.compareKeys(data.values()[0].response, 'Enter')){
+        if(jsPsych.pluginAPI.compareKeys(data.values()[0].response, 'Spacebar')){
             return true;
         } else {
             return false;
@@ -134,7 +154,7 @@
     }
 }
 
-    var timeline = [preload, instructions, loop_node ];
+    var timeline = [preload, instructions, audio_play, audio_stop, loop_node ];
 
   jsPsych.run(timeline);
   </script>
