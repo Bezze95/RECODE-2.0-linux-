@@ -324,3 +324,58 @@
 2023-01-03 13:46:06,956 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
 2023-01-03 13:48:06,963 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
 2023-01-03 13:48:06,964 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:48:35,424 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-01-03 13:48:35,428 [INFO] - g.OnStartStop - JATOS shutdown
+2023-01-03 13:48:35,443 [INFO] - application - Shutting down connection pool.
+2023-01-03 13:48:35,444 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-01-03 13:48:35,446 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-01-03 15:57:26,691 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2023-01-03 15:57:26,693 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2023-01-03 15:57:26,749 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2023-01-03 15:57:26,749 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2023-01-03 15:57:26,936 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2023-01-03 15:57:26,990 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2023-01-03 15:57:26,992 [INFO] - application - Creating Pool for datasource 'default'
+2023-01-03 15:57:26,996 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2023-01-03 15:57:27,005 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2023-01-03 15:57:27,020 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2023-01-03 15:57:27,122 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2023-01-03 15:57:27,152 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2023-01-03 15:57:27,251 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-03 15:57:27,371 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-01-03 15:57:27,422 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2023-01-03 15:57:27,614 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2023-01-03 15:57:27,614 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2023-01-03 15:57:27,615 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2023-01-03 15:57:27,615 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2023-01-03 15:57:27,951 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-03 15:57:28,113 [INFO] - g.OnStartStop - JATOS started
+2023-01-03 15:57:28,154 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2023-01-03 15:57:28,367 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2023-01-03 15:57:36,264 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-03 15:57:36,284 [INFO] - publix_access - GET /publix/817f88a9-a000-4859-a70c-afd4a26948a6/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-03 15:57:36,319 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 218, componentId 16
+2023-01-03 15:57:36,345 [INFO] - g.ErrorHandler - PublixException during call /publix/817f88a9-a000-4859-a70c-afd4a26948a6/06964f96-652e-4512-b1ca-ee6c1e1fe607/start: Worker 1 is not allowed to do study 2.
+2023-01-03 15:57:38,038 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-03 15:57:38,039 [INFO] - publix_access - GET /publix/817f88a9-a000-4859-a70c-afd4a26948a6/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-03 15:57:38,051 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 218, componentId 16
+2023-01-03 15:57:38,052 [INFO] - g.ErrorHandler - PublixException during call /publix/817f88a9-a000-4859-a70c-afd4a26948a6/06964f96-652e-4512-b1ca-ee6c1e1fe607/start: Worker 1 is not allowed to do study 2.
+2023-01-03 15:57:41,201 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-03 15:57:41,215 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/sidebarStudyList
+2023-01-03 15:57:41,240 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/2/componentsTableData
+2023-01-03 15:57:42,928 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/sidebarStudyList
+2023-01-03 15:57:42,949 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1/componentsTableData
+2023-01-03 15:57:44,056 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos
+2023-01-03 15:57:44,065 [INFO] - gui_access - GET /jatos/login (null)
+2023-01-03 15:57:45,446 [INFO] - gui_access - POST /jatos/login (null)
+2023-01-03 15:57:45,500 [INFO] - gui_access - GET /jatos (admin)
+2023-01-03 15:57:45,624 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-01-03 15:57:45,628 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-03 15:57:46,730 [INFO] - gui_access - GET /jatos/2 (admin)
+2023-01-03 15:57:46,789 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-03 15:57:46,816 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1672757866762 (admin)
+2023-01-03 17:21:27,040 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-01-03 17:21:27,046 [INFO] - g.OnStartStop - JATOS shutdown
+2023-01-03 17:21:27,058 [INFO] - application - Shutting down connection pool.
+2023-01-03 17:21:27,059 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-01-03 17:21:27,061 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
