@@ -200,3 +200,127 @@
 2023-01-03 11:42:06,036 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
 2023-01-03 11:44:06,053 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
 2023-01-03 11:44:06,054 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:46:06,067 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:46:06,068 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:48:06,084 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:48:06,085 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:50:06,099 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:50:06,100 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:52:06,116 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:52:06,116 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:54:06,133 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:54:06,133 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:56:06,148 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:56:06,148 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 11:58:06,163 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 11:58:06,164 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:00:06,179 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:00:06,180 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:02:06,196 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:02:06,197 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:04:06,213 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:04:06,214 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:06:06,228 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:06:06,228 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:08:06,243 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:08:06,244 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:10:06,260 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:10:06,260 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:12:06,275 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:12:06,276 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:14:06,293 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:14:06,293 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:16:06,307 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:16:06,308 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:18:06,315 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:18:06,316 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:20:06,331 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:20:06,332 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:22:06,347 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:22:06,348 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:24:06,356 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:24:06,357 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:26:06,371 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:26:06,372 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:28:06,387 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:28:06,388 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:30:06,404 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:30:06,404 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:32:06,420 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:32:06,421 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:34:06,437 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:34:06,438 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:36:06,451 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:36:06,452 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:38:06,467 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:38:06,468 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:40:06,483 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:40:06,484 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:42:06,499 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:42:06,500 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:44:06,516 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:44:06,517 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:46:06,531 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:46:06,532 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:48:06,547 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:48:06,548 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:50:06,555 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:50:06,556 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:52:06,572 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:52:06,572 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:54:06,588 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:54:06,589 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:56:06,603 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:56:06,604 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 12:58:06,611 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 12:58:06,612 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:00:06,619 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:00:06,620 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:02:06,635 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:02:06,637 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:04:06,652 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:04:06,653 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:06:06,667 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:06:06,668 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:08:06,683 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:08:06,684 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:10:06,699 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:10:06,700 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:12:06,715 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:12:06,716 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:14:06,732 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:14:06,733 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:16:06,747 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:16:06,748 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:18:06,755 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:18:06,756 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:20:06,763 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:20:06,764 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:22:06,779 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:22:06,780 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:24:06,796 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:24:06,797 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:26:06,811 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:26:06,812 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:28:06,827 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:28:06,828 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:30:06,844 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:30:06,844 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:32:06,860 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:32:06,861 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:34:06,877 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:34:06,877 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:36:06,891 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:36:06,892 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:38:06,899 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:38:06,900 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:40:06,907 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:40:06,908 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:42:06,923 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:42:06,924 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:44:06,940 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:44:06,941 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:46:06,955 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:46:06,956 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
+2023-01-03 13:48:06,963 [INFO] - publix_access - POST /publix/817f88a9-a000-4859-a70c-afd4a26948a6/heartbeat
+2023-01-03 13:48:06,964 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 218
