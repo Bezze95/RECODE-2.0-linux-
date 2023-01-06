@@ -147,3 +147,8 @@
 2023-01-06 11:16:38,382 [INFO] - gui_access - GET /jatos/2/batches?_=1673000198298 (admin)
 2023-01-06 11:16:38,413 [INFO] - gui_access - GET /jatos/2/batch/2/studyLinksSetupData (admin)
 2023-01-06 11:16:39,781 [INFO] - gui_access - GET /jatos/2/batch/2/batchSessionData (admin)
+2023-01-06 16:38:50,544 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-01-06 16:38:50,550 [INFO] - g.OnStartStop - JATOS shutdown
+2023-01-06 16:38:50,562 [INFO] - application - Shutting down connection pool.
+2023-01-06 16:38:50,567 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-01-06 16:38:50,569 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
