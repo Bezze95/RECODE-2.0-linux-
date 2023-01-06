@@ -6,11 +6,7 @@
 
     <script src="jatos.js"></script>
     <script src="https://unpkg.com/jspsych@7.2.3"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
-
-
 
     <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
@@ -24,6 +20,8 @@
   </body>
 
   <script>
+
+    var componentCounter = 0;
 
     var jsPsych = initJsPsych({
       use_webaudio: true,
@@ -43,8 +41,6 @@
         jatos.startComponentByPos(nextComponentPosition[componentCounter],data, JSON.stringify(data));
       }
     });
-
-    var componentCounter = 0;
 
     // Used like so to create a PROGRESSIVE ARRAY (?)
 		function range(start, end) {
@@ -112,49 +108,24 @@
 		sessionStorage.setItem('memoria_verbale', empty);
 		sessionStorage.setItem('memoria_visiva', empty);
 
-    var preload = {
-      type: jsPsychPreload,
-      audio: ["./intro/intro.m4a"],
-      show_detailed_errors: true
-    };
-
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<h2 style="text-align-center"> Prema il tasto INVIO per proseguire oppure prema la BARRA SPAZIATRICE per riascoltare il messaggio di benvenuto </h2>',
-      choices: ['Enter','Spacebar'],
+      stimulus: `<h2 style="text-align-center"> Gentile partecipante ti diamo il benvenuto,
+sarà successo anche a te di trovarti nella spiacevole situazione di non riuscire a mantenere la concentrazione,
+di dimenticare qualcosa di più o meno importante o di sentire la testa un pò confusa,
+Può succedere ed io sono qui per aiutarti!
+Con le attività che ti verranno proposte, andremo insieme a rafforzare la memoria, l'attenzione, il linguaggio.
+
+Quante volte ci capita di non riuscire a trovare le parole, vero?
+Ti accorgerai presto, che alcuni esercizi saranno molto facili per te, altri invece ti metteranno seriamente alla prova!
+So che non ti abbatterai facilmente e che per te e per me, è molto importante potenziare le tue funzioni cognitive.
+Forza allora cominciamo! Prema la BARRA SPAZIATRICE per iniziare </h2>`,
+      choices: ['Spacebar'],
     };
 
-    var audio = null;
+  
 
-    var audio_play = {
-      type: jsPsychCallFunction,
-      func: function(){
-        audio = new Audio();
-        audio.src = "./intro/intro.m4a";
-        audio.loop = false;
-        audio.play();
-      }
-    };
-
-    var audio_stop = {
-      type: jsPsychCallFunction,
-      func: function(){
-        audio.stop();
-      }
-    };
-
-   var loop_node = {
-    timeline: [instructions,audio, audio_play, audio_stop],
-    loop_function: function(data){
-        if(jsPsych.pluginAPI.compareKeys(data.values()[0].response, 'Spacebar')){
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-
-    var timeline = [preload, instructions, audio, audio_play, audio_stop, loop_node ];
+    var timeline = [ instructions ];
 
   jsPsych.run(timeline);
   </script>
