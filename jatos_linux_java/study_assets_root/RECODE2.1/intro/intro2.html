@@ -25,6 +25,7 @@
 
   <script>
 
+   
     var jsPsych = initJsPsych({
       use_webaudio: true,
       on_finish: function(){
@@ -156,6 +157,9 @@
 
     var timeline = [preload, instructions, audio, audio_play, audio_stop, loop_node ];
 
+ 
+  
   jsPsych.run(timeline);
+
   </script>
 </html>
