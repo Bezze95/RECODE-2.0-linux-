@@ -168,3 +168,8 @@
 2023-01-17 16:05:37,173 [INFO] - publix_access - POST /publix/c63dbd83-9b37-49e8-a246-9efb9ef1d207/heartbeat
 2023-01-17 16:05:37,174 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 225
 2023-01-17 16:05:37,177 [INFO] - c.p.JatosBatchChannel - .open: studyResult 225
+2023-01-17 16:07:04,026 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-01-17 16:07:04,033 [INFO] - g.OnStartStop - JATOS shutdown
+2023-01-17 16:07:04,047 [INFO] - application - Shutting down connection pool.
+2023-01-17 16:07:04,050 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-01-17 16:07:04,051 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
