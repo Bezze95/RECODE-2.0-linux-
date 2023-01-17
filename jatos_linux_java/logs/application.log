@@ -161,3 +161,10 @@
 2023-01-17 16:04:25,861 [INFO] - publix_access - POST /publix/c63dbd83-9b37-49e8-a246-9efb9ef1d207/heartbeat
 2023-01-17 16:04:25,862 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 225
 2023-01-17 16:04:25,862 [INFO] - c.p.JatosBatchChannel - .open: studyResult 225
+2023-01-17 16:05:37,020 [INFO] - publix_access - GET /publix/c63dbd83-9b37-49e8-a246-9efb9ef1d207/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-17 16:05:37,022 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 225, componentId 16
+2023-01-17 16:05:37,160 [INFO] - publix_access - GET /publix/c63dbd83-9b37-49e8-a246-9efb9ef1d207/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-17 16:05:37,163 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 225, componentId 16
+2023-01-17 16:05:37,173 [INFO] - publix_access - POST /publix/c63dbd83-9b37-49e8-a246-9efb9ef1d207/heartbeat
+2023-01-17 16:05:37,174 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 225
+2023-01-17 16:05:37,177 [INFO] - c.p.JatosBatchChannel - .open: studyResult 225
