@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File html di buco</title>
+
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+    <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+
+</head>
+<body>
+    <style>
+        body {
+            background-color: white;
+        }
+
+    </style>
+    
+</body>
+
+<script>
+    jatos.onload(function(){
+        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+        var progressText="avanzamento" + progress + "%";
+        const updateProgress = progress;
+    }); 
+    
+    var jsPsych = initJsPsych({
+                use_webaudio: false,
+                on_finish: function() {
+                    /*jsPsych.data.displayData();*/
+
+                    var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                        if(correct_trials > 0){
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+                    sessionStorage.setItem('attenzione', attenzione);
+                    var Data = {feed: feed, type: 'ATTENZIONE_crossmodale_level3', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                } 
+            });
+
+    var buco = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Questa è una pagina di buco, per favore proseguire </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; background-color:green;">%choice%</button>`,
+        choices: ['Prema qui per andare avanti'],
+        on_finish: function(data) {
+            var correct = true;
+            data.correct = correct;
+        }      
+    };
+
+    var timeline = [buco]
+
+    jsPsych.run(timeline)
+
+</script>
+</html>

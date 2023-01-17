@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Riconoscimento 4AFC</title>
+    <meta charset="UTF-8">
+
+    <script src="jsPsych/jspsych.js"></script>
+    <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jsPsych/plugins/jspsych-resize.js"></script>
+    <script src="jsPsych/plugins/jspsych-audio-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
+    <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-survey-likert.js"></script>
+    <script src="jsPsych/plugins/jspsych-animation.js"></script>
+    <script src="/assets/javascripts/jatos.js"></script>
+    <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+    /* test trials */
+
+    function sendEmail(subj,text) {
+    Email.send({
+         SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+          To : 'conteabba@gmail.com',
+          From : "conteabba@gmail.com",
+          Subject : subj,
+          Body : text
+      })
+    }
+
+    var instruction = {
+      type: "html-button-response",
+      stimulus:
+      "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
+      "<p style='font-size:30px;'>Adesso le verranno mostrate delle immagini.</p>"+
+      "<p style='font-size:30px;'>In ogni immagine ci sono più simboli messi insieme. .</p>"+
+      "<p style='font-size:30px;'>Dovrà contare tutti le figure di uno stesso tipo e successivamente indicare quante sono</p>"+
+      "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
+      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+      on_finish: function(data){
+        if(data.button_pressed == 1){
+          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+          location.reload();}
+      }
+     };
+
+
+          var scale1 = ["<p style='font-size:30px;'>8</p>", "<p style='font-size:30px;'>9</p>", "<p style='font-size:30px;'>10</p>", "<p style='font-size:30px;'>11</p>", "<p style='font-size:30px;'>12</p>", "<p style='font-size:30px;'>13</p>", "<p style='font-size:30px;'>14</p>", "<p style='font-size:30px;'>15</p>", "<p style='font-size:30px;'>16</p>"];
+
+          var likert_trial_random_order = {
+              type: 'survey-likert',
+              preamble: '<img src="ricerca_visiva/ricerca_visiva/immagine2.png">',
+              questions: [
+                {prompt: "<p style='font-size:30px;'>Quante “STELLE A 4 PUNTE” ci sono nell’immagine?</p>", labels: scale1},
+              ],
+              randomize_question_order: true,
+              scale_width: 500,
+              on_finish: function(data){
+                data.correct = (jsPsych.data.get().last(1).values()[0].responses[6]=== "1");
+              }
+          };
+
+
+    jsPsych.init({
+        timeline: [instruction, likert_trial_random_order],
+        on_finish: function(data){
+          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+          if(correct_trials > 0){
+            var feed = 1;
+          } else {
+            var feed = 0;
+          }
+          jatos.studySessionData = feed;
+          var ricerca = Number(sessionStorage.getItem('ricerca'))+feed;
+          sessionStorage.setItem('ricerca', ricerca);
+          var Data = {feed: feed, type: 'ricerca_visivasecondo_livello', cresp: correct_trials};
+          jatos.startComponentByPos(4,Data);
+        }
+      });
+</script>
+
+</html>
