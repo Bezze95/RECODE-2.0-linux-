@@ -6,6 +6,7 @@
 
     <script src="jatos.js"></script>
     <script src="https://unpkg.com/jspsych@7.2.3"></script>
+	<script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
     
 
     <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
@@ -22,8 +23,6 @@
   <script>
 	var jsPsych = initJsPsych ({
 		on_finish: function(){
-			var componentCounter = 0;
-			var nextComponentPosition = attenzione.concat(linguaggio)
 			jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data));
 		}
 	});
@@ -33,45 +32,73 @@
 	if (BatchSession["level_attenzione"] <= 1){
 		var attenzione = jsPsych.randomization.shuffle(jatos.studyInput.attenzione_1).slice(0,3)
 	};
-	if (BatchSession.level_attenzione == 2){
+	if (BatchSession["level_attenzione"] == 2){
 		var attenzione = jsPsych.randomization.shuffle(jatos.studyInput.attenzione_2).slice(0,3)
 	};
-	if (BatchSession.level_attenzione > 2){
+	if (BatchSession["level_attenzione"] > 2){
 		var attenzione = jsPsych.randomization.shuffle(jatos.studyInput.attenzione_3).slice(0,3)
 	};
-	if (BatchSession.level_linguaggio <= 1){
+	if (BatchSession["level_linguaggio"] <= 1){
 		var linguaggio = jsPsych.randomization.shuffle(jatos.studyInput.linguaggio_1).slice(0,3)
 	};
-	if (BatchSession.level_linguaggio == 2){
+	if (BatchSession["level_linguaggio"] == 2){
 		var linguaggio = jsPsych.randomization.shuffle(jatos.studyInput.linguaggio_2).slice(0,3)
 	};
-	if (BatchSession.level_linguaggio > 2){
+	if (BatchSession["level_linguaggio"] > 2){
 		var linguaggio = jsPsych.randomization.shuffle(jatos.studyInput.linguaggio_3).slice(0,3)
 	};
-	if (BatchSession.level_memoria_verbale <= 1){
+	if (BatchSession["level_memoria_verbale"] <= 1){
 		var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyInput.memoria_verbale_1).slice(0,3)
 	};
-	if (BatchSession.level_memoria_verbale == 2){
+	if (BatchSession["level_memoria_verbale"] == 2){
 		var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyInput.memoria_verbale_2).slice(0,3)
 	};
-	if (BatchSession.level_memoria_verbale > 2){
+	if (BatchSession["level_memoria_verbale"] > 2){
 		var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyInput.memoria_verbale_3).slice(0,3)
 	};
-	if (BatchSession.level_memoria_visiva <= 1){
+	if (BatchSession["level_memoria_visiva"] <= 1){
 		var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyInput.memoria_visiva_1).slice(0,3)
 	};
-	if (BatchSession.level_memoria_visiva == 2){
+	if (BatchSession["level_memoria_visiva"] == 2){
 		var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyInput.memoria_visiva_2).slice(0,3)
 	};
-	if (BatchSession.level_memoria_visiva > 2){
+	if (BatchSession["level_memoria_visiva"] > 2){
 		var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyInput.memoria_visiva_3).slice(0,3)
 	};
 	
 
+	var componentCounter = 0;
+			
+	var nextComponentPosition = attenzione.concat(linguaggio).concat(memoria_verbale).concat(memoria_visiva)
+	nextComponentPosition = jsPsych.randomization.shuffle(nextComponentPosition)
+	nextComponentPosition.splice(nextComponentPosition.length/2, 0, 2)
+	nextComponentPosition = nextComponentPosition.concat(3);
 
+	var data = {
+		level_attenzione: BatchSession["level_attenzione"],
+		level_linguaggio: BatchSession["level_linguaggio"],
+		level_memoria_verbale: BatchSession["level_memoria_verbale"],
+		level_memoria_visiva: BatchSession["level_memoria_visiva"],
 
+		level_gradimento: BatchSession["level_gradimento"]
+	};
 
-   
+	var empty = [];
+	sessionStorage.setItem("nextComponentPosition", nextComponentPosition);
+	sessionStorage.setItem("componentCounter", componentCounter);
+	sessionStorage.setItem('attenzione', empty);
+	sessionStorage.setItem('linguaggio', empty);
+	sessionStorage.setItem('memoria_verbale', empty);
+	sessionStorage.setItem('memoria_visiva', empty);
+
+	var instructions = {
+    	type: jsPsychHtmlKeyboardResponse,
+      	stimulus: '<h2 style="text-align-center"> Prema il tasto INVIO per proseguire </h2>',
+      	choices: ['Enter'],
+    };
+
+	var timeline = [instructions];
+
   jsPsych.run(timeline);
   </script>
 </html>

@@ -118,3 +118,4 @@
 2023-01-17 11:16:31,166 [INFO] - gui_access - GET /jatos/3 (admin)
 2023-01-17 11:16:31,259 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2023-01-17 11:16:31,289 [INFO] - gui_access - GET /jatos/3/componentsTableData?_=1673950591220 (admin)
+2023-01-17 15:32:10,774 [INFO] - gui_access - POST /jatos/login (admin)
