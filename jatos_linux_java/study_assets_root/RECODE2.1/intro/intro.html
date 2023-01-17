@@ -21,13 +21,15 @@
   </body>
 
   <script>
+	
 	var jsPsych = initJsPsych ({
+		override_safe_mode: true,
 		on_finish: function(){
 			jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data));
 		}
 	});
 
-	var BatchSession = jatos.batchSession.getALL();
+	var BatchSession = jatos.batchSession.getAll();
 
 	if (BatchSession["level_attenzione"] <= 1){
 		var attenzione = jsPsych.randomization.shuffle(jatos.studyInput.attenzione_1).slice(0,3)
