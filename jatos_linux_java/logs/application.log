@@ -119,3 +119,61 @@
 2023-01-19 16:26:37,163 [INFO] - application - Shutting down connection pool.
 2023-01-19 16:26:37,164 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2023-01-19 16:26:37,166 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-01-19 16:34:49,206 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2023-01-19 16:34:49,208 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2023-01-19 16:34:49,255 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2023-01-19 16:34:49,255 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2023-01-19 16:34:49,425 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2023-01-19 16:34:49,480 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2023-01-19 16:34:49,482 [INFO] - application - Creating Pool for datasource 'default'
+2023-01-19 16:34:49,486 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2023-01-19 16:34:49,495 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2023-01-19 16:34:49,508 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2023-01-19 16:34:49,598 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2023-01-19 16:34:49,621 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2023-01-19 16:34:49,705 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-19 16:34:49,819 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-01-19 16:34:49,900 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2023-01-19 16:34:50,084 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2023-01-19 16:34:50,084 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2023-01-19 16:34:50,084 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2023-01-19 16:34:50,084 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2023-01-19 16:34:50,422 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-19 16:34:50,566 [INFO] - g.OnStartStop - JATOS started
+2023-01-19 16:34:50,606 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2023-01-19 16:34:50,815 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2023-01-19 16:34:58,848 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-19 16:34:58,874 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/2
+2023-01-19 16:34:58,918 [INFO] - gui_access - GET /jatos/login (null)
+2023-01-19 16:35:00,451 [INFO] - gui_access - POST /jatos/login (null)
+2023-01-19 16:35:00,504 [INFO] - gui_access - GET /jatos (admin)
+2023-01-19 16:35:00,620 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-01-19 16:35:00,628 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-19 16:35:02,252 [INFO] - gui_access - GET /jatos/2 (admin)
+2023-01-19 16:35:02,331 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-19 16:35:02,384 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674142502289 (admin)
+2023-01-19 16:35:06,336 [INFO] - gui_access - GET /jatos/2/16/run (admin)
+2023-01-19 16:35:06,358 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-19 16:35:06,358 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-19 16:35:06,392 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId265, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-19 16:35:06,411 [INFO] - publix_access - GET /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-19 16:35:06,424 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 265, componentId 16
+2023-01-19 16:35:06,599 [INFO] - publix_access - GET /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-19 16:35:06,608 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 265, componentId 16
+2023-01-19 16:35:06,616 [INFO] - publix_access - POST /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/heartbeat
+2023-01-19 16:35:06,619 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 265
+2023-01-19 16:35:06,650 [INFO] - c.p.JatosBatchChannel - .open: studyResult 265
+2023-01-19 16:37:06,646 [INFO] - publix_access - POST /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/heartbeat
+2023-01-19 16:37:06,648 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 265
+2023-01-19 16:38:03,301 [INFO] - publix_access - GET /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-19 16:38:03,306 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 265, componentId 16
+2023-01-19 16:38:03,448 [INFO] - publix_access - GET /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-19 16:38:03,455 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 265, componentId 16
+2023-01-19 16:38:03,480 [INFO] - c.p.JatosBatchChannel - .open: studyResult 265
+2023-01-19 16:38:03,893 [INFO] - publix_access - POST /publix/f2a4d0ce-eac9-477a-962d-7337e2c99b5a/heartbeat
+2023-01-19 16:38:03,894 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 265
+2023-01-19 16:38:24,859 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-01-19 16:38:24,862 [INFO] - g.OnStartStop - JATOS shutdown
+2023-01-19 16:38:24,890 [INFO] - application - Shutting down connection pool.
+2023-01-19 16:38:24,891 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-01-19 16:38:24,893 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
