@@ -95,3 +95,5 @@
 2023-01-19 16:21:51,952 [INFO] - c.p.JatosBatchChannel - .open: studyResult 263
 2023-01-19 16:21:52,040 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
 2023-01-19 16:21:52,042 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
+2023-01-19 16:23:52,052 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
+2023-01-19 16:23:52,053 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
