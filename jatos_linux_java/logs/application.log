@@ -82,3 +82,16 @@
 2023-01-19 16:13:27,197 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
 2023-01-19 16:15:27,213 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
 2023-01-19 16:15:27,215 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
+2023-01-19 16:17:27,228 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
+2023-01-19 16:17:27,230 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
+2023-01-19 16:19:27,244 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
+2023-01-19 16:19:27,247 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
+2023-01-19 16:21:27,260 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
+2023-01-19 16:21:27,261 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
+2023-01-19 16:21:51,772 [INFO] - publix_access - GET /publix/40318902-3d73-440a-a5f9-f4cd1704c321/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-19 16:21:51,776 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 263, componentId 16
+2023-01-19 16:21:51,925 [INFO] - publix_access - GET /publix/40318902-3d73-440a-a5f9-f4cd1704c321/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-19 16:21:51,932 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 263, componentId 16
+2023-01-19 16:21:51,952 [INFO] - c.p.JatosBatchChannel - .open: studyResult 263
+2023-01-19 16:21:52,040 [INFO] - publix_access - POST /publix/40318902-3d73-440a-a5f9-f4cd1704c321/heartbeat
+2023-01-19 16:21:52,042 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 263
