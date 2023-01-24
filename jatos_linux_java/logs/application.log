@@ -1,105 +1,396 @@
-2023-01-23 16:13:41,509 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
-2023-01-23 16:13:41,512 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
-2023-01-23 16:13:41,567 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
-2023-01-23 16:13:41,567 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
-2023-01-23 16:13:41,747 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
-2023-01-23 16:13:41,808 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
-2023-01-23 16:13:41,811 [INFO] - application - Creating Pool for datasource 'default'
-2023-01-23 16:13:41,815 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
-2023-01-23 16:13:41,824 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
-2023-01-23 16:13:41,840 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
-2023-01-23 16:13:41,944 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
-2023-01-23 16:13:41,977 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
-2023-01-23 16:13:42,078 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-01-23 16:13:42,225 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2023-01-23 16:13:42,249 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
-2023-01-23 16:13:42,435 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
-2023-01-23 16:13:42,435 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
-2023-01-23 16:13:42,435 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
-2023-01-23 16:13:42,435 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
-2023-01-23 16:13:42,802 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-01-23 16:13:42,942 [INFO] - g.OnStartStop - JATOS started
-2023-01-23 16:13:42,982 [INFO] - p.a.Play - Application started (Prod) (no global state)
-2023-01-23 16:13:43,202 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
-2023-01-23 16:13:54,555 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2023-01-23 16:13:54,571 [INFO] - gui_access - GET /jatos/login (null)
-2023-01-23 16:15:00,787 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2023-01-23 16:15:00,794 [INFO] - gui_access - POST /jatos/login (null)
-2023-01-23 16:15:00,873 [INFO] - gui_access - GET /jatos (admin)
-2023-01-23 16:15:01,028 [INFO] - gui_access - GET /jatos/branding (admin)
-2023-01-23 16:15:01,062 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2023-01-23 16:15:02,886 [INFO] - gui_access - GET /jatos/2 (admin)
-2023-01-23 16:15:02,969 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2023-01-23 16:15:03,013 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674486902930 (admin)
-2023-01-23 16:15:05,504 [INFO] - gui_access - GET /jatos/2/17/run (admin)
-2023-01-23 16:15:05,525 [INFO] - publix_access - GET /publix/yoIFiNyix5O
-2023-01-23 16:15:05,525 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
-2023-01-23 16:15:05,561 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId266, studyId 2, batchId 2, logged-in username admin, workerId 1
-2023-01-23 16:15:05,584 [INFO] - publix_access - GET /publix/f594b4de-0f75-490f-9327-2dffe1bbb25f/d087a62a-595f-4b83-ba1f-47b2dc189482/start
-2023-01-23 16:15:05,596 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 266, componentId 17
-2023-01-23 16:15:05,717 [INFO] - publix_access - GET /publix/f594b4de-0f75-490f-9327-2dffe1bbb25f/d087a62a-595f-4b83-ba1f-47b2dc189482/initData
-2023-01-23 16:15:05,726 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 266, componentId 17
-2023-01-23 16:15:05,743 [INFO] - publix_access - POST /publix/f594b4de-0f75-490f-9327-2dffe1bbb25f/heartbeat
-2023-01-23 16:15:05,746 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 266
-2023-01-23 16:15:05,768 [INFO] - c.p.JatosBatchChannel - .open: studyResult 266
-2023-01-23 16:16:04,715 [INFO] - gui_access - GET /jatos/2/18/run (admin)
-2023-01-23 16:16:04,724 [INFO] - publix_access - GET /publix/yoIFiNyix5O
-2023-01-23 16:16:04,724 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
-2023-01-23 16:16:04,731 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId267, studyId 2, batchId 2, logged-in username admin, workerId 1
-2023-01-23 16:16:04,741 [INFO] - publix_access - GET /publix/fb8fbe79-8560-4d5a-9a0b-24a41e5a19cd/b8629053-71e7-49a8-aee8-15ea9c508594/start
-2023-01-23 16:16:04,748 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 267, componentId 18
-2023-01-23 16:16:04,808 [INFO] - g.ErrorHandler - not found: Requested page  /jspsych-psychophysics-master/jspsych-psychophysics.js couldn't be found.
-2023-01-23 16:16:06,851 [INFO] - publix_access - GET /publix/fb8fbe79-8560-4d5a-9a0b-24a41e5a19cd/b8629053-71e7-49a8-aee8-15ea9c508594/initData
-2023-01-23 16:16:06,856 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 267, componentId 18
-2023-01-23 16:16:06,862 [INFO] - publix_access - POST /publix/fb8fbe79-8560-4d5a-9a0b-24a41e5a19cd/heartbeat
-2023-01-23 16:16:06,864 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 267
-2023-01-23 16:16:06,877 [INFO] - c.p.JatosBatchChannel - .open: studyResult 267
-2023-01-23 16:16:34,491 [INFO] - gui_access - GET /jatos/2/19/run (admin)
-2023-01-23 16:16:34,501 [INFO] - publix_access - GET /publix/yoIFiNyix5O
-2023-01-23 16:16:34,501 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
-2023-01-23 16:16:34,508 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId268, studyId 2, batchId 2, logged-in username admin, workerId 1
-2023-01-23 16:16:34,519 [INFO] - publix_access - GET /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/e106cd88-d326-488e-984a-fb4be353a1ed/start
-2023-01-23 16:16:34,525 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 268, componentId 19
-2023-01-23 16:16:34,683 [INFO] - publix_access - GET /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/e106cd88-d326-488e-984a-fb4be353a1ed/initData
-2023-01-23 16:16:34,688 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 268, componentId 19
-2023-01-23 16:16:34,698 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:16:34,700 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:16:34,706 [INFO] - c.p.JatosBatchChannel - .open: studyResult 268
-2023-01-23 16:18:34,716 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:18:34,717 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:20:34,737 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:20:34,738 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:22:34,750 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:22:34,751 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:24:34,764 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:24:34,765 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:26:34,780 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:26:34,781 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:28:34,796 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:28:34,797 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:30:34,812 [INFO] - publix_access - POST /publix/ec305f75-a9cc-4bc7-b31a-81a436166296/heartbeat
-2023-01-23 16:30:34,813 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 268
-2023-01-23 16:30:47,428 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674487847352 (admin)
-2023-01-23 16:30:50,411 [INFO] - gui_access - GET /jatos/2/16/results (admin)
-2023-01-23 16:30:50,509 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2023-01-23 16:30:50,554 [INFO] - gui_access - GET /jatos/2/16/tableData?_=1674487850469 (admin)
-2023-01-23 16:30:55,013 [INFO] - gui_access - POST /jatos/componentResult/delete (admin)
-2023-01-23 16:30:56,715 [INFO] - gui_access - GET /jatos/2 (admin)
-2023-01-23 16:30:56,814 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
-2023-01-23 16:30:56,846 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674487856784 (admin)
-2023-01-23 16:30:58,137 [INFO] - gui_access - GET /jatos/2/16/run (admin)
-2023-01-23 16:30:58,144 [INFO] - publix_access - GET /publix/yoIFiNyix5O
-2023-01-23 16:30:58,144 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
-2023-01-23 16:30:58,149 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId269, studyId 2, batchId 2, logged-in username admin, workerId 1
-2023-01-23 16:30:58,156 [INFO] - publix_access - GET /publix/4bf4e705-f1a3-4937-b756-891c202bc562/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
-2023-01-23 16:30:58,159 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 269, componentId 16
-2023-01-23 16:30:58,352 [INFO] - publix_access - GET /publix/4bf4e705-f1a3-4937-b756-891c202bc562/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
-2023-01-23 16:30:58,357 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 269, componentId 16
-2023-01-23 16:30:58,364 [INFO] - publix_access - POST /publix/4bf4e705-f1a3-4937-b756-891c202bc562/heartbeat
-2023-01-23 16:30:58,366 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 269
-2023-01-23 16:30:58,387 [INFO] - c.p.JatosBatchChannel - .open: studyResult 269
-2023-01-23 16:31:11,627 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
-2023-01-23 16:31:11,631 [INFO] - g.OnStartStop - JATOS shutdown
-2023-01-23 16:31:11,641 [INFO] - application - Shutting down connection pool.
-2023-01-23 16:31:11,641 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2023-01-23 16:31:11,644 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-01-24 09:08:03,023 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2023-01-24 09:08:03,026 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2023-01-24 09:08:03,091 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2023-01-24 09:08:03,091 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2023-01-24 09:08:03,313 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2023-01-24 09:08:03,381 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2023-01-24 09:08:03,384 [INFO] - application - Creating Pool for datasource 'default'
+2023-01-24 09:08:03,389 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2023-01-24 09:08:03,399 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2023-01-24 09:08:03,416 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2023-01-24 09:08:03,521 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2023-01-24 09:08:03,557 [INFO] - o.h.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+2023-01-24 09:08:03,654 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-24 09:08:03,786 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-01-24 09:08:03,834 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2023-01-24 09:08:04,013 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root
+2023-01-24 09:08:04,013 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_logs
+2023-01-24 09:08:04,013 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/result_uploads
+2023-01-24 09:08:04,013 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2023-01-24 09:08:04,402 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-24 09:08:04,550 [INFO] - g.OnStartStop - JATOS started
+2023-01-24 09:08:04,598 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2023-01-24 09:08:04,832 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2023-01-24 09:08:25,256 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-24 09:08:25,272 [INFO] - gui_access - GET /jatos/login (null)
+2023-01-24 09:08:27,019 [WARN] - p.a.m.DefaultJWTCookieDataCodec - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-01-24 09:08:27,026 [INFO] - gui_access - POST /jatos/login (null)
+2023-01-24 09:08:27,112 [INFO] - gui_access - GET /jatos (admin)
+2023-01-24 09:08:27,257 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-01-24 09:08:27,272 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 09:08:28,996 [INFO] - gui_access - GET /jatos/2 (admin)
+2023-01-24 09:08:29,080 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 09:08:29,116 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674547709034 (admin)
+2023-01-24 09:20:34,757 [INFO] - gui_access - GET /jatos/2/29/run (admin)
+2023-01-24 09:20:34,790 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:20:34,790 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:20:34,844 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId270, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:20:34,875 [INFO] - publix_access - GET /publix/575b7106-c1b9-4e8c-9ab8-c39c18cf5d7d/42f929d3-0507-4127-99db-f059245c8b99/start
+2023-01-24 09:20:34,889 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 270, componentId 29
+2023-01-24 09:20:39,797 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba2.jpg
+2023-01-24 09:20:39,797 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg
+2023-01-24 09:20:39,798 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba1.jpg
+2023-01-24 09:20:39,798 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg
+2023-01-24 09:20:39,798 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio1.jpg
+2023-01-24 09:20:39,802 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio2.jpg
+2023-01-24 09:20:39,818 [INFO] - publix_access - GET /publix/575b7106-c1b9-4e8c-9ab8-c39c18cf5d7d/42f929d3-0507-4127-99db-f059245c8b99/initData
+2023-01-24 09:20:39,827 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 270, componentId 29
+2023-01-24 09:20:39,848 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota1.jpg
+2023-01-24 09:20:39,851 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante1.jpg
+2023-01-24 09:20:39,852 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota2.jpg
+2023-01-24 09:20:39,860 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla1.jpg
+2023-01-24 09:20:39,861 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante2.jpg
+2023-01-24 09:20:39,866 [INFO] - publix_access - POST /publix/575b7106-c1b9-4e8c-9ab8-c39c18cf5d7d/heartbeat
+2023-01-24 09:20:39,868 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 270
+2023-01-24 09:20:39,878 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto1.jpg
+2023-01-24 09:20:39,878 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto2.jpg
+2023-01-24 09:20:39,878 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla2.jpg
+2023-01-24 09:20:39,889 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone1.jpg
+2023-01-24 09:20:39,889 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone2.jpg
+2023-01-24 09:20:39,895 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela1.jpg
+2023-01-24 09:20:39,898 [INFO] - c.p.JatosBatchChannel - .open: studyResult 270
+2023-01-24 09:20:39,907 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca2.jpg
+2023-01-24 09:20:39,907 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela2.jpg
+2023-01-24 09:20:39,907 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca1.jpg
+2023-01-24 09:20:39,918 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna1.jpg
+2023-01-24 09:20:39,918 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa2.jpg
+2023-01-24 09:20:39,918 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa1.jpg
+2023-01-24 09:20:39,941 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca1.jpg
+2023-01-24 09:20:39,942 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca2.jpg
+2023-01-24 09:20:39,942 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna2.jpg
+2023-01-24 09:20:39,950 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe1.jpg
+2023-01-24 09:20:39,950 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente1.jpg
+2023-01-24 09:20:39,951 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe2.jpg
+2023-01-24 09:20:39,979 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga1.jpg
+2023-01-24 09:20:39,982 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre1.jpg
+2023-01-24 09:20:39,982 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga2.jpg
+2023-01-24 09:20:39,982 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre2.jpg
+2023-01-24 09:20:39,983 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente2.jpg
+2023-01-24 09:20:47,881 [INFO] - gui_access - GET /jatos/2/29/properties (admin)
+2023-01-24 09:21:21,237 [INFO] - gui_access - GET /jatos/2/29/run (admin)
+2023-01-24 09:21:21,249 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:21:21,249 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:21:21,258 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId271, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:21:21,270 [INFO] - publix_access - GET /publix/f621b543-f71d-45e0-8fcc-22fae463111f/42f929d3-0507-4127-99db-f059245c8b99/start
+2023-01-24 09:21:21,276 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 271, componentId 29
+2023-01-24 09:21:21,432 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba1.jpg
+2023-01-24 09:21:21,432 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba2.jpg
+2023-01-24 09:21:21,432 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg
+2023-01-24 09:21:21,432 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg
+2023-01-24 09:21:21,435 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio1.jpg
+2023-01-24 09:21:21,476 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio2.jpg
+2023-01-24 09:21:21,496 [INFO] - publix_access - GET /publix/f621b543-f71d-45e0-8fcc-22fae463111f/42f929d3-0507-4127-99db-f059245c8b99/initData
+2023-01-24 09:21:21,503 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante1.jpg
+2023-01-24 09:21:21,503 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota1.jpg
+2023-01-24 09:21:21,503 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota2.jpg
+2023-01-24 09:21:21,506 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 271, componentId 29
+2023-01-24 09:21:21,514 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante2.jpg
+2023-01-24 09:21:21,515 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla1.jpg
+2023-01-24 09:21:21,519 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:21:21,521 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:21:21,524 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto1.jpg
+2023-01-24 09:21:21,524 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla2.jpg
+2023-01-24 09:21:21,534 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone1.jpg
+2023-01-24 09:21:21,534 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone2.jpg
+2023-01-24 09:21:21,534 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto2.jpg
+2023-01-24 09:21:21,536 [INFO] - c.p.JatosBatchChannel - .open: studyResult 271
+2023-01-24 09:21:21,539 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela1.jpg
+2023-01-24 09:21:21,544 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca1.jpg
+2023-01-24 09:21:21,544 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela2.jpg
+2023-01-24 09:21:21,556 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca2.jpg
+2023-01-24 09:21:21,556 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa1.jpg
+2023-01-24 09:21:21,559 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa2.jpg
+2023-01-24 09:21:21,559 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna1.jpg
+2023-01-24 09:21:21,559 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca1.jpg
+2023-01-24 09:21:21,560 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna2.jpg
+2023-01-24 09:21:21,577 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga1.jpg
+2023-01-24 09:21:21,577 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe2.jpg
+2023-01-24 09:21:21,578 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca2.jpg
+2023-01-24 09:21:21,578 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe1.jpg
+2023-01-24 09:21:21,578 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente1.jpg
+2023-01-24 09:21:21,578 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente2.jpg
+2023-01-24 09:21:21,598 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre2.jpg
+2023-01-24 09:21:21,598 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga2.jpg
+2023-01-24 09:21:21,598 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre1.jpg
+2023-01-24 09:23:21,542 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:23:21,543 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:25:21,556 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:25:21,557 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:27:21,573 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:27:21,574 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:29:21,589 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:29:21,590 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:30:59,748 [INFO] - publix_access - GET /publix/f621b543-f71d-45e0-8fcc-22fae463111f/42f929d3-0507-4127-99db-f059245c8b99/start
+2023-01-24 09:30:59,752 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 271, componentId 29
+2023-01-24 09:30:59,943 [INFO] - publix_access - GET /publix/f621b543-f71d-45e0-8fcc-22fae463111f/42f929d3-0507-4127-99db-f059245c8b99/initData
+2023-01-24 09:30:59,948 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 271, componentId 29
+2023-01-24 09:30:59,970 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/LINGUAGGIO/denominazione/fig/elefante1.jpg
+2023-01-24 09:31:00,009 [INFO] - c.p.JatosBatchChannel - .open: studyResult 271
+2023-01-24 09:31:00,025 [INFO] - publix_access - POST /publix/f621b543-f71d-45e0-8fcc-22fae463111f/heartbeat
+2023-01-24 09:31:00,027 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 271
+2023-01-24 09:31:09,896 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:31:14,421 [INFO] - gui_access - GET /jatos/2/29/properties (admin)
+2023-01-24 09:31:19,231 [INFO] - gui_access - POST /jatos/2/29/properties (admin)
+2023-01-24 09:31:19,316 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 09:31:19,319 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674547709035 (admin)
+2023-01-24 09:31:21,707 [INFO] - gui_access - GET /jatos/2/29/run (admin)
+2023-01-24 09:31:21,714 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:31:21,714 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:31:21,720 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId272, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:31:21,729 [INFO] - publix_access - GET /publix/3a50d9f3-67a3-40a8-8240-9cf171c748eb/42f929d3-0507-4127-99db-f059245c8b99/start
+2023-01-24 09:31:21,733 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 272, componentId 29
+2023-01-24 09:31:21,956 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/LINGUAGGIO/denominazione/fig/elefante1.jpg
+2023-01-24 09:31:21,974 [INFO] - publix_access - GET /publix/3a50d9f3-67a3-40a8-8240-9cf171c748eb/42f929d3-0507-4127-99db-f059245c8b99/initData
+2023-01-24 09:31:21,979 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 272, componentId 29
+2023-01-24 09:31:22,000 [INFO] - publix_access - POST /publix/3a50d9f3-67a3-40a8-8240-9cf171c748eb/heartbeat
+2023-01-24 09:31:22,003 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 272
+2023-01-24 09:31:22,016 [INFO] - c.p.JatosBatchChannel - .open: studyResult 272
+2023-01-24 09:32:29,945 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:32:36,227 [INFO] - gui_access - GET /jatos/2/38/run (admin)
+2023-01-24 09:32:36,234 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:32:36,234 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:32:36,240 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId273, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:32:36,247 [INFO] - publix_access - GET /publix/b8045103-d0b2-4b80-85a8-77775e51ac5d/b7238977-de84-4cb2-be9b-bb74cd75bbde/start
+2023-01-24 09:32:36,251 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 273, componentId 38
+2023-01-24 09:32:41,100 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png
+2023-01-24 09:32:41,109 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_2.png
+2023-01-24 09:32:41,109 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_3.png
+2023-01-24 09:32:41,114 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_5.png
+2023-01-24 09:32:41,114 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_4.png
+2023-01-24 09:32:41,118 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_6.png
+2023-01-24 09:32:41,118 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png
+2023-01-24 09:32:41,119 [INFO] - publix_access - GET /publix/b8045103-d0b2-4b80-85a8-77775e51ac5d/b7238977-de84-4cb2-be9b-bb74cd75bbde/initData
+2023-01-24 09:32:41,123 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 273, componentId 38
+2023-01-24 09:32:41,140 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png
+2023-01-24 09:32:41,140 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png
+2023-01-24 09:32:41,140 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png
+2023-01-24 09:32:41,171 [INFO] - publix_access - POST /publix/b8045103-d0b2-4b80-85a8-77775e51ac5d/heartbeat
+2023-01-24 09:32:41,172 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 273
+2023-01-24 09:32:41,174 [INFO] - c.p.JatosBatchChannel - .open: studyResult 273
+2023-01-24 09:33:09,161 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:19,542 [INFO] - gui_access - GET /jatos/2/20/run (admin)
+2023-01-24 09:33:19,549 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:19,549 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:19,554 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId274, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:19,562 [INFO] - publix_access - GET /publix/6bf88c2d-10a0-4e66-91a5-28513a15e51a/2b7943e8-1af0-4b74-b317-732b2449396f/start
+2023-01-24 09:33:19,565 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 274, componentId 20
+2023-01-24 09:33:19,763 [INFO] - publix_access - GET /publix/6bf88c2d-10a0-4e66-91a5-28513a15e51a/2b7943e8-1af0-4b74-b317-732b2449396f/initData
+2023-01-24 09:33:19,767 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 274, componentId 20
+2023-01-24 09:33:19,804 [INFO] - publix_access - POST /publix/6bf88c2d-10a0-4e66-91a5-28513a15e51a/heartbeat
+2023-01-24 09:33:19,806 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 274
+2023-01-24 09:33:19,806 [INFO] - c.p.JatosBatchChannel - .open: studyResult 274
+2023-01-24 09:33:21,656 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:23,564 [INFO] - gui_access - GET /jatos/2/26/run (admin)
+2023-01-24 09:33:23,571 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:23,571 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:23,577 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId275, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:23,585 [INFO] - publix_access - GET /publix/a5d1918a-c953-4712-ab7e-540b25b61e23/c2ed07db-8453-4fe6-a089-bfe55d64968b/start
+2023-01-24 09:33:23,588 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 275, componentId 26
+2023-01-24 09:33:23,766 [INFO] - publix_access - GET /publix/a5d1918a-c953-4712-ab7e-540b25b61e23/c2ed07db-8453-4fe6-a089-bfe55d64968b/initData
+2023-01-24 09:33:23,773 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 275, componentId 26
+2023-01-24 09:33:23,827 [INFO] - publix_access - POST /publix/a5d1918a-c953-4712-ab7e-540b25b61e23/heartbeat
+2023-01-24 09:33:23,828 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 275
+2023-01-24 09:33:23,829 [INFO] - c.p.JatosBatchChannel - .open: studyResult 275
+2023-01-24 09:33:25,463 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:28,259 [INFO] - gui_access - GET /jatos/2/32/run (admin)
+2023-01-24 09:33:28,266 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:28,266 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:28,271 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId276, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:28,279 [INFO] - publix_access - GET /publix/bda58851-c6d2-43b4-b0ba-08ff810501c1/063e92dd-d94b-4fe2-b943-8a1c8fbef5b5/start
+2023-01-24 09:33:28,282 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 276, componentId 32
+2023-01-24 09:33:28,448 [INFO] - publix_access - GET /publix/bda58851-c6d2-43b4-b0ba-08ff810501c1/063e92dd-d94b-4fe2-b943-8a1c8fbef5b5/initData
+2023-01-24 09:33:28,452 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 276, componentId 32
+2023-01-24 09:33:28,467 [INFO] - publix_access - POST /publix/bda58851-c6d2-43b4-b0ba-08ff810501c1/heartbeat
+2023-01-24 09:33:28,468 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 276
+2023-01-24 09:33:28,471 [INFO] - c.p.JatosBatchChannel - .open: studyResult 276
+2023-01-24 09:33:29,722 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:33,126 [INFO] - gui_access - GET /jatos/2/38/run (admin)
+2023-01-24 09:33:33,133 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:33,133 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:33,137 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId277, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:33,144 [INFO] - publix_access - GET /publix/65fdf37c-179d-4085-8149-7db5f8f10f12/b7238977-de84-4cb2-be9b-bb74cd75bbde/start
+2023-01-24 09:33:33,146 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 277, componentId 38
+2023-01-24 09:33:33,326 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png
+2023-01-24 09:33:33,326 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_2.png
+2023-01-24 09:33:33,336 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_3.png
+2023-01-24 09:33:33,337 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_4.png
+2023-01-24 09:33:33,347 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_5.png
+2023-01-24 09:33:33,347 [INFO] - publix_access - GET /publix/65fdf37c-179d-4085-8149-7db5f8f10f12/b7238977-de84-4cb2-be9b-bb74cd75bbde/initData
+2023-01-24 09:33:33,350 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png
+2023-01-24 09:33:33,350 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_6.png
+2023-01-24 09:33:33,351 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 277, componentId 38
+2023-01-24 09:33:33,382 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png
+2023-01-24 09:33:33,382 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png
+2023-01-24 09:33:33,382 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png
+2023-01-24 09:33:33,391 [INFO] - publix_access - POST /publix/65fdf37c-179d-4085-8149-7db5f8f10f12/heartbeat
+2023-01-24 09:33:33,392 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 277
+2023-01-24 09:33:33,392 [INFO] - c.p.JatosBatchChannel - .open: studyResult 277
+2023-01-24 09:33:41,959 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:49,276 [INFO] - gui_access - GET /jatos/2/41/run (admin)
+2023-01-24 09:33:49,282 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:49,282 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:49,286 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId278, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:49,293 [INFO] - publix_access - GET /publix/5aae1b70-aea3-4db5-b976-ebf20d75952e/c02882e5-555f-48fe-81ac-55d8bf5ed631/start
+2023-01-24 09:33:49,295 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 278, componentId 41
+2023-01-24 09:33:49,459 [INFO] - publix_access - GET /publix/5aae1b70-aea3-4db5-b976-ebf20d75952e/c02882e5-555f-48fe-81ac-55d8bf5ed631/initData
+2023-01-24 09:33:49,463 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 278, componentId 41
+2023-01-24 09:33:49,476 [INFO] - publix_access - POST /publix/5aae1b70-aea3-4db5-b976-ebf20d75952e/heartbeat
+2023-01-24 09:33:49,477 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 278
+2023-01-24 09:33:49,477 [INFO] - c.p.JatosBatchChannel - .open: studyResult 278
+2023-01-24 09:33:51,050 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:33:55,308 [INFO] - gui_access - GET /jatos/2/38/run (admin)
+2023-01-24 09:33:55,315 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:33:55,315 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:33:55,319 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId279, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:33:55,326 [INFO] - publix_access - GET /publix/efff6138-322f-4993-a5a2-2a644e4d2360/b7238977-de84-4cb2-be9b-bb74cd75bbde/start
+2023-01-24 09:33:55,329 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 279, componentId 38
+2023-01-24 09:33:55,506 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_1.png
+2023-01-24 09:33:55,517 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_3.png
+2023-01-24 09:33:55,517 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_2.png
+2023-01-24 09:33:55,519 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_4.png
+2023-01-24 09:33:55,527 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_5.png
+2023-01-24 09:33:55,529 [INFO] - publix_access - GET /publix/efff6138-322f-4993-a5a2-2a644e4d2360/b7238977-de84-4cb2-be9b-bb74cd75bbde/initData
+2023-01-24 09:33:55,532 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 279, componentId 38
+2023-01-24 09:33:55,533 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_7.png
+2023-01-24 09:33:55,533 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_6.png
+2023-01-24 09:33:55,562 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_8.png
+2023-01-24 09:33:55,566 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_10.png
+2023-01-24 09:33:55,566 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_linux_java/study_assets_root/RECODE2.1/tasks/memoria_verbale/riconoscimento_volto_nome/volto_9.png
+2023-01-24 09:33:55,575 [INFO] - c.p.JatosBatchChannel - .open: studyResult 279
+2023-01-24 09:33:55,579 [INFO] - publix_access - POST /publix/efff6138-322f-4993-a5a2-2a644e4d2360/heartbeat
+2023-01-24 09:33:55,579 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 279
+2023-01-24 09:33:57,669 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 09:51:24,728 [INFO] - gui_access - GET /jatos/2/20/run (admin)
+2023-01-24 09:51:24,734 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:51:24,734 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:51:24,738 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId280, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:51:24,747 [INFO] - publix_access - GET /publix/028415f8-13d6-462c-a218-4cb184dacdc2/2b7943e8-1af0-4b74-b317-732b2449396f/start
+2023-01-24 09:51:24,750 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 280, componentId 20
+2023-01-24 09:51:24,947 [INFO] - publix_access - GET /publix/028415f8-13d6-462c-a218-4cb184dacdc2/2b7943e8-1af0-4b74-b317-732b2449396f/initData
+2023-01-24 09:51:24,950 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 280, componentId 20
+2023-01-24 09:51:24,972 [INFO] - publix_access - POST /publix/028415f8-13d6-462c-a218-4cb184dacdc2/heartbeat
+2023-01-24 09:51:24,973 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 280
+2023-01-24 09:51:24,974 [INFO] - c.p.JatosBatchChannel - .open: studyResult 280
+2023-01-24 09:53:24,988 [INFO] - publix_access - POST /publix/028415f8-13d6-462c-a218-4cb184dacdc2/heartbeat
+2023-01-24 09:53:24,989 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 280
+2023-01-24 09:55:31,548 [INFO] - gui_access - GET /jatos/2/36/run (admin)
+2023-01-24 09:55:31,554 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:55:31,554 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:55:31,558 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId281, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:55:31,565 [INFO] - publix_access - GET /publix/20706ada-3300-4257-a2ec-17eee9e15cda/dfc08a61-b4ae-45c8-b146-d2a7662b967b/start
+2023-01-24 09:55:31,567 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 281, componentId 36
+2023-01-24 09:55:31,745 [INFO] - publix_access - GET /publix/20706ada-3300-4257-a2ec-17eee9e15cda/dfc08a61-b4ae-45c8-b146-d2a7662b967b/initData
+2023-01-24 09:55:31,748 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 281, componentId 36
+2023-01-24 09:55:31,760 [INFO] - publix_access - POST /publix/20706ada-3300-4257-a2ec-17eee9e15cda/heartbeat
+2023-01-24 09:55:31,761 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 281
+2023-01-24 09:55:31,764 [INFO] - c.p.JatosBatchChannel - .open: studyResult 281
+2023-01-24 09:55:47,654 [INFO] - gui_access - GET /jatos/2/17/run (admin)
+2023-01-24 09:55:47,659 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 09:55:47,659 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 09:55:47,663 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId282, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 09:55:47,670 [INFO] - publix_access - GET /publix/bdac16e7-7d77-41f4-acfa-032b5898adf3/d087a62a-595f-4b83-ba1f-47b2dc189482/start
+2023-01-24 09:55:47,673 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 282, componentId 17
+2023-01-24 09:55:47,847 [INFO] - publix_access - GET /publix/bdac16e7-7d77-41f4-acfa-032b5898adf3/d087a62a-595f-4b83-ba1f-47b2dc189482/initData
+2023-01-24 09:55:47,850 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 282, componentId 17
+2023-01-24 09:55:47,865 [INFO] - publix_access - POST /publix/bdac16e7-7d77-41f4-acfa-032b5898adf3/heartbeat
+2023-01-24 09:55:47,866 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 282
+2023-01-24 09:55:47,866 [INFO] - c.p.JatosBatchChannel - .open: studyResult 282
+2023-01-24 09:57:47,915 [INFO] - publix_access - POST /publix/bdac16e7-7d77-41f4-acfa-032b5898adf3/heartbeat
+2023-01-24 09:57:47,916 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 282
+2023-01-24 09:59:47,924 [INFO] - publix_access - POST /publix/bdac16e7-7d77-41f4-acfa-032b5898adf3/heartbeat
+2023-01-24 09:59:47,924 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 282
+2023-01-24 10:01:01,222 [INFO] - gui_access - GET /jatos/2/16/run (admin)
+2023-01-24 10:01:01,232 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 10:01:01,232 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 10:01:01,236 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId283, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 10:01:01,245 [INFO] - publix_access - GET /publix/544f257f-979a-4358-b634-313d13ab8ad7/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-24 10:01:01,248 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 283, componentId 16
+2023-01-24 10:01:01,462 [INFO] - publix_access - GET /publix/544f257f-979a-4358-b634-313d13ab8ad7/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-24 10:01:01,465 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 283, componentId 16
+2023-01-24 10:01:01,478 [INFO] - publix_access - POST /publix/544f257f-979a-4358-b634-313d13ab8ad7/heartbeat
+2023-01-24 10:01:01,479 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 283
+2023-01-24 10:01:01,481 [INFO] - c.p.JatosBatchChannel - .open: studyResult 283
+2023-01-24 10:01:34,772 [INFO] - g.ErrorHandler - not found: Requested page  /sm/a47e90c9e77f79e22405531b2deda4d299dc4ffb8262b6b5b3af3580ec770db0.map couldn't be found.
+2023-01-24 10:01:38,556 [INFO] - gui_access - GET /jatos/2/17/run (admin)
+2023-01-24 10:01:38,562 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 10:01:38,562 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 10:01:38,566 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId284, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 10:01:38,572 [INFO] - publix_access - GET /publix/6fc9c7c2-7d17-4c4d-929f-12e55e28c44a/d087a62a-595f-4b83-ba1f-47b2dc189482/start
+2023-01-24 10:01:38,574 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 284, componentId 17
+2023-01-24 10:01:38,756 [INFO] - publix_access - GET /publix/6fc9c7c2-7d17-4c4d-929f-12e55e28c44a/d087a62a-595f-4b83-ba1f-47b2dc189482/initData
+2023-01-24 10:01:38,759 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 284, componentId 17
+2023-01-24 10:01:38,771 [INFO] - publix_access - POST /publix/6fc9c7c2-7d17-4c4d-929f-12e55e28c44a/heartbeat
+2023-01-24 10:01:38,772 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 284
+2023-01-24 10:01:38,828 [INFO] - c.p.JatosBatchChannel - .open: studyResult 284
+2023-01-24 10:01:54,108 [INFO] - gui_access - GET /jatos/2/properties (admin)
+2023-01-24 10:02:11,622 [INFO] - gui_access - GET /jatos/2/studyLinks (admin)
+2023-01-24 10:02:11,759 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 10:02:11,804 [INFO] - gui_access - GET /jatos/2/batches?_=1674550931691 (admin)
+2023-01-24 10:02:11,810 [WARN] - o.h.o.deprecation - HHH90000017: Found use of deprecated entity-type selector syntax in HQL/JPQL query ['sr.worker.class']; use TYPE operator instead : type(sr.worker)
+2023-01-24 10:02:11,853 [INFO] - gui_access - GET /jatos/2/batch/2/studyLinksSetupData (admin)
+2023-01-24 10:02:15,620 [INFO] - gui_access - GET /jatos/2/batch/2/batchSessionData (admin)
+2023-01-24 10:04:14,924 [INFO] - gui_access - GET /jatos/2 (admin)
+2023-01-24 10:04:15,041 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 10:04:15,070 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674551054976 (admin)
+2023-01-24 11:28:12,598 [INFO] - gui_access - POST /jatos/login (admin)
+2023-01-24 11:34:08,566 [INFO] - gui_access - GET /jatos/2/16/properties (admin)
+2023-01-24 11:34:47,358 [INFO] - gui_access - GET /jatos/2/16/run (admin)
+2023-01-24 11:34:47,364 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 11:34:47,364 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 11:34:47,368 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId285, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 11:34:47,374 [INFO] - publix_access - GET /publix/dc5fa20e-49d5-459f-bc50-4527322b9dc8/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-24 11:34:47,376 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 285, componentId 16
+2023-01-24 11:34:47,527 [INFO] - publix_access - GET /publix/dc5fa20e-49d5-459f-bc50-4527322b9dc8/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-24 11:34:47,529 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 285, componentId 16
+2023-01-24 11:34:47,540 [INFO] - publix_access - POST /publix/dc5fa20e-49d5-459f-bc50-4527322b9dc8/heartbeat
+2023-01-24 11:34:47,541 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 285
+2023-01-24 11:34:47,542 [INFO] - c.p.JatosBatchChannel - .open: studyResult 285
+2023-01-24 11:36:03,131 [INFO] - gui_access - GET /jatos/2/16/properties (admin)
+2023-01-24 11:36:15,045 [INFO] - gui_access - POST /jatos/2/16/properties (admin)
+2023-01-24 11:36:15,056 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 11:36:15,059 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674551054977 (admin)
+2023-01-24 11:36:16,390 [INFO] - gui_access - GET /jatos/2/16/run (admin)
+2023-01-24 11:36:16,395 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 11:36:16,395 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 11:36:16,399 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId286, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 11:36:16,404 [INFO] - publix_access - GET /publix/90fce8c1-8ec9-4874-94df-453ff7663e82/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-24 11:36:16,406 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 286, componentId 16
+2023-01-24 11:36:16,516 [INFO] - publix_access - GET /publix/90fce8c1-8ec9-4874-94df-453ff7663e82/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-24 11:36:16,519 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 286, componentId 16
+2023-01-24 11:36:16,527 [INFO] - publix_access - POST /publix/90fce8c1-8ec9-4874-94df-453ff7663e82/heartbeat
+2023-01-24 11:36:16,528 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 286
+2023-01-24 11:36:16,530 [INFO] - c.p.JatosBatchChannel - .open: studyResult 286
+2023-01-24 11:45:01,804 [INFO] - gui_access - GET /jatos/2/16/properties (admin)
+2023-01-24 11:45:11,148 [INFO] - gui_access - POST /jatos/2/16/properties (admin)
+2023-01-24 11:45:11,159 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-01-24 11:45:11,161 [INFO] - gui_access - GET /jatos/2/componentsTableData?_=1674551054978 (admin)
+2023-01-24 11:52:48,222 [INFO] - gui_access - GET /jatos/2/16/run (admin)
+2023-01-24 11:52:48,228 [INFO] - publix_access - GET /publix/yoIFiNyix5O
+2023-01-24 11:52:48,228 [INFO] - c.p.PublixInterceptor - .run: studyCode yoIFiNyix5O
+2023-01-24 11:52:48,231 [INFO] - c.p.w.JatosPublix - .startStudy: studyCode yoIFiNyix5O, studyResultId287, studyId 2, batchId 2, logged-in username admin, workerId 1
+2023-01-24 11:52:48,237 [INFO] - publix_access - GET /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-24 11:52:48,239 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 287, componentId 16
+2023-01-24 11:52:48,402 [INFO] - publix_access - GET /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-24 11:52:48,405 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 287, componentId 16
+2023-01-24 11:52:48,417 [INFO] - publix_access - POST /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/heartbeat
+2023-01-24 11:52:48,418 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 287
+2023-01-24 11:52:48,418 [INFO] - c.p.JatosBatchChannel - .open: studyResult 287
+2023-01-24 11:54:37,334 [INFO] - publix_access - GET /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/06964f96-652e-4512-b1ca-ee6c1e1fe607/start
+2023-01-24 11:54:37,336 [INFO] - c.p.PublixInterceptor - .startComponent: studyResultId 287, componentId 16
+2023-01-24 11:54:37,420 [INFO] - publix_access - GET /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/06964f96-652e-4512-b1ca-ee6c1e1fe607/initData
+2023-01-24 11:54:37,422 [INFO] - c.p.PublixInterceptor - .getInitData: studyResultId 287, componentId 16
+2023-01-24 11:54:37,445 [INFO] - publix_access - POST /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/heartbeat
+2023-01-24 11:54:37,445 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 287
+2023-01-24 11:54:37,445 [INFO] - c.p.JatosBatchChannel - .open: studyResult 287
+2023-01-24 11:56:37,459 [INFO] - publix_access - POST /publix/4e9e6f1a-4a29-4e4e-a619-5cbe9a0c5787/heartbeat
+2023-01-24 11:56:37,459 [INFO] - c.p.PublixInterceptor - .heartbeat: studyResultId 287

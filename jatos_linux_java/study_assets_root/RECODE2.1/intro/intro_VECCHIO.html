@@ -9,6 +9,7 @@
 		</div>
 		
 		<script src="jatos.js"></script>
+		<script src="./jsonpointer.js-master/jsonpointer.js"></script>
     	<script src="https://unpkg.com/jspsych@7.2.3"></script>
 		<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
 		<link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
@@ -40,11 +41,11 @@
 			<h2 style="text-align:center">Clicca sull'immagine sotto per ascoltare il messaggio.<h2></div>
 		</div>
 		<div id="image_avatar" style="text-align:center">
-			<a onclick="playSound('sound','speaker');">
+			<a onclick="playSound('sound','maria');">
 				<audio id="sound">
 					<source src="./intro/intro.m4a">
 				</audio>
-				<img id="speaker" src="./intro/pointer-click.png" height="300pt">
+				<img id="maria" src="./intro/maria.png" height="300pt">
 			</a>
 		</div>
 		<div id="footer" style="text-align:center">
@@ -67,18 +68,18 @@
 			var myGif = document.getElementById(image);
 			if (myAudio.paused) {
 					myAudio.play();
-					myGif.src="./intro/speaker.gif";
+					myGif.src="./intro/maria.gif";
 					myAudio.addEventListener("ended", function stopGif(){
 						myAudio.currentTime = 0;
-						myGif.src="./intro/pointer-click.png";
+						myGif.src="./intro/maria.png";
 					});
 				} 
 			else {
 				myAudio.pause();
-				myGif.src="./intro/speaker-off.png";
+				myGif.src="./intro/maria.png";
 				myAudio.removeEventListener("ended", function stopGif(){
 					myAudio.currentTime = 0;
-					myGif.src="./intro/pointer-click.png";
+					myGif.src="./intro/maria.png";
 				});
 			}
 			

@@ -3,25 +3,94 @@
   <head>
     <meta charset="utf-8">
     <title> BENVENUTO </title>
+	<div id='logo_unipd' style="text-align:center">
+		<img src="./intro/university_logo.png" alt='logo_unipd' height="120pt">
+	</div>
 
     <script src="jatos.js"></script>
 	
     <script src="https://unpkg.com/jspsych@7.2.3"></script>
 	<script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
-    
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
 
     <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
-    <style>
-      body {
-		background-color: white;
-		}
+  <style>
+	body {
+	  background-color: white;
+	  }
+	  .button {
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+	  }
+		  .button {background-color: #4CAF50;} /* Green */
+		  .help {background-color: #960018;} /* Green */
 
-	</style>
-  </body>
+  </style>
+  <body>
+	<div id='instructions'>
+		<h2 style="text-align:center">Clicca sull'immagine sotto per ascoltare il messaggio.<h2></div>
+	</div>
+	<div id="image_avatar" style="text-align:center">
+		<a onclick="playSound('sound','maria');">
+			<audio id="sound">
+				<source src="./intro/intro.m4a">
+			</audio>
+			<img id="maria" src="./intro/maria.png" height="300pt">
+		</a>
+	</div>
+	<div id="footer" style="text-align:center">
+		<h2>Premi il bottone verde per andare avanti, il rosso per ricevere assistenza.</h2>
+		<button class="button button" onclick="endFunction()">VAI AGLI ESERCIZI</button>
+		<button id="start-call-button" class="button help" onclick="sendEmail(jatos.studyProperties.title,'help START')">PREMI PER CONTATTARCI</button>
+	</div>		
+</body>
 
   <script>
+
+	function playSound(sound,image){
+		var myAudio = document.getElementById(sound);
+		var myGif = document.getElementById(image);
+		if (myAudio.paused) {
+				myAudio.play();
+				myGif.src="./intro/maria.gif";
+				myAudio.addEventListener("ended", function stopGif(){
+					myAudio.currentTime = 0;
+					myGif.src="./intro/maria.png";
+				});
+			} 
+		else {
+			myAudio.pause();
+			myGif.src="./intro/maria.png";
+			myAudio.removeEventListener("ended", function stopGif(){
+				myAudio.currentTime = 0;
+				myGif.src="./intro/maria.png";
+			});
+		}
+		
+	};
+
+	function endFunction() { //da cambiare per far partire jsPsych 
+		var componentCounter = 0;
+		function shuffle(array) {
+			var currentIndex = array.length, temporaryValue, randomIndex;
+			while (0 !== currentIndex) {
+				randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex -= 1;
+				temporaryValue = array[currentIndex];
+				array[currentIndex] = array[randomIndex];
+				array[randomIndex] = temporaryValue;
+			}
+			return array;
+		}
+	};
 	
 	var jsPsych = initJsPsych ({
 		override_safe_mode: true,
