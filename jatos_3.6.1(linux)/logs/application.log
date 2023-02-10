@@ -37,3 +37,45 @@
 2023-02-10 10:29:59,879 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2023-02-10 10:30:00,024 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1676021399750 (admin)
 2023-02-10 10:30:34,412 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2023-02-10 12:14:46,161 [INFO] - gui_access - POST /jatos/login (admin)
+2023-02-10 12:16:11,808 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-02-10 12:16:11,990 [INFO] - gui_access - GET /jatos/1/37/run (admin)
+2023-02-10 12:16:12,032 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-02-10 12:16:12,051 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-02-10 12:16:12,058 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-02-10 12:16:12,112 [INFO] - publix_access - GET /publix/1/37/start?srid=1
+2023-02-10 12:16:12,113 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 37, studyResultId 1, logged-in username admin, message 'null'
+2023-02-10 12:16:12,891 [INFO] - publix_access - POST /publix/1/heartbeat?srid=1
+2023-02-10 12:16:12,902 [INFO] - publix_access - GET /publix/1/37/initData?srid=1
+2023-02-10 12:16:12,903 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 37, studyResultId 1
+2023-02-10 12:16:13,005 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 1
+2023-02-10 12:18:12,944 [INFO] - publix_access - POST /publix/1/heartbeat?srid=1
+2023-02-10 12:20:12,987 [INFO] - publix_access - POST /publix/1/heartbeat?srid=1
+2023-02-10 12:22:13,023 [INFO] - publix_access - POST /publix/1/heartbeat?srid=1
+2023-02-10 12:22:26,975 [INFO] - publix_access - GET /publix/1/37/start?srid=1
+2023-02-10 12:22:26,975 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 37, studyResultId 1, logged-in username admin, message 'null'
+2023-02-10 12:22:27,488 [INFO] - publix_access - GET /publix/1/37/initData?srid=1
+2023-02-10 12:22:27,489 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 37, studyResultId 1
+2023-02-10 12:22:27,547 [INFO] - publix_access - POST /publix/1/heartbeat?srid=1
+2023-02-10 12:22:27,614 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 1
+2023-02-10 12:22:44,324 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1676028164037 (admin)
+2023-02-10 12:23:00,147 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=37&newPosition=14 (admin)
+2023-02-10 12:23:00,235 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1676028164038 (admin)
+2023-02-10 12:23:00,238 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-02-10 12:23:10,602 [INFO] - gui_access - GET /jatos/1/37/run (admin)
+2023-02-10 12:23:10,616 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-02-10 12:23:10,616 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-02-10 12:23:10,621 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-02-10 12:23:10,637 [INFO] - publix_access - GET /publix/1/37/start?srid=2
+2023-02-10 12:23:10,639 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 37, studyResultId 2, logged-in username admin, message 'null'
+2023-02-10 12:23:11,104 [INFO] - publix_access - GET /publix/1/37/initData?srid=2
+2023-02-10 12:23:11,106 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 37, studyResultId 2
+2023-02-10 12:23:11,183 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 12:23:11,213 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 2
+2023-02-10 12:25:11,220 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 12:27:11,252 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 12:29:11,282 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 12:31:11,309 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 12:33:11,347 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 14:38:42,382 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
+2023-02-10 14:40:42,410 [INFO] - publix_access - POST /publix/1/heartbeat?srid=2
