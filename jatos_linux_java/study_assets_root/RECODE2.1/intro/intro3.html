@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title> BENVENUTO </title>
+
+    <script src="jatos.js"></script>
+	<script src="./jsonpointer.js-master/jsonpointer.js"></script>
+    <script src="https://unpkg.com/jspsych@7.2.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+
+
+
+    <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <style>
+      body {
+		background-color: white;
+		}
+
+	</style>
+  </body>
+
+  <script>
+
+   
+    var jsPsych = initJsPsych({
+      use_webaudio: true,
+      on_finish: function(){
+
+        function shuffle(array) {
+          var currentIndex = array.length, temporaryValue, randomIndex;
+          while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random()*currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+          return array;
+        }
+        jatos.startComponentByPos(nextComponentPosition[componentCounter],data, JSON.stringify(data));
+      }
+    });
+
+    var componentCounter = 0;
+
+    // Used like so to create a PROGRESSIVE ARRAY (?)
+		function range(start, end) {
+			return Array(end - start + 1).fill().map((_, idx) => start + idx)
+		}
+
+		if (jatos.batchSession.get("level_attenzione") <= 1) {
+		  var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_1).slice(0,3)}
+
+		if (jatos.batchSession.get("level_attenzione") == 2) {
+		  var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_2).slice(0,3)}
+
+		if (jatos.batchSession.get("level_attenzione") > 2) {
+		  var attenzione = jsPsych.randomization.shuffle(jatos.studyJsonInput.attenzione_3).slice(0,3)}
+
+		if (jatos.batchSession.get("level_linguaggio") <= 1) {
+		  var linguaggio = jsPsych.randomization.shuffle(jatos.studyJsonInput.linguaggio_1).slice(0,3)}
+
+		if (jatos.batchSession.get("level_linguaggio") == 2) {
+		  var linguaggio = jsPsych.randomization.shuffle(jatos.studyJsonInput.linguaggio_2).slice(0,3)}
+
+		if (jatos.batchSession.get("level_linguaggio") > 2) {
+		  var linguaggio = jsPsych.randomization.shuffle(jatos.studyJsonInput.linguaggio_3).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_verbale") <= 1) {
+		  var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_verbale_1).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_verbale") == 2) {
+		  var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_verbale_2).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_verbale") > 2) {
+		  var memoria_verbale = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_verbale_3).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_visiva") <= 1) {
+		  var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_visiva_1).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_visiva") == 2) {
+		  var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_visiva_2).slice(0,3)}
+
+		if (jatos.batchSession.get("level_memoria_visiva") > 2) {
+		  var memoria_visiva = jsPsych.randomization.shuffle(jatos.studyJsonInput.memoria_visiva_3).slice(0,3)}
+
+
+      var nextComponentPosition = attenzione.concat(linguaggio).concat(memoria_verbale).concat(memoria_visiva);
+			nextComponentPosition = jsPsych.randomization.shuffle(nextComponentPosition);
+			nextComponentPosition.splice(nextComponentPosition.length/2, 0, 2);
+			nextComponentPosition = nextComponentPosition.concat(3);
+
+		var data = {
+			level_attenzione:jatos.batchSession.get("level_attenzione"),
+			level_linguaggio:jatos.batchSession.get("level_linguaggio"),
+			level_memoria:jatos.batchSession.get("level_memoria_verbale"),
+			level_memoria:jatos.batchSession.get("level_memoria_visiva"),
+
+			level_gradimento:jatos.batchSession.get("level_gradimento")
+		};
+
+
+		sessionStorage.setItem('nextComponentPosition', nextComponentPosition);
+		sessionStorage.setItem('componentCounter', componentCounter);
+
+		var empty = []; // ----->  per inserire variabili tematiche all interno del sessionStorage per mantenerle nei vari esercizi che si andranno a compilare via via
+		sessionStorage.setItem('attenzione', empty);
+		sessionStorage.setItem('linguaggio', empty);
+		sessionStorage.setItem('memoria_verbale', empty);
+		sessionStorage.setItem('memoria_visiva', empty);
+
+    var preload = {
+      type: jsPsychPreload,
+      audio: ["./intro/intro.m4a"],
+      show_detailed_errors: true
+    };
+
+    var instructions = {
+    	type: jsPsychHtmlKeyboardResponse,
+      	stimulus: '<h2 style="text-align-center"> Prema il tasto INVIO per proseguire </h2>',
+      	choices: ['Enter'],
+    };
+
+	var timeline = [instructions];
+  
+  jsPsych.run(timeline);
+
+  </script>
+</html>
