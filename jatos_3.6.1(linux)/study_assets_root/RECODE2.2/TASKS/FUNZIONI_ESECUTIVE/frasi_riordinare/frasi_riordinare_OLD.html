@@ -61,25 +61,30 @@
         choices: ['Prema qui dopo aver letto la storiella per procedere'],
     };
 
-    var array_storiella1 = [
-        {storiella1:"Un fiore si trovò una volta vicino ad un campo. Aveva sete e domandò alla radice di aiutarlo;", position: "1"}, {storiella1: "La radice domandò aiuto alla terra vicina: ''cara terra dammi un po’ di frescura per il mio fiore''; ''mi dispiace, radice, ma non posso darti niente. Anch’io sono secca. Bisognerebbe che il Signore ci mandasse un po’ d’acqua''.", position:"2"},
-        {storiella1: "Il fiore guardò il cielo e aspettò un poco. Passò una nuvoletta: ''Nuvoletta gentile, regalami un po’ d’acqua, ho sete!''. La nuvoletta non si fece pregare e regalò tante gocce di pioggia al fiore assetato.", position:"3"}, { storiella1: "La terra si rinfrescò, la radice pure, e il fiore rialzò la corolla. L’acqua della nuvoletta gentile gli aveva riportato la vita.", position:"4"}
-    ];
-    jsPsych.randomization.shuffleNoRepeats(array_storiella);
-
     var prova = {
         type: jsPsychSurveyHtmlForm, 
         preamble: "<h2> Numeri da 1 a 4 le varie frasi scritte di seguito per ricomorre la storiella appena letta: </h2>",
         html:[
-            '<p> <input type="text" id="test-resp-box" name="1" size="4" /> '+array_storiella[0].storiella1+'</p>',
-            '<p> <input type="text" id="test-resp-box" name="2" size="4" /> '+array_storiella[1].storiella1+'</p>',
-            '<p> <input type="text" id="test-resp-box" name="3" size="4" /> '+array_storiella[2].storiella1+' </p>',
-            '<p> <input type="text" id="test-resp-box" name="4" size="4" /> '+array_storiella[3].storiella1+' </p>'
+            '<p> <input type="text" id="test-resp-box" name="1" size="4" /> '+jsPsych.timelineVariable('storiella1_1')+'</p>',
+            '<p> <input type="text" id="test-resp-box" name="2" size="4" /> '+jsPsych.timelineVariable('storiella1_2')+'</p>',
+            '<p> <input type="text" id="test-resp-box" name="3" size="4" /> '+jsPsych.timelineVariable('storiella1_3')+' </p>',
+            '<p> <input type="text" id="test-resp-box" name="4" size="4" /> '+jsPsych.timelineVariable('storiella1_4')+' </p>'
         ],
         button_label: 'INVIA RISPOSTE'
     };
 
-  
+    var conditional_node = {
+        timeline: [storiella1, prova],
+        timeline_variables: [
+            { storiella1_1: "Un fiore si trovò una volta vicino ad un campo. Aveva sete e domandò alla radice di aiutarlo;", position:"1"},
+            { storiella1_2: "La radice domandò aiuto alla terra vicina: <<cara terra dammi un po’ di frescura per il mio fiore>>; <<mi dispiace, radice, ma non posso darti niente. Anch’io sono secca. Bisognerebbe che il Signore ci mandasse un po’ d’acqua>>.", position:"2"},
+            { storiella1_3: "Il fiore guardò il cielo e aspettò un poco. Passò una nuvoletta: <<Nuvoletta gentile, regalami un po’ d’acqua, ho sete!>>. La nuvoletta non si fece pregare e regalò tante gocce di pioggia al fiore assetato.", position:"3"},
+            { storiella1_4: "La terra si rinfrescò, la radice pure, e il fiore rialzò la corolla. L’acqua della nuvoletta gentile gli aveva riportato la vita.", position:"4"}
+        ],
+        /*on_finish: function(data,prova){
+            if (prova)
+        }*/
+    };
 
     var timeline = [instructions,conditional_node];
 

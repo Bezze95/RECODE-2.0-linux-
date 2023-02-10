@@ -4,3 +4,4 @@
 {"msg":"Study description changed","studyDescriptionHash":"230b95e58aa4abaf4d0d9e42a5c7d158a459e7a51327b0d4146aabb50a6fb7c1","userName":"Admin","timestamp":1676021397001}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676027772077}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676028190625}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676037252137}
