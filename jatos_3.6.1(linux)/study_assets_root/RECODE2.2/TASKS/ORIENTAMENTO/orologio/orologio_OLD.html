@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>OROLOGIO V1</title>
+
+    <script src="/assets/javascripts/jatos.js"></script>
+
+    <style>
+      .text-center {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .block {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <audio autoplay>
+      <source src="sound.m4a">
+    </audio>
+
+    <div class="text-center">
+      <h1>Orientamento</h1>
+      <h2>È tardi! Sono le… (Orientamento temporale, ragionamento logico)</h2>
+      <h2>____________________________________________________________________________________________________</h2>
+
+      <canvas id="canvas" width="200" height="200" style="border:0.5px solid #000000; background-color:#333">
+      </canvas>
+
+      <form action="/action_page.php">
+        <h3>L'orologio indica le ore...<h3>
+          	<input class="block" id="a" type="radio" name="hopping" value="0" checked>
+            <label for="a"><span></span>A</label>
+          	<input class="block" id="b" type="radio" name="hopping" value="1">
+          	<label for="b"><span></span>B</label>
+          	<input class="block" id="c" type="radio" name="hopping" value="2">
+          	<label for="c"><span></span>C</label>
+          </form>
+
+        <h2>____________________________________________________________________________________________________</h2>
+        <h2>Premi il bottone sotto per andare avanti.</h2>
+        <button type="button" onclick="feedback_fun()"><h2>Premi per salvare la risposta</h2></button>
+        <h2>____________________________________________________________________________________________________</h2>
+        <h2>____________________________________________________________________________________________________</h2>
+        <h2>Premi il bottone sotto solo se hai bisogno di un aiuto. Puoi usare l'aiuto solo una volta al giorno.</h2>
+        <button type="button" onclick="myFunction()"><h2>Premi per avere aiuto</h2></button>
+        <script> function myFunction() {
+        window.open("https://meet.google.com/rza-gixo-pvt")} </script>
+    </div>
+
+<script>
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+var correctTime = randomTime();
+var hour = correctTime.slice(0,2);
+var minute = correctTime.slice(3,5);
+var second = getRandomArbitrary(1, 55);
+var radioLabels = document.getElementsByTagName("label")
+
+let arr = [0, 1, 2];
+
+shuffle(arr);
+
+radioLabels[arr[0]].innerHTML = randomTime() ;
+radioLabels[arr[1]].innerHTML = correctTime;
+radioLabels[arr[2]].innerHTML = randomTime() ;
+
+
+ctx.translate(radius, radius);
+radius = radius * 0.90
+//setInterval(drawClock, 1000);
+drawClock();
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    /*var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();*/
+
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function pad(number) {
+  //Add a leading 0 if the number is less than 10
+  return ((number<10)?"0":"")+number.toString();
+}
+
+function randomTime() {
+  //Generate random minute in the day (1440 minutes in 24h)
+  var r = Math.floor(Math.random() * 1440);
+
+  //The hour is obtained by dividing by the number of minutes in an hour
+  //taking the floor of that (drop the decimal fraction)
+  //take the remainder (modulo) of dividing by 12 (13 -> 1 etc)
+  //add 1 so that the range is 1-12 rather than 0-11
+  var HH = pad(1 + (Math.floor(r/60) % 12));
+
+  //Take the integer remainder of dividing by 60 (remove the hours)
+  var MM = pad(r % 60);
+
+
+  return HH + ":" + MM + " " ;
+}
+
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+
+  var feed = [];
+
+function feedback_fun() {
+  jatos.onLoad(function() {
+      if (arr[0]== 0 && document.getElementById("a").checked){feed = 1}
+      else if (arr[1]== 1 && document.getElementById("b").checked){feed = 1}
+      else if (arr[2]== 2 && document.getElementById("c").checked){feed = 1}
+      else {feed = 0}
+      var Data = {timeOut: 0, feedback: feed, type: 'orologio', cresp: feed};
+      jatos.studySessionData = feed;
+      jatos.startComponentByPos(4,Data);
+
+  });
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+</head>
+<body></body>
+<script>
+
+  var cresp = 0;
+
+  var stars = ["\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
+  var go = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7CC}", "\u{1F7CA}", "\u{1F7CC}"];
+  var nogo = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
+
+  function shuffle(s) {
+    s.sort(function() {
+      return 0.5 - Math.random();
+    });
+    s = String(s.join(''));
+    return s;
+  }
+
+ var go_1 = shuffle(go);
+ var go_2 = shuffle(go);
+ var go_3 = shuffle(go);
+ var go_4 = shuffle(go);
+ var go_5 = shuffle(go);
+ var go_6 = shuffle(go);
+ var go_7 = shuffle(go);
+ var go_8 = shuffle(go);
+ var go_9 = shuffle(go);
+ var go_10 = shuffle(go);
+
+ var nogo_1 = shuffle(nogo);
+ var nogo_2 = shuffle(nogo);
+ var nogo_3 = shuffle(nogo);
+ var nogo_4 = shuffle(nogo);
+ var nogo_5 = shuffle(nogo);
+ var nogo_6 = shuffle(nogo);
+ var nogo_7 = shuffle(nogo);
+ var nogo_8 = shuffle(nogo);
+ var nogo_9 = shuffle(nogo);
+ var nogo_10 = shuffle(nogo);
+
+
+
+ var instruction = {
+   type: "html-button-response",
+   stimulus:
+   "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
+   "<p style='font-size:30px;'>Sullo schermo compariranno delle stelle con un numero diverso di punte.</p>"+
+   "<p style='font-size:30px;'>Prema la freccia in basso sulla tastiera quando vede due stelle a sei punte.</p>"+
+   "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
+   button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+   choices: ['Prema qui per continuare', 'Prema qui per ricevere aiuto'],
+   on_finish: function(data){
+     if(data.button_pressed == 1){
+       window.open("https://meet.google.com/rza-gixo-pvt");
+       location.reload();}
+   }
+   //prompt: ["<p> Prema il punto dello schermo dove e' apparso l'aereo di colore <strong>" + colore_aereo[getRandomInt(0,5)]],
+  };
+
+    var trial = {
+        timeline: [
+            {
+                type: 'psychophysics',
+                stimuli: [
+                  {
+                      obj_type: 'text',
+                      startX: 'center',
+                      startY: 'center',
+                      content: '',
+                      font: "50px 'Arial'",
+                      text_color: 'white',
+                      show_start_time: 0, // ms after the start of the trial
+                      show_end_time: 500 // ms after the start of the trial
+                  },
+                  {
+                      obj_type: 'text',
+                      startX: 'center',
+                      startY: 'center',
+                      content: jsPsych.timelineVariable('star'),
+                      font: "300px 'Arial'",
+                      text_color: jsPsych.timelineVariable('color'),
+                      show_start_time: 1000, // ms after the start of the trial
+                      origin_center: true,
+                      response_ends_trial: true,
+                  }
+                ],
+                choices: ['ArrowDown'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+                canvas_height: 800,
+                background_color: '#FFFFFF', // The HEX color means green.
+                trial_duration: 5000,
+                on_finish: function(data){
+
+                  if(jsPsych.timelineVariable('type')=='go'){
+                    data.correct = (data.key_press === data.cresponse);
+                  } else if (jsPsych.timelineVariable('type')=='nogo'){
+                      data.correct = (data.key_press === null);
+                  }
+
+
+                },
+                data: {
+                  test_part: 'star',
+                  cresponse: jsPsych.timelineVariable('cresponse'),
+                  star: jsPsych.timelineVariable('star')
+                }
+            },
+            {
+              type: 'html-keyboard-response',
+              stimulus: function(){
+                var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+                if(last_trial_correct){
+                  return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+                } else {
+                  return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+                }
+              },
+              post_trial_gap: 1000,
+              trial_duration: 1000,
+              response_ends_trial: false,
+            }
+        ],
+        timeline_variables: [
+          {star: go_1, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_2, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_3, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_4, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_5, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_6, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_7, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_8, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_9, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: go_10, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+          {star: nogo_1, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_2, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_3, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_4, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_5, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_6, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_7, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_8, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_9, color: 'gold', cresponse: '', type: 'nogo'},
+          {star: nogo_10, color: 'gold', cresponse: '', type: 'nogo'},
+        ],
+        randomize_order: true,
+        repetitions: 1
+    }
+
+    jsPsych.init({
+        timeline: [instruction, trial],
+        on_finish: function(){
+          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+          if(correct_trials > 8){
+            var feed = 1;
+          } else {
+            var feed = 0;
+          }
+          jatos.studySessionData = feed;
+          var esecutive = Number(sessionStorage.getItem('esecutive'))+feed;
+          sessionStorage.setItem('esecutive', esecutive);
+          var Data = {feed: feed, type: 'GoNoGoStars', cresp: correct_trials};
+			    jatos.startComponentByPos(4,Data);
+        }
+    });
+
+</script>
+
+</html>

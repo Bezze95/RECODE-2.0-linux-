@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+		BENVENUTO
+		</title>
+		
+		<script src="jatos.js"></script>
+    	<script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="/jspsych-psychophysics-master/jspsych-psychophysics.js"></script>
+		<script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.1"></script>
+		<link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./feedback/emoji.js"></script>
+
+	
+	</head>
+    <style>
+        #top {
+    		position: fixed;
+    		left: 0;
+    		right: 0;
+    		height: 20%;
+  		}
+
+  		#bottom {
+    		position: fixed;
+    		left: 0;
+    		right: 0;
+    		height: 80%;
+  		}
+
+  		#bottom {
+    		bottom: 0;
+    		background-color: white;
+  		}
+
+  		#top {
+    		top: 0;
+    		background-color: rgb(220, 220, 220);
+  		}
+
+  		body {
+    		background-color: rgb(255, 255, 255);
+    	}
+    </style>
+
+   	<body>
+		<div id="top">
+    		<p style='font-size:30px; color:black; text-align: center;'>Voglio esprimere un giudizio sull'ultimo esercizio. L'ultimo esercizio è stato:</p>
+    		<div style='margin: 0; position: absolute; top: 65%; left: 50%; margin-right: -50%;	transform: translate(-50%, -50%)' id='emoji-div'></div>
+		</div>
+  		<div id="bottom">
+  		</div>
+
+	</body>
+
+	<script>
+	var gradimento = 'none';
+	jatos.onLoad(function() {
+    	var feed = jatos.studySessionData;
+		if (feed ==1) {
+        	var feedback = {
+          		type: "html-button-response",
+          		stimulus: "<div style='float: up;'><img src='feedback/img/ok.jpg' width='300'></img>" +
+          		"<p style='font-size:30px; color:green'><strong>Stai andando alla grande</strong></p>"+
+          		"<div id='emoji-div'></div>",
+          		button_html: '<button class="jspsych-btn" style="font-size:30px; color:black;">%choice%</button>',
+          		choices: ["Vai al prossimo esercizio"],
+        	};
+      	}
+    	else {
+			var feedback = {
+          		type: "html-button-response",
+          		stimulus:"<div style='float: up;'><img src='feedback/img/dead.jpg' width='300'></img>" +
+          		"<p style='font-size:30px; color:orange'>Qualcosa è andato storto..</p> <p style='font-size:30px; color:blue'><strong>Puoi fare meglio!</strong></p>",
+          		button_html: '<button class="jspsych-btn" style="font-size:30px; color:black;">%choice%</button>',
+          		choices: ["Vai al prossimo esercizio"],
+        	}
+      	}
+		
+		$(function(){
+        	//var emojis = ['&#x1F620;'];
+        	//$("#emoji-div").emoji({ value: 4 });
+        	var emojis = ['&#x1F620;','&#x1F61E;','&#x1F610;','&#x1F60A;','&#x1F603;', '&#9760;'];
+
+        	$("#emoji-div").emoji({
+            	opacity: 0.3, //Opacity for no-selected emojis. [The value should be between 0 and 1 (like 0.5)]
+            	value: 0,  //Selected value
+            	width: '90px',  //With of each emoji.
+            	event: 'click',  //Event "click" or "mouseover".
+            	color: 'blue',
+            	emojis: emojis,  //In case you want to define your own list of emojis
+            	count: 5, //VERY OPTIONAL - In case you want set 1 emoji in the array and display N number of them.
+            	animation: 'shake-slow', //shake, shake-slow, shake-hard, shake-horizontal, shake-vertical, shake-rotate, shake-opacity, shake-crazy, shake-chunk
+            	UTF8: true, //By default, the EmojiRaiting plugin insert the meta tag to your code.
+            	callback: notifyMe, //Returns event and currentValue in the change event
+            	debug: false //Boolean value
+        	});
+
+        	function notifyMe(event, value){
+          		gradimento = ("Gradimento: " + value);
+          		return gradimento;
+        	}
+		});
+
+    	jsPsych.init({
+        	display_element: "bottom",
+        	//experiment_width: 300,
+        	//experiment_height: 300,
+        	timeline: [feedback],
+        	on_finish: function(){
+          		var componentCounter = Number(sessionStorage.getItem('componentCounter'))+1;
+          		sessionStorage.setItem('componentCounter', componentCounter);
+          		var str = sessionStorage.getItem('nextComponentPosition');
+
+          		const regex = /\d+/gm;
+          		let m;
+          		const filter = [];
+          		while ((m = regex.exec(str)) !== null) {
+            // This is necessary to avoid infinite loops with zero-width matches
+            	if (m.index === regex.lastIndex) {
+              		regex.lastIndex++;
+            	}
+
+            // The result can be accessed through the `m`-variable.
+           		m.forEach((match, groupIndex) => {
+              		filter.push(parseInt(match))
+            	});
+			};
+
+          	var nextComponentPosition = filter;
+          	jatos.startComponentByPos(nextComponentPosition[componentCounter], gradimento, "gradimento per esercizio");
+        }
+    });
+});
+
+</script>
+</html>
