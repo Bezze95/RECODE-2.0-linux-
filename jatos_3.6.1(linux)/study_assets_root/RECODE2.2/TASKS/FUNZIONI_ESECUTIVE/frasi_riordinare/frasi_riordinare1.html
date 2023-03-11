@@ -50,7 +50,7 @@
             Successivamente le verrà chiesto di ricostruirla, riorganizzandone le varie parti.
         </p>`,
         button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-        choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+        choices: ['Prema qui per procedere al compito','Prema qui per fare una prova'],
         on_finish: function(data){
             if(data.response == 1){
                 var risposta_prova = 1;
@@ -91,6 +91,7 @@
             '<p> <input type="text" id="test-resp-box" name="4" size="4" /> '+storiella1_parti[3].storiella1+'</p>'
         ],
         dataAsArray: true,
+        required: true,
         button_label: 'INVIA RISPOSTE',
         on_finish: function(data){
             var risposta1 = data.response[0].value;
@@ -185,6 +186,7 @@
             '<p> <input type="text" id="test-resp-box" name="4" size="4" /> '+storiella1_parti[3].storiella1+'</p>'
         ],
         dataAsArray: true,
+        required: true,
         button_label: 'INVIA RISPOSTE',
         on_finish: function(data){
             var risposta1 = data.response[0].value;

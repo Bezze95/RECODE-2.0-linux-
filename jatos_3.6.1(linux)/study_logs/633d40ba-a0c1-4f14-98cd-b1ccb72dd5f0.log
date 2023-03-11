@@ -5,3 +5,8 @@
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676027772077}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676028190625}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1676037252137}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678533633888}
+{"msg":"Stored component result data","componentUuid":"e0830059-3976-4883-ad0e-0060efb935f9","workerId":1,"dataHash":"a38aeac6b1dc8f0246ef627762aeaa572b21101f736b5109326bc83121aa9a1b","timestamp":1678533665763}
+{"msg":"Finished study run","workerId":1,"timestamp":1678533665900}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678533673237}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678534006494}
