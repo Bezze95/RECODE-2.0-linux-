@@ -432,3 +432,74 @@
 2023-03-11 16:40:11,414 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
 2023-03-11 16:40:11,425 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
 2023-03-11 16:40:15,590 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215279 (admin)
+2023-03-11 16:56:04,201 [INFO] - gui_access - GET /jatos/1/23/properties (admin)
+2023-03-11 16:56:11,584 [INFO] - gui_access - GET /jatos/1/23/run (admin)
+2023-03-11 16:56:11,597 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 16:56:11,597 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 16:56:11,599 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 16:56:11,617 [INFO] - publix_access - GET /publix/1/23/start?srid=43
+2023-03-11 16:56:11,618 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 23, studyResultId 43, logged-in username admin, message 'null'
+2023-03-11 16:56:11,627 [INFO] - g.ErrorHandler - PublixException during call /publix/1/23/start?srid=43: HTML file 'TASKS\MEMORIA_LAVORO\operazioni\operazioni1.html' in study assets 'RECODE2.2' couldn't be found. Please change this in the component's properties.
+2023-03-11 16:56:28,298 [INFO] - gui_access - GET /jatos/1/23/properties (admin)
+2023-03-11 16:56:34,335 [INFO] - gui_access - POST /jatos/1/23/properties (admin)
+2023-03-11 16:56:34,355 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:56:34,366 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215280 (admin)
+2023-03-11 16:56:36,070 [INFO] - gui_access - GET /jatos/1/23/run (admin)
+2023-03-11 16:56:36,078 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 16:56:36,078 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 16:56:36,079 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 16:56:36,094 [INFO] - publix_access - GET /publix/1/23/start?srid=44
+2023-03-11 16:56:36,094 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 23, studyResultId 44, logged-in username admin, message 'null'
+2023-03-11 16:56:36,576 [INFO] - publix_access - GET /publix/1/23/initData?srid=44
+2023-03-11 16:56:36,576 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 23, studyResultId 44
+2023-03-11 16:56:36,649 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 44
+2023-03-11 16:56:36,658 [INFO] - publix_access - POST /publix/1/heartbeat?srid=44
+2023-03-11 16:56:59,300 [INFO] - publix_access - GET /publix/1/23/start?srid=44
+2023-03-11 16:56:59,300 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 23, studyResultId 44, logged-in username admin, message 'null'
+2023-03-11 16:56:59,735 [INFO] - publix_access - GET /publix/1/23/initData?srid=44
+2023-03-11 16:56:59,735 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 23, studyResultId 44
+2023-03-11 16:56:59,842 [INFO] - publix_access - POST /publix/1/heartbeat?srid=44
+2023-03-11 16:56:59,852 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 44
+2023-03-11 16:57:32,869 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-11 16:57:32,896 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:57:32,903 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215281 (admin)
+2023-03-11 16:57:59,524 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-11 16:57:59,552 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:57:59,557 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215282 (admin)
+2023-03-11 16:58:21,713 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=72&newPosition=31 (admin)
+2023-03-11 16:58:21,774 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215283 (admin)
+2023-03-11 16:58:21,795 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:58:24,324 [INFO] - gui_access - GET /jatos/1/23/properties (admin)
+2023-03-11 16:58:31,164 [INFO] - gui_access - POST /jatos/1/23/properties (admin)
+2023-03-11 16:58:31,195 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:58:31,201 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215284 (admin)
+2023-03-11 16:58:41,476 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=73&newPosition=32 (admin)
+2023-03-11 16:58:41,558 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215285 (admin)
+2023-03-11 16:58:41,563 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 16:58:43,819 [INFO] - gui_access - GET /jatos/1/72/run (admin)
+2023-03-11 16:58:43,830 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 16:58:43,830 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 16:58:43,831 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 16:58:43,867 [INFO] - publix_access - GET /publix/1/72/start?srid=45
+2023-03-11 16:58:43,868 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 72, studyResultId 45, logged-in username admin, message 'null'
+2023-03-11 16:58:44,377 [INFO] - publix_access - GET /publix/1/72/initData?srid=45
+2023-03-11 16:58:44,377 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 72, studyResultId 45
+2023-03-11 16:58:44,468 [INFO] - publix_access - POST /publix/1/heartbeat?srid=45
+2023-03-11 16:58:44,468 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 45
+2023-03-11 16:58:48,669 [INFO] - gui_access - GET /jatos/1/73/run (admin)
+2023-03-11 16:58:48,677 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 16:58:48,677 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 16:58:48,678 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 16:58:48,690 [INFO] - publix_access - GET /publix/1/73/start?srid=46
+2023-03-11 16:58:48,690 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 73, studyResultId 46, logged-in username admin, message 'null'
+2023-03-11 16:58:48,783 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/jspsych.js
+2023-03-11 16:58:48,798 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/plugin-free-sort.js
+2023-03-11 16:58:48,804 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/jspsych.css
+2023-03-11 16:58:48,804 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/plugin-html-button-response.js
+2023-03-11 16:58:48,810 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/plugin-html-keyboard-response.js
+2023-03-11 16:58:49,050 [INFO] - publix_access - GET /publix/1/73/initData?srid=46
+2023-03-11 16:58:49,050 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 73, studyResultId 46
+2023-03-11 16:58:49,138 [INFO] - publix_access - POST /publix/1/heartbeat?srid=46
+2023-03-11 16:58:49,150 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 46
+2023-03-11 16:58:55,835 [INFO] - c.p.StudyAssets - .viaAssetsPath: failed loading from path /home/bets95/GitHub Repositories/RECODE-2.0(linux)/jatos_3.6.1(linux)/study_assets_root/RECODE2.2/jsPsych/plugins/jspsych.css
+2023-03-11 16:59:01,934 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678550341554 (admin)
