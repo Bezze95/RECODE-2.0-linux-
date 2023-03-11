@@ -98,3 +98,63 @@
 2023-03-11 12:26:54,169 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
 2023-03-11 12:28:54,207 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
 2023-03-11 12:30:54,255 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:32:54,279 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:34:54,312 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:36:54,337 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:38:54,373 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:40:54,392 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:42:54,411 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:44:54,442 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:46:54,467 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:48:54,491 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:50:54,516 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:52:54,541 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:54:54,574 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:56:54,601 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:58:54,630 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:59:20,521 [INFO] - publix_access - GET /publix/1/65/start?srid=35
+2023-03-11 12:59:20,521 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 65, studyResultId 35, logged-in username admin, message 'null'
+2023-03-11 12:59:20,863 [INFO] - publix_access - GET /publix/1/65/initData?srid=35
+2023-03-11 12:59:20,863 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 65, studyResultId 35
+2023-03-11 12:59:20,924 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 12:59:20,950 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
+2023-03-11 13:01:20,972 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:03:21,002 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:05:21,038 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:07:21,057 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:09:21,075 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:11:21,101 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:13:21,132 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:15:21,158 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:17:21,189 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:19:21,217 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:21:21,245 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:23:21,270 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 13:25:21,299 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:20:26,410 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
+2023-03-11 14:21:34,332 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:21:41,432 [INFO] - publix_access - GET /publix/1/65/start?srid=35
+2023-03-11 14:21:41,433 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 65, studyResultId 35, logged-in username admin, message 'null'
+2023-03-11 14:21:41,966 [INFO] - publix_access - GET /publix/1/65/initData?srid=35
+2023-03-11 14:21:41,967 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 65, studyResultId 35
+2023-03-11 14:21:42,037 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
+2023-03-11 14:21:42,065 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:22:28,960 [INFO] - publix_access - GET /publix/1/65/start?srid=35
+2023-03-11 14:22:28,960 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 65, studyResultId 35, logged-in username admin, message 'null'
+2023-03-11 14:22:29,552 [INFO] - publix_access - GET /publix/1/65/initData?srid=35
+2023-03-11 14:22:29,553 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 65, studyResultId 35
+2023-03-11 14:22:29,627 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
+2023-03-11 14:22:29,656 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:23:12,246 [INFO] - publix_access - GET /publix/1/65/start?srid=35
+2023-03-11 14:23:12,247 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 65, studyResultId 35, logged-in username admin, message 'null'
+2023-03-11 14:23:12,889 [INFO] - publix_access - GET /publix/1/65/initData?srid=35
+2023-03-11 14:23:12,890 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 65, studyResultId 35
+2023-03-11 14:23:12,934 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:23:12,935 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 35
+2023-03-11 14:25:12,954 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:27:12,969 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:29:12,994 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:31:13,022 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:33:13,045 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:35:13,069 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35
+2023-03-11 14:37:13,102 [INFO] - publix_access - POST /publix/1/heartbeat?srid=35

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GONOGO CARDS LIV.1 </title>
+  <title>GONOGO CARDS LIV.2 </title>
 
   <script src="./jspsych7.2.3/dist/jspsych.js"></script>
   <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
@@ -14,9 +14,13 @@
 
   <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
   <script src="jatos.js"></script>
-
 </head>
-<body></body>
+<body>
+  <!--LIVELLO 1: Congruenza nel compito delle frecce (premi <- se vedi <-);
+LIVELLO 2: Incongruenza compito frecce;
+LIVELLO 3: GoNoGo Cards: rispondere con un certo tasto solo con un seme preciso
+-->
+</body>
 <script>
 
   jatos.onload(function(){
@@ -28,7 +32,7 @@
   var jsPsych = initJsPsych({
     use_webaudio: false,
     on_finish: function() {
-        /*jsPsych.data.displayData();*/
+        /* jsPsych.data.displayData();*/
 
         var correct_trials = jsPsych.data.get().filter({correct: true}).count();
             if(correct_trials > 0){
@@ -39,17 +43,16 @@
         jatos.studySessionData = feed;
         var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
         sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
-        var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_gonogostars_level1', cresp: correct_trials};
+        var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_gonogostars_level2', cresp: correct_trials};
         jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
     } 
   });
 
-
   var cresp = 0;
 
   var stars = ["\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
-  var go = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
-  var nogo = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CA}"];
+  var go = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7CC}", "\u{1F7CA}", "\u{1F7CC}"];
+  var nogo = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
 
   function shuffle(s) {
     s.sort(function() {
@@ -82,28 +85,19 @@
  var nogo_10 = shuffle(nogo);
 
 
- /*function sendEmail(subj,text) {
- Email.send({
-      SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
-       To : 'conteabba@gmail.com',
-       From : "conteabba@gmail.com",
-       Subject : subj,
-       Body : text
-   })
- }*/
 
  var instruction = {
    type: jsPsychHtmlButtonResponse,
    stimulus:
    "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
    "<p style='font-size:30px;'>Sullo schermo compariranno delle stelle con un numero diverso di punte.</p>"+
-   "<p style='font-size:30px;'>Prema la freccia in basso sulla tastiera quando vede una stella a sei punte.</p>"+
+   "<p style='font-size:30px;'>Prema la freccia in basso sulla tastiera quando vede due stelle a sei punte.</p>"+
    "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
    button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
    choices: ['Prema qui per continuare', 'Prema qui per ricevere aiuto'],
    on_finish: function(data){
      if(data.button_pressed == 1){
-       sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+       window.open("https://meet.google.com/rza-gixo-pvt");
        location.reload();}
    }
    //prompt: ["<p> Prema il punto dello schermo dove e' apparso l'aereo di colore <strong>" + colore_aereo[getRandomInt(0,5)]],
@@ -197,9 +191,10 @@
         repetitions: 1
     }
 
-   var timeline = [instruction, trial];
+    var timeline = [instruction, trial];
 
 jsPsych.run(timeline)
+
 
 </script>
 
