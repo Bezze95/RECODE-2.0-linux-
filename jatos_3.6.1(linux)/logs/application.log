@@ -213,3 +213,25 @@
 2023-03-11 14:51:51,548 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 67, studyResultId 37
 2023-03-11 14:51:51,587 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 37
 2023-03-11 14:51:51,601 [INFO] - publix_access - POST /publix/1/heartbeat?srid=37
+2023-03-11 14:53:51,626 [INFO] - publix_access - POST /publix/1/heartbeat?srid=37
+2023-03-11 14:54:36,552 [INFO] - publix_access - GET /publix/1/67/start?srid=37
+2023-03-11 14:54:36,553 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 67, studyResultId 37, logged-in username admin, message 'null'
+2023-03-11 14:54:36,843 [INFO] - publix_access - GET /publix/1/67/initData?srid=37
+2023-03-11 14:54:36,843 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 67, studyResultId 37
+2023-03-11 14:54:36,909 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 37
+2023-03-11 14:54:36,909 [INFO] - publix_access - POST /publix/1/heartbeat?srid=37
+2023-03-11 14:54:54,093 [INFO] - publix_access - GET /publix/1/67/start?srid=37
+2023-03-11 14:54:54,093 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 67, studyResultId 37, logged-in username admin, message 'null'
+2023-03-11 14:54:54,365 [INFO] - publix_access - GET /publix/1/67/initData?srid=37
+2023-03-11 14:54:54,365 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 67, studyResultId 37
+2023-03-11 14:54:54,405 [INFO] - publix_access - POST /publix/1/heartbeat?srid=37
+2023-03-11 14:54:54,413 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 37
+2023-03-11 14:55:29,513 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-11 14:55:29,541 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 14:55:29,548 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678542674186 (admin)
+2023-03-11 14:55:40,173 [INFO] - gui_access - DELETE /jatos/1/68 (admin)
+2023-03-11 14:55:40,268 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678542674187 (admin)
+2023-03-11 14:55:40,272 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 14:55:51,384 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=67&newPosition=17 (admin)
+2023-03-11 14:55:51,463 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678542674188 (admin)
+2023-03-11 14:55:51,465 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)

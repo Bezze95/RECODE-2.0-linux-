@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STROOP LIV.1 </title>
+
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
+</head>
+<body></body>
+<script>
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+}
+
+
+jatos.onload(function(){
+  var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+  var progressText="avanzamento" + progress + "%";
+  const updateProgress = progress;
+}); 
+
+var jsPsych = initJsPsych({
+  use_webaudio: false,
+  on_finish: function() {
+      /*jsPsych.data.displayData();*/
+
+      var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+          if(correct_trials > 0){
+              var feed = 1;
+          } else {
+              var feed = 0;
+          }
+      jatos.studySessionData = feed;
+      var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
+      sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
+      var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_stroop_level1', cresp: correct_trials};
+      jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+  } 
+});
+
+
+    var instruction = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus:
+      "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
+      "<p style='font-size:30px;'>Sullo schermo apparirà il nome di un colore che può essere scritto con diversi colori:</p>"+
+      "<p style='font-size:30px;'>premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo.</p>"+
+      "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
+      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare'],
+
+     };
+
+     var test_stimuli = [
+        { stimulus: "<p style='font-size:100px; color:orange;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  blu  rosso</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:blue;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  rosso</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:yellow;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  giallo  rosso</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:black;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  nero</p>", correctkey: 2},
+        { stimulus: "<p style='font-size:100px; color:red;'>rosso</p>", choice:["1", "2", "3"], choices:  "<p style='font-size:30px; color:black;'>giallo  blu  rosso</p>", correctkey: 2},
+        { stimulus: "<p style='font-size:100px; color:green;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo  verde  blu</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:black;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  nero</p>", correctkey: 2},
+
+        { stimulus: "<p style='font-size:100px; color:blue;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  blu  rosso</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:red;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  rosso</p>", correctkey: 2},
+        { stimulus: "<p style='font-size:100px; color:orange;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  giallo  rosso</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:green;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  nero</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:blue;'>rosso</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo  blu  rosso</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:yellow;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo  verde  blu</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:blue;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  blu  rosso</p>", correctkey: 1},
+
+        { stimulus: "<p style='font-size:100px; color:red;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  blu  rosso</p>", correctkey: 2},
+        { stimulus: "<p style='font-size:100px; color:green;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  rosso</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:red;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione  giallo  rosso</p>", correctkey: 2},
+        { stimulus: "<p style='font-size:100px; color:blue;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde  blu  nero</p>", correctkey: 1},
+        { stimulus: "<p style='font-size:100px; color:yellow;'>rosso</p>", choice:["1", "2", "3"], choices:"<p style='font-size:30px; color:black;'>giallo  blu  rosso</p>", correctkey: 0},
+        { stimulus: "<p style='font-size:100px; color:blue;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo  verde  blu</p>", correctkey: 2},
+      ];
+
+     var trial = {
+         type: jsPsychHtmlKeyboardResponse,
+         stimulus: jsPsych.timelineVariable('stimulus'),
+         choices: jsPsych.timelineVariable('choice'),
+         prompt: jsPsych.timelineVariable('choices'),
+         post_trial_gap: 500,
+        on_finish: function(data){
+          if(data.button_pressed == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
+            data.correct = true; // can add property correct by modify data object directly
+          } else {
+            data.correct = false;
+          }
+        }
+      }
+
+
+     var test_procedure = {
+       timeline: [trial],
+       timeline_variables: test_stimuli,
+       repetitions: 1,
+       randomize_order: true
+     }
+
+     var timeline = [instruction, test_procedure];
+
+     jsPsych.run(timeline)
+     
+</script>
+
+</html>
