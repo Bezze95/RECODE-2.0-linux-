@@ -20,7 +20,19 @@
 
 
 </head>
-<body></body>
+<body>
+<!--ISTRUZIONI:
+“Sullo schermo apparirà il nome di un colore, che può essere scritto con diversi colori.
+Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.
+Scelga la risposta esatta selezionandola con il mouse tra le tre alternative proposte.”
+
+→ Togliere “Prema un tasto per iniziare”
+
+LIVELLO 1: Tempo molto lungo o assente per fornire una risposta; 
+LIVELLO 2: Tempo medio;
+LIVELLO 3: Diminuzione ulteriore del tempo; 
+-->
+</body>
 <script>
 
 function getRandomInt(min, max) {
@@ -58,7 +70,8 @@ var jsPsych = initJsPsych({
 var pre_if = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p style="font-size: 24px; font-weight: bold;"> Sullo schermo apparirà il nome di un colore che può
-     essere scritto con diversi colori: <br> premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo.
+     essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+     Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta.
     </p>`,
   button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
   choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
@@ -105,7 +118,7 @@ var prova_loop = {
   prompt: jsPsych.timelineVariable('choices'),
   post_trial_gap: 500,
  on_finish: function(data){
-   if(data.button_pressed == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
+   if(data.response == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
      data.accuracy = true; // can add property correct by modify data object directly
    } else {
      data.accuracy = false;
@@ -147,7 +160,8 @@ var prova_loop_timeline = {
 var begin_trial = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Sullo schermo apparirà il nome di un colore che può
-    essere scritto con diversi colori: <br> premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo. </p>`,
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
   button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
   choices: ['Prema qui per iniziare']
 };
@@ -193,7 +207,8 @@ var if_node = {
 var begin_loop = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Sullo schermo apparirà il nome di un colore che può
-    essere scritto con diversi colori: <br> premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo. </p>`,
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
   button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
   choices: ['Prema qui per iniziare la prova'],
   on_start: function(data){
@@ -209,7 +224,8 @@ var begin_loop = {
 var end_loop_prova = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Sullo schermo apparirà il nome di un colore che può
-    essere scritto con diversi colori: <br> premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo. </p>`,
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
   button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
   choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
   on_finish: function(data){
