@@ -367,3 +367,68 @@
 2023-03-11 16:21:50,026 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
 2023-03-11 16:23:50,039 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
 2023-03-11 16:25:50,060 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:26:54,713 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:26:54,713 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:26:55,190 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:26:55,191 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:26:55,262 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:26:55,263 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:27:20,969 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:27:20,970 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:27:21,471 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:27:21,472 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:27:21,537 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:27:21,569 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:27:26,450 [WARN] - a.a.ActorSystemImpl - Illegal request, responding with status '400 Bad Request': Illegal request-target: Invalid input '[', expected segment, '/', '?' or 'EOI' (line 1, column 14): /publix/1/17/[object%20Object]
+             ^
+2023-03-11 16:29:21,596 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:31:10,613 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:31:10,613 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:31:11,197 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:31:11,198 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:31:11,254 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:31:11,297 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:31:16,287 [WARN] - a.a.ActorSystemImpl - Illegal request, responding with status '400 Bad Request': Illegal request-target: Invalid input '[', expected segment, '/', '?' or 'EOI' (line 1, column 14): /publix/1/17/[object%20Object]
+             ^
+2023-03-11 16:33:11,315 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:35:11,342 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:35:15,065 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:35:15,065 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:35:15,557 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:35:15,558 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:35:15,595 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:35:15,595 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:37:15,615 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:37:23,561 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:37:23,562 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:37:24,100 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:37:24,101 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:37:24,161 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:37:24,172 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:37:37,690 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:37:37,691 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:37:38,153 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:37:38,154 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:37:38,244 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:37:38,255 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:37:40,654 [WARN] - a.a.ActorSystemImpl - Illegal request, responding with status '400 Bad Request': Illegal request-target: Invalid input '[', expected segment, '/', '?' or 'EOI' (line 1, column 14): /publix/1/17/[object%20Object]
+             ^
+2023-03-11 16:38:50,480 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:38:50,480 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:38:51,013 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:38:51,014 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:38:51,109 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:38:51,130 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:40:05,829 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:40:05,829 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:40:06,397 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:40:06,397 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:40:06,445 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:40:06,464 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:40:10,896 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 16:40:10,896 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 16:40:11,373 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 16:40:11,374 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 16:40:11,414 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:40:11,425 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 16:40:15,590 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678549215279 (admin)

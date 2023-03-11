@@ -134,7 +134,8 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
  var prova_loop = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="'+images[10]+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
+    preamble: `<p> <img src="`+images[10].image+`" height="400pt"> </p>
+     <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>` ,
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="response" type="text" /></p>',
     required: true,
@@ -184,7 +185,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
  var one = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[0]+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
+  preamble: '<p> <img src="'+images[0].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -201,7 +202,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
 var two = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[1]+'" height="600pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[1].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -218,7 +219,7 @@ var two = {
 
 var three = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[2]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[2].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -235,7 +236,7 @@ var three = {
 
 var four = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[3]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[3].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
 html: '</p> <input name="response" type="text" /></p>',
 required: false,
@@ -252,7 +253,7 @@ on_finish: function(data) {
 
 var five = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[4]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[4].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -269,7 +270,7 @@ var five = {
 
 var six = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[5]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[5].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -286,7 +287,7 @@ var six = {
 
 var seven = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[6]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[6].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -303,7 +304,7 @@ var seven = {
 
 var eight = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[7]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[7].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="first" type="text" /></p>',
   required: false,
@@ -320,7 +321,7 @@ var eight = {
 
 var nine = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[8]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[8].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -337,7 +338,7 @@ var nine = {
 
 var ten = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[9]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  preamble: '<p> <img src="'+images[9].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,
@@ -352,8 +353,93 @@ var ten = {
   }
 };
 
+var eleven = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="'+images[11].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="response" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[4].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
+};
+
+var twelve = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="'+images[12].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="response" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[4].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
+};
+
+var thirteen = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="'+images[13].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="response" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[4].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
+};
+
+var fourteen = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="'+images[14].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="response" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[4].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
+};
+
+var fifteen = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="'+images[15].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="response" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[4].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
+};
+
 var trial_timeline = {
-  timeline: [one, two, three, four, five, six, seven, eight,nine, ten]
+  timeline: [one, two, three, four, five, six, seven, eight,nine, ten, eleven, twelve, thirteen, fourteen, fifteen]
  };
 
  ////////////////////////////////////////////////////////////////////////
@@ -411,7 +497,7 @@ var trial_timeline = {
 
 
  var loop_prova = {
-  timeline: [begin_loop, prova_loop_timeline, end_loop_prova],
+  timeline: [begin_loop, prova_loop, feedback, end_loop_prova],
   loop_function: function(){
     var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
     if (response_button == 1){
