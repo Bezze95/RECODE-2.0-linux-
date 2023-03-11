@@ -321,3 +321,49 @@
 2023-03-11 15:53:06,340 [INFO] - publix_access - POST /publix/1/heartbeat?srid=40
 2023-03-11 15:53:06,350 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 40
 2023-03-11 15:55:06,370 [INFO] - publix_access - POST /publix/1/heartbeat?srid=40
+2023-03-11 15:57:06,392 [INFO] - publix_access - POST /publix/1/heartbeat?srid=40
+2023-03-11 15:57:13,917 [INFO] - gui_access - GET /jatos/1/17/run (admin)
+2023-03-11 15:57:13,927 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 15:57:13,927 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 15:57:13,929 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 15:57:13,945 [INFO] - publix_access - GET /publix/1/17/start?srid=41
+2023-03-11 15:57:13,945 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 41, logged-in username admin, message 'null'
+2023-03-11 15:57:13,961 [INFO] - g.ErrorHandler - PublixException during call /publix/1/17/start?srid=41: HTML file 'TASKS\LINGUAGGIO\denominazione\denominazione1.html' in study assets 'RECODE2.2' couldn't be found. Please change this in the component's properties.
+2023-03-11 15:57:29,116 [INFO] - gui_access - GET /jatos/1/17/properties (admin)
+2023-03-11 15:57:37,040 [INFO] - gui_access - POST /jatos/1/17/properties (admin)
+2023-03-11 15:57:37,065 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 15:57:37,073 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885407 (admin)
+2023-03-11 15:57:39,006 [INFO] - gui_access - GET /jatos/1/17/run (admin)
+2023-03-11 15:57:39,017 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 15:57:39,017 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 15:57:39,019 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 15:57:39,037 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 15:57:39,037 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 15:57:39,655 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 15:57:39,657 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 15:57:39,732 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 15:57:39,752 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 15:57:46,377 [WARN] - a.a.ActorSystemImpl - Illegal request, responding with status '400 Bad Request': Illegal request-target: Invalid input '[', expected segment, '/', '?' or 'EOI' (line 1, column 14): /publix/1/17/[object%20Object]
+             ^
+2023-03-11 15:57:49,095 [INFO] - publix_access - GET /publix/1/17/start?srid=42
+2023-03-11 15:57:49,095 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 17, studyResultId 42, logged-in username admin, message 'null'
+2023-03-11 15:57:49,670 [INFO] - publix_access - GET /publix/1/17/initData?srid=42
+2023-03-11 15:57:49,672 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 17, studyResultId 42
+2023-03-11 15:57:49,707 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 15:57:49,914 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 42
+2023-03-11 15:57:52,473 [WARN] - a.a.ActorSystemImpl - Illegal request, responding with status '400 Bad Request': Illegal request-target: Invalid input '[', expected segment, '/', '?' or 'EOI' (line 1, column 14): /publix/1/17/[object%20Object]
+             ^
+2023-03-11 15:59:49,812 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:01:49,833 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:03:49,861 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:05:49,881 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:07:49,897 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:09:49,912 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:11:49,930 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:13:49,954 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:15:49,977 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:17:49,993 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:19:50,009 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:21:50,026 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:23:50,039 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
+2023-03-11 16:25:50,060 [INFO] - publix_access - POST /publix/1/heartbeat?srid=42
