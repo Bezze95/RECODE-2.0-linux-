@@ -54,71 +54,200 @@ var jsPsych = initJsPsych({
   } 
 });
 
-    var instruction = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus:
-      "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
-      "<p style='font-size:30px;'>Sullo schermo apparirà il nome di un colore che può essere scritto con diversi colori:</p>"+
-      "<p style='font-size:30px;'>premendo il tasto 1, 2 o 3 dovrà indicare il colore con cui è scritto il nome apparso sullo schermo.</p>"+
-      "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
-      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-      choices: ['Prema qui per continuare'],
-
-     };
-     var images = ["rosso", "verde", "rosso1", "blu", "giallo", "nero"];
-
-     var test_stimuli = [
-        { stimulus: "<p style='font-size:100px; color:orange;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   blu   rosso</p>", correctkey: 0},
-        { stimulus: "<p style='font-size:100px; color:blue;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   rosso</p>", correctkey: 1},
-        { stimulus: "<p style='font-size:100px; color:yellow;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   giallo   rosso</p>", correctkey: 1},
-        { stimulus: "<p style='font-size:100px; color:black;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   nero</p>", correctkey: 2},
-        { stimulus: "<p style='font-size:100px; color:red;'>rosso</p>", choice:["1", "2", "3"], choices:  "<p style='font-size:30px; color:black;'>giallo   blu   rosso</p>", correctkey: 2},
-        { stimulus: "<p style='font-size:100px; color:green;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo   verde   blu</p>", correctkey: 1},
-        { stimulus: "<p style='font-size:100px; color:green;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo   verde   blu</p>", correctkey: 1},
-
-
-        { stimulus: "<p style='font-size:100px; color:blue;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   blu   rosso</p>", correctkey: 1},
-        { stimulus: "<p style='font-size:100px; color:red;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   rosso</p>", correctkey: 2},
-        { stimulus: "<p style='font-size:100px; color:orange;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   giallo   rosso</p>", correctkey: 0},
-        { stimulus: "<p style='font-size:150px; color:green;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 0},
-        { stimulus: "<p style='font-size:150px; color:blue;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>giallo   blu   rosso</p>", correctkey: 1},
-        { stimulus: "<p style='font-size:150px; color:yellow;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   blu</p>", correctkey: 0},
-
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[0]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   blu   rosso</p>", correctkey: 2},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[1]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>verde   blu   rosso</p>", correctkey: 0},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[2]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   giallo   rosso</p>", correctkey: 2},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[4]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices:"<p style='font-size:30px; transform-origin: center; color:black;'>giallo   blu   rosso</p>", correctkey: 0},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
-        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[5]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   nero</p>", correctkey: 2},
-      ];
-
-     var trial = {
-         type: jsPsychHtmlKeyboardResponse,
-         stimulus: jsPsych.timelineVariable('stimulus'),
-         choices: jsPsych.timelineVariable('choice'),
-         prompt: jsPsych.timelineVariable('choices'),
-         post_trial_gap: 500,
-        on_finish: function(data){
-          if(data.button_pressed == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
-            data.correct = true; // can add property correct by modify data object directly
-          } else {
-            data.correct = false;
-          }
-        }
+var pre_if = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Sullo schermo apparirà il nome di un colore che può
+     essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+     Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta.
+    </p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+  choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+  on_finish: function(data){
+      if(data.response == 1){
+          var risposta_prova = 1;
+      } else{
+          var risposta_prova = 0;
       }
+      data.risposta_prova = risposta_prova
+  }
+      
+};
+
+var images = ["rosso", "verde", "rosso1", "blu", "giallo", "nero"];
+
+var test_stimuli = [
+  { stimulus: "<p style='font-size:100px; color:orange;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   blu   rosso</p>", correctkey: 1},
+  { stimulus: "<p style='font-size:100px; color:blue;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   rosso</p>", correctkey: 2},
+  { stimulus: "<p style='font-size:100px; color:yellow;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   giallo   rosso</p>", correctkey: 2},
+  { stimulus: "<p style='font-size:100px; color:black;'>nero</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   nero</p>", correctkey: 3},
+  { stimulus: "<p style='font-size:100px; color:red;'>rosso</p>", choice:["1", "2", "3"], choices:  "<p style='font-size:30px; color:black;'>giallo   blu   rosso</p>", correctkey: 3},
+  { stimulus: "<p style='font-size:100px; color:green;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo   verde   blu</p>", correctkey: 2},
+  { stimulus: "<p style='font-size:100px; color:green;'>verde</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>giallo   verde   blu</p>", correctkey: 2},
 
 
-     var test_procedure = {
-       timeline: [trial],
-       timeline_variables: test_stimuli,
-       repetitions: 1,
-       randomize_order: true
-     }
+  { stimulus: "<p style='font-size:100px; color:blue;'>arancione</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   blu   rosso</p>", correctkey: 2},
+  { stimulus: "<p style='font-size:100px; color:red;'>blu</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>verde   blu   rosso</p>", correctkey: 3},
+  { stimulus: "<p style='font-size:100px; color:orange;'>giallo</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; color:black;'>arancione   giallo   rosso</p>", correctkey: 1},
+  { stimulus: "<p style='font-size:150px; color:green;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
+  { stimulus: "<p style='font-size:150px; color:blue;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>giallo   blu   rosso</p>", correctkey: 2},
+  { stimulus: "<p style='font-size:150px; color:yellow;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   blu</p>", correctkey: 2},
 
-     var timeline = [instruction, test_procedure];
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[0]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   blu   rosso</p>", correctkey: 3},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[1]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>verde   blu   rosso</p>", correctkey: 1},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[2]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   giallo   rosso</p>", correctkey: 3},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 2},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[4]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices:"<p style='font-size:30px; transform-origin: center; color:black;'>giallo   blu   rosso</p>", correctkey: 1},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 2},
+  { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[5]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   nero</p>", correctkey: 3},
+];
 
-     jsPsych.run(timeline)
+var prova_loop = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: jsPsych.timelineVariable('choice'),
+  prompt: jsPsych.timelineVariable('choices'),
+  post_trial_gap: 500,
+  stimulus_duration: 2000,
+ on_finish: function(data){
+   if(data.response == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
+     data.accuracy = true; // can add property correct by modify data object directly
+   } else {
+     data.accuracy = false;
+   }
+ }
+};
+
+var feedback = {
+  type: jsPsychHtmlKeyboardResponse,
+  choices: "NO_KEYS",
+  trial_duration: 1500,
+  data:"",
+  stimulus: "",
+  on_start: function(prova_loop){
+      var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+      if (last_response_accuracy == true) {
+          var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+          console.log("Corretto")
+      } else {
+          var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+          console.log("Sbagliato")
+      };
+      var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+      prova_loop.data = {stimulus: feedback};
+      prova_loop.stimulus = feedback_prova_stima;
+  },
+  
+};
+
+var prova_loop_timeline = {
+  timeline: [prova_loop, feedback],
+  timeline_variables: [
+    { stimulus: "<p style='font-size:150px; color:yellow;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   blu</p>", correctkey: 1},  ],
+  repetitions: 1,
+  randomize_order: true
+};
+
+var begin_trial = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Sullo schermo apparirà il nome di un colore che può
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+  choices: ['Prema qui per iniziare']
+};
+
+var trial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: jsPsych.timelineVariable('choice'),
+  prompt: jsPsych.timelineVariable('choices'),
+  stimulus_duration: 2000,
+  post_trial_gap: 500,
+ on_finish: function(data){
+   if(data.button_pressed == jsPsych.timelineVariable('correctkey')){// 70 is the numeric code for f
+     data.correct = true; // can add property correct by modify data object directly
+      console.log("Corretto")
+    } else {
+     data.correct = false;
+     console.log("Sbagliato")
+   }
+ }
+};
+
+var trial_timeline = {
+  timeline: [trial],
+  timeline_variables: test_stimuli,
+  randomize_order: true
+};
+
+var if_node = {
+  timeline: [begin_trial,trial_timeline],  
+  conditional_function: function(){
+      var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+      if (response_button == 0){
+          console.log("prosegui a esercizio");
+          return true;
+      } else {
+          console.log("inizia la prova");
+          jsPsych.addNodeToEndOfTimeline(loop_prova)
+          return false;
+      }
+  }
+};
+
+var begin_loop = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Sullo schermo apparirà il nome di un colore che può
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+  choices: ['Prema qui per iniziare la prova'],
+  on_start: function(data){
+      var response_button = jsPsych.data.get().last(1).values()[0].response;
+      console.log(response_button)
+      if (response_button == 0){
+          console.log("salta loop");
+          jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+      }
+  }
+};
+
+var end_loop_prova = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Sullo schermo apparirà il nome di un colore che può
+    essere scritto con diversi colori: <br> Il suo compito è di indicare il colore con cui è scritto il nome apparso sullo schermo.<br> <br>
+    Scelga la risposta esatta premendo il tasto 1, 2 o 3 in base alla posizione della sua scelta. </p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+  choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+  on_finish: function(data){
+      if(data.response == 1){
+          var risposta = 1;
+      } else{
+          var risposta = 0;
+          console.log("Termine loop prova");
+          jsPsych.addNodeToEndOfTimeline(trial_timeline);
+      }
+      data.risposta_loop = risposta
+  }
+};
+
+var loop_prova = {
+  timeline: [begin_loop, prova_loop_timeline, end_loop_prova],
+  loop_function: function(){
+      var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+      if (response_button == 1){
+          return true;
+      } else {
+          return false; 
+      }
+  }     
+};
+
+
+
+
+var timeline = [pre_if, if_node];
+jsPsych.run(timeline)
      
 </script>
 

@@ -271,3 +271,53 @@
 2023-03-11 15:26:30,752 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 38
 2023-03-11 15:28:30,776 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
 2023-03-11 15:30:30,791 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:32:30,815 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:34:30,832 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:36:30,851 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:38:30,875 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:40:30,899 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:42:30,925 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:44:30,955 [INFO] - publix_access - POST /publix/1/heartbeat?srid=38
+2023-03-11 15:44:45,852 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885402 (admin)
+2023-03-11 15:45:19,519 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-11 15:45:19,544 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 15:45:19,559 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885403 (admin)
+2023-03-11 15:45:31,443 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=70&newPosition=19 (admin)
+2023-03-11 15:45:31,530 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885404 (admin)
+2023-03-11 15:45:31,530 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 15:45:32,927 [INFO] - gui_access - GET /jatos/1/70/run (admin)
+2023-03-11 15:45:32,937 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 15:45:32,938 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 15:45:32,939 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 15:45:32,955 [INFO] - publix_access - GET /publix/1/70/start?srid=39
+2023-03-11 15:45:32,956 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 70, studyResultId 39, logged-in username admin, message 'null'
+2023-03-11 15:45:33,419 [INFO] - publix_access - GET /publix/1/70/initData?srid=39
+2023-03-11 15:45:33,420 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 70, studyResultId 39
+2023-03-11 15:45:33,475 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 39
+2023-03-11 15:45:33,511 [INFO] - publix_access - POST /publix/1/heartbeat?srid=39
+2023-03-11 15:47:33,529 [INFO] - publix_access - POST /publix/1/heartbeat?srid=39
+2023-03-11 15:49:33,546 [INFO] - publix_access - POST /publix/1/heartbeat?srid=39
+2023-03-11 15:51:33,574 [INFO] - publix_access - POST /publix/1/heartbeat?srid=39
+2023-03-11 15:52:20,866 [INFO] - publix_access - GET /publix/1/70/start?srid=39
+2023-03-11 15:52:20,866 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 70, studyResultId 39, logged-in username admin, message 'null'
+2023-03-11 15:52:21,231 [INFO] - publix_access - GET /publix/1/70/initData?srid=39
+2023-03-11 15:52:21,232 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 70, studyResultId 39
+2023-03-11 15:52:21,279 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 39
+2023-03-11 15:52:21,292 [INFO] - publix_access - POST /publix/1/heartbeat?srid=39
+2023-03-11 15:52:54,619 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-11 15:52:54,638 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 15:52:54,648 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885405 (admin)
+2023-03-11 15:53:04,538 [INFO] - gui_access - POST /jatos/1/componentOrder?componentId=71&newPosition=20 (admin)
+2023-03-11 15:53:04,627 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678545885406 (admin)
+2023-03-11 15:53:04,628 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-11 15:53:05,798 [INFO] - gui_access - GET /jatos/1/71/run (admin)
+2023-03-11 15:53:05,807 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-11 15:53:05,807 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-11 15:53:05,809 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-11 15:53:05,823 [INFO] - publix_access - GET /publix/1/71/start?srid=40
+2023-03-11 15:53:05,824 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 71, studyResultId 40, logged-in username admin, message 'null'
+2023-03-11 15:53:06,310 [INFO] - publix_access - GET /publix/1/71/initData?srid=40
+2023-03-11 15:53:06,311 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 71, studyResultId 40
+2023-03-11 15:53:06,340 [INFO] - publix_access - POST /publix/1/heartbeat?srid=40
+2023-03-11 15:53:06,350 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 40
+2023-03-11 15:55:06,370 [INFO] - publix_access - POST /publix/1/heartbeat?srid=40
