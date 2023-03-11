@@ -28,3 +28,13 @@
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678550323835}
 {"msg":"Finish abandoned study","workerId":1,"timestamp":1678550328679}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678550328681}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1678552379936}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1678552390471}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1678552398399}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1678552416041}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678552416044}
+{"msg":"Stored component result data","componentUuid":"cad39651-5ae9-43d8-b43d-1f716024988a","workerId":1,"dataHash":"672c185fd2ad648b5fa874c34f1b84abeea636a7dba2cb6d0c8e32ddb35371a4","timestamp":1678552447553}
+{"msg":"Finished study run","workerId":1,"timestamp":1678552447615}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678552476408}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1678552822780}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678552822782}

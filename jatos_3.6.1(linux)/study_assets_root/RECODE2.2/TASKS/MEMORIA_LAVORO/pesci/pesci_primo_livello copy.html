@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PESCI CHE SI ILLUMINANO LIV.2 </title>
-  
-  
-    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
-    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
-    <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
-    <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
-    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
-  
-    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <script src="jatos.js"></script>
-  
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-  
 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PESCI CHE SI ILLUMINANO LIV.1 </title>
+
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 </head>
 <body></body>
@@ -33,9 +32,9 @@
     var jsPsych = initJsPsych({
         use_webaudio: false,
         on_finish: function() {
-            jsPsych.data.displayData();
+            /*jsPsych.data.displayData();*/
       
-            /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                 if(correct_trials > 0){
                     var feed = 1;
                 } else {
@@ -44,10 +43,9 @@
             jatos.studySessionData = feed;
             var memoria_lavoro = Number(sessionStorage.getItem('memoria_lavoro'))+feed;
             sessionStorage.setItem('memoria_lavoro', memoria_lavoro);
-            var Data = {feed: feed, type: 'MEMORIA_LAVORO_pesci_level2', cresp: correct_trials};
+            var Data = {feed: feed, type: 'MEMORIA_LAVORO_pesci_level1', cresp: correct_trials};
             jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
-        }
-        
+        } 
     });
 
 function getRandomInt(min, max) {
@@ -92,7 +90,6 @@ var one = [];
 var two = [];
 var three = [];
 var four = [];
-var fifth = [];
 
 positions = generatePositionsArray(800, 400, 150, 10);
 shuffle(positions);
@@ -100,21 +97,26 @@ var counter = 0;
 var correct = 0;
 
     const images = [ // All the images used in this demo
-        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_1.png',
-        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_2.png',
-        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_3.png'
+        'TASKS/MEMORIA_LAVORO/pesci/img/0.jpg',
+        'TASKS/MEMORIA_LAVORO/pesci/img/1.jpg',
+        'TASKS/MEMORIA_LAVORO/pesci/img/2.jpg'
     ];
 
+    
 
     var instruction = {
       type: jsPsychHtmlButtonResponse,
       stimulus:
       "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
-      "<p style='font-size:30px;'>Osservi attentamente le mele. Vedrà che si illumineranno, una alla volta, secondo un ordine preciso.</p>"+
-      "<p style='font-size:30px;'>Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima alla prima.</p>"+
+      "<p style='font-size:30px;'>Osservi attentamente i pesci. Vedrà che si illumineranno, uno alla volta, secondo un ordine preciso.</p>"+
+      "<p style='font-size:30px;'>Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla.</p>"+
       "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
-      choices: ['Prema qui per continuare'],
-
+      choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+      on_finish: function(data){
+        if(data.button_pressed == 1){
+          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+          location.reload();}
+      }
      };
 
 var clickCoord = [];
@@ -166,15 +168,6 @@ var feed = [];
                         origin_center: true, // Change the coordinate origin to the center of the window
                         startX: jsPsych.timelineVariable('xcoord4'), // location of the circle's center in the canvas
                         startY: jsPsych.timelineVariable('ycoord4')
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('sixthImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord5'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord5')
                     }
                 ],
                 trial_duration: 3500,
@@ -186,12 +179,11 @@ var feed = [];
             },
         ],
         timeline_variables: [
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[2], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[2], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[2], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[2], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[2], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
+            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
+            {firstImage: images[0], secondImage: images[2], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
+            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[2], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
+            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[2], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
+            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[2], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
 
         ],
         randomize_order: false
@@ -214,20 +206,17 @@ var feed = [];
           var img2 = new Image();
           var img3 = new Image();
           var img4 = new Image();
-          var img5 = new Image();
           img.onload = function() {ctx.drawImage(img, 0, 0);};
-          img1.onload = function() {ctx.drawImage(img1, (positions[5]["x"]), (positions[5]["y"]));};
-          img2.onload = function() {ctx.drawImage(img2, (positions[4]["x"]), (positions[4]["y"]));};
+          img1.onload = function() {ctx.drawImage(img1, (positions[1]["x"]), (positions[1]["y"]));};
+          img2.onload = function() {ctx.drawImage(img2, (positions[2]["x"]), (positions[2]["y"]));};
           img3.onload = function() {ctx.drawImage(img3, (positions[3]["x"]), (positions[3]["y"]));};
-          img4.onload = function() {ctx.drawImage(img4, (positions[2]["x"]), (positions[2]["y"]));};
-          img5.onload = function() {ctx.drawImage(img5, (positions[1]["x"]), (positions[1]["y"]));};
+          img4.onload = function() {ctx.drawImage(img4, (positions[4]["x"]), (positions[4]["y"]));};
 
           img.src = images[0];
           img1.src = images[1];
           img2.src = images[1];
           img3.src = images[1];
           img4.src = images[1];
-          img5.src = images[1];
 
 
           c.onclick = function showOnClick() {
@@ -249,31 +238,27 @@ var feed = [];
               ctx.fillText(String(counter), clickCoord[0]-10, clickCoord[1]+10, 100);
             };
 
-            if (Math.abs(x - (positions[5]["x"])-55) < 55 && Math.abs(y - (positions[5]["y"])-46) < 46) {
-                      counter++; if (counter==5){correct++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[4]["x"])-55) < 55 && Math.abs(y - (positions[4]["y"])-46) < 46) {
-                      counter++; if (counter==4){correct++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[3]["x"])-55) < 55 && Math.abs(y - (positions[3]["y"])-46) < 46) {
-                      counter++; if (counter==3){correct++};
+            if (Math.abs(x - (positions[1]["x"])-55) < 55 && Math.abs(y - (positions[1]["y"])-46) < 46) {
+                      counter++; if (counter==1){correct++};
                       DrawDot(clickCoord, counter);
                     };
             if (Math.abs(x - (positions[2]["x"])-55) < 55 && Math.abs(y - (positions[2]["y"])-46) < 46) {
                       counter++; if (counter==2){correct++};
                       DrawDot(clickCoord, counter);
                     };
-          if (Math.abs(x - (positions[1]["x"])-55) < 55 && Math.abs(y - (positions[1]["y"])-46) < 46) {
-                    counter++; if (counter==1){correct++};
-                    DrawDot(clickCoord, counter);
-                  };
+            if (Math.abs(x - (positions[3]["x"])-55) < 55 && Math.abs(y - (positions[3]["y"])-46) < 46) {
+                      counter++; if (counter==3){correct++};
+                      DrawDot(clickCoord, counter);
+                    };
+            if (Math.abs(x - (positions[4]["x"])-55) < 55 && Math.abs(y - (positions[4]["y"])-46) < 46) {
+                      counter++; if (counter==4){correct++};
+                      DrawDot(clickCoord, counter);
+                    };
             };
         },
         canvas_size: [563, 1000],
         choices: ['Prema per salvare la risposta'],
-        prompt: ["<p>Prema sulle mele, dall'ultima che ha visto fino alla prima"],
+        prompt: ["<p> Prema sui pesci secondo l'ordine di comparsa"],
         //prompt: ["<p> Prema il punto dello schermo dove e' apparso l'aereo di colore <strong>" + colore_aereo[getRandomInt(0,5)]],
        };
 

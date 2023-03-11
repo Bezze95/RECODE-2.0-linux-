@@ -102,36 +102,31 @@ var correct = 0;
         'TASKS/MEMORIA_LAVORO/pesci/img/2.jpg'
     ];
 
-    function sendEmail(subj,text) {
-    Email.send({
-         SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
-          To : 'conteabba@gmail.com',
-          From : "conteabba@gmail.com",
-          Subject : subj,
-          Body : text
-      })
-    }
+    
 
-    var instruction = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus:
-      "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
-      "<p style='font-size:30px;'>Osservi attentamente i pesci. Vedrà che si illumineranno, uno alla volta, secondo un ordine preciso.</p>"+
-      "<p style='font-size:30px;'>Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla.</p>"+
-      "<p style='font-size:30px;'>Prema un tasto per iniziare.</p>",
-      choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
-      on_finish: function(data){
-        if(data.button_pressed == 1){
-          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
-          location.reload();}
-      }
-     };
-
+    
 var clickCoord = [];
 var feed = [];
 
-    const trial = {
-        timeline: [
+var pre_if = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Osservi attentamente i pesci. <br> 
+        Vedrà che si illumineranno, uno alla volta, secondo un ordine preciso.<br> <br> 
+        Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla. </p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+    choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+    on_finish: function(data){
+        if(data.response == 1){
+            var risposta_prova = 1;
+        } else{
+            var risposta_prova = 0;
+        }
+    data.risposta_prova = risposta_prova
+    }
+};
+
+var prova_loop = {
+    timeline: [
             {
                 type: jsPsychPsychophysics,
                 stimuli: [
@@ -188,18 +183,11 @@ var feed = [];
         ],
         timeline_variables: [
             {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
-            {firstImage: images[0], secondImage: images[2], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[2], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[2], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[1]["x"]-490), ycoord1: (positions[1]["y"]-270), thirdImage: images[1], xcoord2: (positions[2]["x"]-490), ycoord2: (positions[2]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[2], xcoord4: (positions[4]["x"]-490), ycoord4: (positions[4]["y"]-270)},
-
         ],
         randomize_order: false
-    }
+    };
 
-
-
-    var response = {
+    var prova_loop_response = {
         type: jsPsychCanvasButtonResponse,
         stimulus: function(c) {
           counter = 0;
@@ -267,13 +255,15 @@ var feed = [];
         canvas_size: [563, 1000],
         choices: ['Prema per salvare la risposta'],
         prompt: ["<p> Prema sui pesci secondo l'ordine di comparsa"],
-        //prompt: ["<p> Prema il punto dello schermo dove e' apparso l'aereo di colore <strong>" + colore_aereo[getRandomInt(0,5)]],
-       };
+        <!---: problema di attribuzione della risposta corretta o sbagliata -->
+    };
 
+    var feedback = {
 
-       var timeline = [instruction, trial, response];
+    };
 
-       jsPsych.run(timeline)
+    
+jsPsych.run(timeline)
 </script>
 
 </html>
