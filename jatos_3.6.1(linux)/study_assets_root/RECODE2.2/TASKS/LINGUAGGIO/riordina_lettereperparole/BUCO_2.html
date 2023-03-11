@@ -44,7 +44,7 @@
                     jatos.studySessionData = feed;
                     var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
                     sessionStorage.setItem('linguaggio', linguaggio);
-                    var Data = {feed: feed, type: 'LINGUAGGIO_riordina_level1', cresp: correct_trials};
+                    var Data = {feed: feed, type: 'LINGUAGGIO_riordina_level2', cresp: correct_trials};
                     jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
                 } 
             });

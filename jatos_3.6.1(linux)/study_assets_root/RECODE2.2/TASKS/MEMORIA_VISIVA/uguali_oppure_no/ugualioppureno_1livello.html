@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title> MEMORIA VISIVA Uguali oppure no LIV.1</title>
+    <meta charset="UTF-8">
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-image-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-fullscreen.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-resize.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-audio-keyboard-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-animation.js"></script>
+ 
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+    jatos.onload(function(){
+      var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+      var progressText="avanzamento" + progress + "%";
+      const updateProgress = progress;
+  }); 
+
+  var jsPsych = initJsPsych({
+      use_webaudio: false,
+      on_finish: function() {
+          /*jsPsych.data.displayData();*/
+
+          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+              if(correct_trials > 0){
+                  var feed = 1;
+              } else {
+                  var feed = 0;
+              }
+          jatos.studySessionData = feed;
+          var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+          sessionStorage.setItem('memoria_visiva', memoria_visiva);
+          var Data = {feed: feed, type: 'MEMORIA_VISIVA_ugualioppureno_level1', cresp: correct_trials};
+          jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+      } 
+  });
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+  shuffle(arr);
+
+
+ image = ['./TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[0]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[1]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[2]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[3]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[4]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[5]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[6]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[7]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[8]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[9]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[10]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[11]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[12]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[13]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[14]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[15]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[16]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[17]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[18]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[19]+'.png',
+ './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/'+arr[20]+'.png',];
+
+var targetimage = image;
+var test = image;
+     
+
+
+      var instruction = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus:
+        "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
+        "<p style='font-size:30px;'>Sullo schermo comparirà un’immagine che lei dovrà guardare attentamente e memorizzare. </p>"+
+        "<p style='font-size:30px;'>Successivamente le verranno mostrate 5 alternative </p>"+
+        "<p style='font-size:30px;'>fra queste, cliccando i tasti 1, 2, 3, 4 o 5 della tastiera, dovrà indicare quale corrisponde a quella vista precedentemente.</p>",
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+        
+       };
+
+
+       /*var targetImage = {
+           type: 'image-keyboard-response',
+           stimulus: image,
+           choices: jsPsych.NO_KEYS,
+           prompt: '<p style="font-size:50px;">Osservi attentamente l’immagine.</p>',
+           trial_duration: 8000,
+           stimulus_height: 200,
+           stimulus_width: 220,
+       };
+*/
+//var target = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
+var design = [{targetimage: targetimage[0], testimage1: test[0], testimage2: test[4], testimage3: test[3], testimage4: test[2], testimage5: test[1], cresponse: '1'},
+{targetimage: targetimage[2], testimage1: test[2], testimage2: test[1], testimage3: test[3], testimage4: test[4], testimage5: test[0], cresponse: '1'},
+{targetimage: targetimage[3], testimage1: test[3], testimage2: test[0], testimage3: test[4], testimage4: test[1], testimage5: test[2], cresponse: '1'},
+{targetimage: targetimage[4], testimage1: test[4], testimage2: test[1], testimage3: test[0], testimage4: test[3], testimage5: test[2], cresponse: '1'},
+{targetimage: targetimage[5], testimage1: test[5], testimage2: test[1], testimage3: test[2], testimage4: test[0], testimage5: test[4], cresponse: '1'},
+
+]
+
+    var trial = {
+        timeline: [
+            {
+                type: jsPsychPsychophysics,
+                background_color: '#ffffff',
+                stimuli: [
+
+                  {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('targetimage'),
+                    show_start_time: 0, // ms after the start of the trial
+                    startX: 'center',
+                    startY: 'center',
+                    scale: 0.6, // ms after the start of the trial
+                    origin_center: true,
+                    trial_duration: 10000,
+
+                  },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage1'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: -600,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage2'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: -300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage3'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: 'center',
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage4'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: 300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+                    },
+                    {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('testimage5'),
+                    show_start_time: 10005, // ms after the start of the trial
+                    startX: 600,
+                    startY: 'center',
+                    scale: 0.6, // ms after the start of the trial
+                    origin_center: true,
+                  },
+
+                    {
+                        obj_type: 'text',
+                        startX: -600,
+                        startY: 180,
+                        font: "40px",
+                        content: "1",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true                    },
+                    {
+                        obj_type: 'text',
+                        startX: -300,
+                        startY: 180,
+                        font: "40px",
+                        content: "2",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 180,
+                        content: "3",
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 300,
+                        startY: 180,
+                        content: "4",
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 600,
+                        startY: 180,
+                        content: '5',
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: -200,
+                        content: "Quale tra queste immagini ha visto precedentemente?",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 230,
+                        font: "40px Arial",
+                        content: "Scelga un'immagine premendo il numero corrispondente sulla tastiera",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    }
+                ],
+                canvas_height: 500,
+                response_start_time: 10005,
+                response_ends_trial: true,
+                choices: ['1', '2', '3', '4', '5'],
+
+                on_start: function(data){
+                  arr = [1, 2, 3, 4, 5];
+                  shuffle(arr);
+                  jsPsych.getCurrentTrial().stimuli[arr[0]].file = jsPsych.timelineVariable('testimage1');
+                  jsPsych.getCurrentTrial().stimuli[arr[1]].file = jsPsych.timelineVariable('testimage2');
+                  jsPsych.getCurrentTrial().stimuli[arr[2]].file = jsPsych.timelineVariable('testimage3');
+                  jsPsych.getCurrentTrial().stimuli[arr[3]].file = jsPsych.timelineVariable('testimage4');
+                  jsPsych.getCurrentTrial().stimuli[arr[4]].file = jsPsych.timelineVariable('testimage5');
+                  jsPsych.getCurrentTrial().data.cresponse = arr[0];
+                },
+                /*on_finish: function(data){
+                  data.correct = Number(data.key_press) == data.cresponse;
+                  var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                  if(correct_trials > 0){
+                    var feed = 1;
+                  } else {
+                    var feed = 0;
+                  }
+                  jatos.studySessionData = feed;
+                  var memoria = Number(sessionStorage.getItem('memoria_primo_livello'))+feed;
+                  sessionStorage.setItem('memoria_primo_livello', memoria);
+                  var Data = {feed: feed, type: 'Memory1', cresp: correct_trials};
+                  //jatos.endStudy(data);
+                },*/
+                data: {
+                  test_part: 'trial',
+                  cresponse: jsPsych.timelineVariable('cresponse'),
+                }
+            },
+        ],
+        timeline_variables: design,
+        repetitions: 1,
+        randomize_order: true
+    }
+
+
+   var timeline = [instruction, trial];
+
+   jsPsych.run(timeline)
+
+</script>
+
+</html>

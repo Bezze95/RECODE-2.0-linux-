@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
-  <script src="jsPsych/plugins/jspsych-canvas-button-response.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
-  <script src="/assets/javascripts/jatos.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STROOP LIV.3 </title>
+
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
   <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 
@@ -21,10 +29,33 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
 }
 
+jatos.onload(function(){
+  var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+  var progressText="avanzamento" + progress + "%";
+  const updateProgress = progress;
+}); 
 
+var jsPsych = initJsPsych({
+  use_webaudio: false,
+  on_finish: function() {
+      /*jsPsych.data.displayData();*/
+
+      var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+          if(correct_trials > 0){
+              var feed = 1;
+          } else {
+              var feed = 0;
+          }
+      jatos.studySessionData = feed;
+      var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
+      sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
+      var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_stroop_level3', cresp: correct_trials};
+      jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+  } 
+});
 
     var instruction = {
-      type: "html-button-response",
+      type: jsPsychHtmlButtonResponse,
       stimulus:
       "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
       "<p style='font-size:30px;'>Sullo schermo apparirà il nome di un colore che può essere scritto con diversi colori:</p>"+
@@ -53,17 +84,17 @@ function getRandomInt(min, max) {
         { stimulus: "<p style='font-size:150px; color:blue;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>giallo   blu   rosso</p>", correctkey: 1},
         { stimulus: "<p style='font-size:150px; color:yellow;'>&#9632</p>", choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   blu</p>", correctkey: 0},
 
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[0]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   blu   rosso</p>", correctkey: 2},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[1]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>verde   blu   rosso</p>", correctkey: 0},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[2]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   giallo   rosso</p>", correctkey: 2},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[4]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices:"<p style='font-size:30px; transform-origin: center; color:black;'>giallo   blu   rosso</p>", correctkey: 0},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
-        { stimulus: '<p> <img src="funzioni_esecutive/stroop/img/'+images[5]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   nero</p>", correctkey: 2},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[0]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   blu   rosso</p>", correctkey: 2},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[1]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center;  color:black;'>verde   blu   rosso</p>", correctkey: 0},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[2]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>arancione   giallo   rosso</p>", correctkey: 2},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[4]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices:"<p style='font-size:30px; transform-origin: center; color:black;'>giallo   blu   rosso</p>", correctkey: 0},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[3]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>verde   blu   nero</p>", correctkey: 1},
+        { stimulus: '<p> <img src="./TASKS/FUNZIONI_ESECUTIVE/stroop/stroop/img/'+images[5]+'.png" height="200pt"></p>', choice:["1", "2", "3"], choices: "<p style='font-size:30px; transform-origin: center; color:black;'>giallo   verde   nero</p>", correctkey: 2},
       ];
 
      var trial = {
-         type: 'html-keyboard-response',
+         type: jsPsychHtmlKeyboardResponse,
          stimulus: jsPsych.timelineVariable('stimulus'),
          choices: jsPsych.timelineVariable('choice'),
          prompt: jsPsych.timelineVariable('choices'),
@@ -85,22 +116,10 @@ function getRandomInt(min, max) {
        randomize_order: true
      }
 
-    jsPsych.init({
-        timeline: [instruction, test_procedure],
-        on_finish: function(){
-          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-          if(correct_trials > 14){
-            var feed = 1;
-          } else {
-            var feed = 0;
-          }
-          jatos.studySessionData = feed;
-          var esecutive = Number(sessionStorage.getItem('esecutive'))+feed;
-          sessionStorage.setItem('esecutive', esecutive);
-          var Data = {feed: feed, type: 'stroop', cresp: correct_trials};
-			    jatos.startComponentByPos(4,Data);
-        }
-    });
+     var timeline = [instruction, test_procedure];
+
+     jsPsych.run(timeline)
+     
 </script>
 
 </html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIENTAMENTO Orologio LIV.2</title>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+</head>
+<body>
+    <!-- LIVELLO 2: si alternano in modo randomizzato, come nell’esercizio precedente, due esercizi: 
+
+DA ANALOGICO: Similmente all’esercizio già presente sul vecchio RECODE, si presenta un orologio analogico che indica ore e minuti  
+e il partecipante deve scegliere a scelta multipla l’orario corretto. 
+
+ISTRUZIONI: “Adesso vedrà un orologio: dovrà leggere l’ora indicata, facendo attenzione alla posizione delle lancette delle ore e dei minuti. 
+
+“Che ore e minuti indica l’orologio?”
+
+L’orologio centrale, abbastanza grande, con lancette di diversa misura. 
+
+Sotto: “Scelga l’orario corretto cliccando con il mouse su una di queste alternative:”
+
+Sotto: gli slot con gli orari possibili. 
+
+DA DIGITALE: si sviluppa al contrario rispetto all’esercizio precedente: ogni trial presenta un orario centrale scritto in cifre 
+(per intenderci, nella modalità digitale). Il partecipante dovrà leggere l’orario e scegliere quale dei 3 orologi analogici, 
+cioè le 3 possibili risposte, rispecchia l’orario indicato.
+ISTRUZIONI:  “Adesso vedrà al centro dello schermo un orario. Dovrà leggerlo e decidere quale tra gli orologi indica lo stesso orario.” 
+
+Schermata effettiva: sopra “Legga l’ora e scelga in quale tra gli orologi sottostanti è indicato lo stesso orario.”
+
+Al centro l’ora scritta come “2:15”
+
+Sotto “Quale tra questi orologi indica l’orario giusto? Lo selezioni cliccando con il mouse” 
+
+Al di sotto i tre orologi. 
+
+In totale vengono proposti 5 trial tra i due esercizi, in modo randomico, e la modalità di scoring è 0 o 2.
+
+-->
+</body>
+
+<script>
+
+    /*function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+      
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      
+        return array;
+      }*/
+
+    jatos.onload(function(){
+        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+        var progressText="avanzamento" + progress + "%";
+        const updateProgress = progress;
+    }); 
+
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+        on_finish: function() {
+            /*jsPsych.data.displayData();*/
+
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 0){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+            jatos.studySessionData = feed;
+            var orientamento = Number(sessionStorage.getItem('orientamento'))+feed;
+            sessionStorage.setItem('orientamento', orientamento);
+            var Data = {feed: feed, type: 'ORIENTAMENTO_orologio_level2', cresp: correct_trials};
+            jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+        } 
+    });
+
+    var preload = {
+        type: jsPsychPreload,
+        auto_preload: true
+    };
+
+    var analogico_array = [
+        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog10_10.jpg', orario: '10:10'}, 
+        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog3_40.jpg', orario: '3:40'},
+        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog2_15.jpg', orario: '2:15'},
+
+       
+    ];
+    var analogico = jsPsych.randomization.shuffle(analogico_array)
+
+ /*MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:00, NOTTE: 24:00- 5:00*/
+
+    var digitale_array = [
+        {orario:'<h1 style="font-size:300%;"> 14:15 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog2_15.jpg', ora: '2:15'},
+        {orario:'<h1 style="font-size:300%;"> 15:40 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog3_40.jpg', ora: '3:40'},
+        {orario:'<h1 style="font-size:300%;"> 22:10 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog10_10.jpg', ora: '10:10'},
+        {orario:'<h1 style="font-size:300%;"> 17:50 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog5_50.jpg', ora: '5:50'},
+       
+    ];
+    var digitale = jsPsych.randomization.shuffle(digitale_array)
+
+
+    var instructions_analogico = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Adesso vedrà un orologio: dovrà leggere l’ora indicata, facendo attenzione alla posizione delle lancette delle ore e dei minuti.
+             <br> <br> Che ore e minuti indica l’orologio?</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var instructions_digitale = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong> Adesso vedrà al centro dello schermo un orario. <br><br> Dovrà leggerlo e decidere quale tra gli orologi indica lo stesso orario.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    }; 
+
+    var analogico_prova = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ analogico[0].orologio+'',
+        stimulus_height: 600,
+        choices: ['10:10', '2:15', '3:40', '7:20'],
+        prompt: "<p>Scelga l’orario corretto cliccando con il mouse su una di queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = '10:10';
+            } if (data.response == 1){
+                var risposta = '6:00';
+            } if (data.response == 2){
+                var risposta = '8:15';
+            } if (data.response == 3){
+                var risposta = '7:20';
+            }
+            if (risposta == analogico[0].orario){
+                var accuracy = 1;
+            } else {
+                var accuracy = 0;
+            }
+            data.accuracy = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var digitale_prova = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ digitale[0].orario+'',
+        choices: [
+            ''+digitale[0].orologio+'',
+            ''+digitale[1].orologio+'',
+            ''+digitale[2].orologio+'',
+            ''+digitale[3].orologio+''
+        ],
+        /*randomize_choices: true,*/ <!---: in questo modo trovo difficile attribuire la risposta corretta -->
+        prompt: "<p>Quale tra questi orologi indica l’orario giusto? Lo selezioni cliccando con il mouse</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var accuracy = 1
+            } else {
+                var accuracy = 0;
+            }
+            data.accuracy = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function(){
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
+            if (last_response_accuracy == true) {
+                var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+            } else {
+                var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+            }
+            return feedback;
+        },
+        choices: "NO_KEYS",
+        trial_duration: 1500
+    };
+
+    var x = ["analogico","digitale"]
+    var array = jsPsych.randomization.shuffle(x) /*<!---: sembra NON FUNZIONARE --> */
+    if (array[0] = "analogico"){
+        console.log("La condizione dell'esperimento sarà ANALOGICO")
+        var conditional_node = {
+            timeline: [analogico_prova, feedback],
+            conditional_function: function(instructions){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    } else {
+        console.log("La condizione dell'esperimento sarà DIGITALE");
+        var conditional_node = {
+            timeline: [digitale_prova, feedback],
+            conditional_function: function(instructions){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    };
+
+    
+
+    var instructions1_analogico = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Ora che ha completato la prova, iniziamo con il vero esercizio.<br> <br>Successivamente le verranno proposte delle immagini ambientate in una di queste stagioni.
+            <br>Dovrà rispondere selezionando con il mouse l'opzione che indica secondo lei la stagioni in cui è ambientata l'immagine proposta.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var instructions1_digitale = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Ora che ha completato la prova, iniziamo con il vero esercizio.<br> <br>Successivamente le verranno proposte delle immagini ambientate in una di queste stagioni.
+            <br>Dovrà rispondere selezionando con il mouse l'opzione che indica secondo lei la stagioni in cui è ambientata l'immagine proposta.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    if (array[0] = "analogico"){
+        var loop_prova = {
+            timeline: [analogico_prova, feedback, instructions1_analogico],
+            loop_function:function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    } else {
+        var loop_prova = {
+            timeline: [digitale_prova, feedback, instructions1_digitale],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }      
+        };
+    };
+    
+
+    var begin_trial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<h1>INIZIAMO!</h1>",
+        choices: "NO_KEYS",
+        trial_duration: 1500
+    };
+
+
+    var trial1_analogico = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ analogico[1].orologio+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == analogico[1].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+   
+    
+
+    var trial1_digitale = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ digitale[1].orario+'',
+        stimulus_height: 600,
+        choices: ['Primavera', 'Estate', 'Autunno', 'Inverno'],
+        prompt: "<p>Scelga la stagione tra le alternative cliccando sulla casella corrispondente</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'spring';
+            } if (data.response == 1){
+                var risposta = 'summer';
+            } if (data.response == 2){
+                var risposta = 'autumn';
+            } if (data.response == 3){
+                var risposta = 'winter';
+            };
+            if (risposta == digitale[1].orologio){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    
+
+    
+    if (array[0] = "analogico"){
+        var timeline = [instructions_analogico, conditional_node, instructions1_analogico, loop_prova, begin_trial, trial1_analogico]
+    } else {
+        var timeline = [instructions_digitale, conditional_node, instructions1_digitale, loop_prova, begin_trial, trial1_digitale]
+    }
+    
+    jsPsych.run(timeline)
+</script>
+</html>

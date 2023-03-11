@@ -8,6 +8,7 @@
     <script src="./jspsych7.2.3/dist/jspsych.js"></script>
    
     <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
     <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
     <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
     <script src="jatos.js"></script>
@@ -24,22 +25,27 @@
     }
   </style>
 
+  <!--
+    ISTRUZIONI
+Adesso le verranno presentate delle figure. Scriva il nome corrispondente ad ogni figura nello spazio apposito. Se non ricorda il nome lasci lo spazio vuoto e vada avanti.
+Nota: A capo ad ogni punto.
+I due tasti: “Prema qui per continuare” e “Prema qui per essere ricontattato”. Rendere visivamente più saliente il primo.
+NB nello spazio sottostante mettere caselline/spazi
+SVOLGIMENTO
+Immagine centrale, più grande rispetto a quella attuale.
+Subito sotto l’immagine: “come si chiama questo oggetto? 
+A capo con spaziatura in mezzo: scriva il nome qui (e inserire subito sotto la casella)
+Sotto: tasto -> Prema per andare avanti (uniformare grandezza con gli altri).
+15 immagini per livello, che siano proporzionate a 10 come punteggio.
+Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, colorate. 2° livello -> immagini a media frequenza d’uso. 3° livello -> bassa frequenza d’uso, degradate
+  -->
+
 </body>  
   
 <script type='text/javascript'>
 
-  /*function sendEmail(subj,text) {
-  Email.send({
-       SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
-        To : 'conteabba@gmail.com',
-        From : "conteabba@gmail.com",
-        Subject : subj,
-        Body : text
-    })
-  }*/
-
   jatos.onload(function(){
-    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0); <!---: dovrebbe essere componentCounter -->
+    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0); 
     var progressText="avanzamento" + progress + "%";
     const updateProgress = progress;
   }); 
@@ -47,52 +53,23 @@
   var jsPsych = initJsPsych({
     use_webaudio: false,
     on_finish: function() {
-      jsPsych.data.displayData();
+      /*jsPsych.data.displayData();*/
+
+       var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 9){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+            jatos.studySessionData = feed;
+            var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+            sessionStorage.setItem('linguaggio', linguaggio);
+            var Data = {feed: feed, type: 'LINGUAGGIO_denominazione_level1', cresp: correct_trials};
+            jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
     }
   });
 
-  // -----> parte di istruzioni di Giorgia  
-  /* on_finish: function() { 
-
-  var cresp = 0;
-  var tot = 10;
-
-  //var nochart = images.replace(/w, '')
-  //string = string.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[0].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[1].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[2].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[3].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[4].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[5].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[6].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[7].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[8].slice(0,-3))) {cresp += 1;}
-  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[9].slice(0,-3))) {cresp += 1;}
-  //  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[4].slice(0,-3)) {cresp += 1;}
-  if (cresp > 6) {feed = 1} else {feed = 0};
-  jatos.studySessionData = feed;
-  var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
-  sessionStorage.setItem('linguaggio', linguaggio);
-  var data = {feed: feed, type: 'denominazione_1', cresp: cresp};
-  jatos.startComponentByPos(4, data, JSON.stringify(data));
-  }*/ 
-
-
-  // -----> parte di istruzioni di Giulio vecchia 
-                                /*
-  var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
-    if(correct_trials > 10){
-      var feed = 1;
-    } else {
-      var feed = 0;
-    }
-    jatos.studySessionData = feed;
-    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
-    sessionStorage.setItem('attenzione', attenzione);
-    var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
-    jatos.startComponentByPos(4,Data); 
-  }*/
+ 
 
 
   var preload_images = {
@@ -113,116 +90,316 @@
 
  
  var imgs = [
-    'banana1', 'banana2','barba1', 'barba2','braccio1', 'braccio2',
-    'carota1', 'carota2','elefante1', 'elefante2','farfalla1', 'farfalla2',
-    'gatto1', 'gatto2','limone1', 'limone2','mela1','mela2','mucca1','mucca2',
-    'ossa1','ossa2', 'penna1','penna2','pesca1','pesca2', 'scarpe1','scarpe2',
-    'serpente1','serpente2', 'tartaruga1','tartaruga2', 'tigre1','tigre2'    
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/banana1.jpg', name: 'banana'}, /*sono state richieste 15 immagini per 10 punti ma è di miglior realizzazione 10 immagini per 10 punti */
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/banana2.jpg', name: 'banana'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/barba1.jpg', name: 'barba'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/barba2.jpg', name: 'barba'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/braccio1.jpg', name: 'braccio'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/braccio2.jpg', name: 'braccio'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/carota1.jpg', name: 'carota'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/carota2.jpg', name: 'carota'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/elefante1.jpg', name: 'elefante'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/elefante2.jpg', name: 'elefante'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/farfalla1.jpg', name: 'farfalla'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/farfalla2.jpg', name: 'farfalla'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/gatto1.jpg', name: 'gatto'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/gatto2.jpg', name: 'gatto'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/limone1.jpg', name: 'limone'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/limone2.jpg', name: 'limone'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/mela1.jpg', name: 'mela'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/mela2.jpg', name: 'mela'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/mucca1.jpg', name: 'mucca'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/mucca2.jpg', name: 'mucca'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/ossa1.jpg', name: 'ossa'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/ossa2.jpg', name: 'ossa'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/penna1.jpg', name: 'penna'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/penna2.jpg', name: 'penna'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/pesca1.jpg', name: 'pesca'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/pesca2.jpg', name: 'pesca'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/scarpe1.jpg', name: 'scarpe'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/scarpe2.jpg', name: 'scarpe'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/serpente1.jpg', name: 'serpente'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/serpente2.jpg', name: 'serpente'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/tartaruga1.jpg', name: 'tartaruga'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/tartaruga2.jpg', name: 'tartaruga'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/tigre1.jpg', name: 'tigre'},
+    {image:'./TASKS/LINGUAGGIO/denominazione/img/tigre2.jpg', name: 'tigre'},
+
   ];
 
   var images = jsPsych.randomization.shuffle(imgs);
 
-
-
-  var button = {
+  var instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI:</p>'+
-      '<p style="font-size: 24px; font-weight: bold;">Adesso le verranno presentate delle figure.</p>'+
-        '<p style="font-size: 24px; font-weight: bold;">Scriva il nome corrispondente ad ogni figura nello spazio apposito. </p>'+
-      '<p style="font-size: 24px; font-weight: bold;">Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>',
-      button_hmtl: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-      choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
-      /* on_finish: function(data){
-        if(data.button_pressed == 1){
-          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
-          location.reload();}
-      }*/
+    stimulus: `<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI: <br> <br>
+      Adesso le verranno presentate delle figure. <br> Scriva il nome corrispondente ad ogni figura nello spazio apposito. 
+     <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
+     button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+     choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+     on_finish: function(data){
+         if(data.response == 1){
+             var risposta_prova = 1;
+         } else{
+             var risposta_prova = 0;
+         }
+         data.risposta_prova = risposta_prova
+     }
   };
+
+  var prova = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p> <img src="'+images[10]+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
+    button_label: ['Prema per andare avanti'],
+	  html: '</p> <input name="response" type="text" /></p>',
+    required: true,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[10].name+''){
+          var accuracy = 1;
+      } else {
+          var accuracy = 0;
+      }
+      data.accuracy = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
+  };
+
+  var feedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: function(){
+        var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
+        if (last_response_accuracy == 1) {
+            var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+        } else {
+            var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+        }
+        return feedback;
+    },
+    choices: "NO_KEYS",
+    trial_duration: 1500
+};
+
+var conditional_node = {
+  timeline: [prova, feedback],
+  conditional_function: function(instructions){
+      var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+      if (response_button == 1){
+          return true;
+      } else {
+          return false;
+      }
+  }
+};
+
+var instructions1 = {
+  type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI: <br> <br>
+      Adesso le verranno presentate delle figure. <br> Scriva il nome corrispondente ad ogni figura nello spazio apposito. 
+     <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
+     button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+     choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+     on_finish: function(data){
+         if(data.response == 1){
+             var risposta = 1;
+         } else{
+             var risposta = 0;
+         }
+         data.risposta = risposta
+     }
+};
+
+var loop_prova = {
+  timeline: [prova, feedback, instructions1],
+  loop_function: function(){
+    var response_button = jsPsych.data.get().last(1).values()[0].risposta;
+    if (response_button == 1){
+      return true;
+    } else {
+      return false;
+    }
+  }   
+};
+
+var begin_trial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<h1>INIZIAMO!</h1>",
+  choices: "NO_KEYS",
+  trial_duration: 1500
+};
 
   var one = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[0]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
+    preamble: '<p> <img src="'+images[0]+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[0].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
   };
   
   var two = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[1]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[1]+'" height="600pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[1].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
   };
 
   var three = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[2]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[2]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[2].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
   };  
 
   var four = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[3]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[3]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	html: '</p> <input name="first" type="text" /></p>',
+	html: '</p> <input name="response" type="text" /></p>',
   required: false,
+  on_finish: function(data) {
+    if (data.response.response == ''+images[3].name+''){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.correct = accuracy;
+    console.log("RISPOSTA: "+data.response.response+"")
+  }
   };
 
   var five = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[4]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[4]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-    html: '</p> <input name="first" type="text" /></p>',
+    html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[4].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
   var six = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[5]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[5]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[5].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
   var seven = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[6]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[6]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[6].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
   var eight = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[7]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[7]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[7].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
   var nine = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[8]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[8]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[8].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
   var ten = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/img/'+images[9]+'.jpg" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
+    preamble: '<p> <img src="'+images[9]+'" height="200pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>',
     button_label: ['Prema per andare avanti'],
-	  html: '</p> <input name="first" type="text" /></p>',
+	  html: '</p> <input name="response" type="text" /></p>',
     required: false,
+    on_finish: function(data) {
+      if (data.response.response == ''+images[9].name+''){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+data.response.response+"")
+    }
 	};
 
 
 
 
-  var timeline = [images, button, one, two, three, four, five, six, seven, eight, nine, ten];
+  var timeline = [preload_images,instructions,conditional_node,instructions1, loop_prova, begin_trial, one, two, three, four, five, six, seven, eight, nine, ten];
 
   jsPsych.run(timeline)
 </script>

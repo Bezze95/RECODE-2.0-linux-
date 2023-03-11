@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RICERCA VISIVA LIV. 2</title> <!---: da completare perche istruzioni incomplete -->
+        <title>RICERCA VISIVA LIV. 2</title>
         <meta charset="UTF-8" />
 
         <script src="./jspsych7.2.3/dist/jspsych.js"></script>
@@ -21,6 +21,24 @@
                 background-color: white;
             }
         </style>
+
+    <!--ISTRUZIONI: 
+ “Adesso le verranno mostrate delle immagini.
+In ogni immagine ci sono molte figure geometriche.
+Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.”
+
+Modificare il tasto Continue, che è scritto in inglese, e ingrandirlo.
+Ingrandire i pallini della linea o mettere i rettangoli come quelli dei calcoli di interferenza nelle coppie di immagini, e scrivere “selezioni col mouse il numero corretto”
+SVOLGIMENTO
+Le variabili modificabili sono: il numero degli stimoli totali; la quantità di stimoli target; la somiglianza percettiva tra stimoli target e non target; la diversificazione tra i non target. 
+*Scegliere tipo e numero di stimolo per poi randomizzare in base al livello
+5 “facciate” (trials), il punteggio è 0 o 2.
+Mettiamo immagini con significato nel primo livello oppure manteniamo le figure geometriche?
+Attualmente, la modalità di risposta è a scelta multipla, per cui devono scegliere quanti target ci sono tra una serie di numeri. Lo manteniamo così o mettiamo risposta “libera”? Oppure lo teniamo solo nel primo livello?
+
+Immagine grande, sopra: Quanti “TARGET” ci sono? E di fianco l’immagine del target.
+Sotto: Scriva qui il numero corretto (e spazio apposito).
+-->
     </body>
     <script type="text/javascript">
         jatos.onload(function(){
@@ -34,21 +52,20 @@
             use_webaudio: false,
 
             on_finish: function() {
-                jsPsych.data.displayData(); //lascio così adesso perché in via di sviluppo 
+                /*jsPsych.data.displayData(); */
 
-            /*
-            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                 if(correct_trials > 0){
                     var feed = 1;
                 } else {
                     var feed = 0;
                 }
                 jatos.studySessionData = feed;
-                var ricerca = Number(sessionStorage.getItem('ricerca'))+feed;
-                sessionStorage.setItem('ricerca', ricerca);
-                var Data = {feed: feed, type: 'ricerca_ricercavisiva_level2', cresp: correct_trials};
-                jatos.startComponentByPos(4,Data);
-            } */
+                var ricerca_visiva = Number(sessionStorage.getItem('ricerca_visiva'))+feed;
+                sessionStorage.setItem('ricerca_visiva', ricerca_visiva);
+                var Data = {feed: feed, type: 'ATTENZIONE_ricercavisiva_level2', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                
             }
 
         });
@@ -56,20 +73,29 @@
 
         var img_preload = {
             type: jsPsychPreload,
-            images: ['./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine3.png'],
-        }; 
+            images: ['./TASKS/ATTENZIONE/ricerca_visiva/immagine1.png', './TASKS/ATTENZIONE/ricerca_visiva/immagine2.png', './TASKS/ATTENZIONE/ricerca_visiva/immagine2.png'],
+            show_detailed_errors: true
+        };
+        
+        var pre_if = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus:  `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+            choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta_prova = 1;
+                } else{
+                    var risposta_prova = 0;
+                }
+                data.risposta_prova = risposta_prova
+            }
+        };
 
-        var instructions = {
-            type:jsPsychHtmlButtonResponse,
-            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
-        }; //timeline.push(instructions);
-
-        var prova = {
+        var prova_loop = {
             type: jsPsychSurveyLikert,
-            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">',
+            preamble: '<img src="./TASKS/ATTENZIONE/ricerca_visiva/immagine1.png">',
             questions: [
                 {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
@@ -91,70 +117,41 @@
                 }
                 data.accuracy = accuracy;
             }
-            
-        }; 
+        };
 
         var feedback = {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: function(){
-                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
-                if (last_response_accuracy == true) {
-                    var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
-                } else {
-                    var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
-                }
-                return feedback;
-            },
             choices: "NO_KEYS",
-            trial_duration: 1500
-        }; 
-
-        var conditional_node = {
-            timeline: [prova, feedback],
-            conditional_function: function(){
-                var response_button = jsPsych.data.get().last(3).values()[0].response;
-                if (response_button == 0){
-                    return true;
+            trial_duration: 1500,
+            data:"",
+            stimulus: "",
+            on_start: function(prova_loop){
+                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+                if (last_response_accuracy == true) {
+                    var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                    console.log("Corretto")
                 } else {
-                    return false;
-                }
-            }
+                    var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                    console.log("Sbagliato")
+                };
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_loop.data = {stimulus: feedback};
+                prova_loop.stimulus = feedback_prova_stima;
+            },
+            
         };
 
-
-        var instructions1 = {
-            type:jsPsychHtmlButtonResponse,
-            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
-            on_start:function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
-                    timeline.push(instructions1);
-                } else { jsPsych.finishTrial(data)};
-            }
-        }; 
-
-        var loop_prova = {
-            timeline: [prova, feedback],
-            loop_function: function(data){
-                var response_button = jsPsych.data.get().last(1).values()[0].response;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            on_timeline_finish: function(){
-                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
-                    jsPsych.finishTrial(data);
-                }
-            }
+        var begin_trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare']
         };
 
         var trial = {
             type: jsPsychSurveyLikert,
-            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png">',
+            preamble: '<img src="./TASKS/ATTENZIONE/ricerca_visiva/immagine2.png">',
             questions: [
                 {prompt: "<p style='font-size:30px;'>Quante FRECCE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
@@ -191,15 +188,18 @@
             on_finish: function(data){
                 if (data.response.Q0 == 3) {
                     var accuracy_Q0 = true;
+                    console.log("FRECCE corretto")
                 } else {
                     var accuracy_Q0 = false;
                 };
                 if (data.response.Q1 == 0) {
+                    console.log("CUORI corretto")
                     var accuracy_Q1 = true;
                 } else {
                     var accuracy_Q1 = false;
                 };
                 if (data.response.Q2 == 3){
+                    console.log("STELLE corretto")
                     var accuracy_Q2 = true;
                 } else {
                     var accuracy_Q2 = false;
@@ -217,14 +217,78 @@
             
         };  
 
+        var trial_timeline = {
+            timeline: [trial]
+        }
+
+        var if_node = {
+            timeline: [begin_trial,trial_timeline],  
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+                if (response_button == 0){
+                    console.log("prosegui a esercizio");
+                    return true;
+                } else {
+                    console.log("inizia la prova");
+                    jsPsych.addNodeToEndOfTimeline(loop_prova)
+                    return false;
+                }
+            }
+        };
+
+        var begin_loop = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare la prova'],
+            on_start: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                console.log(response_button)
+                if (response_button == 0){
+                    console.log("salta loop");
+                    jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+                }
+            }
+        };
+
+        var end_loop_prova = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta = 1;
+                } else{
+                    var risposta = 0;
+                    console.log("Termine loop prova");
+                    jsPsych.addNodeToEndOfTimeline(trial_timeline);
+                }
+                data.risposta_loop = risposta
+            }
+        };
+
+        var loop_prova = {
+            timeline: [begin_loop, prova_loop, feedback, end_loop_prova],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    
+                    return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+                }
+            }   
+        };
+
+        
+
         
 
 
-   
-
-
-    var timeline = [img_preload, instructions, conditional_node, instructions1, loop_prova, trial];
-
+    var timeline = [img_preload, pre_if, if_node];
     jsPsych.run(timeline)
 
     </script>

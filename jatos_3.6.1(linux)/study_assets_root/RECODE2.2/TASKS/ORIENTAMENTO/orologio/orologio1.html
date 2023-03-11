@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIENTAMENTO Orologio LIV.1</title>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+</head>
+<body>
+    <!-- LIVELLO 1: si alternano in modo randomizzato, come nell’esercizio “stagioni”, due tipi di esercizi: 
+
+ATTIVITÀ  TIPICHE: ad ogni trial si presenta un’attività che tipicamente (e inequivocabilmente) si fa a certi orari piuttosto che altri 
+(ad es. la spesa si fa durante il giorno e non durante la notte). Si propongono quindi 4 orari, di cui uno solo compatibile con l’attività  e il partecipante deve cliccare sull’orario corretto. 
+
+ISTRUZIONI: Adesso leggerà un’attività che si fa più spesso in certi orari del giorno. Scelga qual è l’orario corretto secondo lei. 
+
+Schermata successiva: sopra “a che ora si svolge questa attività?”
+
+al centro l’azione ad es. FARE LA SPESA
+
+sotto: selezioni l’orario in cui svolgerebbe questa attività cliccando sopra con il mouse.  
+Sotto le quattro caselle con gli orari. 
+
+Elenco di possibili azioni ed orari. Aggiungetene altri o modificate pure: 
+“FARE LA SPESA (23:00; 4:30; 24:00; 9:15)- ANDARE A DORMIRE (8:15; 13:00; 3:45; 22:00)- FARE COLAZIONE (7:30, 16:40; 23:20; 12:00)- 
+PREPARARE IL PRANZO (12:00; 14:15; 17:30; 20;30)- PREPARARE LA CENA (18:30; 14:15; 9:00; 22:20) - ACCOMPAGNARE I BAMBINI A SCUOLA(8:00, 20:20; 15:00, 10:45)
+- PRENDERE I BAMBINI DA SCUOLA (13:30, 19:10, 23:25, 4:00)-  ANDARE AL CINEMA (12:00; 9:45; 17:00; 3:00) 
+
+MOMENTI DELLA GIORNATA: questo esercizio va randomizzato con il precedente. Si presenta, di volta in volta, un solo orario centrale  
+e il partecipante deve scegliere a quale momento della giornata appartiene tra i 4  (MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:30, NOTTE: 24:00- 3:00 ). 
+
+ISTRUZIONI: nella prima schermata: “Adesso vedrà un orario. Indichi a quale momento della giornata appartiene.”
+
+Schermata dell’esercizio: sopra “A che momento del giorno appartiene questo orario?”
+
+            Al centro una sveglia che segna solo ore e minuti. 
+
+Sotto: “Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:”
+
+sotto 4 caselle con scritto “mattina, pomeriggio, sera, notte”. 
+
+Scegliete liberamente orari, possibilmente evitando le fasce un po’ al limite (ad es. le 23 magari per una persona anziana che va a letto alle 19:00 può essere considerata notte più che sera). 
+
+
+In totale vengono proposti 5 trial tra i due esercizi, in modo randomico, e la modalità di scoring è 0 o 2. 
+-->
+</body>
+
+<script>
+
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+      
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      
+        return array;
+      }
+
+    jatos.onload(function(){
+        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+        var progressText="avanzamento" + progress + "%";
+        const updateProgress = progress;
+    }); 
+
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+        on_finish: function() {
+            /*jsPsych.data.displayData();*/
+
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 0){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+            jatos.studySessionData = feed;
+            var orientamento = Number(sessionStorage.getItem('orientamento'))+feed;
+            sessionStorage.setItem('orientamento', orientamento);
+            var Data = {feed: feed, type: 'ORIENTAMENTO_orologio_level1', cresp: correct_trials};
+            jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+        } 
+    });
+
+    var preload = {
+        type: jsPsychPreload,
+        auto_preload: true
+    };
+
+    var attività_array = [
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/cenare.jpg', orario: 'sera'}, 
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/cinema.jpg', orario: 'sera'},
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/colazione.jpg', orario: 'mattina'},
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/dormire.jpg', orario: 'notte'},
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/pranzare.jpg', orario: 'mattina'},
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/scuola_mattina.jpg', orario: 'mattina'},
+        {attività: './TASKS/ORIENTAMENTO/orologio/img/attività/parco.jpg', orario: 'pomeriggio'}
+    ];
+    var attività = jsPsych.randomization.shuffle(attività_array)
+
+ /*MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:00, NOTTE: 24:00- 5:00*/
+
+    var momenti_array = [
+        {orario:'<h1 style="font-size:300%;">7:30</h1>', giornata: 'mattina'},
+        {orario:'<h1 style="font-size:300%;">17:30</h1>', giornata: 'pomeriggio'},
+        {orario:'<h1 style="font-size:300%;">20:00</h1>', giornata: 'sera'},
+        {orario:'<h1 style="font-size:300%;">1:10</h1>', giornata: 'notte'},
+        {orario:'<h1 style="font-size:300%;">9:20</h1>', giornata: 'mattina'},
+        {orario:'<h1 style="font-size:300%;">15:00</h1>', giornata: 'pomeriggio'},
+        {orario:'<h1 style="font-size:300%;">22:40</h1>', giornata: 'sera'},
+        {orario:'<h1 style="font-size:300%;">2:50</h1>', giornata: 'notte'}
+    ];
+    var momenti = jsPsych.randomization.shuffle(momenti_array)
+
+    var instructions_attività = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Adesso leggerà un’attività che si fa più spesso in certi orari del giorno.<br> <br>Scelga qual è l’orario corretto secondo lei.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var instructions_momenti = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong> Adesso vedrà un orario. <br> <br> Indichi a quale momento della giornata appartiene.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    }; 
+
+   
+
+    var attività_prova = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[0].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[0].orario){
+                var accuracy = 1;
+            } else {
+                var accuracy = 0;
+            }
+            data.accuracy = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    /*MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:00, NOTTE: 24:00- 5:00*/
+
+    var momenti_prova = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[0].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[0].giornata){
+                var accuracy = 1;
+            } else {
+                var accuracy = 0;
+            }
+            data.accuracy = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function(){
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
+            if (last_response_accuracy == true) {
+                var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+            } else {
+                var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+            }
+            return feedback;
+        },
+        choices: "NO_KEYS",
+        trial_duration: 1500
+    };
+
+    var x = ["attività", "momenti"]
+    var array = jsPsych.randomization.shuffle(x)  <!---: sembra NON FUNZIONARE -->
+    if (array[0] = "attività") {
+        console.log("La condizione dell'esperimento sarà ATTIVITA'")
+        var conditional_node = {
+            timeline: [attività_prova, feedback],
+            conditional_function: function(instructions){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    } else {
+        console.log("La condizione dell'esperimento sarà MOMENTI");
+        var conditional_node = {
+            timeline: [momenti_prova, feedback],
+            conditional_function: function(instructions){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    };
+
+    
+
+    var instructions1_attività = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Ora che ha completato la prova, iniziamo con il vero esercizio.<br> <br>
+            Adesso leggerà un’attività che si fa più spesso in certi orari del giorno.<br> <br> Scelga qual è l’orario corretto secondo lei:</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var instructions1_momenti = {
+        type:jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:30px;'><strong>Adesso vedrà un orario. <br> <br> Indichi a quale momento della giornata appartiene.</p>`,
+        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    if (array[0] = "attività"){
+        var loop_prova = {
+            timeline: [attività_prova, feedback, instructions1_attività],
+            loop_function:function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    } else {
+        var loop_prova = {
+            timeline: [momenti_prova, feedback, instructions1_momenti],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }      
+        };
+    };
+    
+
+    var begin_trial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "<h1>INIZIAMO!</h1>",
+        choices: "NO_KEYS",
+        trial_duration: 1500
+    };
+
+
+    var trial1_attività = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[1].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[1].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var trial2_attività = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[2].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[2].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var trial3_attività = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[3].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[3].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var trial4_attività = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[4].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[4].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    var trial5_attività = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ attività[5].attività+'',
+        stimulus_height: 600,
+        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
+        prompt: "<p>A che ora si svolge questa attività?</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            }
+            if (risposta == attività[5].orario){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        }
+    };
+
+    
+
+    var trial1_momenti = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[1].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[1].giornata){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    var trial2_momenti = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[2].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[2].giornata){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    var trial3_momenti = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[3].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[3].giornata){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    var trial4_momenti = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[4].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[4].giornata){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    var trial5_momenti = {
+        type: jsPsychImageButtonResponse,
+        stimulus: ''+ momenti[5].orario+'',
+        stimulus_height: 600,
+        choices: ['MATTINA', 'POMERIGGIO', 'SERA', 'NOTTE'],
+        prompt: "<p>Selezioni il momento del giorno cliccando con il mouse su una tra queste alternative:</p>",
+        on_finish: function(data) {
+            if (data.response == 0){
+                var risposta = 'mattina';
+            } if (data.response == 1){
+                var risposta = 'pomeriggio';
+            } if (data.response == 2){
+                var risposta = 'sera';
+            } if (data.response == 3){
+                var risposta = 'notte';
+            };
+            if (risposta == momenti[5].giornata){
+                var accuracy = true;
+            } else {
+                var accuracy = false;
+            }
+            data.correct = accuracy;
+            console.log("RISPOSTA: "+risposta+"")
+        
+        }
+    };
+
+    
+
+    
+    if (array[0] = "attività"){
+        var timeline = [instructions_attività, conditional_node, instructions1_attività, loop_prova, begin_trial, trial1_attività, trial2_attività,trial3_attività,trial4_attività,trial5_attività]
+    } else {
+        var timeline = [instructions_momenti, conditional_node, instructions1_momenti, loop_prova, begin_trial, trial1_momenti, trial2_momenti, trial3_momenti, trial4_momenti, trial5_momenti]
+    }
+    
+    jsPsych.run(timeline)
+</script>
+</html>

@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
-  <script src="jsPsych/plugins/jspsych-psychophysics.js"></script>
-  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
-  <script src="/assets/javascripts/jatos.js"></script>
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GONOGO CARDS LIV.3 </title>
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
 </head>
 <body></body>
 <script>
+
+  jatos.onload(function(){
+    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+    var progressText="avanzamento" + progress + "%";
+    const updateProgress = progress;
+  }); 
+
+  var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function() {
+        /*jsPsych.data.displayData();*/
+
+        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            if(correct_trials > 0){
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
+        jatos.studySessionData = feed;
+        var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
+        sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
+        var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_gonogostars_level3', cresp: correct_trials};
+        jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+    } 
+  });
 
   var cresp = 0;
 
@@ -73,7 +103,7 @@
 
 
  var instruction = {
-   type: "html-button-response",
+   type: jsPsychHtmlButtonResponse,
    stimulus:
    "<p style='font-size:30px;'><strong>Istruzioni</strong></p>"+
    "<p style='font-size:30px;'>Sullo schermo compariranno diversi simboli</p>"+
@@ -92,7 +122,7 @@
     var trial = {
         timeline: [
             {
-                type: 'psychophysics',
+                type: jsPsychPsychophysics,
                 stimuli: [
                   {
                       obj_type: 'text',
@@ -137,7 +167,7 @@
                 }
             },
             {
-              type: 'html-keyboard-response',
+              type: jsPsychHtmlKeyboardResponse,
               stimulus: function(){
                 var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
                 if(last_trial_correct){
@@ -181,22 +211,9 @@
         repetitions: 1
     }
 
-    jsPsych.init({
-        timeline: [instruction, trial],
-        on_finish: function(){
-          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-          if(correct_trials > 15){
-            var feed = 1;
-          } else {
-            var feed = 0;
-          }
-          jatos.studySessionData = feed;
-          var esecutive = Number(sessionStorage.getItem('esecutive'))+feed;
-          sessionStorage.setItem('esecutive', esecutive);
-          var Data = {feed: feed, type: 'gonogostars', cresp: correct_trials};
-			    jatos.startComponentByPos(4,Data);
-        }
-    });
+    var timeline = [instruction, trial];
+
+jsPsych.run(timeline)
 
 </script>
 

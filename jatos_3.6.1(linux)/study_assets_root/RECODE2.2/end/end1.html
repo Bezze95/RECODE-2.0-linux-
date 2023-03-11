@@ -95,33 +95,41 @@
     
                     var score = 0;
                     var attenzione = Number(sessionStorage.getItem('attenzione'));
+                    var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'));
                     var linguaggio = Number(sessionStorage.getItem('linguaggio'));
-                    var memoria_verbale = Number(sessionStorage.getItem('memoria_verbale'));
+                    var memoria_lavoro = Number(sessionStorage.getItem('memoria_verbale'));
                     var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'));
+                    var orientamento = Number(sessionStorage.getItem('orientamento'));
                     
-                    score = (attenzione + linguaggio + memoria_verbale + memoria_visiva);
+                    score = (attenzione + funzioni_esecutive + linguaggio + memoria_lavoro + memoria_visiva + orientamento);
                     document.getElementById("total").innerHTML = ["Il punteggio totale ottenuto è: " + String(score.toFixed())];
                     document.getElementById("partial").innerHTML =
                         [
                             'Attenzione: ' + String(attenzione.toFixed()) + ' | ' +
-                            'linguaggio: ' + String(linguaggio.toFixed()) + ' | ' +
-                            'Memoria Verbale: ' + String(memoria_verbale.toFixed()) + ' | ' +
-                            'Memoria Visiva: ' + String(memoria_visiva.toFixed()) + ' | '
+                            'Funzioni Esecutive: ' + String(funzioni_esecutive.toFixed()) + ' | ' +
+                            'Linguaggio: ' + String(linguaggio.toFixed()) + ' | ' +
+                            'Memoria di Lavoro: ' + String(memoria_lavoro.toFixed()) + ' | ' +
+                            'Memoria Visiva: ' + String(memoria_visiva.toFixed()) + ' | ' +
+                            'Orientamento: ' + String(orientamento.toFixed()) + ' | '
                         ]
                        
                     function endFunction() {
                         var data = {
                             attenzione:attenzione,
+                            funzioni_esecutive: funzioni_esecutive,
                             linguaggio:linguaggio,
-                            memoria_verbale:memoria_verbale,
+                            memoria_lavoro:memoria_lavoro,
                             memoria_visiva:memoria_visiva,
+                            orientamento:orientamento,
                             gradimento:gradimento
                         };
     
                         jatos.batchSession.set("level_attenzione", attenzione)
+                        .then(() => jatos.batchSession.set("level_funzioni_esecutive", funzioni_esecutive))
                         .then(() => jatos.batchSession.set("level_linguaggio", linguaggio))
-                        .then(() => jatos.batchSession.set("level_memoria_verbale", memoria_verbale))
+                        .then(() => jatos.batchSession.set("level_memoria_lavoro", memoria_lavoro))
                         .then(() => jatos.batchSession.set("level_memoria_visiva", memoria_visiva))
+                        .then(() => jatos.batchSession.set("level_orientamento", orientamento))
                         
                         jatos.endStudy(data, true, JSON.stringify(data));
                     }

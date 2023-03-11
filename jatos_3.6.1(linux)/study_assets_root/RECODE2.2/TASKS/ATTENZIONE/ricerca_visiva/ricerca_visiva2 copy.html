@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RICERCA VISIVA LIV. 2</title> <!---: da completare perche istruzioni incomplete -->
+        <meta charset="UTF-8" />
+
+        <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-survey-likert.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+
+
+        <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+        </style>
+    </body>
+    <script type="text/javascript">
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        });    
+
+        /* to initialize jspsych */
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+
+            on_finish: function() {
+                /*jsPsych.data.displayData(); //lascio così adesso perché in via di sviluppo */
+
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 0){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+                jatos.studySessionData = feed;
+                var ricerca_visiva = Number(sessionStorage.getItem('ricerca_visiva'))+feed;
+                sessionStorage.setItem('ricerca_visiva', ricerca_visiva);
+                var Data = {feed: feed, type: 'ATTENZIONE_ricercavisiva_level2', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+            }
+
+        });
+
+
+        var img_preload = {
+            type: jsPsychPreload,
+            images: ['./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine3.png'],
+        }; 
+
+        var instructions = {
+            type:jsPsychHtmlButtonResponse,
+            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+            choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
+        }; //timeline.push(instructions);
+
+        var prova = {
+            type: jsPsychSurveyLikert,
+            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">',
+            questions: [
+                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>4</p>",
+                    "<p style='font-size:30px;'>5</p>", 
+                    "<p style='font-size:30px;'>6</p>", // CORRETTA
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>8</p>"
+                ],
+                required: true
+                
+                }
+            ],
+            on_finish: function(data){
+                if (data.response.Q0 == 2) {
+                    var accuracy = true;
+                } else {
+                    var accuracy = false;
+                }
+                data.accuracy = accuracy;
+            }
+            
+        }; 
+
+        var feedback = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function(){
+                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
+                if (last_response_accuracy == true) {
+                    var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+                } else {
+                    var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+                }
+                return feedback;
+            },
+            choices: "NO_KEYS",
+            trial_duration: 1500
+        }; 
+
+        var conditional_node = {
+            timeline: [prova, feedback],
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(3).values()[0].response;
+                if (response_button == 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
+
+        var instructions1 = {
+            type:jsPsychHtmlButtonResponse,
+            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_start:function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==true){
+                    timeline.push(instructions1);
+                } else { jsPsych.finishTrial(data)};
+            }
+        }; 
+
+        var loop_prova = {
+            timeline: [prova, feedback],
+            loop_function: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            on_timeline_finish: function(){
+                if (confirm('La Prova è terminata! Clicchi qui per continuare con il vero esercizio.')==false){
+                    jsPsych.finishTrial(data);
+                }
+            }
+        };
+
+        var trial = {
+            type: jsPsychSurveyLikert,
+            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png">',
+            questions: [
+                {prompt: "<p style='font-size:30px;'>Quante FRECCE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>9</p>",
+                    "<p style='font-size:30px;'>2</p>", 
+                    "<p style='font-size:30px;'>11</p>", 
+                    "<p style='font-size:30px;'>22</p>", //CORRETTA
+                    "<p style='font-size:30px;'>5</p>"
+                ],
+                required: true
+                },
+                {prompt: "<p style='font-size:30px;'>Quanti CUORI ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>14</p>", //CORRETTA
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>16</p>", 
+                    "<p style='font-size:30px;'>4</p>", 
+                    "<p style='font-size:30px;'>19</p>"
+                ],
+                required: true
+                },
+                {prompt: "<p style='font-size:30px;'>Quante STELLE A CINQUE PUNTE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>6</p>",
+                    "<p style='font-size:30px;'>2</p>", 
+                    "<p style='font-size:30px;'>12</p>", 
+                    "<p style='font-size:30px;'>9</p>", //CORRETTA
+                    "<p style='font-size:30px;'>23</p>"
+                ],
+                required: true
+                },
+
+            ],
+            on_finish: function(data){
+                if (data.response.Q0 == 3) {
+                    var accuracy_Q0 = true;
+                } else {
+                    var accuracy_Q0 = false;
+                };
+                if (data.response.Q1 == 0) {
+                    var accuracy_Q1 = true;
+                } else {
+                    var accuracy_Q1 = false;
+                };
+                if (data.response.Q2 == 3){
+                    var accuracy_Q2 = true;
+                } else {
+                    var accuracy_Q2 = false;
+                };
+                data.accuracy_Q0 = accuracy_Q0;
+                data.accuracy_Q1 = accuracy_Q1;
+                data.accuracy_Q2 = accuracy_Q2;
+                if (data.accuracy_Q0, data.accuracy_Q1, data.accuracy_Q2 == true){ // -----> ci sarebbe da decidere quanti risposte corrette considerare il compito superato 
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };  
+
+        
+
+
+   
+
+
+    var timeline = [img_preload, instructions, conditional_node, instructions1, loop_prova, trial];
+
+    jsPsych.run(timeline)
+
+    </script>
+
+</html>

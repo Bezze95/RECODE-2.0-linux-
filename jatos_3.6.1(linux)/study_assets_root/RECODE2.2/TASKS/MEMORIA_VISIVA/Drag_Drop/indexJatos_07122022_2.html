@@ -20,9 +20,20 @@
     <script>
 
         var jsPsych = initJsPsych({
-        on_finish: function(){
-          jsPsych.data.displayData('csv');
-            }
+          on_finish: function(){
+            /*jsPsych.data.displayData('csv');*/
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                  if(correct_trials > 0){
+                      var feed = 1;
+                  } else {
+                      var feed = 0;
+                  }
+              jatos.studySessionData = feed;
+              var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+              sessionStorage.setItem('memoria_visiva', memoria_visiva);
+              var Data = {feed: feed, type: 'MEMORIA_VISIVA_drag_drop_level3', cresp: correct_trials};
+              jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+             }
         });
         
         var timeline = [];
