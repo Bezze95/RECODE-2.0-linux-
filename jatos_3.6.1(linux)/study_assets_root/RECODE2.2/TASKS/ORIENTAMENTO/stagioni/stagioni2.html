@@ -276,17 +276,24 @@
 
     var feedback = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: function(){
-            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
-            if (last_response_accuracy == true) {
-                var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
-            } else {
-                var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
-            }
-            return feedback;
-        },
         choices: "NO_KEYS",
-        trial_duration: 1500
+        trial_duration: 1500,
+        data:"",
+        stimulus: "",
+        on_start: function(prova_loop){
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+            if (last_response_accuracy == true) {
+                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                console.log("Corretto")
+            } else {
+                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                console.log("Sbagliato")
+            };
+            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+            prova_loop.data = {stimulus: feedback};
+            prova_loop.stimulus = feedback_prova_stima;
+        },
+        
     };
 
     var begin_trial = {
