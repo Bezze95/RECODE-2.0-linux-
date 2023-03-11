@@ -230,10 +230,10 @@
           stimulus: function(){
             var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
             if(last_trial_correct){
-              return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+              
               console.log("Corretto")
             } else {
-              return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+              
               console.log("Sbagliato")
             }
           },

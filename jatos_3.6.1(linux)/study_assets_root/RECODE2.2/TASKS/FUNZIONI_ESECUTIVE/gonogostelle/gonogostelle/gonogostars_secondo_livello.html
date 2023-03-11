@@ -85,19 +85,19 @@ LIVELLO 3: GoNoGo Cards: rispondere con un certo tasto solo con un seme preciso
  var nogo_10 = shuffle(nogo);
 
 var pre_if = {
-  ype: jsPsychHtmlButtonResponse,
-    stimulus:
+  type: jsPsychHtmlButtonResponse,
+  stimulus:
     `<p style="font-size: 24px; font-weight: bold;"> Sullo schermo compariranno delle stelle con un numero diverso di punte. <br> <br>
     Prema la freccia in basso sulla tastiera quando vede due stelle a sei punte.</p>`,
-    button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-    choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],    
-    on_finish: function(data){
-      if(data.response == 1){
-          var risposta_prova = 1;
-      } else{
-          var risposta_prova = 0;
-      }
-      data.risposta_prova = risposta_prova
+  button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+  choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],    
+  on_finish: function(data){
+    if(data.response == 1){
+      var risposta_prova = 1;
+    } else{
+      var risposta_prova = 0;
+    }
+    data.risposta_prova = risposta_prova
   }
 };
 
@@ -233,9 +233,9 @@ var trial = {
         stimulus: function(){
           var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
           if(last_trial_correct){
-            return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+            console.log("Corretto")
           } else {
-            return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+            console.log("Sbagliato")
           }
         },
         post_trial_gap: 1000,
