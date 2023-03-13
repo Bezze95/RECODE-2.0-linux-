@@ -642,3 +642,57 @@
 2023-03-13 11:03:14,548 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
 2023-03-13 11:05:14,565 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
 2023-03-13 11:07:14,581 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:07:52,588 [INFO] - publix_access - GET /publix/1/75/start?srid=50
+2023-03-13 11:07:52,588 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 75, studyResultId 50, logged-in username admin, message 'null'
+2023-03-13 11:07:52,774 [INFO] - publix_access - GET /publix/1/75/initData?srid=50
+2023-03-13 11:07:52,774 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 75, studyResultId 50
+2023-03-13 11:07:52,784 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:07:52,798 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 50
+2023-03-13 11:07:54,363 [INFO] - publix_access - GET /publix/1/75/start?srid=50
+2023-03-13 11:07:54,363 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 75, studyResultId 50, logged-in username admin, message 'null'
+2023-03-13 11:07:54,531 [INFO] - publix_access - GET /publix/1/75/initData?srid=50
+2023-03-13 11:07:54,531 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 75, studyResultId 50
+2023-03-13 11:07:54,541 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:07:54,553 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 50
+2023-03-13 11:08:49,708 [INFO] - publix_access - GET /publix/1/75/start?srid=50
+2023-03-13 11:08:49,708 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 75, studyResultId 50, logged-in username admin, message 'null'
+2023-03-13 11:08:49,927 [INFO] - publix_access - GET /publix/1/75/initData?srid=50
+2023-03-13 11:08:49,928 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 75, studyResultId 50
+2023-03-13 11:08:49,949 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:08:49,953 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 50
+2023-03-13 11:10:49,980 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:12:50,003 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:14:50,020 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:16:50,036 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:18:50,051 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:20:50,067 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:22:50,083 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:24:50,099 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:26:50,115 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:28:50,131 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:30:50,147 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:32:50,163 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:34:50,179 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:36:50,196 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:38:50,212 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:40:50,227 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:42:50,243 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:44:50,259 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:46:50,275 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:48:50,291 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:50:50,307 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:52:50,323 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:54:50,339 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:56:50,357 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 11:58:50,371 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 12:00:50,388 [INFO] - publix_access - POST /publix/1/heartbeat?srid=50
+2023-03-13 12:02:21,420 [INFO] - c.g.a.AuthenticationAction - User admin has been logged out due to inactivity.
+2023-03-13 12:02:23,249 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /jatos/1
+2023-03-13 12:02:23,255 [INFO] - gui_access - GET /jatos/login (null)
+2023-03-13 12:02:24,136 [INFO] - gui_access - POST /jatos/login (null)
+2023-03-13 12:02:24,144 [INFO] - gui_access - GET /jatos (admin)
+2023-03-13 12:02:24,288 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-03-13 12:02:24,306 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-13 12:02:25,818 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-13 12:02:25,962 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-13 12:02:26,008 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678705345904 (admin)
