@@ -696,3 +696,8 @@
 2023-03-13 12:02:25,818 [INFO] - gui_access - GET /jatos/1 (admin)
 2023-03-13 12:02:25,962 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2023-03-13 12:02:26,008 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1678705345904 (admin)
+2023-03-13 13:23:46,202 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-03-13 13:23:46,206 [INFO] - g.OnStartStop - JATOS shutdown
+2023-03-13 13:23:46,218 [INFO] - application - Shutting down connection pool.
+2023-03-13 13:23:46,219 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-03-13 13:23:46,220 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
