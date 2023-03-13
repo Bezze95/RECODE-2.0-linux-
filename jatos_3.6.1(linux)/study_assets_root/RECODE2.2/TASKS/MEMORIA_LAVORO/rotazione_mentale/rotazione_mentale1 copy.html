@@ -19,17 +19,6 @@
 
 </head>
 <body>
-
-    <!--
-LIVELLO 1: Figure geometriche semplici in 3D; figure ad alta frequenza;
-numero trials: (?)
-
-LIVELLO 2: Figure geometriche semplici in 3D; Figure di media frequenza + aumento del numero di figure;
-numero trials: (?)
-
-LIVELLO 3: Figure geometriche di media difficoltà in 3D; Figure a bassa frequenza e simili tra loro;
-numero trials: (?)
--->
     
 </body>
 <script>
@@ -106,24 +95,15 @@ numero trials: (?)
     var x_R = ["_R", ""];
     let array_R = jsPsych.randomization.shuffle(x_R);
 
-    var pre_if = {
+    var instructions = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora le verrà presentata un'immagine. <br>
-            Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
-            ruotata nello spazio </p>`,
+        stimulus:`<p style="font-size: 24px; font-weight: bold;"> Ora le verrà presentata un'immagine. Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, ruotata nello spazio
+        </p>`,
         button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-        choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
-        on_finish: function(data){
-            if(data.response == 1){
-                var risposta_prova = 1;
-            } else{
-                var risposta_prova = 0;
-            }
-            data.risposta_prova = risposta_prova
-        }
+        choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
     };
 
-    var prova_loop = {
+    var prova = {
         type: jsPsychSurveyMultiChoice,
         questions:[
             {
@@ -141,46 +121,23 @@ numero trials: (?)
             }
         ],
         on_finish: function(data){
-            if(data.response.Q0 == {RotazioneMentale_prova: 'B <img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationA_2.png" alt = "corretta" >'}){
-                console.log("corretto") <!---: non capisco perche non me lo conti come giusto -->
-                var accuracy = true;
-            } else {
-                console.log("sbagliato") 
-                var accuracy = false;
-            }
+          if(data.response.Q0 == {RotazioneMentale_prova: 'B <img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationA_2.png" alt = "corretta" >'}){
+            console.log("corretto") <!---: non capisco perche non me lo conti come giusto -->
+          }
         }
     };
 
-    var feedback = {
-        type: jsPsychHtmlKeyboardResponse,
-        choices: "NO_KEYS",
-        trial_duration: 1500,
-        data:"",
-        stimulus: "",
-        on_start: function(prova_loop){
-            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
-            if (last_response_accuracy == true) {
-                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
-                console.log("Corretto")
-            } else {
-                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
-                console.log("Sbagliato")
-            };
-            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-            prova_loop.data = {stimulus: feedback};
-            prova_loop.stimulus = feedback_prova_stima;
-        },
-        
+    var conditional_node = {};
+
+    var instructions1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus:`<p style="font-size: 24px; font-weight: bold;"> Ora le verrà presentata un'immagine. Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, ruotata nello spazio
+        </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+        choices: ['Prema qui per fare una prova', 'Prema qui per procedere al compito'],
     };
 
-    var begin_trial = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br>
-              Ora le verrà presentata un'immagine. <br> Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
-            ruotata nello spazio </p>`,
-        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-        choices: ['Prema qui per iniziare']
-    };
+    var loop_condition = {};
 
     var trial1 = {
         type: jsPsychSurveyMultiChoice,
@@ -200,13 +157,11 @@ numero trials: (?)
         ],
         on_finish: function(data){
             if (data.response.RotazioneMentale1 = '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[0]+''+array_R[0]+'.jpg" alt = "corretta" >'){
-                console.log("Corretto");
-                var correct = true;
+                console.log("Corretto")
+
             } else {
                 console.log("Sbagliato")
-                var correct = false;
-            } 
-            data.correct = correct;
+            }
         }
     };
 
@@ -226,17 +181,7 @@ numero trials: (?)
             randomize_question_order: true,
             horizontal: true
         }
-        ],
-        on_finish: function(data){
-            if (data.response.RotazioneMentale1 = '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[0]+''+array_R[0]+'.jpg" alt = "corretta" >'){
-                console.log("Corretto");
-                var correct = true;
-            } else {
-                console.log("Sbagliato")
-                var correct = false;
-            } 
-            data.correct = correct;
-        }
+        ]
     };
 
     var trial3 = {
@@ -255,17 +200,7 @@ numero trials: (?)
             randomize_question_order: true,
             horizontal: true
         }
-        ],
-        on_finish: function(data){
-            if (data.response.RotazioneMentale1 = '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[0]+''+array_R[0]+'.jpg" alt = "corretta" >'){
-                console.log("Corretto");
-                var correct = true;
-            } else {
-                console.log("Sbagliato")
-                var correct = false;
-            } 
-            data.correct = correct;
-        }
+        ]
     };
 
     var trial4 = {
@@ -284,17 +219,7 @@ numero trials: (?)
             randomize_question_order: true,
             horizontal: true
         }
-        ],
-        on_finish: function(data){
-            if (data.response.RotazioneMentale1 = '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[0]+''+array_R[0]+'.jpg" alt = "corretta" >'){
-                console.log("Corretto");
-                var correct = true;
-            } else {
-                console.log("Sbagliato")
-                var correct = false;
-            } 
-            data.correct = correct;
-        }
+        ]
     };
 
     var trial5 = {
@@ -313,87 +238,14 @@ numero trials: (?)
             randomize_question_order: true,
             horizontal: true
         }
-        ],
-        on_finish: function(data){
-            if (data.response.RotazioneMentale1 = '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[0]+''+array_R[0]+'.jpg" alt = "corretta" >'){
-                console.log("Corretto");
-                var correct = true;
-            } else {
-                console.log("Sbagliato")
-                var correct = false;
-            } 
-            data.correct = correct;
-        }
+        
+        ]
     };
 
-    var trial_timeline = {
-        timeline: [trial1, trial2, trial3, trial4, trial5]
-    };
 
-    var if_node = {
-        timeline: [begin_trial,trial_timeline],  
-        conditional_function: function(){
-            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
-            if (response_button == 0){
-                console.log("prosegui a esercizio");
-                return true;
-            } else {
-                console.log("inizia la prova");
-                jsPsych.addNodeToEndOfTimeline(loop_prova)
-                return false;
-            }
-        }
-    };
 
-    var begin_loop = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora le verrà presentata un'immagine. <br>
-             Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
-            ruotata nello spazio  </p>`,
-        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-        choices: ['Prema qui per iniziare la prova'],
-        on_start: function(data){
-            var response_button = jsPsych.data.get().last(1).values()[0].response;
-            console.log(response_button)
-            if (response_button == 0){
-                console.log("salta loop");
-                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
-            }
-        }
-    };
+    var timeline = [instructions, prova, instructions1, trial1, trial2, trial3, trial4, trial5];
 
-    var end_loop_prova = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> 
-            Ora le verrà presentata un'immagine. <br> Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
-            ruotata nello spazio </p>`,
-        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
-        on_finish: function(data){
-            if(data.response == 1){
-                var risposta = 1;
-            } else{
-                var risposta = 0;
-                console.log("Termine loop prova");
-                jsPsych.addNodeToEndOfTimeline(trial_timeline);
-            }
-            data.risposta_loop = risposta
-        }
-    };
-
-    var loop_prova = {
-        timeline: [begin_loop, prova_loop, end_loop_prova],
-        loop_function: function(){
-            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
-            if (response_button == 1){
-                return true;
-            } else {
-                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
-            }
-        }     
-    };
-
-    var timeline = [pre_if, if_node]
 jsPsych.run(timeline)
      
 </script>
