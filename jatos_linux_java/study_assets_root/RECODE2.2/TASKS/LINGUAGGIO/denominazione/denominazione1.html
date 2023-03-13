@@ -39,11 +39,11 @@
     })
   }*/
 
-  jatos.onload(function(){
+  /*jatos.onload(function(){
     var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
     var progressText="avanzamento" + progress + "%";
     const updateProgress = progress;
-  }); 
+  }); */
         
   var jsPsych = initJsPsych({
     use_webaudio: false,
@@ -94,34 +94,51 @@
     var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
     jatos.startComponentByPos(4,Data); 
   }*/
-  
-  
-  var img = ['./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/banana2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/barba2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/braccio2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/carota2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/elefante2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/farfalla2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/gatto2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone1.jpg', './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/limone2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mela2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/mucca2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/ossa2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/penna2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/pesca2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/scarpe2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/serpente2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tartaruga2.jpg',
-    './tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre1.jpg','./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/tigre2.jpg'
-    ]; 
+
 
     var preload_images = {
       type: jsPsychPreload,
-      images: img,
+      images: ['./TASKS/LINGUAGGIO/denominazione/fig/banana1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/banana2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/barba1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/barba2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/braccio1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/braccio2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/carota1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/carota2.jpg',
+      '../TASKS/LINGUAGGIO/denominazione/fig/elefante1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/elefante2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/farfalla1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/farfalla2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/gatto1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/gatto2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/limone1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/limone2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/mela1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/mela2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/mucca1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/mucca2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/ossa1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/ossa2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/penna1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/penna2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/pesca1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/pesca2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/scarpe1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/scarpe2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/serpente1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/serpente2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/tartaruga1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/tartaruga2.jpg',
+      './TASKS/LINGUAGGIO/denominazione/fig/tigre1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/tigre2.jpg'
+      ],
       show_detailed_errors: true
     }; 
 
-    var images = jsPsych.randomization.shuffle(img);
+    var imgs = ['./TASKS/LINGUAGGIO/denominazione/fig/banana1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/banana2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/barba1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/barba2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/braccio1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/braccio2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/carota1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/carota2.jpg',
+    '../TASKS/LINGUAGGIO/denominazione/fig/elefante1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/elefante2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/farfalla1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/farfalla2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/gatto1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/gatto2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/limone1.jpg', './TASKS/LINGUAGGIO/denominazione/fig/limone2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/mela1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/mela2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/mucca1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/mucca2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/ossa1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/ossa2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/penna1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/penna2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/pesca1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/pesca2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/scarpe1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/scarpe2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/serpente1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/serpente2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/tartaruga1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/tartaruga2.jpg',
+    './TASKS/LINGUAGGIO/denominazione/fig/tigre1.jpg','./TASKS/LINGUAGGIO/denominazione/fig/tigre2.jpg'
+  ];
+
+    var images = jsPsych.randomization.shuffle(imgs);
 
 
 
@@ -142,7 +159,7 @@
 
   var one = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[0]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[0]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -150,7 +167,7 @@
   
   var two = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[1]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[1]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -158,7 +175,7 @@
 
   var three = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[2]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[2]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -166,7 +183,7 @@
 
   var four = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[3]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[3]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	html: '</p> <input name="first" type="text" /></p>',
   required: false,
@@ -174,7 +191,7 @@
 
   var five = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[4]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[4]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
     html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -182,7 +199,7 @@
 
   var six = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[5]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[5]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -190,7 +207,7 @@
 
   var seven = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[6]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[6]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -198,7 +215,7 @@
 
   var eight = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[7]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[7]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -206,7 +223,7 @@
 
   var nine = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[8]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[8]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -214,7 +231,7 @@
 
   var ten = {
 		type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./tasks/linguaggio/Linguaggio_Giorgia/linguaggio/denominazione/fig/'+images[9]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
+    preamble: '<p> <img src="./TASKS/LINGUAGGIO/denominazione/fig/'+images[9]+'.jpg" height="200pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante',
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="first" type="text" /></p>',
     required: false,

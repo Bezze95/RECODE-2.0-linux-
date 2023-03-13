@@ -94,3 +94,4 @@
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1674556576399}
 {"msg":"Finish abandoned study","workerId":1,"timestamp":1674557568229}
 {"msg":"Started study run with Jatos worker","batchId":2,"studyCode":"yoIFiNyix5O","workerId":1,"timestamp":1674557568231}
+{"msg":"Finish abandoned study","workerId":1,"timestamp":1675078523510}
