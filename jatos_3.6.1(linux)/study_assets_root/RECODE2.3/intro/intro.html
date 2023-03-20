@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title> BENVENUTO </title>
+	<div id='logo_unipd' style="text-align:center">
+		<img src="./intro/university_logo.png" alt='logo_unipd' height="120pt">
+	</div>
+
+    <script src="jatos.js"></script>
+	<script src="./jspsych7.2.3/dist/jspsych.js"></script>
+	<script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+	
+    
+  </head>
+  <style>
+	body {
+	  background-color: white;
+	  }
+	  .button {
+		  border: none;
+		  color: white;
+		  padding: 15px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  cursor: pointer;
+	  }
+		  .button {background-color: #4CAF50;} /* Green */
+		  .help {background-color: #960018;} /* Green */
+
+  </style>
+  <body>
+	<div id='instructions'>
+		<h2 style="text-align:center">Clicca sull'immagine sotto per ascoltare il messaggio.<h2></div>
+	</div>
+	<div id="image_avatar" style="text-align:center">
+		<a onclick="playSound('sound','maria');">
+			<audio id="sound">
+				<source src="./intro/intro.m4a">
+			</audio>
+			<img id="maria" src="./intro/maria.png" height="300pt">
+		</a>
+	</div>
+	<div id="footer" style="text-align:center">
+		<h2>Premi il bottone verde per andare avanti, il rosso per ricevere assistenza.</h2>
+		<button class="button button" onclick="endFunction()">VAI AGLI ESERCIZI</button>
+		<button id="start-call-button" class="button help" onclick="sendEmail(jatos.studyProperties.title,'help START')">PREMI PER CONTATTARCI</button> <!---: da decidere come e se implementare -->
+	</div>		
+</body>
+
+<script>
+/* */
+	function playSound(sound,image){
+		var myAudio = document.getElementById(sound);
+		var myGif = document.getElementById(image);
+		if (myAudio.paused) {
+				myAudio.play();
+				myGif.src="./intro/maria.gif";
+				myAudio.addEventListener("ended", function stopGif(){
+					myAudio.currentTime = 0;
+					myGif.src="./intro/maria.png";
+				});
+			} 
+		else {
+			myAudio.pause();
+			myGif.src="./intro/maria.png";
+			myAudio.removeEventListener("ended", function stopGif(){
+				myAudio.currentTime = 0;
+				myGif.src="./intro/maria.png";
+			});
+		}
+		
+	};
+
+	/* funzione creata ad hoc in sostituzione di "jsPsych.randomization.shuffle()" perché dava errore */
+	function shuffle(array) {
+		let currentIndex = array.length,  randomIndex;
+	  
+		// While there remain elements to shuffle.
+		while (currentIndex != 0) {
+	  
+		  // Pick a remaining element.
+		  randomIndex = Math.floor(Math.random() * currentIndex);
+		  currentIndex--;
+	  
+		  // And swap it with the current element.
+		  [array[currentIndex], array[randomIndex]] = [
+			array[randomIndex], array[currentIndex]];
+		}
+	  
+		return array;
+	};
+
+	function endFunction() { 
+				
+		var jsPsych = initJsPsych ({
+			//override_safe_mode: true,
+			on_finish: function(data){ 
+				//jsPsych.data.displayData();
+				jatos.startComponentByPos(nextComponentPosition[componentCounter], data, JSON.stringify(data));
+			}
+		});
+		
+		if (jatos.batchSession.get("level_attenzione") <= 1){
+			var attenzione = shuffle(jatos.studyJsonInput.attenzione_1).slice(0,3) // non so se tenere slice o se toglierlo perché indifferente 
+		};
+		if (jatos.batchSession.get("level_attenzione") == 2){
+			var attenzione = shuffle(jatos.studyJsonInput.attenzione_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_attenzione") > 2){
+			var attenzione = shuffle(jatos.studyJsonInput.attenzione_3).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_funzioni_esecutive") <= 1){
+			var funzioni_esecutive = shuffle(jatos.studyJsonInput.funzioni_esecutive_1).slice(0,3)  
+		};
+		if (jatos.batchSession.get("level_funzioni_esecutive") == 2){
+			var funzioni_esecutive = shuffle(jatos.studyJsonInput.funzioni_esecutive_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_funzioni_esecutive") > 2){
+			var funzioni_esecutive = shuffle(jatos.studyJsonInput.funzioni_esecutive_3).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_linguaggio") <= 1){
+			var linguaggio = shuffle(jatos.studyJsonInput.linguaggio_1).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_linguaggio") == 2){
+			var linguaggio = shuffle(jatos.studyJsonInput.linguaggio_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_linguaggio") > 2){
+			var linguaggio = shuffle(jatos.studyJsonInput.linguaggio_3).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_lavoro") <= 1){
+			var memoria_lavoro = shuffle(jatos.studyJsonInput.memoria_lavoro_1).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_lavoro") == 2){
+			var memoria_lavoro = shuffle(jatos.studyJsonInput.memoria_lavoro_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_lavoro") > 2){
+			var memoria_lavoro = shuffle(jatos.studyJsonInput.memoria_lavoro_3).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_visiva") <= 1){
+			var memoria_visiva = shuffle(jatos.studyJsonInput.memoria_visiva_1).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_visiva") == 2){
+			var memoria_visiva = shuffle(jatos.studyJsonInput.memoria_visiva_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_memoria_visiva") > 2){
+			var memoria_visiva = shuffle(jatos.studyJsonInput.memoria_visiva_3).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_orientamento") <= 1){
+			var orientamento = shuffle(jatos.studyJsonInput.orientamento_1).slice(0,3) 
+		};
+		if (jatos.batchSession.get("level_orientamento") == 2){
+			var orientamento = shuffle(jatos.studyJsonInput.orientamento_2).slice(0,3)
+		};
+		if (jatos.batchSession.get("level_orientamento") > 2){
+			var orientamento = shuffle(jatos.studyJsonInput.orientamento_3).slice(0,3)
+		};
+		
+		var componentCounter = 0;
+				
+		var nextComponentPosition = attenzione.concat(funzioni_esecutive).concat(linguaggio).concat(memoria_lavoro).concat(memoria_visiva).concat(orientamento)
+		nextComponentPosition = shuffle(nextComponentPosition)
+		nextComponentPosition.splice(nextComponentPosition.length/2, 0, 2) /*per aggiungere componente "mid" a metà dell'eserimento */
+		nextComponentPosition = nextComponentPosition.concat(3); /* per aggiungere componente "end" al termine dell'esperimento */
+
+		var data = { 
+			level_attenzione: jatos.batchSession.get("level_attenzione"),
+			level_funzioni_esecutive: jatos.batchSession.get("level_funzioni_esecutive"),
+			level_linguaggio: jatos.batchSession.get("level_linguaggio"),
+			level_memoria_lavoro: jatos.batchSession.get("level_memoria_lavoro"),
+			level_memoria_visiva: jatos.batchSession.get("level_memoria_visiva"),
+			level_orientamento: jatos.batchSession.get("level_orientamento"),
+
+			level_gradimento: jatos.batchSession.get("level_gradimento")
+		};
+
+		var empty = [];
+		sessionStorage.setItem("nextComponentPosition", nextComponentPosition);
+		sessionStorage.setItem("componentCounter", componentCounter);
+		sessionStorage.setItem('attenzione', empty);
+		sessionStorage.setItem('funzioni_esecutive', empty); // per creare una variabile vuota nella sessionStorage da poter modificare in itinere
+		sessionStorage.setItem('linguaggio', empty);
+		sessionStorage.setItem('memoria_lavoro', empty);
+		sessionStorage.setItem('memoria_visiva', empty);
+		sessionStorage.setItem('orientamento', empty);
+
+		sessionStorage.setItem('gradimento', empty); <!---: aggiunta mia personale potrebbe dare errore -->
+
+		var instructions = {
+			type: jsPsychHtmlKeyboardResponse,
+			stimulus: '<p style="font-size: 24px; font-weight: bold; text-align: center"> Prema il tasto INVIO per proseguire </p>',
+			choices: ['Enter'],
+		};
+
+		var timeline = [instructions];
+
+	jsPsych.run(timeline);
+	};
+
+
+</script>
+</html>

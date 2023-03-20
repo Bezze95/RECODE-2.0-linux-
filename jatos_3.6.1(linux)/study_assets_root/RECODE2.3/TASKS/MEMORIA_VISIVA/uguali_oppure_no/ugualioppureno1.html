@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title> MEMORIA VISIVA Uguali oppure no LIV.1</title>
+    <meta charset="UTF-8">
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-image-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-fullscreen.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-resize.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-audio-keyboard-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-animation.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!--
+    PRIMO LIVELLO = memoria secondo livello uguali diversi
+Istruzioni: aggiungere “della tastiera” dopo 1,2,3,4 o 5
+Nello svolgimento: da “i corrispondenti numeri” a “il numero corrispondente”. Periodo di comparsa: 8 secondi
+10 trials, tutti simili a quelli già esistenti.
+
+  -->
+</body>
+<script type='text/javascript'>
+
+    jatos.onload(function(){
+      var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+      var progressText="avanzamento" + progress + "%";
+      const updateProgress = progress;
+  }); 
+
+  var jsPsych = initJsPsych({
+      use_webaudio: false,
+      on_finish: function() {
+          /*jsPsych.data.displayData();*/
+
+          var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+              if(correct_trials > 0){
+                  var feed = 1;
+              } else {
+                  var feed = 0;
+              }
+          jatos.studySessionData = feed;
+          var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+          sessionStorage.setItem('memoria_visiva', memoria_visiva);
+          var Data = {feed: feed, type: 'MEMORIA_VISIVA_ugualioppureno_level1', cresp: correct_trials};
+          jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+      } 
+  });
+
+ 
+
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+  jsPsych.randomization.shuffle(arr);
+
+
+  let image = [
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/1.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/2.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/3.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/4.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/5.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/6.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/7.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/8.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/9.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/10.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/11.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/12.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/13.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/14.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/15.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/16.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/17.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/18.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/19.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/20.png',
+    './TASKS/MEMORIA_VISIVA/uguali_oppure_no/immagini/21.png'
+  ]; 
+  jsPsych.randomization.shuffle(image);
+
+
+     
+var preload = {
+  type: jsPsychPreload,
+  auto_preload: true
+}
+
+var pre_if = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Sullo schermo comparirà un’immagine che lei dovrà guardare attentamente e memorizzare. <br>
+        Successivamente le verranno mostrate 5 alternative e fra queste, <br> cliccando i tasti 1, 2, 3, 4 o 5 della tastiera, <br> dovrà indicare quale corrisponde a quella vista precedentemente.</p>`,
+  button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+  choices: ['Prema qui per procedere al compito','Prema qui per fare una prova'],
+  on_finish: function(data){
+    if(data.response == 1){
+      var risposta_prova = 1;
+    } else{
+      var risposta_prova = 0;
+    }
+    data.risposta_prova = risposta_prova
+  }
+};
+
+let design = [
+  {targetimage: image[0], testimage1: image[0], testimage2: image[4], testimage3: image[3], testimage4: image[2], testimage5: image[1], cresponse: 1},
+  {targetimage: image[1], testimage1: image[5], testimage2: image[1], testimage3: image[2], testimage4: image[0], testimage5: image[4], cresponse: 2},
+  {targetimage: image[2], testimage1: image[2], testimage2: image[1], testimage3: image[3], testimage4: image[4], testimage5: image[0], cresponse: 1},
+  {targetimage: image[3], testimage1: image[11], testimage2: image[0], testimage3: image[4], testimage4: image[3], testimage5: image[2], cresponse: 4},
+  {targetimage: image[4], testimage1: image[5], testimage2: image[17], testimage3: image[4], testimage4: image[3], testimage5: image[20], cresponse: 3},
+  {targetimage: image[5], testimage1: image[15], testimage2: image[11], testimage3: image[5], testimage4: image[10], testimage5: image[8], cresponse: 3},
+  {targetimage: image[6], testimage1: image[5], testimage2: image[12], testimage3: image[7], testimage4: image[8], testimage5: image[6], cresponse: 5},
+  {targetimage: image[7], testimage1: image[7], testimage2: image[14], testimage3: image[9], testimage4: image[0], testimage5: image[2], cresponse: 1},
+  {targetimage: image[8], testimage1: image[3], testimage2: image[8], testimage3: image[17], testimage4: image[19], testimage5: image[4], cresponse: 2},
+  {targetimage: image[9], testimage1: image[6], testimage2: image[16], testimage3: image[9], testimage4: image[10], testimage5: image[16], cresponse: 3}
+]; jsPsych.randomization.shuffle(design);
+
+var prova_loop = {
+  timeline: [
+            {
+                type: jsPsychPsychophysics,
+                background_color: '#ffffff',
+                stimuli: [
+
+                  {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('targetimage'),
+                    show_start_time: 0, // ms after the start of the trial
+                    startX: 'center',
+                    startY: 'center',
+                    scale: 1, 
+                    origin_center: true,
+                    trial_duration: 8000,
+
+                  },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage1'),
+                      show_start_time: 8005, // ms after the start of the trial
+                      startX: -600,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage2'),
+                      show_start_time: 8005, // ms after the start of the trial
+                      startX: -300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage3'),
+                      show_start_time: 8005, // ms after the start of the trial
+                      startX: 'center',
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage4'),
+                      show_start_time: 8005, // ms after the start of the trial
+                      startX: 300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+                    },
+                    {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('testimage5'),
+                    show_start_time: 8005, // ms after the start of the trial
+                    startX: 600,
+                    startY: 'center',
+                    scale: 0.6, // ms after the start of the trial
+                    origin_center: true,
+                  },
+
+                    {
+                        obj_type: 'text',
+                        startX: -600,
+                        startY: 180,
+                        font: "40px",
+                        content: "1",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true                    },
+                    {
+                        obj_type: 'text',
+                        startX: -300,
+                        startY: 180,
+                        font: "40px",
+                        content: "2",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 180,
+                        content: "3",
+                        font: "40px",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 300,
+                        startY: 180,
+                        content: "4",
+                        font: "40px",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 600,
+                        startY: 180,
+                        content: '5',
+                        font: "40px",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: -200,
+                        content: "Quale tra queste immagini ha visto precedentemente?",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 230,
+                        font: "40px Arial",
+                        content: "Scelga un'immagine premendo il numero corrispondente sulla tastiera",
+                        show_start_time: 8005, // ms after the start of the trial
+                        origin_center: true
+                    }
+                ],
+                canvas_height: 500,
+                response_start_time: 8005,
+                response_ends_trial: true,
+                choices: ['1', '2', '3', '4', '5'],
+
+                on_start: function(data){
+                  arr = [1, 2, 3, 4, 5];
+                  
+                  jsPsych.getCurrentTrial().stimuli[arr[0]].file = jsPsych.timelineVariable('testimage1');
+                  jsPsych.getCurrentTrial().stimuli[arr[1]].file = jsPsych.timelineVariable('testimage2');
+                  jsPsych.getCurrentTrial().stimuli[arr[2]].file = jsPsych.timelineVariable('testimage3');
+                  jsPsych.getCurrentTrial().stimuli[arr[3]].file = jsPsych.timelineVariable('testimage4');
+                  jsPsych.getCurrentTrial().stimuli[arr[4]].file = jsPsych.timelineVariable('testimage5');
+                },
+                data: {
+                  test_part: 'trial',
+                  cresponse: jsPsych.timelineVariable('cresponse'),
+                }
+            },
+        ],
+        timeline_variables: [
+          {targetimage: image[6], testimage1: image[14], testimage2: image[3], testimage3: image[20], testimage4: image[6], testimage5: image[4], cresponse: 4}
+        ],
+        repetitions: 1,
+        randomize_order: true,
+        on_finish: function(data) {
+          console.log(data.response);
+          if(data.response == data.cresponse){
+            console.log("Corretto");
+            var accuracy = true;
+          }else {
+            console.log("Sbagliato");
+            var accuracy = false;
+          };
+          data.accuracy = accuracy;
+        }
+}
+
+var feedback = {
+  type: jsPsychHtmlKeyboardResponse,
+  choices: "NO_KEYS",
+  trial_duration: 1500,
+  data:"",
+  stimulus: "",
+  on_start: function(prova_loop){
+      var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+      if (last_response_accuracy == true) {
+          var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+          console.log("Corretto")
+      } else {
+          var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+          console.log("Sbagliato")
+      };
+      var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+      prova_loop.data = {stimulus: feedback};
+      prova_loop.stimulus = feedback_prova_stima;
+  },
+  
+};
+
+var begin_trial = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> 
+    Sullo schermo comparirà un’immagine che lei dovrà guardare attentamente e memorizzare. <br>
+    Successivamente le verranno mostrate 5 alternative e fra queste, <br> cliccando i tasti 1, 2, 3, 4 o 5 della tastiera, <br>
+     dovrà indicare quale corrisponde a quella vista precedentemente.</p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+  choices: ['Prema qui per iniziare']
+};
+
+var trial = {
+  timeline: [
+            {
+                type: jsPsychPsychophysics,
+                background_color: '#ffffff',
+                stimuli: [
+
+                  {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('targetimage'),
+                    show_start_time: 0, // ms after the start of the trial
+                    startX: 'center',
+                    startY: 'center',
+                    scale: 1,
+                    origin_center: true,
+                    trial_duration: 10000,
+
+                  },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage1'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: -600,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage2'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: -300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage3'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: 'center',
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+
+                    },
+                    {
+                      obj_type: 'image',
+                      file: jsPsych.timelineVariable('testimage4'),
+                      show_start_time: 10005, // ms after the start of the trial
+                      startX: 300,
+                      startY: 'center',
+                      scale: 0.6, // ms after the start of the trial
+                      origin_center: true,
+                    },
+                    {
+                    obj_type: 'image',
+                    file: jsPsych.timelineVariable('testimage5'),
+                    show_start_time: 10005, // ms after the start of the trial
+                    startX: 600,
+                    startY: 'center',
+                    scale: 0.6, // ms after the start of the trial
+                    origin_center: true,
+                  },
+
+                    {
+                        obj_type: 'text',
+                        startX: -600,
+                        startY: 180,
+                        font: "40px",
+                        content: "1",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true                    },
+                    {
+                        obj_type: 'text',
+                        startX: -300,
+                        startY: 180,
+                        font: "40px",
+                        content: "2",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 180,
+                        content: "3",
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 300,
+                        startY: 180,
+                        content: "4",
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 600,
+                        startY: 180,
+                        content: '5',
+                        font: "40px",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: -200,
+                        content: "Quale tra queste immagini ha visto precedentemente?",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center',
+                        startY: 230,
+                        font: "40px Arial",
+                        content: "Scelga un'immagine premendo il numero corrispondente sulla tastiera",
+                        show_start_time: 10005, // ms after the start of the trial
+                        origin_center: true
+                    }
+                ],
+                canvas_height: 500,
+                response_start_time: 10005,
+                response_ends_trial: true,
+                choices: ['1', '2', '3', '4', '5'],
+
+                on_start: function(data){
+                  arr = [1, 2, 3, 4, 5];
+                  
+                  jsPsych.getCurrentTrial().stimuli[arr[0]].file = jsPsych.timelineVariable('testimage1');
+                  jsPsych.getCurrentTrial().stimuli[arr[1]].file = jsPsych.timelineVariable('testimage2');
+                  jsPsych.getCurrentTrial().stimuli[arr[2]].file = jsPsych.timelineVariable('testimage3');
+                  jsPsych.getCurrentTrial().stimuli[arr[3]].file = jsPsych.timelineVariable('testimage4');
+                  jsPsych.getCurrentTrial().stimuli[arr[4]].file = jsPsych.timelineVariable('testimage5');
+                },
+                data: {
+                  test_part: 'trial',
+                  cresponse: jsPsych.timelineVariable('cresponse'),
+                }
+            },
+        ],
+        timeline_variables: design,
+        repetitions: 1,
+        randomize_order: true,
+        on_finish: function(data) {
+          console.log(data.response);
+          if(data.response == data.cresponse){
+            console.log("Corretto");
+            var correct = true;
+          }else {
+            console.log("Sbagliato");
+            var correct = false;
+          };
+          data.correct = correct;
+        }
+  };
+
+  var if_node = {
+    timeline: [begin_trial,trial],  
+    conditional_function: function(){
+        var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+        if (response_button == 0){
+            console.log("prosegui a esercizio");
+            return true;
+        } else {
+            console.log("inizia la prova");
+            jsPsych.addNodeToEndOfTimeline(loop_prova)
+            return false;
+        }
+    }
+};
+
+var begin_loop = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> 
+      Sullo schermo comparirà un’immagine che lei dovrà guardare attentamente e memorizzare. <br>
+      Successivamente le verranno mostrate 5 alternative e fra queste, <br> cliccando i tasti 1, 2, 3, 4 o 5 della tastiera, <br>
+       dovrà indicare quale corrisponde a quella vista precedentemente.</p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    choices: ['Prema qui per iniziare la prova'],
+    on_start: function(data){
+        var response_button = jsPsych.data.get().last(1).values()[0].response;
+        console.log(response_button)
+        if (response_button == 0){
+            console.log("salta loop");
+            jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+        }
+    }
+};
+
+var end_loop_prova = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br>
+       Sullo schermo comparirà un’immagine che lei dovrà guardare attentamente e memorizzare. <br>
+      Successivamente le verranno mostrate 5 alternative e fra queste, <br> cliccando i tasti 1, 2, 3, 4 o 5 della tastiera, <br>
+       dovrà indicare quale corrisponde a quella vista precedentemente. </p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+    on_finish: function(data){
+        if(data.response == 1){
+            var risposta = 1;
+        } else{
+            var risposta = 0;
+            console.log("Termine loop prova");
+            jsPsych.addNodeToEndOfTimeline(trial);
+        }
+        data.risposta_loop = risposta
+    }
+};
+
+var loop_prova = {
+    timeline: [begin_loop, prova_loop, feedback, end_loop_prova],
+    loop_function: function(){
+        var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+        if (response_button == 1){
+            return true;
+        } else {
+            return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+        }
+    }     
+};
+
+var timeline = [preload,pre_if, prova_loop];
+jsPsych.run(timeline)
+
+</script>
+
+</html>

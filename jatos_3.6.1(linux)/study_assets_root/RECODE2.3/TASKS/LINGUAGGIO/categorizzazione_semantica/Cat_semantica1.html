@@ -1,0 +1,1029 @@
+<html>
+  <head>
+    <title>LINGUAGGIO Categorizzazione Semantica LIV.1</title>
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+       
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script> 
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script> 
+    <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script> 
+    <script src="./jspsych7.2.3/dist/jspsych-psychophysics.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-call-function.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-sort-DragDrop.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-canvas-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <!--
+
+CATEGORIZZAZIONE SEMANTICA per immagini: 
+
+Ogni livello prevede 5 categorizzazioni (ad es. categoria: abbigliamento) ; 
+Ogni categorizzazione prevede 5 distrattori e 5 target e ha un punteggio che va da 0 a 10 (hanno punteggio anche i distrattori correttamente non inclusi); il punteggio totale sarà
+ dato dalla somma dei punteggi alle cinque categorizzazioni diviso 5, in modo tale da avere un punteggio globale da 0 a 10; 
+Il primo livello ha un cue contestualizzato (cesto con oggetti della stessa categoria), il secondo e il terzo no;
+Tra il secondo e il terzo varia soprattutto la vicinanza semantica e la specificità di categoria;
+Ogni livello avrà al centro un contenitore diverso: per il primo livello il cesto, il secondo la  scatola, il terzo il sacco. 
+ISTRUZIONI (primo livello):
+ISTRUZIONI a apice
+Sotto “Ora vedrà una cesta piena di oggetti che appartengono alla stessa categoria.
+Attorno, ci saranno altri oggetti sparsi.
+Dovrà sceglierne 5 da aggiungere alla cesta che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.
+Sotto “Prema qui per continuare” “Prema qui per essere ricontattato”
+
+Schermata successiva, quella già con la cesta:
+Sopra: Cosa manca?
+In mezzo la cesta, attorno gli oggetti
+E sotto: “Prema con il tasto sinistro del mouse sugli oggetti della stessa categoria.
+Mancano X elementi da inserire”
+ISTRUZIONI (secondo e terzo livello):
+ISTRUZIONI a apice
+Sotto “Ora vedrà una scatola-sacco vuota.
+Attorno, ci saranno diversi oggetti sparsi.
+Dovrà sceglierne 5 da mettere nella scatola-sacco che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.
+Sotto “Prema qui per continuare” “Prema qui per essere ricontattato”
+
+Schermata successiva, quella già con la scatola o il sacco vuoto:
+In mezzo la scatola o il sacco, attorno gli oggetti
+E sotto: “Prema con il tasto sinistro del mouse sugli oggetti della stessa categoria.
+Mancano X elementi da inserire”
+
+
+
+CATEGORIE SEMANTICHE E IMMAGINI DA INSERIRE
+
+1° LIVELLO DI DIFFICOLTÀ
+
+Categoria ABBIGLIAMENTO
+
+Nel cesto si vedono PANTALONI e BERRETTO. 
+
+Stimoli target: 
+MAGLIONE
+MUTANDE
+GUANTI
+T-SHIRT
+SCIARPA
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento. 
+
+
+Categoria ABBIGLIAMENTO (versione 2)
+
+Nel cesto si vedono MAGLIONE e MUTANDE. 
+
+stimoli target: 
+PANTALONI
+CALZINI
+COSTUME DA BAGNO
+PIGIAMA 
+CANNOTTIERA
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento. 
+
+
+
+
+Categoria FIORI
+
+Nel cesto si vedono MARGHERITA e TULIPANO. 
+
+stimoli target: 
+VIOLA
+GIRASOLE
+ORCHIDEA
+GAROFANO
+ROSA
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento. 
+
+Categoria FIORI (versione 2)
+
+Nel cesto si vedono GIRASOLE e CALLE. 
+
+stimoli target: 
+GERANIO
+GERBERA
+CICLAMINO
+ROSA
+TULIPANO
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento. 
+
+
+Categoria ALIMENTI
+
+Nel cesto si vedono BISTECCA e PASTA. 
+
+stimoli target: 
+UOVA
+PASSATA
+FARINA
+FORMAGGIO
+BARRETTA DI CIOCCOLATA
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento. 
+
+Categoria ALIMENTI (versione 2)
+
+Nel cesto si vedono FORMAGGIO e UOVA. 
+
+stimoli target: 
+CAFFè
+CROSTATA
+PESCE
+PANE
+INSALATA
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento.
+
+
+
+
+Categoria MEZZI DI TRASPORTO
+
+Nel cesto si vedono BARCA e BUS. 
+
+stimoli target: 
+MOTOCICLETTA
+MACCHINA
+BICICLETTA
+AEREO
+TRENO
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento.
+
+Categoria ANIMALI
+
+Nel cesto si vedono SCOIATTOLO e MEDUSA. 
+
+stimoli target: 
+RANA
+PESCE
+CRICETO
+GRANCHIO
+APE
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento.
+
+
+Categoria STRUMENTI MUSICALI
+
+Nel cesto si vedono VIOLINO e MARACAS. 
+
+stimoli target: 
+TROMBA
+FLAUTO
+CHITARRA
+BATTERIA
+PIANOFORTE
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento.
+
+Categoria UTENSILI DA CUCINA
+
+Nel cesto si vedono MESTOLO e PENTOLA. 
+
+stimoli target: 
+FORCHETTA
+COLTELLO
+PIATTO
+PADELLA
+CUCCHIAIO
+
+gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla con la categoria di riferimento.
+
+        -->
+    </body>
+    <script>
+
+        var jsPsych = initJsPsych({
+          on_finish: function(){
+            jsPsych.data.displayData();
+            /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                  if(correct_trials > 0){
+                      var feed = 1;
+                  } else {
+                      var feed = 0;
+                  }
+              jatos.studySessionData = feed;
+              var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+              sessionStorage.setItem('linguaggio', linguaggio);
+              var Data = {feed: feed, type: 'LINGUAGGIO_categorizzazione_semantica_level1', cresp: correct_trials};
+              jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+             }
+        });
+
+        var preload = {
+            type: jsPsychPreload,
+            auto_preload: true
+        }
+        
+        var num = jsPsych.randomization.shuffle([1,2,3,4,5,6])
+
+
+        var fruttaEfiori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/pera.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mela.jpg", 
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/melaVerde.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/prugna.jpg", 
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore1.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore2.jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore3.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore4.jpg",
+         "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore5.jpg"
+        ];
+
+        var abbigliamento = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto6.jpg",
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var abbigliamento_fuori = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/guanti"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglietta"+num[0]+".jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/maglione"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/mutande"+num[0]+".jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/sciarpa"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var abbigliamento_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/pantaloni"+num[0]+".jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/berretto"+num[0]+".jpg"
+        ];
+
+        var abbigliamento2 = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama6.jpg"
+        ];
+
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var abbigliamento2_fuori = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pantaloni"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/calzini"+num[0]+".jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/costume"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/pigiama"+num[0]+".jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/canottiera"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var abbigliamento2_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/maglione"+num[0]+".jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/abbigliamento/abbigliamento2/mutande"+num[0]+".jpg"
+        ];
+
+        var alimenti = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova6.jpg"
+        ]; 
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var alimenti_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/uova"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/cioccolato"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/farina"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/formaggio"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/passata"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var alimenti_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/bistecca"+num[0]+".jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/pasta"+num[0]+".jpg"
+        ];
+
+        var alimenti2 = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var alimenti2_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/caffe"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/crostata"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pesce"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/pane"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/insalata"+num[0]+".jpg",
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var alimenti2_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/formaggio"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/alimenti/alimenti2/uova"+num[0]+".jpg",
+        ];
+
+        var animali = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var animali_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/rana"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/pesce"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/criceto"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/granchio"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/ape"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var animali_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/scoiattolo"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/animali/medusa"+num[0]+".jpg"
+        ];
+
+
+        var fiori = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole1.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano1.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano3.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano5.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var fiori_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/viola"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/girasole"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/orchidea"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/garofano"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/rosa"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var fiori_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/margherita"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/tulipano"+num[0]+".jpg"
+        ];
+
+
+        var fiori2 = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano1.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var fiori2_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/geranio"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/gerbera"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/ciclamino"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/rosa"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/tulipano"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var fiori2_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/girasole"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiori/fiori2/calle"+num[0]+".jpg"
+                ];
+
+
+        var mezzi_trasporto = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno6.jpg",
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var mezzi_trasporto_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/moto"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/auto"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bici"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/aereo"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/treno"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var mezzi_trasporto_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/barca"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mezzi_trasporto/bus"+num[0]+".jpg"
+            ];
+
+        var strumenti_musicali = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var strumenti_musicali_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/tromba"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/flauto"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/chitarra"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/batteria"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/pianoforte"+num[0]+".jpg",
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var strumenti_musicali_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/violino"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/strumenti_musicali/maracas"+num[0]+".jpg"
+            ];
+
+        var utensili_cucina = [
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/pentola1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/pentola2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/pentola3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/pentola4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella6.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto1.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto3.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto4.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto5.jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto6.jpg"
+        ];
+// oggetti che verranno presentati all'esterno del contenitore e che dovranno venir inseriti dal partecipante //
+        var utensili_cucina_fuori = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/forchetta"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/coltello"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/piatto"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/padella"+num[0]+".jpg",
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/cucchiaio"+num[0]+".jpg"
+        ];
+//oggetti che saranno già inseriti all'interno del sacco e pertanto serviranno da marker per la scelta della categoria adatta rispetto ai distrattori //
+        var utensili_cucina_dentro = [
+        "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/mestolo"+num[0]+".jpg","./TASKS/LINGUAGGIO/categorizzazione_semantica/img/utensili_cucina/pentola"+num[0]+".jpg"
+            ];
+
+
+        
+//Elenco dei vari distrattori in base alle CATEGORIE SEMANTICHE //
+        var distrattori_ABBIGLIAMENTO = alimenti.concat(alimenti2).concat(animali).concat(fiori).concat(fiori2).concat(mezzi_trasporto).concat(strumenti_musicali).concat(utensili_cucina)
+        var distrattori_abbigliamento = jsPsych.randomization.sampleWithoutReplacement(distrattori_ABBIGLIAMENTO, 5);
+
+        var distrattori_ALIMENTI = abbigliamento.concat(abbigliamento2).concat(animali).concat(fiori).concat(fiori2).concat(mezzi_trasporto).concat(strumenti_musicali).concat(utensili_cucina)
+        var distrattori_alimenti = jsPsych.randomization.sampleWithoutReplacement(distrattori_ALIMENTI, 5);
+
+        var distrattori_ANIMALI =  abbigliamento.concat(abbigliamento2).concat(alimenti).concat(alimenti2).concat(fiori).concat(fiori2).concat(mezzi_trasporto).concat(strumenti_musicali).concat(utensili_cucina);
+        var distrattori_animali = jsPsych.randomization.sampleWithoutReplacement(distrattori_ANIMALI, 5);
+
+        var distrattori_FIORI =  abbigliamento.concat(abbigliamento2).concat(alimenti).concat(alimenti2).concat(animali).concat(mezzi_trasporto).concat(strumenti_musicali).concat(utensili_cucina);
+        var distrattori_fiori = jsPsych.randomization.sampleWithoutReplacement(distrattori_FIORI, 5);
+
+        var distrattori_MEZZI_TRASPORTO =  abbigliamento.concat(abbigliamento2).concat(alimenti).concat(alimenti2).concat(animali).concat(fiori).concat(fiori2).concat(strumenti_musicali).concat(utensili_cucina);
+        var distrattori_mezzi_trasporto = jsPsych.randomization.sampleWithoutReplacement(distrattori_MEZZI_TRASPORTO, 5);
+
+        var distrattori_STRUMENTI_MUSICALI =  abbigliamento.concat(abbigliamento2).concat(alimenti).concat(alimenti2).concat(animali).concat(fiori).concat(fiori2).concat(mezzi_trasporto).concat(utensili_cucina);
+        var distrattori_strumenti_musicali = jsPsych.randomization.sampleWithoutReplacement(distrattori_STRUMENTI_MUSICALI, 5);
+
+        var distrattori_UTENSILI_CUCINA =  abbigliamento.concat(abbigliamento2).concat(alimenti).concat(alimenti2).concat(animali).concat(fiori).concat(fiori2).concat(mezzi_trasporto).concat(strumenti_musicali);
+        var distrattori_utensili_cucina = jsPsych.randomization.sampleWithoutReplacement(distrattori_UTENSILI_CUCINA, 5);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        var pre_if = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una cesta piena di oggetti che appartengono alla stessa categoria. <br>
+                Attorno, ci saranno altri oggetti sparsi. <br>
+                Dovrà sceglierne 5 da aggiungere alla cesta che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+            choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta_prova = 1;
+                } else{
+                    var risposta_prova = 0;
+                }
+                data.risposta_prova = risposta_prova
+            }
+                
+        };
+
+        var prova_loop = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: fruttaEfiori, //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: ["./TASKS/LINGUAGGIO/categorizzazione_semantica/img/pera.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/mela.jpg", 
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/melaVerde.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/prugna.jpg", 
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore1.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore2.jpg",
+            "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore3.jpg", "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore4.jpg",
+             "./TASKS/LINGUAGGIO/categorizzazione_semantica/img/fiore5.jpg"], //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                console.log(data.response);
+                //<!---: inserire modalità corretto o sbagliato -->
+            }
+        };
+
+        var feedback = {
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1500,
+            data:"",
+            stimulus: "",
+            on_start: function(prova_loop){
+                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+                if (last_response_accuracy == true) {
+                    var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                    console.log("Corretto")
+                } else {
+                    var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                    console.log("Sbagliato")
+                };
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_loop.data = {stimulus: feedback};
+                prova_loop.stimulus = feedback_prova_stima;
+            },
+            
+        };
+
+        var begin_trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br>
+                 Ora vedrà una cesta piena di oggetti che appartengono alla stessa categoria. <br>
+                Attorno, ci saranno altri oggetti sparsi. <br>
+                Dovrà sceglierne 5 da aggiungere alla cesta che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+            choices: ['Prema qui per iniziare']
+                
+        };
+
+        var trial1 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: abbigliamento_fuori.concat(distrattori_abbigliamento), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: abbigliamento_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial2 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: abbigliamento2_fuori.concat(distrattori_abbigliamento), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: abbigliamento2_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial3 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: alimenti_fuori.concat(distrattori_alimenti), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: alimenti_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial4 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: alimenti2_fuori.concat(distrattori_alimenti), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: alimenti2_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial5 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: animali_fuori.concat(distrattori_animali), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: animali_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial6 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: fiori_fuori.concat(distrattori_fiori), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: fiori_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial7 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: fiori2_fuori.concat(distrattori_fiori), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: fiori2_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial8 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: mezzi_trasporto_fuori.concat(distrattori_mezzi_trasporto), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: mezzi_trasporto_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial9 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: strumenti_musicali_fuori.concat(distrattori_strumenti_musicali), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: strumenti_musicali_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial10 = {
+            type: jsPsychSortDD, //obbligatorio -> nome plugin
+            stimuli: utensili_cucina_fuori.concat(distrattori_utensili_cucina), //obbligatorio -> array di tutte le immagini senza limite di numero 
+            bagItems: utensili_cucina_fuori, //obbligatorio -> elementi che vanno nel sacco/scaffale
+            sort_area_width: 500, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+            sort_area_height: 1000, //obbligatorio -> altezza area dove rilasciare gli oggetti
+            sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+            prompt: "<p>Metti gli elementi simili nel sacco.</p>", //obbligatorio -> testo intestazione compito
+            counter_text_unfinished: "Devi ancora posizionare %n% elementi dentro il sacco.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+            counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+            prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+            numItem: 5, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+            stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+            stim_width:115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+            scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+            button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+            border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+            on_finish: function(data) {
+                if(jsPsych.data.get().filter({score: 1}).count() > 2){ //<!---: da controllare -->
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                }
+                 
+            }
+        };
+
+        var trial_timeline = {
+            timeline: [trial1, trial2, trial3, trial4, trial5, trial6, trial7, trial8, trial9, trial10]
+        }
+
+        var if_node = {
+            timeline: [begin_trial,trial_timeline],  
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+                if (response_button == 0){
+                    console.log("prosegui a esercizio");
+                    return true;
+                } else {
+                    console.log("inizia la prova");
+                    jsPsych.addNodeToEndOfTimeline(loop_prova)
+                    return false;
+                }
+            }
+        };
+
+        var begin_loop = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà una cesta piena di oggetti che appartengono alla stessa categoria. <br>
+                Attorno, ci saranno altri oggetti sparsi. <br>
+                Dovrà sceglierne 5 da aggiungere alla cesta che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare la prova'],
+            on_start: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                console.log(response_button)
+                if (response_button == 0){
+                    console.log("salta loop");
+                    jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+                }
+            }
+        };
+
+        var end_loop_prova = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br>
+                Ora vedrà una cesta piena di oggetti che appartengono alla stessa categoria. <br>
+                Attorno, ci saranno altri oggetti sparsi. <br>
+                Dovrà sceglierne 5 da aggiungere alla cesta che appartengono alla stessa categoria, lasciando fuori quelli che non centrano.</p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta = 1;
+                } else{
+                    var risposta = 0;
+                    console.log("Termine loop prova");
+                    jsPsych.addNodeToEndOfTimeline(trial_timeline);
+                }
+                data.risposta_loop = risposta
+            }
+        };
+
+        var loop_prova = {
+            timeline: [begin_loop, prova_loop, end_loop_prova],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+                }
+            }     
+        };
+
+        
+
+
+        var timeline = [pre_if, if_node];
+        jsPsych.run(timeline); 
+
+    </script>
+</html>

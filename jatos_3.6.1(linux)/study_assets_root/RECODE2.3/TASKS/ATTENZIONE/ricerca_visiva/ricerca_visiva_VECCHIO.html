@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RICERCA VISIVA LIV. 1</title>
+        <meta charset="UTF-8" />
+
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1"></script>
+
+
+        <link href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+        </style>
+    </body>
+    <script type="text/javascript">
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        });    
+
+        /* to initialize jspsych */
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+
+            on_finish: function() {
+                jsPsych.data.displayData(); //lascio così adesso perché in via di sviluppo 
+
+            /*
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 0){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+                jatos.studySessionData = feed;
+                var ricerca = Number(sessionStorage.getItem('ricerca'))+feed;
+                sessionStorage.setItem('ricerca', ricerca);
+                var Data = {feed: feed, type: 'ricerca_visivaprimo_livello', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data);
+            } */
+            }
+
+        });
+
+        var timeline = [];
+
+        var img_preload = {
+            type: jsPsychPreload,
+            images: ['./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine2.png', './tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine3.png'],
+        };timeline.push(img_preload);
+
+        var instructions = {
+            type:jsPsychHtmlButtonResponse,
+            stimulus: `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+            <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
+            button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+            choices: ['Prema qui per fare una prova'],
+        }; timeline.push(instructions);
+
+        var prova = {
+            type: jsPsychSurveyLikert,
+            preamble: '<img src="./tasks/attenzione/ricerca_visiva/ricerca_visiva/immagine1.png">',
+            questions: [
+                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> Selezioni con il mouse il numero corretto </p>", 
+                labels: [
+                    "<p style='font-size:30px;'>4</p>",
+                    "<p style='font-size:30px;'>5</p>", 
+                    "<p style='font-size:30px;'>6</p>", 
+                    "<p style='font-size:30px;'>7</p>", 
+                    "<p style='font-size:30px;'>8</p>"
+                ],
+                required: true,
+                
+                }
+            ],
+            on_finish: function(data){
+                //data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                if (data.response.Q0 == 2) {
+                    var accuracy = true;
+                } else {
+                    var accuracy = false;
+                }
+                data.accuracy = accuracy;
+               
+                /*var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;*/
+               
+                //console.log(feedback);
+            }
+            
+        }; timeline.push(prova); 
+
+        var feedback = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function(){
+                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
+                if (last_response_accuracy == true) {
+                    var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+                } else {
+                    var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+                }
+                return feedback;
+            },
+            choices: "NO_KEYS",
+            trial_duration: 1500
+        }; timeline.push(feedback);
+
+
+
+        /* var feedback_prova = {
+            on_start: function(prova){
+                var last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+                if (last_trial_accuracy == 1) {
+                    var feedback = "Corretto!"
+                } else {
+                    var feedback = "Sbagliato!, ritenta!"
+                };
+
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova.data = {stimulus: feedback};
+                prova.stimulus = feedback_prova_stima;
+            },
+            data:"",
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+        
+        };
+
+        var prova_procedure = {
+            timeline: [prova, feedback_prova],
+        }; */
+
+
+        /* var scale1 = ["<p style='font-size:30px;'>4</p>", "<p style='font-size:30px;'>5</p>", "<p style='font-size:30px;'>6</p>", "<p style='font-size:30px;'>7</p>", "<p style='font-size:30px;'>8</p>"];
+
+        var likert_trial_random_order = {
+                type: 'survey-likert',
+                preamble: '<img src="ricerca_visiva/ricerca_visiva/immagine1.png">',
+                questions: [
+                    {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine?</p>", labels: scale1},
+                ],
+                randomize_question_order: true,
+                scale_width: 500,
+                on_finish: function(data){
+                    data.correct = (jsPsych.data.get().last(1).values()[0].responses[6] === "1");
+                }
+            }; */
+
+
+
+
+
+        jsPsych.run(timeline)
+
+    </script>
+
+</html>

@@ -39,3 +39,6 @@
 {"msg":"Finish abandoned study","workerId":1,"timestamp":1678552822780}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678552822782}
 {"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1678701194108}
+{"msg":"Removed result data and files","userName":"Admin","timestamp":1679338785043}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1679340437535}
+{"msg":"Started study run with Jatos worker","batchId":1,"workerId":1,"timestamp":1679340481919}

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEMORIA DI LAVORO Rotazione Mentale LIV.1 </title>
+
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-multi-choice.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+  
+
+</head>
+<body>
+
+    <!--
+LIVELLO 1: Figure geometriche semplici in 3D; figure ad alta frequenza;
+numero trials: (?)
+
+LIVELLO 2: Figure geometriche semplici in 3D; Figure di media frequenza + aumento del numero di figure;
+numero trials: (?)
+
+LIVELLO 3: Figure geometriche di media difficoltà in 3D; Figure a bassa frequenza e simili tra loro;
+numero trials: (?)
+-->
+    
+</body>
+<script>
+    jatos.onload(function(){
+        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+        var progressText="avanzamento" + progress + "%";
+        const updateProgress = progress;
+      }); 
+      
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+        on_finish: function() {
+            /*jsPsych.data.displayData();*/
+      
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                if(correct_trials > 0){
+                    var feed = 1;
+                } else {
+                    var feed = 0;
+                }
+            jatos.studySessionData = feed;
+            var memoria_lavoro = Number(sessionStorage.getItem('memoria_lavoro'))+feed;
+            sessionStorage.setItem('memoria_lavoro', memoria_lavoro);
+            var Data = {feed: feed, type: 'MEMORIA_LAVORO_rotazione_mentale_level1', cresp: correct_trials};
+            jatos.startComponentByPos(4,Data); //PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+        } 
+    });
+
+    var preload = {
+        type: jsPsychPreload,
+        images: [
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_0.jpg', './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_0.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_0.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_0.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_0.jpg', './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_0_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_0_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_0_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_0_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_0_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_50.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_50.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_50.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_50.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_50.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_50_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_50_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_50_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_50_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_50_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_100_R.jpg', './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_100_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_100_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_100_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_100_R.jpg', './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_100.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_100.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_100.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_100.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_100.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_150_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_150_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_150_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_150_R.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_150_R.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_150.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_150.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_150.jpg',
+            './TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_150.jpg','./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_150.jpg'
+        ]
+    }; 
+
+
+    var x1 = [2,3,4,5];
+    let array1 = jsPsych.randomization.shuffle(x1);
+
+    var x2 = [1,3,4,5];
+    let array2 = jsPsych.randomization.shuffle(x2);
+
+    var x3 = [1,2,4,5];
+    let array3 = jsPsych.randomization.shuffle(x3);
+
+    var x4 = [1,2,3,5];
+    let array4 = jsPsych.randomization.shuffle(x4);
+
+    var x5 = [1,2,3,4];
+    let array5 = jsPsych.randomization.shuffle(x5);
+
+    var x_num = ["_0","_50","_100", "_150"];
+    let array_num = jsPsych.randomization.shuffle(x_num);
+
+    var x_R = ["_R", ""];
+    let array_R = jsPsych.randomization.shuffle(x_R);
+
+    var pre_if = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora le verrà presentata un'immagine. <br>
+            Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
+            ruotata nello spazio </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+        choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta_prova = 1;
+            } else{
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var prova_loop = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationA_1.png",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationB_1.png" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationA_2.png" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/rotationC_2.png" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true,
+        on_finish: function(data){
+            if(data.response ==  1){ 
+                var accuracy = true;
+            } else { 
+                var accuracy = false;
+            }
+            data.accuracy = accuracy
+        }
+    };
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        choices: "NO_KEYS",
+        trial_duration: 1500,
+        data:"",
+        stimulus: "",
+        on_start: function(prova_loop){
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+            if (last_response_accuracy == true) {
+                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                console.log("Corretto")
+            } else {
+                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                console.log("Sbagliato")
+            };
+            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+            prova_loop.data = {stimulus: feedback};
+            prova_loop.stimulus = feedback_prova_stima;
+        },
+        
+    };
+
+    var begin_trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br>
+              Ora le verrà presentata un'immagine. <br> Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
+            ruotata nello spazio </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare']
+    };
+
+    var trial1 = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1_0.jpg",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array1[0]+''+array_num[0]+''+array_R[0]+'.jpg" width="200" height="200" >' ,
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/1'+array_num[1]+''+array_R[0]+'.jpg" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array1[0]+''+array_num[0]+''+array_R[0]+'.jpg" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true, <!---: non randomizza le scelte -->
+        on_finish: function(data){
+            if(data.response ==  1){
+                console.log("corretto") 
+                var correct = true;
+            } else {
+                console.log("sbagliato") 
+                var correct = false;
+            } 
+            data.correct = correct
+        } 
+
+    };
+
+    var trial2 = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2_0.jpg",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array2[1]+''+array_num[1]+''+array_R[1]+'.jpg" width="200" height="200" >' ,
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/2'+array_num[1]+''+array_R[1]+'.jpg" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array2[1]+''+array_num[1]+''+array_R[1]+'.jpg" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true,
+        on_finish: function(data){
+            if(data.response ==  1){
+                console.log("corretto") 
+                var correct = true;
+            } else {
+                console.log("sbagliato") 
+                var correct = false;
+            } 
+            data.correct = correct
+        } 
+
+    };
+
+    var trial3 = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3_0.jpg",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array3[2]+''+array_num[2]+''+array_R[1]+'.jpg" width="200" height="200" >' ,
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/3'+array_num[2]+''+array_R[0]+'.jpg" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array3[2]+''+array_num[2]+''+array_R[0]+'.jpg" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true,
+        on_finish: function(data){
+            if(data.response ==  1){
+                console.log("corretto") 
+                var correct = true;
+            } else {
+                console.log("sbagliato") 
+                var correct = false;
+            } 
+            data.correct = correct
+        } 
+
+    };
+
+    var trial4 = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4_0.jpg",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array4[3]+''+array_num[3]+''+array_R[0]+'.jpg" width="200" height="200" >' ,
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/4'+array_num[3]+''+array_R[1]+'.jpg" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array4[2]+''+array_num[2]+''+array_R[1]+'.jpg" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true,
+        on_finish: function(data){
+            if(data.response ==  1){
+                console.log("corretto") 
+                var correct = true;
+            } else {
+                console.log("sbagliato") 
+                var correct = false;
+            } 
+            data.correct = correct
+        } 
+
+    };
+
+    var trial5 = {
+        type: jsPsychImageButtonResponse,
+        stimulus:"./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5_0.jpg",
+        prompt: "Rispetto all'immagine mostrata sopra, quale delle opzioni presentate la rappresenta ruotata?",
+        stimulus_height: 300,
+        choices: [
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array5[2]+''+array_num[1]+''+array_R[0]+'.jpg" width="200" height="200" >' ,
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/5'+array_num[0]+''+array_R[1]+'.jpg" alt = "corretta" width="200" height="200" >',
+            '<img src="./TASKS/MEMORIA_LAVORO/rotazione_mentale/img/img1/'+array5[3]+''+array_num[0]+''+array_R[0]+'.jpg" width="200" height="200" >'
+        ],
+        button_html: `<button class="jspsych-btn" style="position: left;">%choice%</button>`,
+        randomize_choices_order: true,
+        on_finish: function(data){
+            if(data.response ==  1){
+                console.log("corretto") 
+                var correct = true;
+            } else {
+                console.log("sbagliato") 
+                var correct = false;
+            } 
+            data.correct = correct
+        } 
+
+    };
+
+    var trial_timeline = {
+        timeline: [trial1, trial2, trial3, trial4, trial5]
+    };
+
+    var if_node = {
+        timeline: [begin_trial,trial_timeline],  
+        conditional_function: function(){
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+            if (response_button == 0){
+                console.log("prosegui a esercizio");
+                return true;
+            } else {
+                console.log("inizia la prova");
+                jsPsych.addNodeToEndOfTimeline(loop_prova)
+                return false;
+            }
+        }
+    };
+
+    var begin_loop = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora le verrà presentata un'immagine. <br>
+             Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
+            ruotata nello spazio  </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare la prova'],
+        on_start: function(data){
+            var response_button = jsPsych.data.get().last(1).values()[0].response;
+            console.log(response_button)
+            if (response_button == 0){
+                console.log("salta loop");
+                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+            }
+        }
+    };
+
+    var end_loop_prova = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> 
+            Ora le verrà presentata un'immagine. <br> Le verranno poi date delle opzioni e lei dovrà indicare quali di queste rappresentino l'immagine presentata, 
+            ruotata nello spazio </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function(data){
+            if(data.response == 1){
+                var risposta = 1;
+            } else{
+                var risposta = 0;
+                console.log("Termine loop prova");
+                jsPsych.addNodeToEndOfTimeline(trial_timeline);
+            }
+            data.risposta_loop = risposta
+        }
+    };
+
+    var loop_prova = {
+        timeline: [begin_loop, prova_loop, feedback, end_loop_prova],
+        loop_function: function(){
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+            if (response_button == 1){
+                return true;
+            } else {
+                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+            }
+        }     
+    };
+
+    var timeline = [pre_if, if_node]
+jsPsych.run(timeline)
+     
+</script>
+</html>

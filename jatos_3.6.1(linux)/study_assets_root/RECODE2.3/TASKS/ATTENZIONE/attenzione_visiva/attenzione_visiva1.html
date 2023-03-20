@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> ATTENZIONE_VISIVA LIV.1 </title>
+
+        <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+        <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+
+        <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            }
+
+        </style>
+
+        <!--
+            ISTRUZIONI: 
+Da: Ora le mostrerò una serie di numeri e ogni volta che vede il numero ‘2’ deve premere il tasto ‘4’,
+ed ogni volta che vede il numero ‘4’, deve premere il tasto ‘2’, quando vede un altro numero lei non deve dire niente.
+Quindi, se vede 2 lei preme 4 e se vede 4 lei preme 2. Facciamo una prova.
+A: Ora vedrà una serie di numeri.
+Ogni volta che vede il numero 2, prema il tasto 4;
+Ogni volta che vede il numero 4, prema il tasto 2.
+Quando vede un altro numero, non deve fare niente.
+
+Quindi: se vede 2 lei preme 4 e se vede 4 lei preme 2. 
+Sotto, tasti: “Fai una prova” “Continua”
+
+SVOLGIMENTO:
+Il “Pronti VIA” deve essere mantenuto solo nella prova;  poi deve essere fatta scorrere la sequenza di numeri.
+Viene eliminata  la pausa di attesa della risposta tra un numero e l’altro. 
+Almeno nella prova, dopo i target deve esserci un feedback visivo (pollice in su o in giù).
+LIVELLI: 
+1 livello: abbiamo 25 numeri- 10 target e 15 non target- che hanno una latenza di 3 sec e mezzo. 
+Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di numeri (almeno 10) perché non sia ripetitivo. 
+
+        -->
+        
+    </body>
+    <script>
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        }); 
+        
+        var jsPsych = initJsPsych({
+                use_webaudio: false,
+                on_finish: function() {
+                    jsPsych.data.displayData();
+
+                    /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                        if(correct_trials > 0){
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+                    sessionStorage.setItem('attenzione', attenzione);
+                    var Data = {feed: feed, type: 'ATTENZIONE_attenzionevisiva_level1', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                } 
+            });
+        
+        var pre_if = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una serie di numeri. <br> Ogni volta che vede un certo numero,
+                dovrà rispondere premendo un determinato tasto; <br> </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+            choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta_prova = 1;
+                } else{
+                    var risposta_prova = 0;
+                }
+                data.risposta_prova = risposta_prova
+            }
+                
+        };
+
+        var prova_loop = {
+            type: jsPsychPsychophysics,
+            stimuli: [
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: 'Pronti',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 3000,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: 'VIA!',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 3500, // ms after the start of the trial
+                  show_end_time: 4000,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: function(){
+                    return jsPsych.timelineVariable('number', true);
+                  },
+                  choices: [2,4],
+                  font: "60px 'Arial'",
+                  text_color: 'black',
+                  show_start_time: 4000, // ms after the start of the trial
+                  show_end_time: 7500,
+                }
+            ], 
+            background_color: 'white',
+            response_type: 'key',
+            response_start_time: 500,
+            response_ends_trial: true,
+            trial_duration: 7500,
+            data: {
+                trial_part: 'trial',
+                correctResponse: jsPsych.timelineVariable('correctResponse'),
+                number: jsPsych.timelineVariable('number'),
+            },
+            on_finish: function(data) {
+                console.log(data.key_press);
+                if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) {
+                    var accuracy = true;
+                } else {
+                    var accuracy = false;
+                }
+                data.accuracy = accuracy;
+            }
+        };
+
+        var feedback = {
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1500,
+            data:"",
+            stimulus: "",
+            on_start: function(prova_loop){
+                var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+                if (last_response_accuracy == true) {
+                    var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                    console.log("Corretto")
+                } else {
+                    var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                    console.log("Sbagliato")
+                };
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_loop.data = {stimulus: feedback};
+                prova_loop.stimulus = feedback_prova_stima;
+            },
+            
+        };
+
+        var prova_loop_timeline = {
+            timeline: [prova_loop, feedback],
+            timeline_variables: [
+                {
+                    number: '2',
+                    correctResponse: '4' 
+                },
+                {
+                    number: '4',
+                    correctResponse: '2' 
+                },
+                {
+                    number: '7',
+                    correctResponse: null
+                }
+            ],
+            randomize_order: true
+        };
+
+        var x = [0,1,2,3,4,5,6,7,8,9];
+        var x = jsPsych.randomization.shuffle(x)
+
+        var begin_trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Ora vedrà una serie di numeri. 
+                <br> Ogni volta che vede il numero `+x[0]+`, prema il tasto `+x[1]+`; <br>
+            Ogni volta che vede il numero `+x[1]+`, prema il tasto `+x[0]+`. <br> Quando vede un altro numero, non deve fare niente.
+            <br> <br> <br> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare']
+        };
+
+        var trial = {
+            type: jsPsychPsychophysics,
+            stimuli: [
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: '+',
+                  font: "60px 'Arial'",
+                  line_length: 30,
+                  line_color: 'black', 
+                  show_start_time: 1000, // ms after the start of the trial
+                  show_end_time: 3000,
+                },
+                {
+                  obj_type: 'text',
+                  startX: 'center', // location of the cross's center in the canvas
+                  startY: 'center',
+                  content: function(){
+                    return jsPsych.timelineVariable('number', true);
+                  },
+                  choices: [''+x[0]+'',''+x[1]+''],
+                  font: "60px 'Arial'",
+                  text_color: 'black',
+                  show_start_time: 3000, // ms after the start of the trial
+                  show_end_time: 6500,
+                }
+            ], 
+            background_color: 'white',
+            response_type: 'key',
+            response_start_time: 500,
+            response_ends_trial: true,
+            trial_duration: 6500,
+            data: {
+                trial_part: 'trial',
+                correctResponse: jsPsych.timelineVariable('correctResponse'),
+                number: jsPsych.timelineVariable('number'),
+            },
+            on_finish: function(data) {
+                console.log(data.key_press);
+                if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) { <!---: PROBLEMA nel riconoscere risposta corretta o sbagliata -->
+                    var accuracy = true;
+                } else {
+                    var accuracy = false;
+                }
+                data.accuracy = accuracy;
+                if (data.accuracy = true) {
+                    var correct = true;
+                    console.log("Corretto");
+                } else {
+                    var correct = false;
+                    console.log("Sbagliato");
+                };
+                data.correct = correct;
+            }
+            
+        }; 
+
+      
+
+        var variables = [
+            { number: ''+x[0]+'', correctResponse: ''+x[1]+''},
+            { number: ''+x[1]+'', correctResponse: ''+x[0]+''},
+            { number: ''+x[2]+'', correctResponse: null}
+        ];
+
+        var trial_timeline = {
+            timeline: [trial],
+            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,15])
+        };
+
+        var if_node = {
+            timeline: [begin_trial,trial_timeline],  
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+                if (response_button == 0){
+                    console.log("prosegui a esercizio");
+                    return true;
+                } else {
+                    console.log("inizia la prova");
+                    jsPsych.addNodeToEndOfTimeline(loop_prova)
+                    return false;
+                }
+            }
+        };
+
+        var begin_loop = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà una serie di numeri. <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
+            Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
+            <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare la prova'],
+            on_start: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                console.log(response_button)
+                if (response_button == 0){
+                    console.log("salta loop");
+                    jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+                }
+            }
+        };
+
+        var end_loop_prova = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Ora vedrà una serie di numeri. 
+                <br> Ogni volta che vede il numero `+x[0]+`, prema il tasto `+x[1]+`; <br>
+            Ogni volta che vede il numero `+x[1]+`, prema il tasto `+x[0]+`. <br> Quando vede un altro numero, non deve fare niente.
+            <br> <br> <br> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta = 1;
+                } else{
+                    var risposta = 0;
+                    console.log("Termine loop prova");
+                    jsPsych.addNodeToEndOfTimeline(trial_timeline);
+                }
+                data.risposta_loop = risposta
+            }
+        };
+
+        var loop_prova = {
+            timeline: [begin_loop, prova_loop_timeline, end_loop_prova],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+                }
+            }     
+        };
+
+        
+
+
+        var timeline = [pre_if, if_node];
+
+        jsPsych.run(timeline)
+    </script>
+</html>

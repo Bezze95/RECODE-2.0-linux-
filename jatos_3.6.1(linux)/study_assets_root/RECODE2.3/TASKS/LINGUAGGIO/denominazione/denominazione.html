@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>LINGUAGGIO DENOMINAZIONE LIV.1 </title>
+    <meta charset="UTF-8">
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-fullscreen.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+    <script src="jatos.js"></script>
+    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: white;
+    }
+  </style>
+
+</body>  
+  
+<script type='text/javascript'>
+
+  /*function sendEmail(subj,text) {
+  Email.send({
+       SecureToken : "af542755-0e56-4ee8-9e69-3643042ec3b1",
+        To : 'conteabba@gmail.com',
+        From : "conteabba@gmail.com",
+        Subject : subj,
+        Body : text
+    })
+  }*/
+
+  jatos.onload(function(){
+    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0); <!---: dovrebbe essere componentCounter -->
+    var progressText="avanzamento" + progress + "%";
+    const updateProgress = progress;
+  }); 
+        
+  var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function() {
+      jsPsych.data.displayData();
+    }
+  });
+
+  // -----> parte di istruzioni di Giorgia  
+  /* on_finish: function() { 
+
+  var cresp = 0;
+  var tot = 10;
+
+  //var nochart = images.replace(/w, '')
+  //string = string.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[0].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[1].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[2].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[3].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[4].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[5].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[6].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[7].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[8].slice(0,-3))) {cresp += 1;}
+  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[9].slice(0,-3))) {cresp += 1;}
+  //  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[4].slice(0,-3)) {cresp += 1;}
+  if (cresp > 6) {feed = 1} else {feed = 0};
+  jatos.studySessionData = feed;
+  var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+  sessionStorage.setItem('linguaggio', linguaggio);
+  var data = {feed: feed, type: 'denominazione_1', cresp: cresp};
+  jatos.startComponentByPos(4, data, JSON.stringify(data));
+  }*/ 
+
+
+  // -----> parte di istruzioni di Giulio vecchia 
+                                /*
+  var correct_trials = jsPsych.data.get().filter({visualcorrect: true}).count();
+    if(correct_trials > 10){
+      var feed = 1;
+    } else {
+      var feed = 0;
+    }
+    jatos.studySessionData = feed;
+    var attenzione = Number(sessionStorage.getItem('attenzione'))+feed;
+    sessionStorage.setItem('attenzione', attenzione);
+    var Data = {feed: feed, type: 'GoNoGoCards', cresp: correct_trials};
+    jatos.startComponentByPos(4,Data); 
+  }*/
+
+
+  /* var preload_images = {
+      type: jsPsychPreload,
+      images: ['banana1.jpg', 'banana2.jpg','barba1.jpg', 'barba2.jpg','braccio1.jpg', 'braccio2.jpg',
+    'carota1.jpg', 'carota2.jpg','elefante1.jpg', 'elefante2.jpg','farfalla1.jpg', 'farfalla2.jpg',
+    'gatto1.jpg', 'gatto2.jpg','limone1.jpg', 'limone2.jpg','mela1.jpg','mela2.jpg','mucca1.jpg','mucca2.jpg',
+    'ossa1.jpg','ossa2.jpg', 'penna1.jpg','penna2.jpg','pesca1.jpg','pesca2.jpg', 'scarpe1.jpg','scarpe2.jpg',
+    'serpente1.jpg','serpente2.jpg', 'tartaruga1.jpg','tartaruga2.jpg', 'tigre1.jpg','tigre2.jpg'],
+      show_detailed_errors: true
+    }; */
+
+  var imgs = [
+    "./TASKS/LINGUAGGIO/denominazione/img/banana1.jpg", "./TASKS/LINGUAGGIO/denominazione/img/banana2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/barba1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/barba2.jpg","./TASKS/LINGUAGGIO/denominazione/img/braccio1.jpg","./TASKS/LINGUAGGIO/denominazione/img/braccio2.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/carota1.jpg","./TASKS/LINGUAGGIO/denominazione/img/carota2.jpg","./TASKS/LINGUAGGIO/denominazione/img/elefante1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/elefante2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/farfalla1.jpg", "./TASKS/LINGUAGGIO/denominazione/img/farfalla2.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/gatto1.jpg", "./TASKS/LINGUAGGIO/denominazione/img/gatto2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/limone1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/limone2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/mela1.jpg", "./TASKS/LINGUAGGIO/denominazione/img/mela2.jpg","./TASKS/LINGUAGGIO/denominazione/img/mucca1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/mucca2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/ossa1.jpg","./TASKS/LINGUAGGIO/denominazione/img/ossa2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/penna1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/penna2.jpg","./TASKS/LINGUAGGIO/denominazione/img/pesca1.jpg","./TASKS/LINGUAGGIO/denominazione/img/pesca2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/scarpe1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/scarpe2.jpg","./TASKS/LINGUAGGIO/denominazione/img/serpente1.jpg","./TASKS/LINGUAGGIO/denominazione/img/serpente2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/tartaruga1.jpg",
+    "./TASKS/LINGUAGGIO/denominazione/img/tartaruga2.jpg", "./TASKS/LINGUAGGIO/denominazione/img/tigre1.jpg", "./TASKS/LINGUAGGIO/denominazione/img/tigre2.jpg"
+  ];
+
+  var images = jsPsych.randomization.shuffle(imgs);
+
+
+
+  var button = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI:</p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Adesso le verranno presentate delle figure.</p>'+
+        '<p style="font-size: 24px; font-weight: bold;">Scriva il nome corrispondente ad ogni figura nello spazio apposito. </p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>',
+      button_hmtl: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare', 'Prema qui per essere ricontattato'],
+      /* on_finish: function(data){
+        if(data.button_pressed == 1){
+          sendEmail(jatos.studyProperties.title,'help '+jatos.componentProperties.title);
+          location.reload();}
+      }*/
+  };
+
+  var trial = {
+    timeline: [
+    
+    ],
+  };
+
+ 
+
+
+
+  var timeline = [images, button, one, two, three, four, five, six, seven, eight, nine, ten];
+
+  jsPsych.run(timeline)
+</script>
+
+
+</html>
+  

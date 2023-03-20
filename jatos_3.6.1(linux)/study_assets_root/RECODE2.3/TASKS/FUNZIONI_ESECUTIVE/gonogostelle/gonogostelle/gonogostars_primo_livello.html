@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GONOGO CARDS LIV.1 </title>
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+
+</head>
+<body></body>
+<script>
+
+  jatos.onload(function(){
+    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+    var progressText="avanzamento" + progress + "%";
+    const updateProgress = progress;
+  }); 
+
+  var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function() {
+        /*jsPsych.data.displayData();*/
+
+        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            if(correct_trials > 0){
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
+        jatos.studySessionData = feed;
+        var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
+        sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
+        var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_gonogostars_level1', cresp: correct_trials};
+        jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+    } 
+  });
+
+
+  var cresp = 0;
+
+  var stars = ["\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
+  var go = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}"];
+  var nogo = ["\u{1F7C6}", "\u{1F7C6}", "\u{1F7C6}", "\u{1F7CA}", "\u{1F7CA}"];
+
+  function shuffle(s) {
+    s.sort(function() {
+      return 0.5 - Math.random();
+    });
+    s = String(s.join(''));
+    return s;
+  }
+
+  var go_1 = shuffle(go);
+  var go_2 = shuffle(go);
+  var go_3 = shuffle(go);
+  var go_4 = shuffle(go);
+  var go_5 = shuffle(go);
+  var go_6 = shuffle(go);
+  var go_7 = shuffle(go);
+  var go_8 = shuffle(go);
+  var go_9 = shuffle(go);
+  var go_10 = shuffle(go);
+
+  var nogo_1 = shuffle(nogo);
+  var nogo_2 = shuffle(nogo);
+  var nogo_3 = shuffle(nogo);
+  var nogo_4 = shuffle(nogo);
+  var nogo_5 = shuffle(nogo);
+  var nogo_6 = shuffle(nogo);
+  var nogo_7 = shuffle(nogo);
+  var nogo_8 = shuffle(nogo);
+  var nogo_9 = shuffle(nogo);
+  var nogo_10 = shuffle(nogo);
+
+  var pre_if = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus:
+    `<p style="font-size: 24px; font-weight: bold;"> Sullo schermo compariranno delle stelle con un numero diverso di punte. <br> <br>
+    Prema la freccia in basso sulla tastiera quando vede una stella a sei punte.</p>`,
+    button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+    choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],    
+    on_finish: function(data){
+      if(data.response == 1){
+          var risposta_prova = 1;
+      } else{
+          var risposta_prova = 0;
+      }
+      data.risposta_prova = risposta_prova
+  }
+  };
+  
+  var prova_loop = {
+    timeline: [
+        {
+            type: jsPsychPsychophysics,
+            stimuli: [
+              {
+                  obj_type: 'text',
+                  startX: 'center',
+                  startY: 'center',
+                  content: '',
+                  font: "50px 'Arial'",
+                  text_color: 'white',
+                  show_start_time: 0, // ms after the start of the trial
+                  show_end_time: 500 // ms after the start of the trial
+              },
+              {
+                  obj_type: 'text',
+                  startX: 'center',
+                  startY: 'center',
+                  content: jsPsych.timelineVariable('star'),
+                  font: "300px 'Arial'",
+                  text_color: jsPsych.timelineVariable('color'),
+                  show_start_time: 1000, // ms after the start of the trial
+                  origin_center: true,
+                  response_ends_trial: true,
+              }
+            ],
+            choices: ['ArrowDown'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+            canvas_height: 800,
+            background_color: '#FFFFFF', // The HEX color means green.
+            trial_duration: 5000,
+            on_finish: function(data){
+
+              if(jsPsych.timelineVariable('type')=='go'){
+                data.accuracy = (data.key_press === data.cresponse);
+              } else if (jsPsych.timelineVariable('type')=='nogo'){
+                  data.accuracy = (data.key_press === null);
+              }
+
+            },
+            data: {
+              test_part: 'star',
+              cresponse: jsPsych.timelineVariable('cresponse'),
+              star: jsPsych.timelineVariable('star')
+            }
+        },
+        {
+          type: jsPsychHtmlKeyboardResponse, //FEEDBACK
+          stimulus: function(){
+            var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
+            if(last_trial_correct){
+              return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+            } else {
+              return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+            }
+          },
+          post_trial_gap: 1000,
+          trial_duration: 1000,
+          response_ends_trial: false,
+        }
+    ],
+    timeline_variables: [
+      {star: go_1, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_2, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: nogo_1, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_2, color: 'gold', cresponse: '', type: 'nogo'},
+    ],
+    randomize_order: true,
+    repetitions: 1
+  };
+
+  var begin_trial = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Sullo schermo compariranno delle stelle con un numero diverso di punte. <br> <br>
+      Prema la freccia in basso sulla tastiera quando vede una stella a sei punte.</p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    choices: ['Prema qui per iniziare']
+  };
+
+  
+  var trial = {
+    timeline: [
+        {
+            type: jsPsychPsychophysics,
+            stimuli: [
+              {
+                  obj_type: 'text',
+                  startX: 'center',
+                  startY: 'center',
+                  content: '',
+                  font: "50px 'Arial'",
+                  text_color: 'white',
+                  show_start_time: 0, // ms after the start of the trial
+                  show_end_time: 500 // ms after the start of the trial
+              },
+              {
+                  obj_type: 'text',
+                  startX: 'center',
+                  startY: 'center',
+                  content: jsPsych.timelineVariable('star'),
+                  font: "300px 'Arial'",
+                  text_color: jsPsych.timelineVariable('color'),
+                  show_start_time: 1000, // ms after the start of the trial
+                  origin_center: true,
+                  response_ends_trial: true,
+              }
+            ],
+            choices: ['ArrowDown'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+            canvas_height: 800,
+            background_color: '#FFFFFF', // The HEX color means green.
+            trial_duration: 5000,
+            on_finish: function(data){
+
+              if(jsPsych.timelineVariable('type')=='go'){
+                data.correct = (data.key_press === data.cresponse);
+              } else if (jsPsych.timelineVariable('type')=='nogo'){
+                  data.correct = (data.key_press === null);
+              }
+
+
+            },
+            data: {
+              test_part: 'star',
+              cresponse: jsPsych.timelineVariable('cresponse'),
+              star: jsPsych.timelineVariable('star')
+            }
+        },
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: function(){
+            var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+            if(last_trial_correct){
+              
+              console.log("Corretto")
+            } else {
+              
+              console.log("Sbagliato")
+            }
+          },
+          post_trial_gap: 1000,
+          trial_duration: 1000,
+          response_ends_trial: false,
+        }
+    ],
+    timeline_variables: [
+      {star: go_1, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_2, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_3, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_4, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_5, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_6, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_7, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_8, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_9, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_10, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: nogo_1, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_2, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_3, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_4, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_5, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_6, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_7, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_8, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_9, color: 'gold', cresponse: '', type: 'nogo'},
+      {star: nogo_10, color: 'gold', cresponse: '', type: 'nogo'},
+    ],
+    randomize_order: true,
+    repetitions: 1 //da decidersi in base al numero di trials per livello
+}
+
+  var if_node = {
+    timeline: [begin_trial,trial],  
+    conditional_function: function(){
+      var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+      if (response_button == 0){
+        console.log("prosegui a esercizio");
+        return true;
+      } else {
+        console.log("inizia la prova");
+        jsPsych.addNodeToEndOfTimeline(loop_prova)
+        return false;
+      }
+    }
+  };
+
+  var begin_loop = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br>  Sullo schermo compariranno delle stelle con un numero diverso di punte. <br> <br>
+      Prema la freccia in basso sulla tastiera quando vede una stella a sei punte.</p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    choices: ['Prema qui per iniziare la prova'],
+    on_start: function(data){
+      var response_button = jsPsych.data.get().last(1).values()[0].response;
+      console.log(response_button)
+      if (response_button == 0){
+        console.log("salta loop");
+        jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+      }
+    }
+  };
+
+  var end_loop_prova = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Sullo schermo compariranno delle stelle con un numero diverso di punte. <br> <br>
+      Prema la freccia in basso sulla tastiera quando vede una stella a sei punte.</p>`,
+    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+    on_finish: function(data){
+      if(data.response == 1){
+        var risposta = 1;
+      } else{
+        var risposta = 0;
+        console.log("Termine loop prova");
+        jsPsych.addNodeToEndOfTimeline(trial);
+      }
+      data.risposta_loop = risposta
+    }
+  };
+
+
+  var loop_prova = {
+    timeline: [begin_loop, prova_loop, end_loop_prova],
+    loop_function: function(){
+      var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+      if (response_button == 1){
+        return true;
+      } else {
+        return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+      }
+    }    
+  };
+
+
+
+   var timeline = [pre_if, if_node];
+
+jsPsych.run(timeline)
+
+</script>
+
+</html>

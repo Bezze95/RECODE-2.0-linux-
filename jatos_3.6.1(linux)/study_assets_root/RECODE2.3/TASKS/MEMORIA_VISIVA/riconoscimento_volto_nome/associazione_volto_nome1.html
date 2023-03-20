@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MEMORIA VISIVA Associazione volto-nome LIV. 1</title>
+        <meta charset="UTF-8" />
+
+        <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+        <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+
+        
+        <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="jatos.js"></script>
+
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: white;
+            } 
+
+        </style>
+
+    </body>
+    <script>
+        jatos.onload(function(){
+            var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+            var progressText="avanzamento" + progress + "%";
+            const updateProgress = progress;
+        });    
+
+            /* to initialize jspsych */
+        var jsPsych = initJsPsych({
+            use_webaudio: false,
+
+            on_finish: function() {
+                /*jsPsych.data.displayData();*/ //lascio così adesso in via di sviluppo 
+
+                var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    if(correct_trials > 9){ //bisogna stabilire il valore di risposte corrette per considerarlo come passato 
+                        var feed = 1;
+                    } else {
+                        var feed = 0;
+                    }
+                jatos.studySessionData = feed;
+                var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva'))+feed;
+                sessionStorage.setItem('memoria_visiva', memoria_visiva);
+                var Data = {feed: feed, type: 'MEMORIA_VISIVA_associazionevoltonome_level1', cresp: correct_trials};
+                jatos.startComponentByPos(4,Data); 
+            
+            }
+
+        });
+
+       
+
+        var preload = {
+            type: jsPsychPreload,
+            images: [
+                './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/1.png', './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/2.png',
+                './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/3.png', './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/4.png',
+                './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/5.png', './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/6.png',
+                './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/7.png', './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/8.png',
+                './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/9.png', './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/10.png'
+            ]
+        }; 
+
+        var pre_if = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black">%choice%</button>`,
+            choices: ['Prema qui per procedere al compito','Prema qui per fare una prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta_prova = 1;
+                } else{
+                    var risposta_prova = 0;
+                }
+                data.risposta_prova = risposta_prova
+            }
+        };
+
+        var prova_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('img1'),
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 "> mario </a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> idraulico </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        }; 
+
+        var prova_answer = {
+            type: jsPsychSurveyText,
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+
+            }
+        }; 
+
+        var feedback = {
+            type: jsPsychHtmlKeyboardResponse,
+            choices: "NO_KEYS",
+            trial_duration: 1500,
+            data:"",
+            stimulus: "",
+            on_start: function(prova_answer){
+                var last_response_accuracy_nome = jsPsych.data.getLastTrialData().values()[0].accuracy_nome;
+                var last_response_accuracy_professione = jsPsych.data.getLastTrialData().values()[0].accuracy_professione;
+                if (last_response_accuracy_nome == true, last_response_accuracy_professione == true) {
+                    var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                    console.log("Corretto")
+                } else {
+                    var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                    console.log("Sbagliato")
+                };
+                var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+                prova_answer.data = {stimulus: feedback};
+                prova_answer.stimulus = feedback_prova_stima;
+            }
+        };
+
+        var prova_loop = {
+            timeline: [prova_img, prova_answer, feedback],
+            timeline_variables:[
+                {img1: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/1.png', nome: 'mario', professione: 'idraulico'},  
+            ],
+        };
+
+        var begin_trial = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare']
+        };
+
+        ///////////////////////// TRIALS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var imgs = [
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/2.png', nome: 'sara', professione: 'maestra'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/3.png', nome: 'giorgio', professione: 'barista'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/4.png', nome: 'michele', professione: 'bidello'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/5.png', nome: 'luca', professione: 'venditore'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/6.png', nome: 'isabella', professione: 'dottoressa'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/7.png', nome: 'alessandro', professione: 'musicista'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/8.png', nome: 'francesco', professione: 'operaio'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/9.png', nome: 'davide', professione: 'studente'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/10.png', nome: 'fabio', professione: 'informatico'},
+            {img: './TASKS/MEMORIA_VISIVA/riconoscimento_volto_nome/img_persone/11.png', nome: 'paolo', professione: 'disoccupato'}
+        ];
+        var array_imgs = jsPsych.randomization.shuffle(imgs);
+
+        var trial1_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[0].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial1 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[0].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[0].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+        };
+
+        var trial2_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[1].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial2 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[1].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[1].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial3_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[2].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[2].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[2].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial3 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[2].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[2].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial4_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[3].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[3].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[3].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial4 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[3].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[3].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial5_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[4].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[4].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[4].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial5 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[4].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[4].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial6_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[5].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[5].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[5].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial6 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[5].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[5].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+        };
+
+        var trial7_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[6].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[6].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[6].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial7 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[6].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[6].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial8_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[7].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[7].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[7].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial8 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[7].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[7].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial9_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[8].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[8].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[8].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial9 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[8].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[8].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial10_img = {
+            type: jsPsychImageButtonResponse,
+            stimulus: ''+array_imgs[9].img+'',
+            stimulus_height: 600,
+            // da definire dimensioni immagine
+            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[9].nome + `</a> ;
+                 PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[9].professione + ` </a> </p>`,
+            choices: ['Prema qui per proseguire'],
+        };
+
+        var trial10 = {
+            type: jsPsychSurveyText,
+            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
+            questions: [
+                {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
+                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+            ],
+            on_finish: function(data){
+                if (data.response.Nome == array_imgs[9].nome ) {
+                    var accuracy_nome = true
+                } else {
+                    var accuracy_nome = false
+                } 
+                if (data.response.Professione == array_imgs[9].professione){
+                    var accuracy_professione = true
+                } else {
+                    var accuracy_professione = false
+                };
+                data.accuracy_nome = accuracy_nome;
+                data.accuracy_professione = accuracy_professione
+                if (data.accuracy_nome, data.accuracy_professione == true) {
+                    var correct = true;
+                } else {
+                    var correct = false;
+                };
+                data.correct = correct;
+            }
+            
+        };
+
+        var trial_timeline = {
+            timeline: [trial1_img, trial1, trial2_img, trial2, trial3_img, trial3, trial4_img, trial4, trial5_img, trial5, trial6_img, trial6, trial7_img, trial7, trial8_img, trial8, trial9_img, trial9, trial10_img, trial10]
+        };
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var if_node = {
+            timeline: [begin_trial,trial_timeline],  
+            conditional_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
+                if (response_button == 0){
+                    console.log("prosegui a esercizio");
+                    return true;
+                } else {
+                    console.log("inizia la prova");
+                    jsPsych.addNodeToEndOfTimeline(loop_prova)
+                    return false;
+                }
+            }
+        };
+
+        var begin_loop = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per iniziare la prova'],
+            on_start: function(data){
+                var response_button = jsPsych.data.get().last(1).values()[0].response;
+                console.log(response_button)
+                if (response_button == 0){
+                    console.log("salta loop");
+                    jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+                }
+            }
+        };
+
+        var end_loop_prova = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br>Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            on_finish: function(data){
+                if(data.response == 1){
+                    var risposta = 1;
+                } else{
+                    var risposta = 0;
+                    console.log("Termine loop prova");
+                    jsPsych.addNodeToEndOfTimeline(trial_timeline);
+                }
+                data.risposta_loop = risposta
+            }
+        };
+
+        var loop_prova = {
+            timeline: [begin_loop, prova_loop, end_loop_prova],
+            loop_function: function(){
+                var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+                if (response_button == 1){
+                    return true;
+                } else {
+                    return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+                }
+            }     
+        };
+
+        
+
+
+        var timeline = [preload,pre_if, if_node];
+        jsPsych.run(timeline);
+    </script>
+</html>
