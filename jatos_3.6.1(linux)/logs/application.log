@@ -622,3 +622,21 @@
 2023-03-20 22:00:05,358 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2023-03-20 22:00:05,359 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679346005261 (admin)
 2023-03-20 22:05:54,266 [INFO] - gui_access - GET /jatos/1/65/properties (admin)
+2023-03-20 22:14:28,820 [INFO] - gui_access - GET /jatos/1/results (admin)
+2023-03-20 22:14:28,919 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 22:14:28,959 [INFO] - gui_access - GET /jatos/1/resultsTableData?_=1679346868880 (admin)
+2023-03-20 22:14:34,832 [INFO] - gui_access - POST /jatos/studyResult/delete (admin)
+2023-03-20 22:14:37,321 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-20 22:14:37,441 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 22:14:37,497 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679346877388 (admin)
+2023-03-20 22:14:40,014 [INFO] - gui_access - GET /jatos/1/export (admin)
+2023-03-20 22:18:36,486 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2023-03-20 22:19:33,017 [INFO] - gui_access - GET /jatos/1/workerAndBatchManager (admin)
+2023-03-20 22:19:33,132 [INFO] - gui_access - GET /jatos/1/batches (admin)
+2023-03-20 22:19:33,133 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 22:19:34,279 [INFO] - gui_access - GET /jatos/1/batch/1/batchSessionData (admin)
+2023-03-20 22:25:12,020 [INFO] - p.c.s.AkkaHttpServer - Stopping server...
+2023-03-20 22:25:12,027 [INFO] - g.OnStartStop - JATOS shutdown
+2023-03-20 22:25:12,039 [INFO] - application - Shutting down connection pool.
+2023-03-20 22:25:12,040 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-03-20 22:25:12,041 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
