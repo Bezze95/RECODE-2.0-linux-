@@ -44,12 +44,12 @@
     var jsPsych = initJsPsych({
         use_webaudio: false,
         on_finish: function() {
-            jsPsych.data.displayData();
+            //jsPsych.data.displayData();
 
 //Codice necessario per aggiornare la BatchSession con i punteggi ottenuti nell'esercizio e proseguire nell'esperimento 
 
-            /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-            var correct_trials = Math.round(correct_trials/jsPsych.data.get().filter({type:"esercizio"}).count()*12) // nel caso in cui il punteggio utilizzi valori decimali, divido il numero dei trials corretti per quello dei trials in generale, moltiplicandolo per il punteggio massimo ottenibile
+            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            //var correct_trials = Math.round(correct_trials/jsPsych.data.get().filter({type:"esercizio"}).count()*12) // nel caso in cui il punteggio utilizzi valori decimali, divido il numero dei trials corretti per quello dei trials in generale, moltiplicandolo per il punteggio massimo ottenibile
                 if(correct_trials > 0){
                     var feed = 1;
                 } else {

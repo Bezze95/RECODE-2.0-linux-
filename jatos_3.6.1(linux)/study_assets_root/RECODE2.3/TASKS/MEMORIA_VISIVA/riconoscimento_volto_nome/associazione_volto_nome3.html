@@ -40,7 +40,7 @@
                 /*jsPsych.data.displayData();*/ //lascio così adesso in via di sviluppo 
 
                 var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                    if(correct_trials > 9){ //bisogna stabilire il valore di risposte corrette per considerarlo come passato 
+                    if(correct_trials > 0){ //bisogna stabilire il valore di risposte corrette per considerarlo come passato 
                         var feed = 1;
                     } else {
                         var feed = 0;

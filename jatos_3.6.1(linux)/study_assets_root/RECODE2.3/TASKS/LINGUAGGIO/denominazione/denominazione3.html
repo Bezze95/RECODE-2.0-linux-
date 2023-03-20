@@ -56,7 +56,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
       /*jsPsych.data.displayData();*/
 
        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                if(correct_trials > 9){
+                if(correct_trials > 0){
                     var feed = 1;
                 } else {
                     var feed = 0;

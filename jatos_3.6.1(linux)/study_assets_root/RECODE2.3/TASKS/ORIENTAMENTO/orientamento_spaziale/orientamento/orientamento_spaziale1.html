@@ -49,9 +49,9 @@ Si presentano 5 trial a volta, in modo randomizzato. Ogni risposta prevede uno s
   var jsPsych = initJsPsych({
     use_webaudio: false,
     on_finish: function() {
-      jsPsych.data.displayData();
+      //jsPsych.data.displayData();
 
-      /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+      var correct_trials = jsPsych.data.get().filter({correct: true}).count();
         if(correct_trials > 0){
           var feed = 1;
         } else {

@@ -621,3 +621,4 @@
 2023-03-20 22:00:05,194 [INFO] - gui_access - GET /jatos/1 (admin)
 2023-03-20 22:00:05,358 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
 2023-03-20 22:00:05,359 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679346005261 (admin)
+2023-03-20 22:05:54,266 [INFO] - gui_access - GET /jatos/1/65/properties (admin)
