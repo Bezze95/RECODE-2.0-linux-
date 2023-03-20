@@ -1,0 +1,181 @@
+"nord"<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-free-sort.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+  <script src="/assets/javascripts/jatos.js"></script>
+</head>
+
+<body></body>
+
+<script>
+
+
+var questions = [
+{question: "Dove si trova Roma rispetto a Venezia?", answer: "sud"},
+{question: "Dove si trova Torino Rispetto a Padova?", answer: "ovest"},
+{question: "Dove si trova Milano rispetto Roma?", answer: "nord"},
+{question: "Dove si trova Bologna rispetto Napoli?", answer: "nord"},
+{question: "Dove si trova Firenze rispetto Parma?", answer: "sud"} ,
+{question: "Dove si trova Trento rispetto Vicenza?", answer: "nord"} ,
+{question: "Dove si trova Cosenza rispetto a Verona?", answer: "sud"} ,
+{question: "Dove si trova Pisa rispetto a Bari?", answer: "nord"} ,
+{question: "Dove si trova Bergamo rispetto a Cagliari?", answer: "nord"} ,
+{question: "Dove si trova Cagliari rispetto a Palermo?", answer: "nord"} ,
+{question: "Dove si trova Catanzaro rispetto Brescia?", answer: "sud"} ,
+{question: "Dove si trova Monopoli rispetto Campobbasso?", answer: "sud"} ,
+{question: "Dove si trova Pescara rispetto Brindisi?", answer: "nord"} ,
+{question: "Dove si trova Ferrara rispetto Ancona?", answer: "nord"} ,
+{question: "Dove si trova Peschiera del garda rispetto Modena?", answer: "nord"} ,
+{question: "Dove si trovano le Marche rispetto il Molise?", answer: "nord"},
+{question: "Dove si trova il Veneto rispetto al Lazio?", answer: "nord"},
+{question: "Dove si trova l'Abruzzo rispetto al Piemonte?", answer: "sud"},
+{question: "Dove si trova la Sardegna rispetto la Sicilia?", answer: "nord"},
+{question: "Dove si trova la Calabria rispetto al Lazio?", answer: "sud"},
+{question: "Dove si trova il Veneto rispetto alla Lombardia?", answer: "est"},
+{question: "Dove si trova Verona rispetto a Vicenza?", answer: "ovest"},
+{question: "Dove si trova il Friuli Venezia Giulia rispetto al Piemonte?", answer: "est"} ,
+{question: "Dove si trova l'Umbria rispetto alla Basilicata?", answer: "nord"} ,
+];
+
+questions = jsPsych.randomization.shuffle(questions)
+
+var options = ["Nord", "sud", "Est", "ovest"];
+
+var question1 = {
+  type: 'survey-multi-choice',
+  questions: [
+    {prompt: ''+questions[0].question+'', name: '', options: options, required: false},
+  ],
+  on_finish: function(data) {
+      if (data.response == 0){
+          var risposta = 'Nord';
+      } if (data.response == 1){
+          var risposta = 'Sud';
+      } if (data.response == 2){
+          var risposta = 'Est';
+      } if (data.response == 3){
+          var risposta = 'Ovest';
+      };
+      if (risposta == questions[0].answer){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+risposta+"")
+  }
+};
+var question2 = {
+  type: 'survey-multi-choice',
+  questions: [
+    {prompt: ''+questions[1].question+'', name: '', options: options, required: false},
+  ],
+  on_finish: function(data) {
+      if (data.response == 0){
+          var risposta = 'Nord';
+      } if (data.response == 1){
+          var risposta = 'Sud';
+      } if (data.response == 2){
+          var risposta = 'Est';
+      } if (data.response == 3){
+          var risposta = 'Ovest';
+      };
+      if (risposta == questions[1].answer){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+risposta+"")
+  }
+};
+var question3 = {
+  type: 'survey-multi-choice',
+  questions: [
+    {prompt: ''+questions[2].question+'', name: '', options: options, required: false}
+  ],
+  on_finish: function(data) {
+      if (data.response == 0){
+          var risposta = 'Nord';
+      } if (data.response == 1){
+          var risposta = 'Sud';
+      } if (data.response == 2){
+          var risposta = 'Est';
+      } if (data.response == 3){
+          var risposta = 'Ovest';
+      };
+      if (risposta == questions[2].answer){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+risposta+"")
+  }
+};
+var question4 = {
+  type: 'survey-multi-choice',
+  questions: [
+    {prompt: ''+questions[3].question+'', name: '', options: options, required: false}
+  ],
+  on_finish: function(data) {
+      if (data.response == 0){
+          var risposta = 'Nord';
+      } if (data.response == 1){
+          var risposta = 'Sud';
+      } if (data.response == 2){
+          var risposta = 'Est';
+      } if (data.response == 3){
+          var risposta = 'Ovest';
+      };
+      if (risposta == questions[3].answer){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+risposta+"")
+  }
+};
+var question5 = {
+  type: 'survey-multi-choice',
+  questions: [
+    {prompt: ''+questions[4].question+'', name: '', options: options, required: false}
+  ],
+  on_finish: function(data) {
+      if (data.response == 0){
+          var risposta = 'Nord';
+      } if (data.response == 1){
+          var risposta = 'Sud';
+      } if (data.response == 2){
+          var risposta = 'Est';
+      } if (data.response == 3){
+          var risposta = 'Ovest';
+      };
+      if (risposta == questions[4].answer){
+          var accuracy = true;
+      } else {
+          var accuracy = false;
+      }
+      data.correct = accuracy;
+      console.log("RISPOSTA: "+risposta+"")
+  }
+};
+
+
+jsPsych.init({
+  timeline: [question1, question2, question3, question4, question5],
+  on_finish: function() {
+    jsPsych.data.displayData();
+  }
+});
+
+
+
+</script>
+</html>
