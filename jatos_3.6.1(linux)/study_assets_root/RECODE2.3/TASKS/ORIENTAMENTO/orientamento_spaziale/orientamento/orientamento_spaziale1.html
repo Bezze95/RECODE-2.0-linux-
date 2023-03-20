@@ -87,15 +87,15 @@ Si presentano 5 trial a volta, in modo randomizzato. Ogni risposta prevede uno s
     }
   };
 
-  var regions = [
+  var regions_array = [
     "piemonte", "lombardia", "valle d'aosta", "liguria", "toscana", "lazio", "campania", "calabria", "sicilia", "sardegna", "trentino alto adige",
      "veneto", "friuli venezia giulia", "marche", "umbria", "abruzzo", "molise", "puglia", "emilia romagna", "basilicata"];
-
-  jsPsych.randomization.shuffle(regions);
+     
+  var regions = jsPsych.randomization.shuffle(regions_array);
 
   var prova_loop = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[0]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante</p>',
+    preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[0]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante</p>',
     button_label: ['Prema per andare avanti'],
     html: '</p> <input name="first" type="text" /></p>',
     required: false,
@@ -145,7 +145,7 @@ Si presentano 5 trial a volta, in modo randomizzato. Ogni risposta prevede uno s
 
 var trial1 = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[1]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
+  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[1]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="first" type="text" /></p>',
   required: false,
@@ -168,8 +168,108 @@ var trial1 = {
   }
 };
 
+var trial2 = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[2]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    console.log(data.response.first);
+    if(data.response.first == regions[2]){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.accuracy = accuracy;
+    if (data.accuracy = true) {
+        var correct = true;
+        console.log("Corretto");
+    } else {
+        var correct = false;
+        console.log("Sbagliato");
+    };
+    data.correct = correct;
+  }
+};
+
+var trial3 = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[3]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    console.log(data.response.first);
+    if(data.response.first == regions[3]){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.accuracy = accuracy;
+    if (data.accuracy = true) {
+        var correct = true;
+        console.log("Corretto");
+    } else {
+        var correct = false;
+        console.log("Sbagliato");
+    };
+    data.correct = correct;
+  }
+};
+
+var trial4 = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[4]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    console.log(data.response.first);
+    if(data.response.first == regions[4]){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.accuracy = accuracy;
+    if (data.accuracy = true) {
+        var correct = true;
+        console.log("Corretto");
+    } else {
+        var correct = false;
+        console.log("Sbagliato");
+    };
+    data.correct = correct;
+  }
+};
+
+var trial5 = {
+  type: jsPsychSurveyHtmlForm,
+  preamble: '<p> <img src="./TASKS/ORIENTAMENTO/orientamento_spaziale/orientamento/img1/'+regions[5]+'.png" height="600pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante in minuscolo</p>',
+  button_label: ['Prema per andare avanti'],
+  html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+  on_finish: function(data) {
+    console.log(data.response.first);
+    if(data.response.first == regions[5]){
+        var accuracy = true;
+    } else {
+        var accuracy = false;
+    }
+    data.accuracy = accuracy;
+    if (data.accuracy = true) {
+        var correct = true;
+        console.log("Corretto");
+    } else {
+        var correct = false;
+        console.log("Sbagliato");
+    };
+    data.correct = correct;
+  }
+};
+
 var trial_timeline = {
-  timeline: [trial1]
+  timeline: [trial1, trial2, trial3, trial4, trial5]
 };
 
 var if_node = {
