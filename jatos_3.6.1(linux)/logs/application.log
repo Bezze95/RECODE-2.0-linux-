@@ -533,3 +533,91 @@
 2023-03-20 21:34:52,769 [INFO] - publix_access - POST /publix/1/heartbeat?srid=74
 2023-03-20 21:36:52,778 [INFO] - publix_access - POST /publix/1/heartbeat?srid=74
 2023-03-20 21:38:52,793 [INFO] - publix_access - POST /publix/1/heartbeat?srid=74
+2023-03-20 21:40:52,802 [INFO] - publix_access - POST /publix/1/heartbeat?srid=74
+2023-03-20 21:41:45,471 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679344905349 (admin)
+2023-03-20 21:42:42,187 [INFO] - gui_access - GET /jatos/1/36/properties (admin)
+2023-03-20 21:43:14,058 [INFO] - gui_access - POST /jatos/1/36/properties (admin)
+2023-03-20 21:43:14,080 [INFO] - gui_access - GET /jatos/1/36/run (admin)
+2023-03-20 21:43:14,085 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-20 21:43:14,085 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-20 21:43:14,086 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-20 21:43:14,092 [INFO] - publix_access - GET /publix/1/36/start?srid=75
+2023-03-20 21:43:14,092 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 36, studyResultId 75, logged-in username admin, message 'null'
+2023-03-20 21:43:14,286 [INFO] - publix_access - GET /publix/1/36/initData?srid=75
+2023-03-20 21:43:14,286 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 36, studyResultId 75
+2023-03-20 21:43:14,301 [INFO] - publix_access - POST /publix/1/heartbeat?srid=75
+2023-03-20 21:43:14,303 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 75
+2023-03-20 21:43:33,704 [INFO] - gui_access - GET /jatos/1/36/properties (admin)
+2023-03-20 21:43:38,769 [INFO] - gui_access - POST /jatos/1/36/properties (admin)
+2023-03-20 21:43:38,777 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:43:38,780 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679344905350 (admin)
+2023-03-20 21:44:33,530 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-20 21:44:33,566 [INFO] - gui_access - GET /jatos/1/83/run (admin)
+2023-03-20 21:44:33,570 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-03-20 21:44:33,570 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-03-20 21:44:33,570 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-03-20 21:44:33,577 [INFO] - publix_access - GET /publix/1/83/start?srid=76
+2023-03-20 21:44:33,577 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 83, studyResultId 76, logged-in username admin, message 'null'
+2023-03-20 21:44:33,752 [INFO] - publix_access - GET /publix/1/83/initData?srid=76
+2023-03-20 21:44:33,752 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 83, studyResultId 76
+2023-03-20 21:44:33,769 [INFO] - publix_access - POST /publix/1/heartbeat?srid=76
+2023-03-20 21:44:33,771 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 76
+2023-03-20 21:44:49,707 [INFO] - publix_access - GET /publix/1/83/start?srid=76
+2023-03-20 21:44:49,707 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 83, studyResultId 76, logged-in username admin, message 'null'
+2023-03-20 21:44:49,862 [INFO] - publix_access - GET /publix/1/83/initData?srid=76
+2023-03-20 21:44:49,862 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 83, studyResultId 76
+2023-03-20 21:44:49,883 [INFO] - publix_access - POST /publix/1/heartbeat?srid=76
+2023-03-20 21:44:49,883 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 76
+2023-03-20 21:44:57,962 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-20 21:44:58,076 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:44:58,112 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098015 (admin)
+2023-03-20 21:45:24,802 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-20 21:45:24,812 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:45:24,814 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098016 (admin)
+2023-03-20 21:45:45,210 [INFO] - gui_access - POST /jatos/1/component (admin)
+2023-03-20 21:45:45,219 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:45:45,219 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098017 (admin)
+2023-03-20 21:45:56,076 [INFO] - gui_access - GET /jatos/1/1/properties (admin)
+2023-03-20 21:46:03,225 [INFO] - gui_access - POST /jatos/1/1/properties (admin)
+2023-03-20 21:46:03,233 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:46:03,233 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098018 (admin)
+2023-03-20 21:46:04,544 [INFO] - gui_access - GET /jatos/1/2/properties (admin)
+2023-03-20 21:46:09,081 [INFO] - gui_access - POST /jatos/1/2/properties (admin)
+2023-03-20 21:46:09,089 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098019 (admin)
+2023-03-20 21:46:09,089 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:46:11,032 [INFO] - gui_access - GET /jatos/1/3/properties (admin)
+2023-03-20 21:46:15,761 [INFO] - gui_access - POST /jatos/1/3/properties (admin)
+2023-03-20 21:46:15,768 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:46:15,768 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098020 (admin)
+2023-03-20 21:46:17,520 [INFO] - gui_access - GET /jatos/1/4/properties (admin)
+2023-03-20 21:46:22,200 [INFO] - gui_access - POST /jatos/1/4/properties (admin)
+2023-03-20 21:46:22,209 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345098021 (admin)
+2023-03-20 21:46:22,209 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:46:24,898 [INFO] - gui_access - GET /jatos/1/workerAndBatchManager (admin)
+2023-03-20 21:46:25,044 [INFO] - gui_access - GET /jatos/1/batches (admin)
+2023-03-20 21:46:25,052 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:46:26,820 [INFO] - gui_access - GET /jatos/1/batch/1/batchSessionData (admin)
+2023-03-20 21:48:20,541 [INFO] - gui_access - POST /jatos/1/batch/1/batchSessionData (admin)
+2023-03-20 21:48:20,547 [INFO] - u.c.JsonUtils - .isValid: error probably due to invalid JSON
+2023-03-20 21:49:30,578 [INFO] - gui_access - POST /jatos/1/batch/1/batchSessionData (admin)
+2023-03-20 21:49:47,497 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-20 21:49:47,597 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:49:47,632 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345387551 (admin)
+2023-03-20 21:49:50,600 [INFO] - gui_access - GET /jatos/1/properties (admin)
+2023-03-20 21:50:01,469 [INFO] - gui_access - GET /jatos/login (admin)
+2023-03-20 21:50:03,264 [INFO] - gui_access - POST /jatos/login (admin)
+2023-03-20 21:50:03,271 [INFO] - gui_access - GET /jatos (admin)
+2023-03-20 21:50:03,375 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-03-20 21:50:03,385 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:50:04,714 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-20 21:50:04,811 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:50:04,821 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679345404737 (admin)
+2023-03-20 21:59:48,189 [INFO] - gui_access - POST /jatos/1/properties (admin)
+2023-03-20 21:59:48,203 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 21:59:59,430 [INFO] - gui_access - GET /jatos/1/workerAndBatchManager (admin)
+2023-03-20 21:59:59,557 [INFO] - gui_access - GET /jatos/1/batches (admin)
+2023-03-20 21:59:59,558 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 22:00:01,281 [INFO] - gui_access - GET /jatos/1/batch/1/batchSessionData (admin)
+2023-03-20 22:00:05,194 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-03-20 22:00:05,358 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-03-20 22:00:05,359 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1679346005261 (admin)
