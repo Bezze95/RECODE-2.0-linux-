@@ -27,14 +27,17 @@
 
   <!--
     ISTRUZIONI
-Adesso le verranno presentate delle figure. Scriva il nome corrispondente ad ogni figura nello spazio apposito. Se non ricorda il nome lasci lo spazio vuoto e vada avanti.
+Inserire: ISTRUZIONI all’apice delle istruzioni, in stampatello.
+
+      Poi: 
+“Adesso le verranno presentate delle figure. Scriva il nome corrispondente ad ogni figura nello spazio apposito. Se non ricorda il nome lasci lo spazio vuoto e vada avanti.”
 Nota: A capo ad ogni punto.
-I due tasti: “Prema qui per continuare” e “Prema qui per essere ricontattato”. Rendere visivamente più saliente il primo.
+I due tasti: “Prema qui per continuare” (-- DA TOGLIERE PERO' NELLA SCHERMATA INIZIALE --) e “Prema qui per fare una prova”. Rendere visivamente più saliente il primo.
 NB nello spazio sottostante mettere caselline/spazi
 SVOLGIMENTO
 Immagine centrale, più grande rispetto a quella attuale.
 Subito sotto l’immagine: “come si chiama questo oggetto? 
-A capo con spaziatura in mezzo: scriva il nome qui (e inserire subito sotto la casella)
+A capo con spaziatura in mezzo: “scriva il nome qui” (e inserire subito sotto la casella)
 Sotto: tasto -> Prema per andare avanti (uniformare grandezza con gli altri).
 15 immagini per livello, che siano proporzionate a 10 come punteggio.
 Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, colorate. 2° livello -> immagini a media frequenza d’uso. 3° livello -> bassa frequenza d’uso, degradate
@@ -56,7 +59,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
       /*jsPsych.data.displayData();*/
 
        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                if(correct_trials > 0){
+                if(correct_trials > 9){
                     var feed = 1;
                 } else {
                     var feed = 0;
@@ -117,10 +120,10 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
  var pre_if = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: `<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI: <br> <br>
+  stimulus: `<p style="font-size: 34px; font-weight: bold;">ISTRUZIONI: <br> <br>
       Adesso le verranno presentate delle figure. <br> Scriva il nome corrispondente ad ogni figura nello spazio apposito. 
-     <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
-  button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+     <br> <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
+  button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>'],
   choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
   on_finish: function(data){
     if(data.response == 1){
@@ -135,7 +138,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
  var prova_loop = {
     type: jsPsychSurveyHtmlForm,
     preamble: `<p> <img src="`+images[10].image+`" height="400pt"> </p>
-     <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>` ,
+     <p style="font-size: 34px; font-weight: bold;"> Come si chiama? scriva il nome nella casella sottostante </p>` ,
     button_label: ['Prema per andare avanti'],
 	  html: '</p> <input name="response" type="text" /></p>',
     required: true,
@@ -173,10 +176,10 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
  var begin_trial = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br>
+  stimulus: `<p style="font-size: 34px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br>
      Adesso le verranno presentate delle figure. <br> Scriva il nome corrispondente ad ogni figura nello spazio apposito. 
-    <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
-  button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+    <br> <br> Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>`,
+  button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
   choices: ['Prema qui per iniziare']
  };
 
@@ -185,7 +188,7 @@ Livelli di difficoltà: 1° livello -> immagini ad alta frequenza d’uso, color
 
  var one = {
   type: jsPsychSurveyHtmlForm,
-  preamble: '<p> <img src="'+images[0].image+'" height="400pt"> </p> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
+  preamble: '<p> <img src="'+images[0].image+'" height="400pt"> </p> <p style="font-size: 34px; font-weight: bold;"> Come si chiama questo oggetto? scriva il nome nella casella sottostante </p>' ,
   button_label: ['Prema per andare avanti'],
   html: '</p> <input name="response" type="text" /></p>',
   required: false,

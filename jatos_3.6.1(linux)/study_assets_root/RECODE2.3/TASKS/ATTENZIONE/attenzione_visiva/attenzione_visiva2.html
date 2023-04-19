@@ -56,9 +56,9 @@ Nel secondo e terzo livello la pausa viene eliminata. Appena la risposta viene d
         var jsPsych = initJsPsych({
                 use_webaudio: false,
                 on_finish: function() {
-                    //jsPsych.data.displayData();
+                    jsPsych.data.displayData();
 
-                    var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                         if(correct_trials > 0){
                             var feed = 1;
                         } else {

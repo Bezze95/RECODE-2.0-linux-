@@ -125,7 +125,7 @@
                   response_ends_trial: true,
               }
             ],
-            choices: ['ArrowDown'], // The participant can respond to the stimuli using the 'y' or 'n' key.
+            choices: ['Enter'], // The participant can respond to the stimuli using the 'y' or 'n' key.
             canvas_height: 800,
             background_color: '#FFFFFF', // The HEX color means green.
             trial_duration: 5000,
@@ -149,7 +149,7 @@
           stimulus: function(){
             var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
             if(last_trial_correct){
-              return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+              return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>"; //da cambiare con pollice su cartella feedback
             } else {
               return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
             }
@@ -160,8 +160,8 @@
         }
     ],
     timeline_variables: [
-      {star: go_1, color: 'gold', cresponse: 'arrowdown', type: 'go'},
-      {star: go_2, color: 'gold', cresponse: 'arrowdown', type: 'go'},
+      {star: go_1, color: 'gold', cresponse: 'Enter', type: 'go'},
+      {star: go_2, color: 'gold', cresponse: 'Enter', type: 'go'},
       {star: nogo_1, color: 'gold', cresponse: '', type: 'nogo'},
       {star: nogo_2, color: 'gold', cresponse: '', type: 'nogo'},
     ],

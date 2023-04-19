@@ -203,8 +203,8 @@ gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla c
 
         var jsPsych = initJsPsych({
           on_finish: function(){
-            //jsPsych.data.displayData();
-            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            jsPsych.data.displayData();
+            /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                   if(correct_trials > 0){
                       var feed = 1;
                   } else {
@@ -705,6 +705,10 @@ gli stimoli non-target devono essere oggetti casuali che non c’entrano nulla c
                     data.correct = false;
                 }
                  
+            },
+            on_start: function(){
+                document.getElementById("jspsych-free-sort-arena").innerHTML = "whatever";
+                
             }
         };
 

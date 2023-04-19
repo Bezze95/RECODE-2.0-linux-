@@ -50,13 +50,15 @@
   		body {
     		background-color: rgb(255, 255, 255);
     	}
-
-		.emoji {border-radius: 30%;}
-
-		ul.jspsych-survey-likert-opts:before {height:0px}
     </style>
 
    	<body>
+		<div id="top">
+    		<p style='font-size:30px; color:black; text-align: center;'>Voglio esprimere un giudizio sull'ultimo esercizio. L'ultimo esercizio è stato:</p>
+    		<div style='margin: 0; position: absolute; top: 65%; left: 50%; margin-right: -50%;	transform: translate(-50%, -50%)' id='emoji-div'></div>
+		</div>
+  		<div id="bottom">
+  		</div>
 
 	</body>
 
@@ -66,7 +68,7 @@
 		jatos.onload (function(){
 
 			var jsPsych = initJsPsych({
-				//display_element: "bottom",
+				display_element: "bottom",
 				//experiment_width: 300,
 				//experiment_height: 300,
 				on_finish: function(){
@@ -103,7 +105,7 @@
 					"<p style='font-size:30px; color:green'><strong>Stai andando alla grande</strong></p>"+
 					"<div id='emoji-div'></div>",
 					button_html: '<button class="jspsych-btn" style="font-size:30px; color:black;">%choice%</button>',
-					choices: ["Continua"],
+					choices: ["Vai al prossimo esercizio"],
 				};
 			} else {
 				var feedback = {
@@ -111,30 +113,14 @@
 					stimulus:"<div style='float: up;'><img src='./feedback/img/dead.jpg' width='300'></img>" +
 					"<p style='font-size:30px; color:orange'>Qualcosa è andato storto..</p> <p style='font-size:30px; color:blue'><strong>Puoi fare meglio!</strong></p>",
 					button_html: '<button class="jspsych-btn" style="font-size:30px; color:black;">%choice%</button>',
-					choices: ["Continua"],
+					choices: ["Vai al prossimo esercizio"],
 				}
 			}
-
-			var gradimento = {
-				type: jsPsychSurveyLikert,
-				questions: [{
-					prompt: `<p style="font-size: 34px; font-weight: bold;">Voglio esprimere un giudizio sull'ultimo esercizio. L'ultimo esercizio è stato: </p>`,
-					labels: [
-					'<p style="font-size: 70px; "> &#x1F620;</p>',
-					'<p style="font-size: 70px; "> &#x1F61E;</p>',
-					'<p style="font-size: 70px; "> &#x1F610;</p>',
-					'<p style="font-size: 70px; "> &#x1F60A;</p>',
-					'<p style="font-size: 70px; "> &#x1F603;</p>',
-					],
-				}],
-				css_classes: ['jspsych-survey-likert-opts']
-				
-			};
 			
-			/*$(function(){
+			$(function(){
 				//var emojis = ['&#x1F620;'];
 				//$("#emoji-div").emoji({ value: 4 });
-				var emojis = ['&#x1F620;','&#x1F61E;','&#x1F610;','&#x1F60A;','&#x1F603;'];
+				var emojis = ['&#x1F620;','&#x1F61E;','&#x1F610;','&#x1F60A;','&#x1F603;', '&#9760;'];
 
 				$("#emoji-div").emoji({
 					opacity: 0.3, //Opacity for no-selected emojis. [The value should be between 0 and 1 (like 0.5)]
@@ -154,11 +140,11 @@
 					gradimento = ("Gradimento: " + value);
 					return gradimento;
 				}
-			});*/
+			});
 
 			
 
-			var timeline = [feedback, gradimento];
+			var timeline = [feedback];
 
 		jsPsych.run(timeline)
 
