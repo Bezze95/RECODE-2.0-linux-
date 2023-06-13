@@ -1,0 +1,8 @@
+{
+  "level_attenzione": 0,
+  "level_funzioni_esecutive": 0,
+  "level_linguaggio": 0,
+  "level_memoria_lavoro": 0,
+  "level_memoria_visiva": 0,
+  "level_orientamento": 0
+}
