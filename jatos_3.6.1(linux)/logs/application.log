@@ -640,3 +640,52 @@
 2023-03-20 22:25:12,039 [INFO] - application - Shutting down connection pool.
 2023-03-20 22:25:12,040 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2023-03-20 22:25:12,041 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-06-13 17:25:25,346 [INFO] - p.a.d.DefaultDBApi - Database [default] initialized
+2023-06-13 17:25:25,350 [INFO] - application - Creating Pool for datasource 'default'
+2023-06-13 17:25:25,359 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Starting...
+2023-06-13 17:25:25,368 [INFO] - c.z.h.HikariDataSource - HikariPool-1 - Start completed.
+2023-06-13 17:25:25,381 [INFO] - p.a.d.HikariCPConnectionPool - datasource [default] bound to JNDI as DefaultDS
+2023-06-13 17:25:25,523 [INFO] - a.e.s.Slf4jLogger - Slf4jLogger started
+2023-06-13 17:25:25,630 [INFO] - n.s.e.p.s.f.AnnotationSizeOfFilter - Using regular expression provided through VM argument net.sf.ehcache.pool.sizeof.ignore.pattern for IgnoreSizeOf annotation : ^.*cache\..*IgnoreSizeOf$
+2023-06-13 17:25:25,632 [INFO] - n.s.e.p.s.AgentLoader - Unavailable or unrecognised attach API : java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
+2023-06-13 17:25:25,675 [INFO] - n.s.e.p.s.JvmInformation - Detected JVM data model settings of: 64-Bit OpenJDK JVM with Compressed OOPs
+2023-06-13 17:25:25,675 [INFO] - n.s.e.p.i.DefaultSizeOfEngine - using Unsafe sizeof engine
+2023-06-13 17:25:25,796 [INFO] - o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: mysqlPersistenceUnit]
+2023-06-13 17:25:25,823 [INFO] - o.h.Version - HHH000412: Hibernate Core {5.4.2.Final}
+2023-06-13 17:25:25,894 [INFO] - o.h.a.c.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2023-06-13 17:25:25,975 [INFO] - o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-06-13 17:25:26,186 [INFO] - o.h.v.i.u.Version - HV000001: Hibernate Validator 6.0.16.Final
+2023-06-13 17:25:26,575 [INFO] - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-13 17:25:26,686 [INFO] - g.c.Common - Path to study assets directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_3.6.1(linux)/study_assets_root
+2023-06-13 17:25:26,686 [INFO] - g.c.Common - Path to study logs directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_3.6.1(linux)/study_logs
+2023-06-13 17:25:26,686 [INFO] - g.c.Common - Path to uploads directory is /home/bets95/Documents/GitHub/RECODE-2.0-linux-/jatos_3.6.1(linux)/result_uploads
+2023-06-13 17:25:26,686 [WARN] - g.c.Common - User session validation is switched off. This decreases security.
+2023-06-13 17:25:26,855 [INFO] - g.OnStartStop - JATOS started
+2023-06-13 17:25:27,064 [INFO] - p.a.Play - Application started (Prod) (no global state)
+2023-06-13 17:25:27,255 [INFO] - p.c.s.AkkaHttpServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2023-06-13 17:25:51,097 [WARN] - c.g.a.AuthenticationAction - Authentication failed: remote address 127.0.0.1 tried to access page /
+2023-06-13 17:25:51,123 [INFO] - gui_access - GET /jatos/login (null)
+2023-06-13 17:25:52,765 [INFO] - gui_access - POST /jatos/login (null)
+2023-06-13 17:25:52,901 [INFO] - gui_access - GET /jatos (admin)
+2023-06-13 17:25:53,097 [INFO] - gui_access - GET /jatos/branding (admin)
+2023-06-13 17:25:53,141 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-06-13 17:25:54,490 [INFO] - gui_access - GET /jatos/1 (admin)
+2023-06-13 17:25:54,702 [INFO] - gui_access - GET /jatos/sidebarStudyList (admin)
+2023-06-13 17:25:54,734 [INFO] - gui_access - GET /jatos/1/componentsTableData?_=1686669954628 (admin)
+2023-06-13 17:26:12,094 [INFO] - gui_access - GET /jatos/1/36/run (admin)
+2023-06-13 17:26:12,113 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-06-13 17:26:12,122 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-06-13 17:26:12,126 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-06-13 17:26:12,150 [INFO] - publix_access - GET /publix/1/36/start?srid=77
+2023-06-13 17:26:12,151 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 36, studyResultId 77, logged-in username admin, message 'null'
+2023-06-13 17:26:12,322 [INFO] - publix_access - GET /publix/1/36/initData?srid=77
+2023-06-13 17:26:12,322 [INFO] - c.p.Publix - .getInitData: studyId 1, componentId 36, studyResultId 77
+2023-06-13 17:26:12,334 [INFO] - publix_access - POST /publix/1/heartbeat?srid=77
+2023-06-13 17:26:12,368 [INFO] - c.p.JatosBatchChannel - .open: studyId 1, studyResultId 77
+2023-06-13 17:26:30,136 [INFO] - gui_access - GET /jatos/1/5/run (admin)
+2023-06-13 17:26:30,145 [INFO] - publix_access - GET /publix/1/start?batchId=-1&jatosWorkerId=1
+2023-06-13 17:26:30,145 [INFO] - c.p.w.JatosPublix - .startStudy: studyId 1, batchId -1, logged-in username admin
+2023-06-13 17:26:30,148 [INFO] - c.p.w.JatosPublix - .startStudy: study (study ID 1, batch ID -1) assigned to worker with ID 1
+2023-06-13 17:26:30,166 [INFO] - publix_access - GET /publix/1/5/start?srid=78
+2023-06-13 17:26:30,170 [INFO] - c.p.w.JatosPublix - .startComponent: studyId 1, componentId 5, studyResultId 78, logged-in username admin, message 'null'
+2023-06-13 17:26:30,181 [INFO] - g.ErrorHandler - PublixException during call /publix/1/5/start?srid=78: HTML file 'TASKS\ATTENZIONE\attenzione_crossmodale\BUCO_1.html' in study assets 'RECODE2.3' couldn't be found. Please change this in the component's properties.
