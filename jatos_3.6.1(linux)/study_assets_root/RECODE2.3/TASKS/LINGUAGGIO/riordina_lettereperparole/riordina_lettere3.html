@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINGUAGGIO Riordina lettere per parole (liv.3) </title>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-free-sort.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+
+
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+
+</head>
+<body>
+    <style>
+        body {
+            background-color: white;
+        }
+
+    </style>
+    
+</body>
+<!--
+    ISTRUZIONI
+“Ora vedrà delle lettere che dovrà mettere in ordine per formare una parola.
+Dovrà premere su ogni lettera nell’ordine esatto per formare la parola corretta.
+Sotto: prema qui per continuare, Prema qui per fare una prova
+
+Schermata svolgimento:
+Nella metà superiore della schermata mettere le lettere spaiate, nell’inferiore le caselle. Bisogna trascinare le lettere nelle caselle.
+
+Sopra/sotto: prema su ogni lettera nell’ordine corretto per formare una parola
+
+LIVELLO 1: parole da 4 lettere; 
+LIVELLO 2: parole da 5 lettere;
+LIVELLO 3: parole da 8 lettere 
+
+-->
+<script>
+    jatos.onload(function(){
+        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+        var progressText="avanzamento" + progress + "%";
+        const updateProgress = progress;
+    }); 
+    
+    var jsPsych = initJsPsych({
+                use_webaudio: false,
+                on_finish: function() {
+                    jsPsych.data.displayData();
+
+                    /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                        if(correct_trials >= 4){ //per tenere conto dell'80% delle risposte corrette
+                            var feed = 1;
+                        } else {
+                            var feed = 0;
+                        }
+                    jatos.studySessionData = feed;
+                    var linguaggio = Number(sessionStorage.getItem('linguaggio'))+feed;
+                    sessionStorage.setItem('linguaggio', linguaggio);
+                    var Data = {feed: feed, type: 'LINGUAGGIO_riordina_level3', cresp: correct_trials};
+                    jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+                } 
+            });
+
+    var lettere_alfabeto = [
+            {a:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/a.png", lettera: "a"},
+            {b:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/b.png", lettera: "b"},
+            {c:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/c.png", lettera: "c"},
+            {d:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/d.png", lettera: "d"},
+            {e:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/e.png", lettera: "e"},
+            {f:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/f.png", lettera: "f"},
+            {g:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/g.png", lettera: "g"},
+            {h:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/h.png", lettera: "h"},
+            {i:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/i.png", lettera: "i"},
+            {l:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/l.png", lettera: "l"},
+            {m:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/m.png", lettera: "m"},
+            {n:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/n.png", lettera: "n"},
+            {o:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/o.png", lettera: "o"},
+            {p:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/p.png", lettera: "p"},
+            {q:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/q.png", lettera: "q"},
+            {r:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/r.png", lettera: "r"},
+            {s:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/s.png", lettera: "s"},
+            {t:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/t.png", lettera: "t"},
+            {u:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/u.png", lettera: "u"},
+            {v:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/v.png", lettera: "v"},
+            {z:"./TASKS/LINGUAGGIO/riordina_lettereperparole/img/lettere/z.png", lettera: "z"},
+    ];
+
+    var parole = ["Spezzare","Alberghi","Rovescio","Sgabello","Incendio","Calzetti","Maschere","Speranza","Spuntare","Progetto","Cappello"]; //parole compsote da 8 lettere 
+
+    var pre_if = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px; "> Ora vedrà delle lettere che dovrà mettere in ordine per formare una parola. <br> <br>
+            <strong> Dovrà premere e trascinare ogni lettera per sistemarla nell’ordine esatto fino a formare la parola corretta. </p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta_prova = 1;
+            } else {
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+
+    };
+
+    let y = 0;
+
+    var prova_loop = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[16].s, lettere_alfabeto[13].p, lettere_alfabeto[4].e, lettere_alfabeto[20].z, lettere_alfabeto[20].z, lettere_alfabeto[0].a, lettere_alfabeto[15].r, lettere_alfabeto[4].e],
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "You still need to place %n% item%s% inside the sort area.",
+        counter_text_finished: "All items placed. Feel free to reposition items if necessary.",
+        sort_area_width: 650,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[6].slice(0,1)] = Number(positions[y][0].x);
+            position[positions[y][1].src.split('/')[6].slice(0,1)] = Number(positions[y][1].x);
+            position[positions[y][2].src.split('/')[6].slice(0,1)] = Number(positions[y][2].x);
+            position[positions[y][3].src.split('/')[6].slice(0,1)] = Number(positions[y][3].x);
+            position[positions[y][4].src.split('/')[6].slice(0,1)] = Number(positions[y][4].x);
+            position[positions[y][5].src.split('/')[6].slice(0,1)] = Number(positions[y][5].x);
+            position[positions[y][6].src.split('/')[6].slice(0,1)] = Number(positions[y][6].x);
+            position[positions[y][7].src.split('/')[6].slice(0,1)] = Number(positions[y][7].x);
+
+            console.log(position);
+
+           if(position.s < position.p && position.p < position.e && position.e < position.z && position.z < position.z && position.z < position.a && position.a < position.r && position.r < position.e){
+                data.accuracy = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.accuracy = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        choices: "NO_KEYS",
+        trial_duration: 1500,
+        data:"",
+        stimulus: "",
+        on_start: function(prova_loop){
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+            if (last_response_accuracy == true) {
+                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                console.log("Corretto")
+            } else {
+                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                console.log("Sbagliato")
+            };
+            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
+            prova_loop.data = {stimulus: feedback};
+            prova_loop.stimulus = feedback_prova_stima;
+        },
+    };
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    let x = 0;
+
+    var trial1 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[0].a, lettere_alfabeto[9].l, lettere_alfabeto[1].b, lettere_alfabeto[4].e, lettere_alfabeto[15].r, lettere_alfabeto[6].g, lettere_alfabeto[7].h, lettere_alfabeto[8].i], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions1 = jsPsych.data.get().select('final_locations').values; 
+            
+            console.log(positions1);
+
+            var position1 = {};
+            position1[positions1[x][0].src.split('/')[6].slice(0,1)] = Number(positions1[x][0].x);
+            position1[positions1[x][1].src.split('/')[6].slice(0,1)] = Number(positions1[x][1].x);
+            position1[positions1[x][2].src.split('/')[6].slice(0,1)] = Number(positions1[x][2].x);
+            position1[positions1[x][3].src.split('/')[6].slice(0,1)] = Number(positions1[x][3].x);
+            position1[positions1[x][4].src.split('/')[6].slice(0,1)] = Number(positions1[x][4].x);
+            position1[positions1[x][5].src.split('/')[6].slice(0,1)] = Number(positions1[x][5].x);
+            position1[positions1[x][6].src.split('/')[6].slice(0,1)] = Number(positions1[x][6].x);
+            position1[positions1[x][7].src.split('/')[6].slice(0,1)] = Number(positions1[x][7].x);
+
+            console.log(position1);
+
+           if(position1.a < position1.l && position1.l < position1.b && position1.b < position1.e && position1.e < position1.r && position1.r < position1.g && position1.g < position1.h && position1.h < position1.i){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial2 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[15].r, lettere_alfabeto[12].o, lettere_alfabeto[19].v, lettere_alfabeto[4].e, lettere_alfabeto[16].s, lettere_alfabeto[2].c, lettere_alfabeto[8].i, lettere_alfabeto[12].o],
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions2 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions2);
+
+            var position2 = {};
+            position2[positions2[x][0].src.split('/')[6].slice(0,1)] = Number(positions2[x][0].x);
+            position2[positions2[x][1].src.split('/')[6].slice(0,1)] = Number(positions2[x][1].x);
+            position2[positions2[x][2].src.split('/')[6].slice(0,1)] = Number(positions2[x][2].x);
+            position2[positions2[x][3].src.split('/')[6].slice(0,1)] = Number(positions2[x][3].x);
+            position2[positions2[x][4].src.split('/')[6].slice(0,1)] = Number(positions2[x][4].x);
+            position2[positions2[x][5].src.split('/')[6].slice(0,1)] = Number(positions2[x][5].x);
+            position2[positions2[x][6].src.split('/')[6].slice(0,1)] = Number(positions2[x][6].x);
+            position2[positions2[x][7].src.split('/')[6].slice(0,1)] = Number(positions2[x][7].x);
+
+            console.log(position2);
+
+           if(position2.r < position2.o && position2.o < position2.v && position2.v < position2.e && position2.e < position2.s && position2.s < position2.c && position2.c < position2.i && position2.i < position2.o){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial3 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[16].s, lettere_alfabeto[6].g, lettere_alfabeto[0].a, lettere_alfabeto[1].b, lettere_alfabeto[4].e, lettere_alfabeto[9].l, lettere_alfabeto[9].l, lettere_alfabeto[12].o], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions3 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions3);
+
+            var position3 = {};
+            position3[positions3[x][0].src.split('/')[6].slice(0,1)] = Number(positions3[x][0].x);
+            position3[positions3[x][1].src.split('/')[6].slice(0,1)] = Number(positions3[x][1].x);
+            position3[positions3[x][2].src.split('/')[6].slice(0,1)] = Number(positions3[x][2].x);
+            position3[positions3[x][3].src.split('/')[6].slice(0,1)] = Number(positions3[x][3].x);
+            position3[positions3[x][4].src.split('/')[6].slice(0,1)] = Number(positions3[x][4].x);
+            position3[positions3[x][5].src.split('/')[6].slice(0,1)] = Number(positions3[x][5].x);
+            position3[positions3[x][6].src.split('/')[6].slice(0,1)] = Number(positions3[x][6].x);
+            position3[positions3[x][7].src.split('/')[6].slice(0,1)] = Number(positions3[x][7].x);
+
+            console.log(position3);
+
+           if(position3.s < position3.g && position3.g < position3.a && position3.a < position3.b && position3.b < position3.e && position3.e < position3.l && position3.l < position3.l && position3.l < position3.o ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial4 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[8].i, lettere_alfabeto[11].n, lettere_alfabeto[2].c, lettere_alfabeto[4].e, lettere_alfabeto[11].n, lettere_alfabeto[3].d, lettere_alfabeto[8].i, lettere_alfabeto[12].o], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions4 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions4);
+
+            var position4 = {};
+            position4[positions4[x][0].src.split('/')[6].slice(0,1)] = Number(positions4[x][0].x);
+            position4[positions4[x][1].src.split('/')[6].slice(0,1)] = Number(positions4[x][1].x);
+            position4[positions4[x][2].src.split('/')[6].slice(0,1)] = Number(positions4[x][2].x);
+            position4[positions4[x][3].src.split('/')[6].slice(0,1)] = Number(positions4[x][3].x);
+            position4[positions4[x][4].src.split('/')[6].slice(0,1)] = Number(positions4[x][4].x);
+            position4[positions4[x][5].src.split('/')[6].slice(0,1)] = Number(positions4[x][5].x);
+            position4[positions4[x][6].src.split('/')[6].slice(0,1)] = Number(positions4[x][6].x);
+            position4[positions4[x][7].src.split('/')[6].slice(0,1)] = Number(positions4[x][7].x);
+
+            console.log(position4);
+
+            if(position4.i < position4.n && position4.n < position4.c && position4.c < position4.e && position4.e < position4.n && position4.n < position4.d && position4.d < position4.i && position4.i < position4.o){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial5 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[2].c, lettere_alfabeto[0].a, lettere_alfabeto[9].l, lettere_alfabeto[20].z, lettere_alfabeto[4].e, lettere_alfabeto[17].t, lettere_alfabeto[17].t, lettere_alfabeto[8].i], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions5 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions5);
+
+            var position5 = {};
+            position5[positions5[x][0].src.split('/')[6].slice(0,1)] = Number(positions5[x][0].x);
+            position5[positions5[x][1].src.split('/')[6].slice(0,1)] = Number(positions5[x][1].x);
+            position5[positions5[x][2].src.split('/')[6].slice(0,1)] = Number(positions5[x][2].x);
+            position5[positions5[x][3].src.split('/')[6].slice(0,1)] = Number(positions5[x][3].x);
+            position5[positions5[x][4].src.split('/')[6].slice(0,1)] = Number(positions5[x][4].x);
+            position5[positions5[x][5].src.split('/')[6].slice(0,1)] = Number(positions5[x][5].x);
+            position5[positions5[x][6].src.split('/')[6].slice(0,1)] = Number(positions5[x][6].x);
+            position5[positions5[x][7].src.split('/')[6].slice(0,1)] = Number(positions5[x][7].x);
+
+            console.log(position5);
+
+           if(position5.c < position5.a && position5.a < position5.l && position5.l < position5.z && position5.z < position5.e && position5.e < position5.t && position5.t < position5.t && position5.t < position5.i ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial6 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[10].m, lettere_alfabeto[0].a, lettere_alfabeto[16].s, lettere_alfabeto[2].c, lettere_alfabeto[7].h, lettere_alfabeto[4].e, lettere_alfabeto[15].r, lettere_alfabeto[0].a], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area.",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions6 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions6);
+
+            var position6 = {};
+            position6[positions6[x][0].src.split('/')[6].slice(0,1)] = Number(positions6[x][0].x);
+            position6[positions6[x][1].src.split('/')[6].slice(0,1)] = Number(positions6[x][1].x);
+            position6[positions6[x][2].src.split('/')[6].slice(0,1)] = Number(positions6[x][2].x);
+            position6[positions6[x][3].src.split('/')[6].slice(0,1)] = Number(positions6[x][3].x);
+            position6[positions6[x][4].src.split('/')[6].slice(0,1)] = Number(positions6[x][4].x);
+            position6[positions6[x][5].src.split('/')[6].slice(0,1)] = Number(positions6[x][5].x);
+            position6[positions6[x][6].src.split('/')[6].slice(0,1)] = Number(positions6[x][6].x);
+            position6[positions6[x][7].src.split('/')[6].slice(0,1)] = Number(positions6[x][7].x);
+
+            console.log(position6);
+
+           if(position6.m < position6.a && position6.a < position6.s && position6.s < position6.c && position6.c < position6.h && position6.h < position6.e && position6.e < position6.r && position6.r < position6.a ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial7 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[16].s, lettere_alfabeto[13].p, lettere_alfabeto[4].e, lettere_alfabeto[15].r, lettere_alfabeto[0].a, lettere_alfabeto[11].n, lettere_alfabeto[20].z, lettere_alfabeto[0].a],
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions7 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions7);
+
+            var position7 = {};
+            position7[positions7[x][0].src.split('/')[6].slice(0,1)] = Number(positions7[x][0].x);
+            position7[positions7[x][1].src.split('/')[6].slice(0,1)] = Number(positions7[x][1].x);
+            position7[positions7[x][2].src.split('/')[6].slice(0,1)] = Number(positions7[x][2].x);
+            position7[positions7[x][3].src.split('/')[6].slice(0,1)] = Number(positions7[x][3].x);
+            position7[positions7[x][4].src.split('/')[6].slice(0,1)] = Number(positions7[x][4].x);
+            position7[positions7[x][5].src.split('/')[6].slice(0,1)] = Number(positions7[x][5].x);
+            position7[positions7[x][6].src.split('/')[6].slice(0,1)] = Number(positions7[x][6].x);
+            position7[positions7[x][7].src.split('/')[6].slice(0,1)] = Number(positions7[x][7].x);
+
+            console.log(position7);
+
+           if(position7.s < position7.p && position7.p < position7.e && position7.e < position7.r && position7.r < position7.a && position7.a < position7.n && position7.n < position7.z && position7.z < position7.a){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial8 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[16].s, lettere_alfabeto[13].p, lettere_alfabeto[18].u, lettere_alfabeto[11].n, lettere_alfabeto[17].t, lettere_alfabeto[0].a, lettere_alfabeto[15].r, lettere_alfabeto[4].e],
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions8 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions8);
+
+            var position8 = {};
+            position8[positions8[x][0].src.split('/')[6].slice(0,1)] = Number(positions8[x][0].x);
+            position8[positions8[x][1].src.split('/')[6].slice(0,1)] = Number(positions8[x][1].x);
+            position8[positions8[x][2].src.split('/')[6].slice(0,1)] = Number(positions8[x][2].x);
+            position8[positions8[x][3].src.split('/')[6].slice(0,1)] = Number(positions8[x][3].x);
+            position8[positions8[x][4].src.split('/')[6].slice(0,1)] = Number(positions8[x][4].x);
+            position8[positions8[x][5].src.split('/')[6].slice(0,1)] = Number(positions8[x][5].x);
+            position8[positions8[x][6].src.split('/')[6].slice(0,1)] = Number(positions8[x][6].x);
+            position8[positions8[x][7].src.split('/')[6].slice(0,1)] = Number(positions8[x][7].x);
+
+            console.log(position8);
+
+           if(position8.s < position8.p && position8.p < position8.u && position8.u < position8.n && position8.n < position8.t && position8.t < position8.a && position8.a < position8.r && position8.r < position8.e ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial9 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[13].p, lettere_alfabeto[15].r, lettere_alfabeto[12].o, lettere_alfabeto[6].g, lettere_alfabeto[4].e, lettere_alfabeto[17].t, lettere_alfabeto[17].t, lettere_alfabeto[12].o], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions9 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions9);
+
+            var position9 = {};
+            position9[positions9[x][0].src.split('/')[6].slice(0,1)] = Number(positions9[x][0].x);
+            position9[positions9[x][1].src.split('/')[6].slice(0,1)] = Number(positions9[x][1].x);
+            position9[positions9[x][2].src.split('/')[6].slice(0,1)] = Number(positions9[x][2].x);
+            position9[positions9[x][3].src.split('/')[6].slice(0,1)] = Number(positions9[x][3].x);
+            position9[positions9[x][4].src.split('/')[6].slice(0,1)] = Number(positions9[x][4].x);
+            position9[positions9[x][5].src.split('/')[6].slice(0,1)] = Number(positions9[x][5].x);
+            position9[positions9[x][6].src.split('/')[6].slice(0,1)] = Number(positions9[x][6].x);
+            position9[positions9[x][7].src.split('/')[6].slice(0,1)] = Number(positions9[x][7].x);
+
+            console.log(position9);
+
+           if(position9.p < position9.r && position9.r < position9.o && position9.o < position9.g && position9.g < position9.e && position9.e < position9.t && position9.t < position9.t && position9.t < position9.o ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            }else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+    var trial10 = {
+        type: jsPsychFreeSort,
+        stimuli: [lettere_alfabeto[2].c, lettere_alfabeto[0].a, lettere_alfabeto[13].p, lettere_alfabeto[13].p, lettere_alfabeto[4].e, lettere_alfabeto[9].l, lettere_alfabeto[9].l, lettere_alfabeto[12].o], 
+        stim_height: 100,
+        stim_width: 100,
+        scale_factor: 1.5,
+        prompt: "Riordini le lettere per formare la parola <br> <br>",
+        prompt_location: "above",
+        button_label:"Prema qui per confermare",
+        counter_text_unfinished: "Deve ancora posizionare %n% item%s% all'interno dell'area",
+        counter_text_finished: "Tutti gli elementi inseriti. Si senta libero di riposizionare gli elementi, se necessario.",
+        sort_area_width: 550,
+        sort_area_height: 200,
+        sort_area_shape: "square",
+        on_finish: function(data){
+            var positions10 = jsPsych.data.get().select('final_locations').values;
+            console.log(positions10);
+
+            var position10 = {};
+            position10[positions10[x][0].src.split('/')[6].slice(0,1)] = Number(positions10[x][0].x);
+            position10[positions10[x][1].src.split('/')[6].slice(0,1)] = Number(positions10[x][1].x);
+            position10[positions10[x][2].src.split('/')[6].slice(0,1)] = Number(positions10[x][2].x);
+            position10[positions10[x][3].src.split('/')[6].slice(0,1)] = Number(positions10[x][3].x);
+            position10[positions10[x][4].src.split('/')[6].slice(0,1)] = Number(positions10[x][4].x);
+            position10[positions10[x][5].src.split('/')[6].slice(0,1)] = Number(positions10[x][5].x);
+            position10[positions10[x][6].src.split('/')[6].slice(0,1)] = Number(positions10[x][6].x);
+            position10[positions10[x][7].src.split('/')[6].slice(0,1)] = Number(positions10[x][7].x);
+
+            console.log(position10);
+
+           if(position10.c < position10.a && position10.a < position10.p && position10.p < position10.p && position10.p < position10.e && position10.e < position10.l && position10.l < position10.l && position10.l < position10.o ){
+                data.correct = true;
+                console.log("Corretto");
+                x++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                x++;
+            }
+        }
+    };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    var sample_trials = jsPsych.randomization.sampleWithoutReplacement([trial1, trial2, trial3, trial4, trial5, trial6, trial7, trial8, trial9, trial10],5);
+
+
+    var trial_timeline = {
+        timeline: sample_trials
+    };
+
+    var begin_trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px; "> Allora proseguiamo, inziamo con l'esercizio. <br>
+            Ora vedrà delle lettere che dovrà mettere in ordine per formare una parola. <br> <br>
+            <strong> Dovrà premere e trascinare ogni lettera per sistemarla nell’ordine esatto fino a formare la parola corretta.</p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black;">%choice%</button>`,
+        choices: ['Prema qui per iniziare']
+
+    };
+
+
+
+    var if_node = {
+        timeline: [begin_trial, trial_timeline],
+        conditional_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+            if (response_button == 0) {
+                console.log("prosegui a esercizio");
+                return true;
+            } else {
+                console.log("inizia la prova");
+                jsPsych.addNodeToEndOfTimeline(loop_prova)
+                return false;
+            }
+        }
+    };
+
+    var begin_loop = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px; "> Va bene facciamo una prova! <br> Ora vedrà delle lettere che dovrà mettere in ordine per formare una parola. <br> <br>
+            <strong> Dovrà premere e trascinare ogni lettera per sistemarla nell’ordine esatto fino a formare la parola corretta.</p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare la prova'],
+        on_start: function (data) {
+            var response_button = jsPsych.data.get().last(1).values()[0].response;
+            console.log(response_button)
+            if (response_button == 0) {
+                console.log("salta loop");
+                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+            }
+        }
+    };
+
+    var end_loop_prova = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con l'esercizio. <br>
+            Ora vedrà delle lettere che dovrà mettere in ordine per formare una parola. <br> <br>
+            <strong> Dovrà premere e trascinare ogni lettera per sistemarla nell’ordine esatto fino a formare la parola corretta.</p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per ripetere la prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta = 1;
+            } else {
+                var risposta = 0;
+                console.log("Termine loop prova");
+                jsPsych.addNodeToEndOfTimeline(trial_timeline);
+            }
+            data.risposta_loop = risposta
+        }
+    };
+
+    var loop_prova = {
+        timeline: [begin_loop, prova_loop, feedback, end_loop_prova],
+        loop_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+            if (response_button == 1) {
+                return true;
+            } else {
+                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+            }
+        }
+    };
+
+    var timeline = [pre_if, if_node]
+
+    jsPsych.run(timeline)
+
+</script>
+</html>

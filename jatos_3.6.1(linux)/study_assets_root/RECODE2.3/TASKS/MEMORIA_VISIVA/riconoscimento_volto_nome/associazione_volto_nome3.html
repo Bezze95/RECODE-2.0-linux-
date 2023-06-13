@@ -10,6 +10,7 @@
         <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
         <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
         <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+        <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
 
         
         <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
@@ -24,6 +25,22 @@
 
         </style>
 
+        <!--
+            “Ora vedrà dei passaporti di persone, con alcune informazioni.
+Il suo compito è quello di memorizzarle.
+Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto.”
+Per livello 2 e 3, sotto: “ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni!”
+vengono presentati dei volti di cui bisogna ricordare il nome ed il cognome. 
+creare “passaporti” con immagine volti. di fianco vengono riportare le informazioni
+
+TERZO LIVELLO: 
+5 trials. Interferenza = calcoli, pallini/stelline/figure da contare a inserimento del numero, suoni da contare.
+si presentano 2 persone con nome + hobby + animale domestico. il partecipante deve riportare le informazioni
+bottone per andare avanti (senza limiti di tempo per l’elaborazione)
+
+
+
+        -->
     </body>
     <script>
         jatos.onload(function(){
@@ -40,7 +57,7 @@
                 /*jsPsych.data.displayData();*/ //lascio così adesso in via di sviluppo 
 
                 var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                    if(correct_trials > 9){ //bisogna stabilire il valore di risposte corrette per considerarlo come passato 
+                    if(correct_trials >= 4){ //affinché si passi con l'80% delle risposte corrette  
                         var feed = 1;
                     } else {
                         var feed = 0;
@@ -71,11 +88,11 @@
 
         var pre_if = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
-            Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black">%choice%</button>`,
-            choices: ['Prema qui per procedere al compito','Prema qui per fare una prova'],
+            stimulus: `<p style="font-size: 34px; "> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. </strong> <br> <br> 
+            Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista. </p>`,
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+	        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta_prova = 1;
@@ -91,32 +108,34 @@
             stimulus: jsPsych.timelineVariable('img1'),
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 "> mario </a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> automobili </a> ;
-                 ANIMALE DOMESTICO: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> cane </a>  </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 "> mario </a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> automobili </a> ;
+                 ANIMALE DOMESTICO: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> cane </a>  </p>`,
             choices: ['Prema qui per proseguire'],
         }; 
 
         var prova_answer = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
                 {prompt:"Qual è l'hobby della persona appena vista?", name: 'Passione', required: true},
                 {prompt:"Qual è l'animale domestico della persona appena vista?", name: 'Animale', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                var nome = data.response.Nome.toLowerCase();
+                var passione = data.response.Passione.toLowerCase();
+                var animale = data.response.Animale.toLowerCase();
+                if (nome == jsPsych.timelineVariable ('nome')) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Passione == jsPsych.timelineVariable ('passione')){
+                if (passione == jsPsych.timelineVariable ('passione')){
                     var accuracy_passione = true
                 } else {
                     var accuracy_passione = false
                 };
-                if (data.response.Animale == jsPsych.timelineVariable ('animale')){
+                if (animale == jsPsych.timelineVariable ('animale')){
                     var accuracy_animale = true
                 } else {
                     var accuracy_animale = false
@@ -160,11 +179,11 @@
 
         var begin_trial = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
-                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo.
+            stimulus: `<p style="font-size: 34px; "> Allora proseguiamo, inziamo con l'esercizio. <br> <strong>Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong><br> <br>
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista.
                 <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni! </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare']
         };
 
@@ -183,14 +202,50 @@
     ];
         var array_imgs = jsPsych.randomization.shuffle(imgs);
 
+        var via = {
+            timeline: [
+            {
+                type: jsPsychPsychophysics,
+                stimuli: [
+                    {
+                        obj_type: 'text',
+                        startX: 'center', // location of the cross's center in the canvas
+                        startY: 'center',
+                        content: 'Pronti',
+                        font: "60px 'Arial'",
+                        line_length: 30,
+                        line_color: 'black',
+                        show_start_time: 1000, // ms after the start of the trial
+                        show_end_time: 3000,
+                    },
+                    {
+                        obj_type: 'text',
+                        startX: 'center', // location of the cross's center in the canvas
+                        startY: 'center',
+                        content: 'VIA!',
+                        font: "60px 'Arial'",
+                        line_length: 30,
+                        line_color: 'black',
+                        show_start_time: 3500, // ms after the start of the trial
+                        show_end_time: 4000,
+                    }
+                ],
+                background_color: 'white',
+                response_type: 'key',
+                response_start_time: 500,
+                response_ends_trial: true,
+                trial_duration: 4100,
+            }]
+        };
+
         var trial1_img_A = {
             type: jsPsychImageButtonResponse,
             stimulus: ''+array_imgs[0].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
@@ -199,18 +254,18 @@
             stimulus: ''+array_imgs[1].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference1 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "22 / 2", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>22 : 2</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "11" ){
                     return console.log("Risposta corretta")
@@ -224,7 +279,6 @@
 
         var trial1 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della PRIMA persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome_a', required: true},
                 {prompt:"Qual è la passione della PRIMA persona appena vista?", name: 'Passione_a', required: true},
@@ -234,17 +288,24 @@
                 {prompt:"Qual è l'animale domestico della SECONDA persona appena vista?", name: 'Animale_b', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome_a == array_imgs[0].nome) {
+                var nome_a = data.response.Nome_a.toLowerCase();
+                var passione_a = data.response.Passione_a.toLowerCase();
+                var animale_a = data.response.Animale_a.toLowerCase();
+                var nome_b = data.response.Nome_b.toLowerCase();
+                var passione_b = data.response.Passione_b.toLowerCase();
+                var animale_b = data.response.Animale_b.toLowerCase();
+
+                if (nome_a == array_imgs[0].nome) {
                     var accuracy_nome_a = true
                 } else {
                     var accuracy_nome_a = false
                 } 
-                if (data.response.Passione_a == array_imgs[0].passione){
+                if (passione_a == array_imgs[0].passione){
                     var accuracy_passione_a = true
                 } else {
                     var accuracy_passione_a = false
                 };
-                if (data.response.Animale_a == array_imgs[0].animale){
+                if (animale_a == array_imgs[0].animale){
                     var accuracy_animale_a = true
                 } else {
                     var accuracy_animale_a = false
@@ -253,17 +314,17 @@
                 data.accuracy_passione_a = accuracy_passione_a;
                 data.accuracy_animale_a = accuracy_animale_a;
 
-                if (data.response.Nome_b == array_imgs[1].nome) {
+                if (nome_b == array_imgs[1].nome) {
                     var accuracy_nome_b = true
                 } else {
                     var accuracy_nome_b = false
                 } 
-                if (data.response.Passione_b == array_imgs[1].passione){
+                if (passione_b == array_imgs[1].passione){
                     var accuracy_passione_b = true
                 } else {
                     var accuracy_passione_b = false
                 };
-                if (data.response.Animale_b == array_imgs[1].animale){
+                if (animale_b == array_imgs[1].animale){
                     var accuracy_animale_b = true
                 } else {
                     var accuracy_animale_b = false
@@ -279,6 +340,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(data.correct);
             }
         };
 
@@ -287,9 +349,9 @@
             stimulus: ''+array_imgs[2].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
@@ -298,18 +360,18 @@
             stimulus: ''+array_imgs[3].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference2 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "9 + 6", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>9 + 6</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "15" ){
                     return console.log("Risposta corretta")
@@ -322,7 +384,6 @@
 
         var trial2 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della PRIMA persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome_a', required: true},
                 {prompt:"Qual è la passione della PRIMA persona appena vista?", name: 'Passione_a', required: true},
@@ -332,17 +393,24 @@
                 {prompt:"Qual è l'animale domestico della SECONDA persona appena vista?", name: 'Animale_b', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome_a == array_imgs[2].nome) {
+                var nome_a = data.response.Nome_a.toLowerCase();
+                var passione_a = data.response.Passione_a.toLowerCase();
+                var animale_a = data.response.Animale_a.toLowerCase();
+                var nome_b = data.response.Nome_b.toLowerCase();
+                var passione_b = data.response.Passione_b.toLowerCase();
+                var animale_b = data.response.Animale_b.toLowerCase();
+
+                if (nome_a == array_imgs[2].nome) {
                     var accuracy_nome_a = true
                 } else {
                     var accuracy_nome_a = false
                 } 
-                if (data.response.Passione_a == array_imgs[2].passione){
+                if (passione_a == array_imgs[2].passione){
                     var accuracy_passione_a = true
                 } else {
                     var accuracy_passione_a = false
                 };
-                if (data.response.Animale_a == array_imgs[2].animale){
+                if (animale_a == array_imgs[2].animale){
                     var accuracy_animale_a = true
                 } else {
                     var accuracy_animale_a = false
@@ -351,17 +419,17 @@
                 data.accuracy_passione_a = accuracy_passione_a;
                 data.accuracy_animale_a = accuracy_animale_a;
 
-                if (data.response.Nome_b == array_imgs[3].nome) {
+                if (nome_b == array_imgs[3].nome) {
                     var accuracy_nome_b = true
                 } else {
                     var accuracy_nome_b = false
                 } 
-                if (data.response.Passione_b == array_imgs[3].passione){
+                if (passione_b == array_imgs[3].passione){
                     var accuracy_passione_b = true
                 } else {
                     var accuracy_passione_b = false
                 };
-                if (data.response.Animale_b == array_imgs[3].animale){
+                if (animale_b == array_imgs[3].animale){
                     var accuracy_animale_b = true
                 } else {
                     var accuracy_animale_b = false
@@ -377,6 +445,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -385,9 +454,9 @@
             stimulus: ''+array_imgs[4].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
@@ -396,18 +465,18 @@
             stimulus: ''+array_imgs[5].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference3 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "12 / 3", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>12 : 3</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "4" ){
                     return console.log("Risposta corretta")
@@ -420,7 +489,6 @@
 
         var trial3 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della PRIMA persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome_a', required: true},
                 {prompt:"Qual è la passione della PRIMA persona appena vista?", name: 'Passione_a', required: true},
@@ -430,17 +498,24 @@
                 {prompt:"Qual è l'animale domestico della SECONDA persona appena vista?", name: 'Animale_b', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome_a == array_imgs[4].nome) {
+                var nome_a = data.response.Nome_a.toLowerCase();
+                var passione_a = data.response.Passione_a.toLowerCase();
+                var animale_a = data.response.Animale_a.toLowerCase();
+                var nome_b = data.response.Nome_b.toLowerCase();
+                var passione_b = data.response.Passione_b.toLowerCase();
+                var animale_b = data.response.Animale_b.toLowerCase();
+                
+                if (nome_a== array_imgs[4].nome) {
                     var accuracy_nome_a = true
                 } else {
                     var accuracy_nome_a = false
                 } 
-                if (data.response.Passione_a == array_imgs[4].passione){
+                if (passione_a == array_imgs[4].passione){
                     var accuracy_passione_a = true
                 } else {
                     var accuracy_passione_a = false
                 };
-                if (data.response.Animale_a == array_imgs[4].animale){
+                if (animale_a == array_imgs[4].animale){
                     var accuracy_animale_a = true
                 } else {
                     var accuracy_animale_a = false
@@ -449,17 +524,17 @@
                 data.accuracy_passione_a = accuracy_passione_a;
                 data.accuracy_animale_a = accuracy_animale_a;
 
-                if (data.response.Nome_b == array_imgs[5].nome) {
+                if (nome_b == array_imgs[5].nome) {
                     var accuracy_nome_b = true
                 } else {
                     var accuracy_nome_b = false
                 } 
-                if (data.response.Passione_b == array_imgs[5].passione){
+                if (passione_b == array_imgs[5].passione){
                     var accuracy_passione_b = true
                 } else {
                     var accuracy_passione_b = false
                 };
-                if (data.response.Animale_b == array_imgs[5].animale){
+                if (animale_b == array_imgs[5].animale){
                     var accuracy_animale_b = true
                 } else {
                     var accuracy_animale_b = false
@@ -475,6 +550,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -483,9 +559,9 @@
             stimulus: ''+array_imgs[6].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
@@ -494,18 +570,18 @@
             stimulus: ''+array_imgs[7].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference4 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "11 - 6", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>11 - 6</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "5" ){
                     return console.log("Risposta corretta")
@@ -518,7 +594,6 @@
 
         var trial4 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della PRIMA persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome_a', required: true},
                 {prompt:"Qual è la passione della PRIMA persona appena vista?", name: 'Passione_a', required: true},
@@ -528,17 +603,24 @@
                 {prompt:"Qual è l'animale domestico della SECONDA persona appena vista?", name: 'Animale_b', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome_a == array_imgs[6].nome) {
+                var nome_a = data.response.Nome_a.toLowerCase();
+                var passione_a = data.response.Passione_a.toLowerCase();
+                var animale_a = data.response.Animale_a.toLowerCase();
+                var nome_b = data.response.Nome_b.toLowerCase();
+                var passione_b = data.response.Passione_b.toLowerCase();
+                var animale_b = data.response.Animale_b.toLowerCase();
+                
+                if (nome_a == array_imgs[6].nome) {
                     var accuracy_nome_a = true
                 } else {
                     var accuracy_nome_a = false
                 } 
-                if (data.response.Passione_a == array_imgs[6].passione){
+                if (passione_a == array_imgs[6].passione){
                     var accuracy_passione_a = true
                 } else {
                     var accuracy_passione_a = false
                 };
-                if (data.response.Animale_a == array_imgs[6].animale){
+                if (animale_a == array_imgs[6].animale){
                     var accuracy_animale_a = true
                 } else {
                     var accuracy_animale_a = false
@@ -547,17 +629,17 @@
                 data.accuracy_passione_a = accuracy_passione_a;
                 data.accuracy_animale_a = accuracy_animale_a;
 
-                if (data.response.Nome_b == array_imgs[7].nome) {
+                if (nome_b == array_imgs[7].nome) {
                     var accuracy_nome_b = true
                 } else {
                     var accuracy_nome_b = false
                 } 
-                if (data.response.Passione_b == array_imgs[7].passione){
+                if (passione_b == array_imgs[7].passione){
                     var accuracy_passione_b = true
                 } else {
                     var accuracy_passione_b = false
                 };
-                if (data.response.Animale_b == array_imgs[7].animale){
+                if (animale_b == array_imgs[7].animale){
                     var accuracy_animale_b = true
                 } else {
                     var accuracy_animale_b = false
@@ -573,6 +655,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -581,9 +664,9 @@
             stimulus: ''+array_imgs[8].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
@@ -592,18 +675,18 @@
             stimulus: ''+array_imgs[9].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
-                PASSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
-                ANIMALE DOMESTICO:  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[1].nome + `</a> ;
+                PASSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].passione + ` </a> ; 
+                ANIMALE DOMESTICO:  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[1].animale + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference5 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "4 x 5", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>4 x 5</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "20" ){
                     return console.log("Risposta corretta")
@@ -616,7 +699,6 @@
 
         var trial5 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della PRIMA persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome_a', required: true},
                 {prompt:"Qual è la passione della PRIMA persona appena vista?", name: 'Passione_a', required: true},
@@ -626,17 +708,24 @@
                 {prompt:"Qual è l'animale domestico della SECONDA persona appena vista?", name: 'Animale_b', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome_a == array_imgs[8].nome) {
+                var nome_a = data.response.Nome_a.toLowerCase();
+                var passione_a = data.response.Passione_a.toLowerCase();
+                var animale_a = data.response.Animale_a.toLowerCase();
+                var nome_b = data.response.Nome_b.toLowerCase();
+                var passione_b = data.response.Passione_b.toLowerCase();
+                var animale_b = data.response.Animale_b.toLowerCase();
+                
+                if (nome_a == array_imgs[8].nome) {
                     var accuracy_nome_a = true
                 } else {
                     var accuracy_nome_a = false
                 } 
-                if (data.response.Passione_a == array_imgs[8].passione){
+                if (passione_a == array_imgs[8].passione){
                     var accuracy_passione_a = true
                 } else {
                     var accuracy_passione_a = false
                 };
-                if (data.response.Animale_a == array_imgs[8].animale){
+                if (animale_a == array_imgs[8].animale){
                     var accuracy_animale_a = true
                 } else {
                     var accuracy_animale_a = false
@@ -645,17 +734,17 @@
                 data.accuracy_passione_a = accuracy_passione_a;
                 data.accuracy_animale_a = accuracy_animale_a;
 
-                if (data.response.Nome_b == array_imgs[9].nome) {
+                if (nome_b == array_imgs[9].nome) {
                     var accuracy_nome_b = true
                 } else {
                     var accuracy_nome_b = false
                 } 
-                if (data.response.Passione_b == array_imgs[9].passione){
+                if (passione_b == array_imgs[9].passione){
                     var accuracy_passione_b = true
                 } else {
                     var accuracy_passione_b = false
                 };
-                if (data.response.Animale_b == array_imgs[9].animale){
+                if (animale_b == array_imgs[9].animale){
                     var accuracy_animale_b = true
                 } else {
                     var accuracy_animale_b = false
@@ -671,11 +760,12 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };     
 
         var trial_timeline = {
-            timeline: [trial1_img_A, trial1_img_B, interference1, trial1, trial2_img_A, trial2_img_B, interference2, trial2, trial3_img_A, trial3_img_B, interference3, trial3, trial4_img_A, trial4_img_B, interference4, trial4, trial5_img_A, trial5_img_B, interference5, trial5]
+            timeline: [trial1_img_A, via, trial1_img_B, interference1, trial1, trial2_img_A, via, trial2_img_B, interference2, trial2, trial3_img_A, via, trial3_img_B, interference3, trial3, trial4_img_A, via, trial4_img_B, interference4, trial4, trial5_img_A, via, trial5_img_B, interference5, trial5]
         };
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -696,10 +786,10 @@
 
         var begin_loop = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
-                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            stimulus: `<p style="font-size: 34px; "> Va bene facciamo una prova! <br> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong><br> <br> 
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista. </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare la prova'],
             on_start: function(data){
                 var response_button = jsPsych.data.get().last(1).values()[0].response;
@@ -713,12 +803,12 @@
 
         var end_loop_prova = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br>Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+            stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con l'esercizio. <br> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong> <br> <br> 
                 Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo.
                 <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni! </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+            choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta = 1;

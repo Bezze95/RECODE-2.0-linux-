@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PESCI CHE SI ILLUMINANO LIV.2 </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PESCI CHE SI ILLUMINANO LIV.2 </title>
 
 
-  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
-  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
-  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
-  <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
-  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
 
-  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
-  <script src="jatos.js"></script>
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
 
-  
+
 
 </head>
+
 <body></body>
 <script>
 
-    jatos.onload(function(){
-        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
-        var progressText="avanzamento" + progress + "%";
+    jatos.onload(function () {
+        var progress = Math.round((1 / jatos.study.Length) * jatos.componentPos * 100, 0);
+        var progressText = "avanzamento" + progress + "%";
         const updateProgress = progress;
-      }); 
-      
+    });
+
     var jsPsych = initJsPsych({
         use_webaudio: false,
-        on_finish: function() {
+        on_finish: function () {
             jsPsych.data.displayData();
-      
+
             /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                 if(correct_trials > 0){
                     var feed = 1;
@@ -45,288 +47,94 @@
             sessionStorage.setItem('memoria_lavoro', memoria_lavoro);
             var Data = {feed: feed, type: 'MEMORIA_LAVORO_pesci_level2', cresp: correct_trials};
             jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
-        } 
+        }
     });
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
-}
-
-////////////////////////
-
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
-
-////////////////////////
-// funzione per generare COORDINATE PESCI //
-function generatePositionsArray(maxX, maxY, safeRadius, irregularity) {
-    // declarations
-    var positionsArray = [];
-    var r, c;
-    var rows;
-    var columns;
-    // count the amount of rows and columns
-    rows = Math.floor(maxY / safeRadius);
-    columns = Math.floor(maxX / safeRadius);
-    // loop through rows
-    for (r = 1; r <= rows; r += 1) {
-        // loop through columns
-        for (c = 1; c <= columns; c += 1) {
-            // populate array with point object
-            positionsArray.push({
-                x: Math.round(maxX * c / columns) + getRandomInt(irregularity * -1, irregularity),
-                y: Math.round(maxY * r / rows) + getRandomInt(irregularity * -1, irregularity)
-            });
-        }
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
     }
-    // return array
-    return positionsArray;
-}
 
-var one = [];
-var two = [];
-var three = [];
-var four = [];
-var fith = [];
+    ////////////////////////
 
-positions = generatePositionsArray(800, 400, 150, 10);
-shuffle(positions);
-var counter = 0;
-
-
-const images = [ // All the images used in this demo
-'TASKS/MEMORIA_LAVORO/pesci/img/giardino_1.png',
-'TASKS/MEMORIA_LAVORO/pesci/img/giardino_2.png',
-'TASKS/MEMORIA_LAVORO/pesci/img/giardino_3.png'
-];
-
-    
-
-    
-var clickCoord = [];
-
-
-var pre_if = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `<p style="font-size: 24px; font-weight: bold;"> Osservi attentamente le mele <br> 
-        Vedrà che si illumineranno, una alla volta, secondo un ordine preciso.<br> <br> 
-        Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
-    button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-    choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
-    on_finish: function(data){
-        if(data.response == 1){
-            var risposta_prova = 1;
-        } else{
-            var risposta_prova = 0;
-        }
-    data.risposta_prova = risposta_prova
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
     }
-};
 
-var prova_loop = {
-    timeline: [
-            {
-                type: jsPsychPsychophysics,
-                stimuli: [
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('firstImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('secondImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord1'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord1')
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('thirdImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord2'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord2')
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('forthImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord3'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord3')
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('fifthImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord4'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord4')
-                    },
-                    {
-                        obj_type: 'image',
-                        file: jsPsych.timelineVariable('sixthImage'),
-                        show_start_time: 0, // ms after the start of the trial
-                        show_end_time: 3500, // ms after the start of the trial
-                        origin_center: true, // Change the coordinate origin to the center of the window
-                        startX: jsPsych.timelineVariable('xcoord5'), // location of the circle's center in the canvas
-                        startY: jsPsych.timelineVariable('ycoord5')
-                    }
-                ],
-                trial_duration: 3500,
-                choices: "NO_KEYS",
-                canvas_height: 563,
-                canvas_width: 1000,
-                prompt: "</p>Memorizzi l'ordine con cui i pesci cambiano colore"
-                //prompt: 'Press any key to proceed.'
-            },
-        ],
-        timeline_variables: [
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[2], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[2], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[2], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[2], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[2], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-
-        ],
-        randomize_order: false
-    };
-
-    var prova_loop_response = {
-        type: jsPsychCanvasButtonResponse,
-        stimulus: function(c) {
-          counter = 0;
-          score = 0;
-          var canvasWidth = c.width;
-          var canvasHeight = c.height;
-          var ctx = c.getContext("2d");
-          var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-          var clickCoord = [];
-          var img = new Image();
-          var img1 = new Image();
-          var img2 = new Image();
-          var img3 = new Image();
-          var img4 = new Image();
-          var img5 = new Image();
-          img.onload = function() {ctx.drawImage(img, 0, 0);};
-          img1.onload = function() {ctx.drawImage(img1, (positions[5]["x"]), (positions[5]["y"]));};
-          img2.onload = function() {ctx.drawImage(img2, (positions[4]["x"]), (positions[4]["y"]));};
-          img3.onload = function() {ctx.drawImage(img3, (positions[3]["x"]), (positions[3]["y"]));};
-          img4.onload = function() {ctx.drawImage(img4, (positions[2]["x"]), (positions[2]["y"]));};
-          img5.onload = function() {ctx.drawImage(img5, (positions[1]["x"]), (positions[1]["y"]));};
-
-          img.src = images[0];
-          img1.src = images[1];
-          img2.src = images[1];
-          img3.src = images[1];
-          img4.src = images[1];
-          img5.src = images[1];
-
-
-          c.onclick = function showOnClick() {
-            let rect = c.getBoundingClientRect();
-            let x = event.clientX - rect.left;
-            let y = event.clientY - rect.top;
-            clickCoord = [x, y];
-            console.log(clickCoord);
-
-            function DrawDot(clickCoord, counter) {
-                ctx.beginPath();
-                ctx.arc(clickCoord[0], clickCoord[1], 20, 0, 2 * Math.PI);
-                ctx.fillStyle = "white";
-                ctx.strokeStyle = "black";
-                ctx.fill();
-                ctx.stroke()
-              ctx.font = '28px serif';
-              ctx.fillStyle = 'black';
-              ctx.fillText(String(counter), clickCoord[0]-10, clickCoord[1]+10, 100);
-            };
-
-            if (Math.abs(x - (positions[5]["x"])-55) < 55 && Math.abs(y - (positions[5]["y"])-46) < 46) {
-                      counter++; if (counter==5){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[4]["x"])-55) < 55 && Math.abs(y - (positions[4]["y"])-46) < 46) {
-                      counter++; if (counter==4){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[3]["x"])-55) < 55 && Math.abs(y - (positions[3]["y"])-46) < 46) {
-                      counter++; if (counter==3){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[2]["x"])-55) < 55 && Math.abs(y - (positions[2]["y"])-46) < 46) {
-                      counter++; if (counter==2){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-          if (Math.abs(x - (positions[1]["x"])-55) < 55 && Math.abs(y - (positions[1]["y"])-46) < 46) {
-                    counter++; if (counter==1){score++};
-                    DrawDot(clickCoord, counter);
-                  };
-            };
-        },
-        canvas_size: [563, 1000],
-        choices: ['Prema per salvare la risposta'],
-        prompt: ["<p>Prema sulle mele, dall'ultima che ha visto fino alla prima"],
-        on_finish: function(data) {
-            if (score > 2) {
-                data.accuracy = true
-            } else {
-                data.accuracy = false
+    ////////////////////////
+    // funzione per generare COORDINATE PESCI //
+    function generatePositionsArray(maxX, maxY, safeRadius, irregularity) {
+        // declarations
+        var positionsArray = [];
+        var r, c;
+        var rows;
+        var columns;
+        // count the amount of rows and columns
+        rows = Math.floor(maxY / safeRadius);
+        columns = Math.floor(maxX / safeRadius);
+        // loop through rows
+        for (r = 1; r <= rows; r += 1) {
+            // loop through columns
+            for (c = 1; c <= columns; c += 1) {
+                // populate array with point object
+                positionsArray.push({
+                    x: Math.round(maxX * c / columns) + getRandomInt(irregularity * -1, irregularity),
+                    y: Math.round(maxY * r / rows) + getRandomInt(irregularity * -1, irregularity)
+                });
             }
         }
-    };
-
-    
-    
-
-    var feedback = {
-        type: jsPsychHtmlKeyboardResponse,
-        choices: "NO_KEYS",
-        trial_duration: 1500,
-        data:"",
-        stimulus: "",
-        on_start: function(prova_loop){
-            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
-            if (last_response_accuracy == true) {
-                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
-                console.log("Corretto")
-            } else {
-                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
-                console.log("Sbagliato")
-            };
-            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback +"</b></div>";
-            prova_loop.data = {stimulus: feedback};
-            prova_loop.stimulus = feedback_prova_stima;
-        },
-        
-    };
-
-    var prova_loop_timeline = {
-        timeline: [prova_loop, prova_loop_response, feedback]
+        // return array
+        return positionsArray;
     }
 
-    var begin_trial = {
+    var one = [];
+    var two = [];
+    var three = [];
+    var four = [];
+    var fith = [];
+
+    positions = generatePositionsArray(800, 400, 150, 10);
+    shuffle(positions);
+    position1 = generatePositionsArray(800, 400, 150, 10);
+    shuffle(position1);
+    position2 = generatePositionsArray(800, 400, 150, 10);
+    shuffle(position2);
+
+
+    var counter = 0;
+
+
+    const images = [ // All the images used in this demo
+        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_1.png',
+        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_2.png',
+        'TASKS/MEMORIA_LAVORO/pesci/img/giardino_3.png'
+    ];
+
+
+
+
+    var clickCoord = [];
+
+
+    var pre_if = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Osservi attentamente i pesci. <br> 
-            Osservi attentamente le mele <br> 
-            Vedrà che si illumineranno, una alla volta, secondo un ordine preciso.<br> <br> 
-            Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Osservi attentamente le mele <br> 
+        Vedrà che si illumineranno, una alla volta, secondo un ordine preciso.<br> <br> 
+        Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
         button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-        choices: ['Prema qui per per iniziare']
+        choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta_prova = 1;
+            } else {
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
     };
 
-    var trial = {
+    var prova_loop = {
         timeline: [
             {
                 type: jsPsychPsychophysics,
@@ -392,12 +200,212 @@ var prova_loop = {
             },
         ],
         timeline_variables: [
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[2], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[2], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[2], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[2], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[1], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
-            {firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"]-490), ycoord1: (positions[5]["y"]-270), thirdImage: images[1], xcoord2: (positions[4]["x"]-490), ycoord2: (positions[4]["y"]-270), forthImage: images[1], xcoord3: (positions[3]["x"]-490), ycoord3: (positions[3]["y"]-270), fifthImage: images[1], xcoord4: (positions[2]["x"]-490), ycoord4: (positions[2]["y"]-270), sixthImage: images[2], xcoord5: (positions[1]["x"]-490), ycoord5: (positions[1]["y"]-270)},
+            { firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[1], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[1], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[1], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[1], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[2], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[1], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[1], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[1], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[1], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[2], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[1], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[1], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[1], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[1], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[2], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[1], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[1], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[1], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[1], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[2], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[1], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (positions[5]["x"] - 490), ycoord1: (positions[5]["y"] - 270), thirdImage: images[1], xcoord2: (positions[4]["x"] - 490), ycoord2: (positions[4]["y"] - 270), forthImage: images[1], xcoord3: (positions[3]["x"] - 490), ycoord3: (positions[3]["y"] - 270), fifthImage: images[1], xcoord4: (positions[2]["x"] - 490), ycoord4: (positions[2]["y"] - 270), sixthImage: images[2], xcoord5: (positions[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+
+        ],
+        randomize_order: false
+    };
+
+    var prova_loop_response = {
+        type: jsPsychCanvasButtonResponse,
+        stimulus: function (c) {
+            counter = 0;
+            score = 0;
+            var canvasWidth = c.width;
+            var canvasHeight = c.height;
+            var ctx = c.getContext("2d");
+            var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+            var clickCoord = [];
+            var img = new Image();
+            var img1 = new Image();
+            var img2 = new Image();
+            var img3 = new Image();
+            var img4 = new Image();
+            var img5 = new Image();
+            img.onload = function () { ctx.drawImage(img, 0, 0); };
+            img1.onload = function () { ctx.drawImage(img1, (positions[5]["x"]), (positions[5]["y"])); };
+            img2.onload = function () { ctx.drawImage(img2, (positions[4]["x"]), (positions[4]["y"])); };
+            img3.onload = function () { ctx.drawImage(img3, (positions[3]["x"]), (positions[3]["y"])); };
+            img4.onload = function () { ctx.drawImage(img4, (positions[2]["x"]), (positions[2]["y"])); };
+            img5.onload = function () { ctx.drawImage(img5, (positions[1]["x"]), (positions[1]["y"])); };
+
+            img.src = images[0];
+            img1.src = images[1];
+            img2.src = images[1];
+            img3.src = images[1];
+            img4.src = images[1];
+            img5.src = images[1];
+
+
+            c.onclick = function showOnClick() {
+                let rect = c.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                clickCoord = [x, y];
+                console.log(clickCoord);
+
+                function DrawDot(clickCoord, counter) {
+                    ctx.beginPath();
+                    ctx.arc(clickCoord[0], clickCoord[1], 20, 0, 2 * Math.PI);
+                    ctx.fillStyle = "white";
+                    ctx.strokeStyle = "black";
+                    ctx.fill();
+                    ctx.stroke()
+                    ctx.font = '28px serif';
+                    ctx.fillStyle = 'black';
+                    ctx.fillText(String(counter), clickCoord[0] - 10, clickCoord[1] + 10, 100);
+                };
+
+                if (Math.abs(x - (positions[5]["x"]) - 55) < 55 && Math.abs(y - (positions[5]["y"]) - 46) < 46) {
+                    counter++; if (counter == 5) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (positions[4]["x"]) - 55) < 55 && Math.abs(y - (positions[4]["y"]) - 46) < 46) {
+                    counter++; if (counter == 4) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (positions[3]["x"]) - 55) < 55 && Math.abs(y - (positions[3]["y"]) - 46) < 46) {
+                    counter++; if (counter == 3) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (positions[2]["x"]) - 55) < 55 && Math.abs(y - (positions[2]["y"]) - 46) < 46) {
+                    counter++; if (counter == 2) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (positions[1]["x"]) - 55) < 55 && Math.abs(y - (positions[1]["y"]) - 46) < 46) {
+                    counter++; if (counter == 1) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+            };
+        },
+        canvas_size: [563, 1000],
+        choices: ['Prema per salvare la risposta'],
+        prompt: ["<p>Prema sulle mele, dall'ultima che ha visto fino alla prima"],
+        on_finish: function (data) {
+            if (score > 2) {
+                data.accuracy = true
+            } else {
+                data.accuracy = false
+            }
+        }
+    };
+
+
+
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        choices: "NO_KEYS",
+        trial_duration: 1500,
+        data: "",
+        stimulus: "",
+        on_start: function (prova_loop) {
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+            if (last_response_accuracy == true) {
+                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                console.log("Corretto")
+            } else {
+                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                console.log("Sbagliato")
+            };
+            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback + "</b></div>";
+            prova_loop.data = { stimulus: feedback };
+            prova_loop.stimulus = feedback_prova_stima;
+        },
+
+    };
+
+    var prova_loop_timeline = {
+        timeline: [prova_loop, prova_loop_response, feedback]
+    }
+
+    var begin_trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Osservi attentamente i pesci. <br> 
+            Osservi attentamente le mele <br> 
+            Vedrà che si illumineranno, una alla volta, secondo un ordine preciso.<br> <br> 
+            Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
+        choices: ['Prema qui per per iniziare']
+    };
+
+    var trial1 = {
+        timeline: [
+            {
+                type: jsPsychPsychophysics,
+                stimuli: [
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('firstImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('secondImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord1'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord1')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('thirdImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord2'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord2')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('forthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord3'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord3')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('fifthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord4'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord4')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('sixthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord5'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord5')
+                    }
+                ],
+                trial_duration: 3500,
+                choices: "NO_KEYS",
+                canvas_height: 563,
+                canvas_width: 1000,
+                prompt: "</p>Memorizzi l'ordine con cui i pesci cambiano colore"
+                //prompt: 'Press any key to proceed.'
+            },
+        ],
+        timeline_variables: [
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[1], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[1], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[1], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[1], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[2], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[1], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[1], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[1], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[1], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[2], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[1], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[1], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[1], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[1], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[2], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[1], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[1], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[1], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[1], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[2], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[1], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position1[5]["x"] - 490), ycoord1: (position1[5]["y"] - 270), thirdImage: images[1], xcoord2: (position1[4]["x"] - 490), ycoord2: (position1[4]["y"] - 270), forthImage: images[1], xcoord3: (position1[3]["x"] - 490), ycoord3: (position1[3]["y"] - 270), fifthImage: images[1], xcoord4: (position1[2]["x"] - 490), ycoord4: (position1[2]["y"] - 270), sixthImage: images[2], xcoord5: (position1[1]["x"] - 490), ycoord5: (position1[1]["y"] - 270) },
 
         ],
         randomize_order: false
@@ -405,82 +413,247 @@ var prova_loop = {
 
 
 
-    var response_trial = {
+    var response_trial1 = {
         type: jsPsychCanvasButtonResponse,
-        stimulus: function(c) {
-          counter = 0;
-          score = 0;
-          var canvasWidth = c.width;
-          var canvasHeight = c.height;
-          var ctx = c.getContext("2d");
-          var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-          var clickCoord = [];
-          var img = new Image();
-          var img1 = new Image();
-          var img2 = new Image();
-          var img3 = new Image();
-          var img4 = new Image();
-          var img5 = new Image();
-          img.onload = function() {ctx.drawImage(img, 0, 0);};
-          img1.onload = function() {ctx.drawImage(img1, (positions[5]["x"]), (positions[5]["y"]));};
-          img2.onload = function() {ctx.drawImage(img2, (positions[4]["x"]), (positions[4]["y"]));};
-          img3.onload = function() {ctx.drawImage(img3, (positions[3]["x"]), (positions[3]["y"]));};
-          img4.onload = function() {ctx.drawImage(img4, (positions[2]["x"]), (positions[2]["y"]));};
-          img5.onload = function() {ctx.drawImage(img5, (positions[1]["x"]), (positions[1]["y"]));};
+        stimulus: function (c) {
+            counter = 0;
+            score = 0;
+            var canvasWidth = c.width;
+            var canvasHeight = c.height;
+            var ctx = c.getContext("2d");
+            var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+            var clickCoord = [];
+            var img = new Image();
+            var img1 = new Image();
+            var img2 = new Image();
+            var img3 = new Image();
+            var img4 = new Image();
+            var img5 = new Image();
+            img.onload = function () { ctx.drawImage(img, 0, 0); };
+            img1.onload = function () { ctx.drawImage(img1, (position1[5]["x"]), (position1[5]["y"])); };
+            img2.onload = function () { ctx.drawImage(img2, (position1[4]["x"]), (position1[4]["y"])); };
+            img3.onload = function () { ctx.drawImage(img3, (position1[3]["x"]), (position1[3]["y"])); };
+            img4.onload = function () { ctx.drawImage(img4, (position1[2]["x"]), (position1[2]["y"])); };
+            img5.onload = function () { ctx.drawImage(img5, (position1[1]["x"]), (position1[1]["y"])); };
 
-          img.src = images[0];
-          img1.src = images[1];
-          img2.src = images[1];
-          img3.src = images[1];
-          img4.src = images[1];
-          img5.src = images[1];
+            img.src = images[0];
+            img1.src = images[1];
+            img2.src = images[1];
+            img3.src = images[1];
+            img4.src = images[1];
+            img5.src = images[1];
 
 
-          c.onclick = function showOnClick() {
-            let rect = c.getBoundingClientRect();
-            let x = event.clientX - rect.left;
-            let y = event.clientY - rect.top;
-            clickCoord = [x, y];
-            console.log(clickCoord);
+            c.onclick = function showOnClick() {
+                let rect = c.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                clickCoord = [x, y];
+                console.log(clickCoord);
 
-            function DrawDot(clickCoord, counter) {
-                ctx.beginPath();
-                ctx.arc(clickCoord[0], clickCoord[1], 20, 0, 2 * Math.PI);
-                ctx.fillStyle = "white";
-                ctx.strokeStyle = "black";
-                ctx.fill();
-                ctx.stroke()
-              ctx.font = '28px serif';
-              ctx.fillStyle = 'black';
-              ctx.fillText(String(counter), clickCoord[0]-10, clickCoord[1]+10, 100);
-            };
+                function DrawDot(clickCoord, counter) {
+                    ctx.beginPath();
+                    ctx.arc(clickCoord[0], clickCoord[1], 20, 0, 2 * Math.PI);
+                    ctx.fillStyle = "white";
+                    ctx.strokeStyle = "black";
+                    ctx.fill();
+                    ctx.stroke()
+                    ctx.font = '28px serif';
+                    ctx.fillStyle = 'black';
+                    ctx.fillText(String(counter), clickCoord[0] - 10, clickCoord[1] + 10, 100);
+                };
 
-            if (Math.abs(x - (positions[5]["x"])-55) < 55 && Math.abs(y - (positions[5]["y"])-46) < 46) {
-                      counter++; if (counter==5){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[4]["x"])-55) < 55 && Math.abs(y - (positions[4]["y"])-46) < 46) {
-                      counter++; if (counter==4){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[3]["x"])-55) < 55 && Math.abs(y - (positions[3]["y"])-46) < 46) {
-                      counter++; if (counter==3){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-            if (Math.abs(x - (positions[2]["x"])-55) < 55 && Math.abs(y - (positions[2]["y"])-46) < 46) {
-                      counter++; if (counter==2){score++};
-                      DrawDot(clickCoord, counter);
-                    };
-          if (Math.abs(x - (positions[1]["x"])-55) < 55 && Math.abs(y - (positions[1]["y"])-46) < 46) {
-                    counter++; if (counter==1){score++};
+                if (Math.abs(x - (position1[5]["x"]) - 55) < 55 && Math.abs(y - (position1[5]["y"]) - 46) < 46) {
+                    counter++; if (counter == 5) { score++ };
                     DrawDot(clickCoord, counter);
-                  };
+                };
+                if (Math.abs(x - (position1[4]["x"]) - 55) < 55 && Math.abs(y - (position1[4]["y"]) - 46) < 46) {
+                    counter++; if (counter == 4) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position1[3]["x"]) - 55) < 55 && Math.abs(y - (position1[3]["y"]) - 46) < 46) {
+                    counter++; if (counter == 3) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position1[2]["x"]) - 55) < 55 && Math.abs(y - (position1[2]["y"]) - 46) < 46) {
+                    counter++; if (counter == 2) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position1[1]["x"]) - 55) < 55 && Math.abs(y - (position1[1]["y"]) - 46) < 46) {
+                    counter++; if (counter == 1) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
             };
         },
         canvas_size: [563, 1000],
         choices: ['Prema per salvare la risposta'],
         prompt: ["<p>Prema sulle mele, dall'ultima che ha visto fino alla prima"],
-        on_finish: function(data) {
+        on_finish: function (data) {
+            if (score > 2) {
+                data.accuracy = true
+                console.log("corretto")
+            } else {
+                data.accuracy = false
+                console.log("sbagliato")
+            }
+        }
+    };
+
+    var trial2 = {
+        timeline: [
+            {
+                type: jsPsychPsychophysics,
+                stimuli: [
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('firstImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('secondImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord1'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord1')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('thirdImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord2'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord2')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('forthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord3'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord3')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('fifthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord4'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord4')
+                    },
+                    {
+                        obj_type: 'image',
+                        file: jsPsych.timelineVariable('sixthImage'),
+                        show_start_time: 0, // ms after the start of the trial
+                        show_end_time: 3500, // ms after the start of the trial
+                        origin_center: true, // Change the coordinate origin to the center of the window
+                        startX: jsPsych.timelineVariable('xcoord5'), // location of the circle's center in the canvas
+                        startY: jsPsych.timelineVariable('ycoord5')
+                    }
+                ],
+                trial_duration: 3500,
+                choices: "NO_KEYS",
+                canvas_height: 563,
+                canvas_width: 1000,
+                prompt: "</p>Memorizzi l'ordine con cui i pesci cambiano colore"
+                //prompt: 'Press any key to proceed.'
+            },
+        ],
+        timeline_variables: [
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[1], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[1], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[1], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[1], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[2], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[1], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[1], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[1], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[1], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[2], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[1], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[1], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[1], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[1], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[2], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[1], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[1], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[1], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[1], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[2], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[1], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+            { firstImage: images[0], secondImage: images[1], xcoord1: (position2[5]["x"] - 490), ycoord1: (position2[5]["y"] - 270), thirdImage: images[1], xcoord2: (position2[4]["x"] - 490), ycoord2: (position2[4]["y"] - 270), forthImage: images[1], xcoord3: (position2[3]["x"] - 490), ycoord3: (position2[3]["y"] - 270), fifthImage: images[1], xcoord4: (position2[2]["x"] - 490), ycoord4: (position2[2]["y"] - 270), sixthImage: images[2], xcoord5: (position2[1]["x"] - 490), ycoord5: (positions[1]["y"] - 270) },
+
+        ],
+        randomize_order: false
+    }
+
+
+
+    var response_trial2 = { <!---: CAMBIA LA POSIZIONE NELLA RISPOSTA ASSOLUTAMENTE DA CORREGGERE  -->
+        type: jsPsychCanvasButtonResponse,
+        stimulus: function (c) {
+            counter = 0;
+            score = 0;
+            var canvasWidth = c.width;
+            var canvasHeight = c.height;
+            var ctx = c.getContext("2d");
+            var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+            var clickCoord = [];
+            var img = new Image();
+            var img1 = new Image();
+            var img2 = new Image();
+            var img3 = new Image();
+            var img4 = new Image();
+            var img5 = new Image();
+            img.onload = function () { ctx.drawImage(img, 0, 0); };
+            img1.onload = function () { ctx.drawImage(img1, (position2[5]["x"]), (position2[5]["y"])); };
+            img2.onload = function () { ctx.drawImage(img2, (position2[4]["x"]), (position2[4]["y"])); };
+            img3.onload = function () { ctx.drawImage(img3, (position2[3]["x"]), (position2[3]["y"])); };
+            img4.onload = function () { ctx.drawImage(img4, (position2[2]["x"]), (position2[2]["y"])); };
+            img5.onload = function () { ctx.drawImage(img5, (position2[1]["x"]), (position2[1]["y"])); };
+
+            img.src = images[0];
+            img1.src = images[1];
+            img2.src = images[1];
+            img3.src = images[1];
+            img4.src = images[1];
+            img5.src = images[1];
+
+
+            c.onclick = function showOnClick() {
+                let rect = c.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                clickCoord = [x, y];
+                console.log(clickCoord);
+
+                function DrawDot(clickCoord, counter) {
+                    ctx.beginPath();
+                    ctx.arc(clickCoord[0], clickCoord[1], 20, 0, 2 * Math.PI);
+                    ctx.fillStyle = "white";
+                    ctx.strokeStyle = "black";
+                    ctx.fill();
+                    ctx.stroke()
+                    ctx.font = '28px serif';
+                    ctx.fillStyle = 'black';
+                    ctx.fillText(String(counter), clickCoord[0] - 10, clickCoord[1] + 10, 100);
+                };
+
+                if (Math.abs(x - (position2[5]["x"]) - 55) < 55 && Math.abs(y - (position2[5]["y"]) - 46) < 46) {
+                    counter++; if (counter == 5) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position2[4]["x"]) - 55) < 55 && Math.abs(y - (position2[4]["y"]) - 46) < 46) {
+                    counter++; if (counter == 4) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position2[3]["x"]) - 55) < 55 && Math.abs(y - (position2[3]["y"]) - 46) < 46) {
+                    counter++; if (counter == 3) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position2[2]["x"]) - 55) < 55 && Math.abs(y - (position2[2]["y"]) - 46) < 46) {
+                    counter++; if (counter == 2) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+                if (Math.abs(x - (position2[1]["x"]) - 55) < 55 && Math.abs(y - (position2[1]["y"]) - 46) < 46) {
+                    counter++; if (counter == 1) { score++ };
+                    DrawDot(clickCoord, counter);
+                };
+            };
+        },
+        canvas_size: [563, 1000],
+        choices: ['Prema per salvare la risposta'],
+        prompt: ["<p>Prema sulle mele, dall'ultima che ha visto fino alla prima"],
+        on_finish: function (data) {
             if (score > 2) {
                 data.accuracy = true
                 console.log("corretto")
@@ -492,14 +665,14 @@ var prova_loop = {
     };
 
     var trial_timeline = {
-        timeline: [trial, response_trial]
+        timeline: [trial1, response_trial1, trial2, response_trial2]
     }
 
     var if_node = {
-        timeline: [begin_trial,trial_timeline],  
-        conditional_function: function(){
-            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova; 
-            if (response_button == 0){
+        timeline: [begin_trial, trial_timeline],
+        conditional_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+            if (response_button == 0) {
                 console.log("prosegui a esercizio");
                 return true;
             } else {
@@ -517,10 +690,10 @@ var prova_loop = {
             Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
         button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
         choices: ['Prema qui per iniziare la prova'],
-        on_start: function(data){
+        on_start: function (data) {
             var response_button = jsPsych.data.get().last(1).values()[0].response;
             console.log(response_button)
-            if (response_button == 0){
+            if (response_button == 0) {
                 console.log("salta loop");
                 jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
             }
@@ -534,10 +707,10 @@ var prova_loop = {
             Cerchi di memorizzare l’ordine della sequenza. Il suo compito sarà quello di riprodurla al contrario, dall'ultima all prima. </p>`,
         button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
         choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
-        on_finish: function(data){
-            if(data.response == 1){
+        on_finish: function (data) {
+            if (data.response == 1) {
                 var risposta = 1;
-            } else{
+            } else {
                 var risposta = 0;
                 console.log("Termine loop prova");
                 jsPsych.addNodeToEndOfTimeline(trial_timeline);
@@ -548,19 +721,19 @@ var prova_loop = {
 
     var loop_prova = {
         timeline: [begin_loop, prova_loop_timeline, end_loop_prova],
-        loop_function: function(){
+        loop_function: function () {
             var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
-            if (response_button == 1){
+            if (response_button == 1) {
                 return true;
             } else {
                 return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
             }
-        }     
+        }
     };
 
 
     var timeline = [pre_if, if_node]
-jsPsych.run(timeline)
+    jsPsych.run(timeline)
 </script>
 
 </html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>spaziale</title>
+    <meta charset="UTF-8">
+
+  <script src="jsPsych/jspsych.js"></script>
+  <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+  <script src="jsPsych/plugins/jspsych-html-button-response.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-html-form.js"></script>
+  <script src="/assets/javascripts/jatos.js"></script>
+  <link rel="stylesheet" href="jsPsych/css/jspsych.css"></link>
+
+  <style>
+  body {
+    background-color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+	<script type='text/javascript'>
+
+  var regions = [
+    "piemonte", "lombardia", "valle d'aosta", "liguria", "toscana", "lazio", "campania", "calabria", "sicilia", "sardegna", "trentino alto adige",
+     "veneto", "friuli venezia giulia", "marche", "umbria", "abruzzo", "molise", "puglia", "emilia romagna", "basilicata"];
+
+ regions = jsPsych.randomization.shuffle(regions);
+
+
+
+  var button = {
+      type: 'html-button-response',
+      stimulus: '<p style="font-size: 24px; font-weight: bold;">ISTRUZIONI:</p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Adesso le verrà presentata la cartina italiana.</p>'+
+        '<p style="font-size: 24px; font-weight: bold;">Dovrà indovinare la regione indicata dalla freccia, scrivendo il nome corrispondente nello spazio apposito. </p>'+
+      '<p style="font-size: 24px; font-weight: bold;">Se non ricorda il nome lasci lo spazio vuoto e vada avanti.</p>',
+      button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
+      choices: ['Prema qui per continuare'],
+     };
+
+
+
+  var one = {
+		type: 'survey-html-form',
+		preamble: '<p> <img src="orientamento/img1/'+regions[0]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante</p>',
+    button_label: ['Prema per andare avanti'],
+	html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+//  on_finish: function(data) {
+//    data.correct = jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[0].slice(0,-3))
+	}
+
+  var two = {
+		type: 'survey-html-form',
+    preamble: '<p> <img src="orientamento/img1/'+regions[1]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante',
+    button_label: ['Prema per andare avanti'],
+	html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+//  on_finish: function(data) {
+  //  data.correct = jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[1].slice(0,-3))
+
+	}
+
+  var three = {
+		type: 'survey-html-form',
+    preamble: '<p> <img src="orientamento/img1/'+regions[2]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante',
+    button_label: ['Prema per andare avanti'],
+	html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+//  on_finish: function(data) {
+//    data.correct = jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[2].slice(0,-3))
+
+
+	}
+
+  var four = {
+		type: 'survey-html-form',
+    preamble: '<p> <img src="orientamento/img1/'+regions[3]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante',
+    button_label: ['Prema per andare avanti'],
+	html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+//  on_finish: function(data) {
+  //  data.correct = jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[3].slice(0,-3))
+
+	}
+  var five = {
+		type: 'survey-html-form',
+    preamble: '<p> <img src="orientamento/img1/'+regions[4]+'.png" height="300pt"> <p style="font-size: 24px; font-weight: bold;"> Come si chiama questa regione? scriva il nome nella casella sottostante',
+    button_label: ['Prema per andare avanti'],
+	html: '</p> <input name="first" type="text" /></p>',
+  required: false,
+	}
+
+
+
+
+jatos.onLoad(function() {
+          var progress = Math.round((1/jatos.studyLength)*jatos.componentPos*100,0);
+          var progressText= "avanzamento " + progress + "%";
+          const updateProgress = progress;
+    jsPsych.init({
+        timeline: [button, one, two, three, four, five],
+        use_webaudio: true,
+        on_finish: function() {
+
+          var cresp = 0;
+          var tot = 5;
+
+          //var nochart = images.replace(/w, '')
+          //string = string.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+          if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(regions[0].slice(0,-3))) {cresp += 1;}
+          if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(regions[1].slice(0,-3))) {cresp += 1;}
+          if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(regions[2].slice(0,-3))) {cresp += 1;}
+          if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(regions[3].slice(0,-3))) {cresp += 1;}
+          if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(regions[4].slice(0,-3))) {cresp += 1;}
+        //  if (jsPsych.data.get().select('responses').values.toString().toLowerCase().includes(images[4].slice(0,-3)) {cresp += 1;}
+          if (cresp > 2) {feed = 1} else {feed = 0};
+          jatos.studySessionData = feed;
+          var orientamento = Number(sessionStorage.getItem('orientamento'))+feed;
+          sessionStorage.setItem('o_spaziale', orientamento);
+          var data = {feed: feed, type: 'orientamento_1', cresp: cresp};
+          jatos.startComponentByPos(4, data, JSON.stringify(data));
+    }
+  });
+});
+
+    </script>
+</html>

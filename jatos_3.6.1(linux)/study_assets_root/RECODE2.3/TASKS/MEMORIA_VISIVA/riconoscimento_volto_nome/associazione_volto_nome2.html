@@ -24,6 +24,19 @@
 
         </style>
 
+        <!--
+            “Ora vedrà dei passaporti di persone, con alcune informazioni.
+Il suo compito è quello di memorizzarle.
+Le verrà chiesto di scrivere quali informazioni erano riportate sul passaporto.”
+Per livello 2 e 3, sotto: “ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni!”
+vengono presentati dei volti di cui bisogna ricordare il nome ed il cognome. 
+creare “passaporti” con immagine volti. di fianco vengono riportare le informazioni
+SECONDO LIVELLO: 
+5 trials. Interferenza = calcoli, pallini/stelline/figure da contare a inserimento del numero, suoni da contare.
+si presenta 1 persona con nome + professione + città. il partecipante deve riportare le informazioni
+bottone per andare avanti (senza limiti di tempo per l’elaborazione)
+
+        -->
     </body>
     <script>
         jatos.onload(function(){
@@ -40,7 +53,7 @@
                 /*jsPsych.data.displayData();*/ //lascio così adesso in via di sviluppo 
 
                 var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                    if(correct_trials > 9){ //bisogna stabilire il valore di risposte corrette per considerarlo come passato 
+                    if(correct_trials >= 4){ //affinché si passi l'esercizio con l'80% delle risposte corrette  
                         var feed = 1;
                     } else {
                         var feed = 0;
@@ -68,11 +81,11 @@
 
         var pre_if = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-            Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
-            Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black">%choice%</button>`,
-            choices: ['Prema qui per procedere al compito','Prema qui per fare una prova'],
+            stimulus: `<p style="font-size: 34px;"> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+            Il suo compito è quello di memorizzarle. </strong> <br> <br> Quando è pronto, prema il pulsante per fare una prova o per proseguire direttamente con il compito. <br>
+            Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista. </p>`,
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+	        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta_prova = 1;
@@ -88,32 +101,34 @@
             stimulus: jsPsych.timelineVariable('img1'),
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 "> mario </a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> idraulico </a> ;
-                 CITTA': <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> ancona </a>  </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 "> mario </a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> idraulico </a> ;
+                 CITTA': <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> ancona </a>  </p>`,
             choices: ['Prema qui per proseguire'],
         }; 
 
         var prova_answer = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == jsPsych.timelineVariable ('nome')) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == jsPsych.timelineVariable ('nome')) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == jsPsych.timelineVariable ('professione')){
+                if (professione == jsPsych.timelineVariable ('professione')){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == jsPsych.timelineVariable ('città')){
+                if (città == jsPsych.timelineVariable ('città')){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -157,11 +172,11 @@
 
         var begin_trial = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
-                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo.
+            stimulus: `<p style="font-size: 34px; "> Allora proseguiamo, inziamo con l'esercizio. <br> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong><br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+                Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista.
                 <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni! </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare']
         };
 
@@ -180,18 +195,18 @@
             stimulus: ''+array_imgs[0].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
-                CITTA':  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
+                CITTA':  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference1 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "24 / 8", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'> 24 : 8 </p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "3" ){
                     return console.log("Risposta corretta")
@@ -205,24 +220,26 @@
 
         var trial1 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == array_imgs[0].nome ) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == array_imgs[0].nome ) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == array_imgs[0].professione){
+                if (professione == array_imgs[0].professione){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == array_imgs[0].città){
+                if (città == array_imgs[0].città){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -236,6 +253,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -244,18 +262,18 @@
             stimulus: ''+array_imgs[1].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
-                CITTA':  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
+                CITTA':  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference2 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "15 x 2", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'> 15 x 2 </p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'> Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "30" ){
                     return console.log("Risposta corretta")
@@ -269,24 +287,26 @@
 
         var trial2 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == array_imgs[1].nome ) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == array_imgs[1].nome ) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == array_imgs[1].professione){
+                if (professione == array_imgs[1].professione){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == array_imgs[1].città){
+                if (città == array_imgs[1].città){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -300,6 +320,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -308,18 +329,18 @@
             stimulus: ''+array_imgs[2].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
-                CITTA':  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
+                CITTA':  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference3 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "14 + 7", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>14 + 7</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "21" ){
                     return console.log("Risposta corretta")
@@ -333,24 +354,26 @@
 
         var trial3 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == array_imgs[2].nome ) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == array_imgs[2].nome ) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == array_imgs[2].professione){
+                if (professione == array_imgs[2].professione){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == array_imgs[2].città){
+                if (città == array_imgs[2].città){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -372,18 +395,18 @@
             stimulus: ''+array_imgs[3].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
-                CITTA':  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
+                CITTA':  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference4 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "8 + 9", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>8 + 9</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "17" ){
                     return console.log("Risposta corretta")
@@ -397,24 +420,26 @@
 
         var trial4 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == array_imgs[3].nome ) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == array_imgs[3].nome ) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == array_imgs[3].professione){
+                if (professione == array_imgs[3].professione){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == array_imgs[3].città){
+                if (città == array_imgs[3].città){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -428,6 +453,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -436,18 +462,18 @@
             stimulus: ''+array_imgs[4].img+'',
             stimulus_height: 600,
             // da definire dimensioni immagine
-            prompt: `<p style="font-size: 24px; font-weight: bold;">NOME: <a style="font-size: 40px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
-                PROFESSIONE: <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
-                CITTA':  <a style="font-size: 40px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
+            prompt: `<p style="font-size: 34px; font-weight: bold;">NOME: <a style="font-size: 45px; font-weight: lighter; font-style: italic ; color: #2540E6 ">`+ array_imgs[0].nome + `</a> ;
+                PROFESSIONE: <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].professione + ` </a> ; 
+                CITTA':  <a style="font-size: 45px; font-weight: lighter; font-style: italic; color: #2540E6"> `+ array_imgs[0].città + ` </a> </p>`,
             choices: ['Prema qui per proseguire'],
         };
 
         var interference5 = {
             type: jsPsychSurveyText,
             questions: [
-                {prompt: "19 - 5", required: true}  
+                {prompt: "<p style='font-size: 50px; font-weight: bold;'>19 - 5</p>", required: true}  
             ],
-            preamble: "Riporti il risultato della seguente operazione matematica:",
+            preamble: "<p style='font-size: 34px; font-weight: bold;'>Riporti il risultato della seguente operazione matematica:</p>",
             on_finish: function(data){
                 if (data.response.Q0 == "14" ){
                     return console.log("Risposta corretta")
@@ -461,24 +487,26 @@
 
         var trial5 = {
             type: jsPsychSurveyText,
-            preamble: 'N.B. si ricordi di scrivere sempre in minuscolo!',
             questions: [
                 {prompt:'Qual è il nome della persona appena vista?', placeholder: 'basta soltanto il nome', name: 'Nome', required: true},
-                {prompt:'Qual è la profesione della persona appena vista?', name: 'Profesione', required: true},
+                {prompt:'Qual è la professione della persona appena vista?', name: 'Professione', required: true},
                 {prompt:'Qual è la città di provenienza della persona appena vista?', name: 'Città', required: true}
             ],
             on_finish: function(data){
-                if (data.response.Nome == array_imgs[4].nome ) {
+                var nome = data.response.Nome.toLowerCase();
+                var professione = data.response.Professione.toLowerCase();
+                var città = data.response.Città.toLowerCase();
+                if (nome == array_imgs[4].nome ) {
                     var accuracy_nome = true
                 } else {
                     var accuracy_nome = false
                 } 
-                if (data.response.Professione == array_imgs[4].professione){
+                if (professione == array_imgs[4].professione){
                     var accuracy_professione = true
                 } else {
                     var accuracy_professione = false
                 };
-                if (data.response.Città == array_imgs[4].città){
+                if (città == array_imgs[4].città){
                     var accuracy_città = true
                 } else {
                     var accuracy_città = false
@@ -492,6 +520,7 @@
                     var correct = false;
                 };
                 data.correct = correct;
+                console.log(correct);
             }
         };
 
@@ -519,10 +548,10 @@
 
         var begin_loop = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+            stimulus: `<p style="font-size: 34px; "> Va bene facciamo una prova! <br> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong> <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
                 Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare la prova'],
             on_start: function(data){
                 var response_button = jsPsych.data.get().last(1).values()[0].response;
@@ -536,12 +565,12 @@
 
         var end_loop_prova = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br>Ora vedrà delle foto di persone, con alcune informazioni. <br>
-                Il suo compito è quello di memorizzarle. <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
+            stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> <strong> Ora vedrà delle foto di persone, con alcune informazioni. <br>
+                Il suo compito è quello di memorizzarle. </strong> <br> <br> Quando è pronto, prema il pulsante per proseguire direttamente con il compito. <br>
                 Le verrà chiesto di scrivere quali informazioni erano riportate nell'immagine vista; le raccomandiamo di scrivere tutto in corsivo.
                 <br> <br> ATTENZIONE: prima di rispondere verrà distratto da un altro breve compito, quindi tenga bene a mente le informazioni! </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+            choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta = 1;

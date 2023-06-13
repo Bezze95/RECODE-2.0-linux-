@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIENTAMENTO Orologio LIV.3</title>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-survey-text.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-preload.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-external-html.js"></script>
+
+    <!--<link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />-->
+    <script src="jatos.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    
+
+</head>
+
+<body>
+    <!-- LIVELLO 3: bisogna valutare se è fattibile dal punto di vista informatico.
+Il partecipante osserva un orario scritto in cifre (ad es. 3:50). Al centro dello schermo viene presentato il disegno di un orologio, piuttosto grande, sul quale il partecipante deve riprodurre l’ora cliccando sul numero (ad es. 3 per le ore e 10 per i minuti) per spostare le lancette corrispondenti. 
+ISTRUZIONI:  “Le verrà indicato un orario (ad esempio le 17:30). Lei dovrà spostare le lancette delle ore e dei minuti sull’orologio fino a quando non otterrà lo stesso orario che le è stato indicato". 
+
+Schermata effettiva: sopra “Legga bene l’orario indicato qui sotto.”
+Orario in cifre abbastanza in alto. 
+Sotto: “ Clicchi prima sul numero nell’orologio che indica le ORE, per far spostare la lancetta delle ore. Dopo clicchi sul numero nell’orologio che indica i MINUTI per far spostare la lancetta dei minuti. 
+
+Orologio centrale abbastanza grande da far vedere bene i numeri e le lancette, posizionate sulle 12:00, sono di lunghezza e colori diversi.  
+
+Sotto: “Può cliccare tutte le volte che vuole, per spostare le lancette. Quando si sentirà pronto clicchi sul tasto sotto per andare avanti.”
+
+Tasto per salvare la risposta. 
+
+In totale vengono proposti 5 trial, ognuno dei quali presenta un orologio da comporre, e la modalità di scoring sono di massimo 2 punti per trail, 1 per lancetta corretta (1 per minuti, 1 per le ore) cosicché il punteggio massimo sia pari a 10. 
+
+
+-->
+
+
+</body>
+
+<script>
+
+    jatos.onload(function () {
+        var progress = Math.round((1 / jatos.study.Length) * jatos.componentPos * 100, 0);
+        var progressText = "avanzamento" + progress + "%";
+        const updateProgress = progress;
+    });
+
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+        on_finish: function () {
+            /*jsPsych.data.displayData();*/
+
+            if (x >= 8) { // in modo da passare come corretto l'esercizio all'80% di risposte corrette
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
+            jatos.studySessionData = feed;
+            var orientamento = Number(sessionStorage.getItem('orientamento')) + feed;
+            sessionStorage.setItem('orientamento', orientamento);
+            var Data = { feed: feed, type: 'ORIENTAMENTO_orologio_level3', cresp: x };
+            jatos.startComponentByPos(4, Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+        }
+    });
+
+    
+
+    var clock = {
+        type: jsPsychExternalHtml,
+        url: "./TASKS/ORIENTAMENTO/orologio/clock3.html",
+        cont_btn: "confirmation_button",
+        execute_script: true
+    }
+
+    var timeline = [clock];
+
+    jsPsych.run(timeline)
+
+</script>
+
+</html>

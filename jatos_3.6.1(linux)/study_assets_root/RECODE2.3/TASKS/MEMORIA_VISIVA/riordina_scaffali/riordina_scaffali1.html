@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORIA_VISIVA Riordina gli scaffali LIV.1 </title>
+
+    <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-canvas-button-response.js"></script>
+    <script src="./jspsych7.2.3/dist/jspsych-psychophysics.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-call-function.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-free-sort.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-canvas-keyboard-response.js"></script>
+    <script src="./jspsych7.2.3/dist/plugin-image-button-response.js"></script>
+
+    <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="jatos.js"></script>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+    <!--
+        Struttura dell’esercizio: viene presentata una schermata con uno scaffale che ha su ogni mensola alcuni oggetti. Subito dopo, lo stesso scaffale viene presentato vuoto, e sotto vengono presentati tutti gli oggetti che c’erano, fuori dallo scaffale. I partecipanti devono ricordarsi dove si trovava ciascun oggetto.
+Modalità di risposta: vi lasciamo due alternative a cui abbiamo pensato, in base a ciò che credete possa avere migliore resa. Prima ipotesi: trascinamento. Ovvero, i partecipanti devono trascinare ogni oggetto alla posizione originale sullo scaffale. Seconda ipotesi: nella seconda schermata, sullo scaffale vuoto, vengono presentati dei numeri nelle posizioni corrispondenti alle posizioni in cui erano gli oggetti. Nello spazio sottostante, dove sono presentati gli oggetti da ricollocare, ci sono delle caselline vuote (ad es. sotto ogni oggetto) in cui il partecipante deve scrivere il numero corrispondente alla posizione in cui si trovava.
+Livelli di difficoltà: primo livello -> 4 oggetti negli scaffali (possibilmente disposti non in maniera simmetrica). “interferenza passiva” tra la prima e la seconda schermata, ad esempio il conto alla rovescia centrale da 5 secondi andando indietro. 
+Secondo livello -> 6 oggetti (sempre possibilmente sparsi). “interferenza passiva” tra la prima e la seconda schermata, con conto alla rovescia centrale più lungo, ad esempio 7 secondi andando indietro. 
+Terzo livello -> 6  oggetti (sempre possibilmente sparsi). “interferenza attiva”, ovvero vengono presentati due semplici calcoli in sequenza.
+
+Istruzioni: Ora vedrà uno scaffale, su cui sono posizionati degli oggetti: memorizzi bene la posizione di ciascuno! Dopo qualche secondo, le verrà presentato lo scaffale vuoto, e dovrà ricordarsi dove erano posizionati gli oggetti. NB: le istruzioni successive dipenderanno dalla scelta della modalità di risposta, fateci sapere!
+
+Trials: 5 scaffali per sessione.
+
+Materiali: non ci sono particolari vincoli, usate pure tutte le immagini che avete a disposizione e che possano essere adatte (es. non il mare, non un aspirapolvere… immagini di piccoli oggetti che possono stare su uno scaffale. Es, un vaso, una scarpa, un libro, un cd, ma anche cose meno pertinenti tipo una banana o una macchinina o una conchiglia). Le immagini dovrebbero essere tutte a colori. Potete randomizzare la presentazione degli oggetti, sarebbe meglio se all’interno di una seduta, tra i cinque scaffali non si ripetessero troppo gli stessi per non creare troppa interferenza.
+
+Scoring: primo livello -> ogni trial (scaffale) può ottenere un punteggio da 0 a 2. 0 se li sbaglia tutti e 4, 1 se inverte una coppia di oggetti (e gli altri due sono a posto), 2 se è tutto giusto. Così il punteggio è su 10. secondo e terzo livello -> come prima circa. ogni trial (scaffale) può ottenere un punteggio da 0 a 2. 0 se li sbaglia tutti e 6 oppure se ne sbaglia 4/6, 1 se inverte una coppia di oggetti (e gli altri quattro sono a posto), 2 se è tutto giusto.
+
+    -->
+</body>
+<script>
+    jatos.onload(function () {
+        var progress = Math.round((1 / jatos.study.Length) * jatos.componentPos * 100, 0);
+        var progressText = "avanzamento" + progress + "%";
+        const updateProgress = progress;
+    });
+
+    /* to initialize jspsych */
+    var jsPsych = initJsPsych({
+        use_webaudio: false,
+
+        on_finish: function () {
+            jsPsych.data.displayData(); //lascio così adesso in via di sviluppo 
+
+            /*var correct_trials = jsPsych.data.get().filter({ correct: true }).count();
+            if (correct_trials >= 4) { //affinché si passi l'esercizio con l'80% delle risposte corrette  
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
+            jatos.studySessionData = feed;
+            var memoria_visiva = Number(sessionStorage.getItem('memoria_visiva')) + feed;
+            sessionStorage.setItem('memoria_visiva', memoria_visiva);
+            var Data = { feed: feed, type: 'MEMORIA_VISIVA_riordinascaffali_level1', cresp: correct_trials };
+            jatos.startComponentByPos(4, Data);*/
+
+        }
+
+    });
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var oggetti_array = [
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/abatjour.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/agenda.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/chiave.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/chiavi.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/cornice.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/evidenziatore.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/lampada.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/libri.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/martello.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/matita.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/orsacchiotto.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/palla.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/penna.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/quaderno.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/vaso.jpg"
+    ];
+
+    //var oggetti = jsPsych.randomization.sampleWithoutReplacement(oggetti_array, 4);
+    var oggetti = [ //MARTELLO, MATITA, QUADERNO, VASO
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/martello.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/matita.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/quaderno.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/vaso.jpg"
+    ];
+
+    var oggetti1 = [ //ABATJOUR, PALLA, CORNICE, CHIAVE
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/abatjour.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/palla.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/cornice.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/chiave.jpg"
+    ];
+
+    var oggetti2 = [//ORSACCHIOTTO, LAMPADA, CHIAVE, VASO
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/orsacchiotto.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/lampada.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/chiave.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/vaso.jpg"
+    ];
+
+    var oggetti3 = [//PALLA, LIBRI, EVIDENZIATORE, CORNICE
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/palla.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/libri.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/evidenziatore.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/cornice.jpg"
+    ];
+
+    var oggetti4 = [//LIBRI, VASO, LAMPADA, ORSACCHIOTTO
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/libri.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/orsacchiotto.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/lampada.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/vaso.jpg"
+    ];
+
+    var oggetti5 = [//MATITA, ABATJOUR, QUADERNO, EVIDENZIATORE
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/matita.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/abatjour.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/quaderno.jpg",
+        "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/evidenziatore.jpg"
+    ];
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    var pre_if = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Ora vedrà uno scaffale, su cui sono posizionati degli oggetti: <br> <br> <strong> memorizzi bene la posizione di ciascuno! </strong> <br>
+             Dopo qualche secondo, le verrà presentato lo scaffale vuoto, e dovrà ricordarsi dove erano posizionati gli oggetti. <br> <br>
+            <strong> Per riposizionare gli oggetti li trascini con il mouse nella loro posizione corretta sullo scaffale </p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta_prova = 1;
+            } else {
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+    };
+
+    var immagine_prova = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial_prova.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    let y = 0;
+
+    var prova_loop = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.martello < position.matita && position.matita < position.quaderno && position.quaderno < position.vaso) {
+                data.accuracy = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.accuracy = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+
+    var feedback = {
+        type: jsPsychHtmlKeyboardResponse,
+        choices: "NO_KEYS",
+        trial_duration: 1500,
+        data: "",
+        stimulus: "",
+        on_start: function (prova_loop) {
+            var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;;
+            if (last_response_accuracy == true) {
+                var feedback = "<img src='feedback/img/corretto.png' width='300'></img>";
+                console.log("Corretto")
+            } else {
+                var feedback = "<img src='feedback/img/sbagliato.png' width='300'></img>";
+                console.log("Sbagliato")
+            };
+            var feedback_prova_stima = "<div style='font-size:60px'><b>" + feedback + "</b></div>";
+            prova_loop.data = { stimulus: feedback };
+            prova_loop.stimulus = feedback_prova_stima;
+        }
+    };
+
+    var prova_loop_timeline = {
+        timeline: [immagine_prova, prova_loop, feedback]
+    };
+
+    var begin_trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Allora proseguiamo, inziamo con l'esercizio. <br> Ora vedrà uno scaffale, su cui sono posizionati degli oggetti: <br> <br>
+             <strong> memorizzi bene la posizione di ciascuno! </strong> <br>
+            Dopo qualche secondo, le verrà presentato lo scaffale vuoto, e dovrà ricordarsi dove erano posizionati gli oggetti. <br> <br>
+           <strong> Per riposizionare gli oggetti li trascini con il mouse nella loro posizione corretta sullo scaffale </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare']
+    };
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    var interferenza = {
+        type: jsPsychPsychophysics,
+        stimuli: [
+            {
+                obj_type: 'text',
+                startX: 'center', // location of the cross's center in the canvas
+                startY: 'center',
+                content: '5',
+                font: "60px 'Arial'",
+                line_length: 30,
+                line_color: 'black',
+                show_start_time: 1000, // ms after the start of the trial
+                show_end_time: 2000,
+            },
+            {
+                obj_type: 'text',
+                startX: 'center', // location of the cross's center in the canvas
+                startY: 'center',
+                content: '4',
+                font: "60px 'Arial'",
+                line_length: 30,
+                line_color: 'black',
+                show_start_time: 2000, // ms after the start of the trial
+                show_end_time: 3000,
+            },
+            {
+                obj_type: 'text',
+                startX: 'center', // location of the cross's center in the canvas
+                startY: 'center',
+                content: '3',
+                font: "60px 'Arial'",
+                line_length: 30,
+                line_color: 'black',
+                show_start_time: 3000, // ms after the start of the trial
+                show_end_time: 4000,
+            },
+            {
+                obj_type: 'text',
+                startX: 'center', // location of the cross's center in the canvas
+                startY: 'center',
+                content: '2',
+                font: "60px 'Arial'",
+                line_length: 30,
+                line_color: 'black',
+                show_start_time: 4000, // ms after the start of the trial
+                show_end_time: 5000,
+            },
+            {
+                obj_type: 'text',
+                startX: 'center', // location of the cross's center in the canvas
+                startY: 'center',
+                content: '1',
+                font: "60px 'Arial'",
+                line_length: 30,
+                line_color: 'black',
+                show_start_time: 5000, // ms after the start of the trial
+                show_end_time: 6000,
+            },
+        ],
+        background_color: 'white',
+        response_type: 'key',
+        response_start_time: 500,
+        response_ends_trial: false,
+        trial_duration: 6500,
+    };
+
+    var immagine1 = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial1.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    var trial1 = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti1, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti1, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.abatjour < position.palla && position.palla < position.cornice && position.cornice < position.chiave) {
+                data.correct = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+    var immagine2 = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial2.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    var trial2 = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti2, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti2, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.orsacchiotto < position.lampada && position.lampada < position.chiave && position.chiave < position.vaso) {
+                data.correct = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+    var immagine3 = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial3.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    var trial3 = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti3, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti3, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.palla < position.libri && position.libri < position.evidenziatore && position.evidenziatore < position.cornice) {
+                data.correct = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+    var immagine4 = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial4.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    var trial4 = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti4, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti4, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.libri < position.vaso && position.vaso < position.lampada && position.lampada < position.orsacchiotto) {
+                data.correct = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+    var immagine5 = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/trials/trial5.jpg",
+        choices: ["Prema per continuare"],
+        prompt: "<p>Osservi attentamente l'immagine e memorizzi l'ordine degli oggetti sullo scaffale </p>"
+    };
+
+    var trial5 = {
+        type: jsPsychFreeSort, //obbligatorio -> nome plugin
+        stimuli: oggetti5, //obbligatorio -> array di tutte le immagini senza limite di numero 
+        bagItems: oggetti5, //obbligatorio -> elementi che vanno nel sacco/scaffale
+        sort_area_width: 1050, //obbligatorio -> larghezza area dove rilasciare gli oggetti
+        sort_area_height: 520, //obbligatorio -> altezza area dove rilasciare gli oggetti
+        sort_area_shape: "square", //obbligatorio -> forma area rilascio oggetti ('square', 'ellipse' o personalizzabile con codice)
+        prompt: "<p>Metti gli elementi sullo scaffale nell'ordine giusto.</p>", //obbligatorio -> testo intestazione compito
+        counter_text_unfinished: "Devi ancora posizionare %n% elementi sullo scaffale.", //opzionale -> testo didascalia compito, default: "Devi ancora posizionare %n% elementi dentro il sacco."
+        counter_text_finished: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario.", //opzionale -> testo fine compito, default: "Hai posizionato tutti gli elementi. Sentiti libero di ripensarci se necessario."
+        prompt_location: 'above', //opzionale -> posizione didascalie ('above' o 'below'), default: 'above'
+        numItem: 4, //opzionale -> IMPORTANTE: numero elementi da mettere nel sacco
+        stim_height: 111, //opzionale -> altezza della cella e dello stimolo, default: 111 
+        stim_width: 115, //opzionale -> larghezza della cella e dello stimolo, default: 115
+        scale_factor: 1.5, //opzionale -> scala di ingrandimento dello stimolo da muovere (1 = stessa grandezza)
+        button_label: "FINE", //opzionale -> testo bottone finale, default: 'FINE' 
+        border_width: 5, //opzionale -> bordo celle attivabili, default: 5
+        change_border_background_color: false,
+        stim_starts_inside: true,
+        on_load: function changeBackground(trial1) {
+            //Codice per modificare l'immagine di background del plugin
+            const background = document.getElementById("jspsych-free-sort-arena");
+            background.style.backgroundImage = "url('./TASKS/MEMORIA_VISIVA/riordina_scaffali/img/scaffale.jpg')";
+            background.style.width = "1000px";
+            background.style.height = "500px";
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            const button = document.getElementById("jspsych-free-sort-done-btn");
+            button.style.position = "relative";
+
+        },
+        on_finish: function (data) {
+            var positions = jsPsych.data.get().select('final_locations').values;
+            console.log(positions);
+
+            let position = {};
+            position[positions[y][0].src.split('/')[5].split('.')[0]] = Number(positions[y][0].x);
+            position[positions[y][3].src.split('/')[5].split('.')[0]] = Number(positions[y][3].x);
+            position[positions[y][2].src.split('/')[5].split('.')[0]] = Number(positions[y][2].x);
+            position[positions[y][1].src.split('/')[5].split('.')[0]] = Number(positions[y][1].x);
+            console.log(position);
+
+            if (position.matita < position.abatjour && position.abatjour < position.quaderno && position.quaderno < position.evidenziatore) {
+                data.correct = true;
+                console.log("Corretto");
+                y++;
+            } else {
+                data.correct = false;
+                console.log("Sbagliato");
+                y++;
+            }
+        }
+    };
+
+
+
+    var trial_timeline = {
+        timeline: [immagine1, interferenza, trial1, immagine2, interferenza, trial2, immagine3, interferenza, trial3, immagine4, interferenza, trial4, immagine5, interferenza, trial5]
+    };
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var if_node = {
+        timeline: [begin_trial, trial_timeline],
+        conditional_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+            if (response_button == 0) {
+                console.log("prosegui a esercizio");
+                return true;
+            } else {
+                console.log("inizia la prova");
+                jsPsych.addNodeToEndOfTimeline(loop_prova)
+                return false;
+            }
+        }
+    };
+
+    var begin_loop = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Va bene facciamo una prova! <br> Ora vedrà uno scaffale, su cui sono posizionati degli oggetti: <br> <br> <strong> memorizzi bene la posizione di ciascuno! </strong> <br>
+            Dopo qualche secondo, le verrà presentato lo scaffale vuoto, e dovrà ricordarsi dove erano posizionati gli oggetti. <br> <br>
+           <strong> Per riposizionare gli oggetti li trascini con il mouse nella loro posizione corretta sullo scaffale </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare la prova'],
+        on_start: function (data) {
+            var response_button = jsPsych.data.get().last(1).values()[0].response;
+            console.log(response_button)
+            if (response_button == 0) {
+                console.log("salta loop");
+                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+            }
+        }
+    };
+
+    var end_loop_prova = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con l'esercizio. <br> Ora vedrà uno scaffale, su cui sono posizionati degli oggetti: <br> <br> <strong> memorizzi bene la posizione di ciascuno! </strong> <br>
+            Dopo qualche secondo, le verrà presentato lo scaffale vuoto, e dovrà ricordarsi dove erano posizionati gli oggetti. <br> <br>
+           <strong> Per riposizionare gli oggetti li trascini con il mouse nella loro posizione corretta sullo scaffale</p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta = 1;
+            } else {
+                var risposta = 0;
+                console.log("Termine loop prova");
+                jsPsych.addNodeToEndOfTimeline(trial_timeline);
+            }
+            data.risposta_loop = risposta
+        }
+    };
+
+
+
+    var loop_prova = {
+        timeline: [begin_loop, prova_loop_timeline, end_loop_prova],
+        loop_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+            if (response_button == 1) {
+                return true;
+            } else {
+                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+            }
+        }
+    };
+
+
+    var timeline = [pre_if, if_node];
+
+    jsPsych.run(timeline);
+
+</script>
+
+</html>

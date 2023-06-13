@@ -1,0 +1,16 @@
+POST https://api.openai.com/v1/chat/completions
+Authorization: Bearer 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
+Content-Type: application/json
+
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You: Ciao"
+    },
+    {
+      "role": "user",
+      "content": "Ciao, come posso aiutarti?"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,11 +18,11 @@
     <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <script src="jatos.js"></script>
 </head>
+
 <body>
     <!-- LIVELLO 2: si alternano in modo randomizzato, come nell’esercizio precedente, due esercizi: 
 
-DA ANALOGICO: Similmente all’esercizio già presente sul vecchio RECODE, si presenta un orologio analogico che indica ore e minuti  
-e il partecipante deve scegliere a scelta multipla l’orario corretto. 
+DA ANALOGICO: Similmente all’esercizio già presente sul vecchio RECODE, si presenta un orologio analogico che indica ore e minuti  e il partecipante deve scegliere a scelta multipla l’orologio corretto. 
 
 ISTRUZIONI: “Adesso vedrà un orologio: dovrà leggere l’ora indicata, facendo attenzione alla posizione delle lancette delle ore e dei minuti. 
 
@@ -29,20 +30,18 @@ ISTRUZIONI: “Adesso vedrà un orologio: dovrà leggere l’ora indicata, facen
 
 L’orologio centrale, abbastanza grande, con lancette di diversa misura. 
 
-Sotto: “Scelga l’orario corretto cliccando con il mouse su una di queste alternative:”
+Sotto: “Scelga l’orologio corretto cliccando con il mouse su una di queste alternative:”
 
 Sotto: gli slot con gli orari possibili. 
 
-DA DIGITALE: si sviluppa al contrario rispetto all’esercizio precedente: ogni trial presenta un orario centrale scritto in cifre 
-(per intenderci, nella modalità digitale). Il partecipante dovrà leggere l’orario e scegliere quale dei 3 orologi analogici, 
-cioè le 3 possibili risposte, rispecchia l’orario indicato.
-ISTRUZIONI:  “Adesso vedrà al centro dello schermo un orario. Dovrà leggerlo e decidere quale tra gli orologi indica lo stesso orario.” 
+DA DIGITALE: si sviluppa al contrario rispetto all’esercizio precedente: ogni trial presenta un orologio centrale scritto in cifre (per intenderci, nella modalità digitale). Il partecipante dovrà leggere l’orologio e scegliere quale dei 3 orologi analogici, cioè le 3 possibili risposte, rispecchia l’orologio indicato.
+ISTRUZIONI:  “Adesso vedrà al centro dello schermo un orologio. Dovrà leggerlo e decidere quale tra gli orologi indica lo stesso orologio.” 
 
-Schermata effettiva: sopra “Legga l’ora e scelga in quale tra gli orologi sottostanti è indicato lo stesso orario.”
+Schermata effettiva: sopra “Legga l’ora e scelga in quale tra gli orologi sottostanti è indicato lo stesso orologio.”
 
 Al centro l’ora scritta come “2:15”
 
-Sotto “Quale tra questi orologi indica l’orario giusto? Lo selezioni cliccando con il mouse” 
+Sotto “Quale tra questi orologi indica l’orologio giusto? Lo selezioni cliccando con il mouse” 
 
 Al di sotto i tre orologi. 
 
@@ -53,162 +52,564 @@ In totale vengono proposti 5 trial tra i due esercizi, in modo randomico, e la m
 
 <script>
 
-    /*function shuffle(array) {
-        let currentIndex = array.length,  randomIndex;
-      
-        // While there remain elements to shuffle.
-        while (currentIndex != 0) {
-      
-          // Pick a remaining element.
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-      
-        return array;
-      }*/
-
-    jatos.onload(function(){
-        var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
-        var progressText="avanzamento" + progress + "%";
+    jatos.onload(function () {
+        var progress = Math.round((1 / jatos.study.Length) * jatos.componentPos * 100, 0);
+        var progressText = "avanzamento" + progress + "%";
         const updateProgress = progress;
-    }); 
+    });
 
     var jsPsych = initJsPsych({
         use_webaudio: false,
-        on_finish: function() {
+        on_finish: function () {
             /*jsPsych.data.displayData();*/
 
-            var correct_trials = jsPsych.data.get().filter({correct: true}).count();
-                if(correct_trials > 0){
-                    var feed = 1;
-                } else {
-                    var feed = 0;
-                }
+            if (x >= 8) { // in modo da passare come corretto l'esercizio all'80% di risposte corrette
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
             jatos.studySessionData = feed;
-            var orientamento = Number(sessionStorage.getItem('orientamento'))+feed;
+            var orientamento = Number(sessionStorage.getItem('orientamento')) + feed;
             sessionStorage.setItem('orientamento', orientamento);
-            var Data = {feed: feed, type: 'ORIENTAMENTO_orologio_level2', cresp: correct_trials};
-            jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
-        } 
+            var Data = { feed: feed, type: 'ORIENTAMENTO_orologio_level2', cresp: x };
+            jatos.startComponentByPos(4, Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+        }
     });
 
     var preload = {
         type: jsPsychPreload,
-        auto_preload: true
+        trials: [analogico_array, digitale_array],
+        show_detailed_errors: true
     };
 
-    var analogico_array = [
-        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog10_10.jpg', orario: '10:10'}, 
-        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog3_40.jpg', orario: '3:40'},
-        {orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog2_15.jpg', orario: '2:15'},
 
-       
+
+    /*MATTINA 6:05- 13:00, POMERIGGIO 13:05- 18:00, SERA 18.05-23:00, NOTTE: 23:05- 6:00*/
+
+    var analogico_array = [
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_00.png', orario: '1:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_05.png', orario: '1:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_10.png', orario: '1:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_15.png', orario: '1:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_20.png', orario: '1:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_25.png', orario: '1:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_30.png', orario: '1:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_35.png', orario: '1:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_40.png', orario: '1:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_45.png', orario: '1:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_50.png', orario: '1:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_55.png', orario: '1:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_00.png', orario: '2:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_05.png', orario: '2:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_10.png', orario: '2:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_15.png', orario: '2:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_20.png', orario: '2:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_25.png', orario: '2:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_30.png', orario: '2:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_35.png', orario: '2:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_40.png', orario: '2:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_45.png', orario: '2:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_50.png', orario: '2:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_55.png', orario: '2:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_00.png', orario: '3:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_05.png', orario: '3:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_10.png', orario: '3:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_15.png', orario: '3:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_20.png', orario: '3:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_25.png', orario: '3:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_30.png', orario: '3:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_35.png', orario: '3:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_40.png', orario: '3:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_45.png', orario: '3:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_50.png', orario: '3:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_55.png', orario: '3:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_00.png', orario: '4:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_05.png', orario: '4:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_10.png', orario: '4:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_15.png', orario: '4:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_20.png', orario: '4:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_25.png', orario: '4:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_30.png', orario: '4:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_35.png', orario: '4:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_40.png', orario: '4:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_45.png', orario: '4:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_50.png', orario: '4:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_55.png', orario: '4:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_00.png', orario: '5:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_05.png', orario: '5:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_10.png', orario: '5:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_15.png', orario: '5:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_20.png', orario: '5:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_25.png', orario: '5:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_30.png', orario: '5:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_35.png', orario: '5:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_40.png', orario: '5:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_45.png', orario: '5:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_50.png', orario: '5:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_55.png', orario: '5:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_00.png', orario: '6:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_05.png', orario: '6:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_10.png', orario: '6:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_15.png', orario: '6:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_20.png', orario: '6:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_25.png', orario: '6:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_30.png', orario: '6:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_35.png', orario: '6:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_40.png', orario: '6:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_45.png', orario: '6:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_50.png', orario: '6:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_55.png', orario: '6:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_00.png', orario: '7:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_05.png', orario: '7:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_10.png', orario: '7:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_15.png', orario: '7:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_20.png', orario: '7:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_25.png', orario: '7:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_30.png', orario: '7:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_35.png', orario: '7:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_40.png', orario: '7:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_45.png', orario: '7:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_50.png', orario: '7:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_55.png', orario: '7:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_00.png', orario: '8:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_05.png', orario: '8:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_10.png', orario: '8:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_15.png', orario: '8:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_20.png', orario: '8:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_25.png', orario: '8:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_30.png', orario: '8:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_35.png', orario: '8:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_40.png', orario: '8:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_45.png', orario: '8:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_50.png', orario: '8:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_55.png', orario: '8:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_00.png', orario: '9:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_05.png', orario: '9:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_10.png', orario: '9:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_15.png', orario: '9:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_20.png', orario: '9:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_25.png', orario: '9:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_30.png', orario: '9:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_35.png', orario: '9:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_40.png', orario: '9:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_45.png', orario: '9:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_50.png', orario: '9:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_55.png', orario: '9:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_00.png', orario: '10:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_05.png', orario: '10:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_10.png', orario: '10:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_15.png', orario: '10:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_20.png', orario: '10:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_25.png', orario: '10:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_30.png', orario: '10:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_35.png', orario: '10:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_40.png', orario: '10:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_45.png', orario: '10:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_50.png', orario: '10:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_55.png', orario: '10:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_00.png', orario: '11:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_05.png', orario: '11:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_10.png', orario: '11:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_15.png', orario: '11:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_20.png', orario: '11:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_25.png', orario: '11:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_30.png', orario: '11:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_35.png', orario: '11:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_40.png', orario: '11:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_45.png', orario: '11:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_50.png', orario: '11:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_55.png', orario: '11:55' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_00.png', orario: '12:00' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_05.png', orario: '12:05' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_10.png', orario: '12:10' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_15.png', orario: '12:15' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_20.png', orario: '12:20' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_25.png', orario: '12:25' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_30.png', orario: '12:30' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_35.png', orario: '12:35' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_40.png', orario: '12:40' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_45.png', orario: '12:45' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_50.png', orario: '12:50' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_55.png', orario: '12:55' }
     ];
     var analogico = jsPsych.randomization.shuffle(analogico_array)
 
- /*MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:00, NOTTE: 24:00- 5:00*/
-
     var digitale_array = [
-        {orario:'<h1 style="font-size:300%;"> 14:15 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog2_15.jpg', ora: '2:15'},
-        {orario:'<h1 style="font-size:300%;"> 15:40 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog3_40.jpg', ora: '3:40'},
-        {orario:'<h1 style="font-size:300%;"> 22:10 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog10_10.jpg', ora: '10:10'},
-        {orario:'<h1 style="font-size:300%;"> 17:50 </h1>', orologio: './TASKS/ORIENTAMENTO/orologio/img/orari/analog5_50.jpg', ora: '5:50'},
-       
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_00.jpg', orario: '6:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_05.jpg', orario: '6:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_10.jpg', orario: '6:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_15.jpg', orario: '6:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_20.jpg', orario: '6:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_25.jpg', orario: '6:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_30.jpg', orario: '6:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_35.jpg', orario: '6:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_40.jpg', orario: '6:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_45.jpg', orario: '6:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_50.jpg', orario: '6:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/6_55.jpg', orario: '6:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_00.jpg', orario: '7:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_05.jpg', orario: '7:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_10.jpg', orario: '7:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_15.jpg', orario: '7:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_20.jpg', orario: '7:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_25.jpg', orario: '7:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_30.jpg', orario: '7:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_35.jpg', orario: '7:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_40.jpg', orario: '7:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_45.jpg', orario: '7:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_50.jpg', orario: '7:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/7_55.jpg', orario: '7:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_00.jpg', orario: '8:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_05.jpg', orario: '8:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_10.jpg', orario: '8:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_15.jpg', orario: '8:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_20.jpg', orario: '8:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_25.jpg', orario: '8:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_30.jpg', orario: '8:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_35.jpg', orario: '8:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_40.jpg', orario: '8:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_45.jpg', orario: '8:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_50.jpg', orario: '8:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/8_55.jpg', orario: '8:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_00.jpg', orario: '9:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_05.jpg', orario: '9:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_10.jpg', orario: '9:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_15.jpg', orario: '9:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_20.jpg', orario: '9:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_25.jpg', orario: '9:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_30.jpg', orario: '9:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_35.jpg', orario: '9:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_40.jpg', orario: '9:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_45.jpg', orario: '9:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_50.jpg', orario: '9:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/9_55.jpg', orario: '9:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_00.jpg', orario: '10:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_05.jpg', orario: '10:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_10.jpg', orario: '10:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_15.jpg', orario: '10:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_20.jpg', orario: '10:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_25.jpg', orario: '10:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_30.jpg', orario: '10:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_35.jpg', orario: '10:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_40.jpg', orario: '10:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_45.jpg', orario: '10:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_50.jpg', orario: '10:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/10_55.jpg', orario: '10:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_00.jpg', orario: '11:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_05.jpg', orario: '11:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_10.jpg', orario: '11:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_15.jpg', orario: '11:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_20.jpg', orario: '11:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_25.jpg', orario: '11:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_30.jpg', orario: '11:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_35.jpg', orario: '11:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_40.jpg', orario: '11:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_45.jpg', orario: '11:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_50.jpg', orario: '11:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/11_55.jpg', orario: '11:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_00.jpg', orario: '12:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_05.jpg', orario: '12:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_10.jpg', orario: '12:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_15.jpg', orario: '12:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_20.jpg', orario: '12:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_25.jpg', orario: '12:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_30.jpg', orario: '12:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_35.jpg', orario: '12:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_40.jpg', orario: '12:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_45.jpg', orario: '12:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_50.jpg', orario: '12:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/12_55.jpg', orario: '12:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_00.jpg', orario: '13:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_05.jpg', orario: '13:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_10.jpg', orario: '13:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_15.jpg', orario: '13:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_20.jpg', orario: '13:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_25.jpg', orario: '13:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_30.jpg', orario: '13:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_35.jpg', orario: '13:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_40.jpg', orario: '13:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_45.jpg', orario: '13:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_50.jpg', orario: '13:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/13_55.jpg', orario: '13:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_00.jpg', orario: '14:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_05.jpg', orario: '14:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_10.jpg', orario: '14:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_15.jpg', orario: '14:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_20.jpg', orario: '14:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_25.jpg', orario: '14:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_30.jpg', orario: '14:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_35.jpg', orario: '14:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_40.jpg', orario: '14:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_45.jpg', orario: '14:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_50.jpg', orario: '14:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/14_55.jpg', orario: '14:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_00.jpg', orario: '15:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_05.jpg', orario: '15:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_10.jpg', orario: '15:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_15.jpg', orario: '15:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_20.jpg', orario: '15:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_25.jpg', orario: '15:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_30.jpg', orario: '15:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_35.jpg', orario: '15:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_40.jpg', orario: '15:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_45.jpg', orario: '15:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_50.jpg', orario: '15:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/15_55.jpg', orario: '15:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_00.jpg', orario: '16:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_05.jpg', orario: '16:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_10.jpg', orario: '16:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_15.jpg', orario: '16:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_20.jpg', orario: '16:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_25.jpg', orario: '16:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_30.jpg', orario: '16:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_35.jpg', orario: '16:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_40.jpg', orario: '16:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_45.jpg', orario: '16:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_50.jpg', orario: '16:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/16_55.jpg', orario: '16:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_00.jpg', orario: '17:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_05.jpg', orario: '17:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_10.jpg', orario: '17:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_15.jpg', orario: '17:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_20.jpg', orario: '17:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_25.jpg', orario: '17:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_30.jpg', orario: '17:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_35.jpg', orario: '17:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_40.jpg', orario: '17:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_45.jpg', orario: '17:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_50.jpg', orario: '17:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/17_55.jpg', orario: '17:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_00.jpg', orario: '18:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_05.jpg', orario: '18:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_05.png'},
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_10.jpg', orario: '18:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_15.jpg', orario: '18:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_20.jpg', orario: '18:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_25.jpg', orario: '18:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_30.jpg', orario: '18:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_35.jpg', orario: '18:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_40.jpg', orario: '18:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_45.jpg', orario: '18:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_50.jpg', orario: '18:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/18_55.jpg', orario: '18:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/6_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_00.jpg', orario: '19:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_05.jpg', orario: '19:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_10.jpg', orario: '19:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_15.jpg', orario: '19:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_20.jpg', orario: '19:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_25.jpg', orario: '19:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_30.jpg', orario: '19:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_35.jpg', orario: '19:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_40.jpg', orario: '19:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_45.jpg', orario: '19:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_50.jpg', orario: '19:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/19_55.jpg', orario: '19:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/7_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_00.jpg', orario: '20:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_05.jpg', orario: '20:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_10.jpg', orario: '20:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_15.jpg', orario: '20:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_20.jpg', orario: '20:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_25.jpg', orario: '20:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_30.jpg', orario: '20:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_35.jpg', orario: '20:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_40.jpg', orario: '20:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_45.jpg', orario: '20:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_50.jpg', orario: '20:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/20_55.jpg', orario: '20:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/8_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_00.jpg', orario: '21:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_05.jpg', orario: '21:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_10.jpg', orario: '21:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_15.jpg', orario: '21:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_20.jpg', orario: '21:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_25.jpg', orario: '21:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_30.jpg', orario: '21:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_35.jpg', orario: '21:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_40.jpg', orario: '21:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_45.jpg', orario: '21:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_50.jpg', orario: '21:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/21_55.jpg', orario: '21:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/9_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_00.jpg', orario: '22:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_05.jpg', orario: '22:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_10.jpg', orario: '22:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_15.jpg', orario: '22:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_20.jpg', orario: '22:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_25.jpg', orario: '22:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_30.jpg', orario: '22:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_35.jpg', orario: '22:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_40.jpg', orario: '22:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_45.jpg', orario: '22:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_50.jpg', orario: '22:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/22_55.jpg', orario: '22:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/10_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_00.jpg', orario: '23:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_05.jpg', orario: '23:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_10.jpg', orario: '23:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_15.jpg', orario: '23:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_20.jpg', orario: '23:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_25.jpg', orario: '23:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_30.jpg', orario: '23:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_35.jpg', orario: '23:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_40.jpg', orario: '23:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_45.jpg', orario: '23:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_50.jpg', orario: '23:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/23_55.jpg', orario: '23:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/11_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_00.jpg', orario: '0:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_05.jpg', orario: '0:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_10.jpg', orario: '0:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_15.jpg', orario: '0:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_20.jpg', orario: '0:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_25.jpg', orario: '0:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_30.jpg', orario: '0:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_35.jpg', orario: '0:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_40.jpg', orario: '0:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_45.jpg', orario: '0:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_50.jpg', orario: '0:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/00_55.jpg', orario: '0:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/12_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_00.jpg', orario: '1:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_05.jpg', orario: '1:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_10.jpg', orario: '1:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_15.jpg', orario: '1:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_20.jpg', orario: '1:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_25.jpg', orario: '1:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_30.jpg', orario: '1:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_35.jpg', orario: '1:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_40.jpg', orario: '1:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_45.jpg', orario: '1:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_50.jpg', orario: '1:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/1_55.jpg', orario: '1:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/1_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_00.jpg', orario: '2:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_05.jpg', orario: '2:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_10.jpg', orario: '2:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_15.jpg', orario: '2:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_20.jpg', orario: '2:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_25.jpg', orario: '2:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_30.jpg', orario: '2:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_35.jpg', orario: '2:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_40.jpg', orario: '2:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_45.jpg', orario: '2:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_50.jpg', orario: '2:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/2_55.jpg', orario: '2:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/2_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_00.jpg', orario: '3:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_05.jpg', orario: '3:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_10.jpg', orario: '3:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_15.jpg', orario: '3:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_20.jpg', orario: '3:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_25.jpg', orario: '3:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_30.jpg', orario: '3:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_35.jpg', orario: '3:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_40.jpg', orario: '3:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_45.jpg', orario: '3:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_50.jpg', orario: '3:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/3_55.jpg', orario: '3:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/3_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_00.jpg', orario: '4:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_05.jpg', orario: '4:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_10.jpg', orario: '4:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_15.jpg', orario: '4:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_20.jpg', orario: '4:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_25.jpg', orario: '4:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_30.jpg', orario: '4:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_35.jpg', orario: '4:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_40.jpg', orario: '4:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_45.jpg', orario: '4:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_50.jpg', orario: '4:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/4_55.jpg', orario: '4:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/4_55.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_00.jpg', orario: '5:00', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_00.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_05.jpg', orario: '5:05', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_05.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_10.jpg', orario: '5:10', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_10.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_15.jpg', orario: '5:15', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_15.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_20.jpg', orario: '5:20', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_20.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_25.jpg', orario: '5:25', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_25.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_30.jpg', orario: '5:30', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_30.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_35.jpg', orario: '5:35', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_35.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_40.jpg', orario: '5:40', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_40.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_45.jpg', orario: '5:45', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_45.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_50.jpg', orario: '5:50', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_50.png' },
+        { orologio: './TASKS/ORIENTAMENTO/orologio/img/digitali/5_55.jpg', orario: '5:55', analogico: './TASKS/ORIENTAMENTO/orologio/img/analogici/5_55.png' }
     ];
     var digitale = jsPsych.randomization.shuffle(digitale_array)
 
-
-    var instructions_analogico = {
-        type:jsPsychHtmlButtonResponse,
-        stimulus: `<p style='font-size:30px;'><strong>Adesso vedrà un orologio: dovrà leggere l’ora indicata, facendo attenzione alla posizione delle lancette delle ore e dei minuti.
-             <br> <br> Che ore e minuti indica l’orologio?</p>`,
-        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
-        on_finish: function(data){
-            if(data.response == 1){
+    var pre_if_ANALOGICO = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:34px;'><strong> ISTRUZIONI </strong> <br> <br> Adesso vedrà un orologio: <br> <br>
+            dovrà <strong> leggere l’ora indicata,</strong> <br> <br> facendo attenzione alla posizione delle lancette delle ore e dei minuti.</p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px; 	color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
                 var risposta_prova = 1;
-            } else{
+            } else {
+                var risposta_prova = 0;
+            }
+            data.risposta_prova = risposta_prova
+        }
+
+    };
+
+    /*MATTINA 6:00- 13:00, POMERIGGIO 16:00- 18:00, SERA 20-23:00, NOTTE: 24:00- 5:00*/
+
+    var pre_if_DIGITALE = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style='font-size:34px;'><strong> ISTRUZIONI </strong> <br> <br> Adesso vedrà al centro dello schermo un orario. <br> <br>
+             Dovrà leggerlo e decidere <strong> quale tra gli orologi indica lo stesso orario </strong> </p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px; 	color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta_prova = 1;
+            } else {
                 var risposta_prova = 0;
             }
             data.risposta_prova = risposta_prova
         }
     };
 
-    var instructions_digitale = {
-        type:jsPsychHtmlButtonResponse,
-        stimulus: `<p style='font-size:30px;'><strong> Adesso vedrà al centro dello schermo un orario. <br><br> Dovrà leggerlo e decidere quale tra gli orologi indica lo stesso orario.</p>`,
-        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-        choices: ['Prema qui per proseguire', 'Prema qui per fare una prova'],
-        on_finish: function(data){
-            if(data.response == 1){
-                var risposta_prova = 1;
-            } else{
-                var risposta_prova = 0;
-            }
-            data.risposta_prova = risposta_prova
-        }
-    }; 
-
-    var analogico_prova = {
+    var prova_loop_ANALOGICO = {
         type: jsPsychImageButtonResponse,
-        stimulus: ''+ analogico[0].orologio+'',
+        stimulus: '' + analogico[0].orologio + '',
         stimulus_height: 600,
-        choices: ['10:10', '2:15', '3:40', '7:20'],
-        prompt: "<p>Scelga l’orario corretto cliccando con il mouse su una di queste alternative:</p>",
-        on_finish: function(data) {
-            if (data.response == 0){
-                var risposta = '10:10';
-            } if (data.response == 1){
-                var risposta = '6:00';
-            } if (data.response == 2){
-                var risposta = '8:15';
-            } if (data.response == 3){
-                var risposta = '7:20';
-            }
-            if (risposta == analogico[0].orario){
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        choices: ['' + analogico[0].orario + '', '' + analogico[1].orario + '', '' + analogico[2].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        on_finish: function (data) {
+            if (data.response == 0) {
                 var accuracy = 1;
             } else {
                 var accuracy = 0;
             }
             data.accuracy = accuracy;
-            console.log("RISPOSTA: "+risposta+"")
         }
     };
 
-    var digitale_prova = {
+    var prova_loop_DIGITALE = {
         type: jsPsychImageButtonResponse,
-        stimulus: ''+ digitale[0].orario+'',
+        stimulus: '' + digitale[0].orologio + '',
+        stimulus_height: 400,
         choices: [
-            ''+digitale[0].orologio+'',
-            ''+digitale[1].orologio+'',
-            ''+digitale[2].orologio+'',
-            ''+digitale[3].orologio+''
+            '<img src="'+ digitale[2].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[0].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[4].analogico +'" width="300" height="400" >' ,
         ],
-        /*randomize_choices: true,*/ <!---: in questo modo trovo difficile attribuire la risposta corretta -->
-        prompt: "<p>Quale tra questi orologi indica l’orario giusto? Lo selezioni cliccando con il mouse</p>",
-        on_finish: function(data) {
-            if (data.response == 0){
-                var accuracy = 1
+        button_html: '<button class="jspsych-btn" >%choice%</button>',
+        prompt: `<p style='font-size:34px;'>Legga l’ora e <strong> scelga in quale tra gli orologi sottostanti è indicato lo stesso orario. </strong><br> <br>
+            Quale tra questi orologi indica l’orario giusto? <br> Lo selezioni cliccando con il mouse</p>`,
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var accuracy = 1;
             } else {
                 var accuracy = 0;
             }
             data.accuracy = accuracy;
-            console.log("RISPOSTA: "+risposta+"")
         }
     };
 
     var feedback = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: function(){
+        stimulus: function () {
             var last_response_accuracy = jsPsych.data.getLastTrialData().values()[0].accuracy;
             if (last_response_accuracy == true) {
-                var feedback = '<span style="color:green; font-size:50px;">Corretto!</span>';
+                var feedback = "<img src='./feedback/img/corretto.png' width='300' height='300'>";
+                console.log("corretto")
             } else {
-                var feedback = '<span style="color:red; font-size:50px;"> Risposta Sbaglita </span>';  
+                var feedback = "<img src='./feedback/img/sbagliato.png' width='300' height='300'>";
+                console.log("sbagliato")
             }
             return feedback;
         },
@@ -216,170 +617,382 @@ In totale vengono proposti 5 trial tra i due esercizi, in modo randomico, e la m
         trial_duration: 1500
     };
 
-    var x = ["analogico","digitale"]
-    var array = jsPsych.randomization.shuffle(x) /*<!---: sembra NON FUNZIONARE --> */
-    if (array[0] = "analogico"){
-        console.log("La condizione dell'esperimento sarà ANALOGICO")
-        var conditional_node = {
-            timeline: [analogico_prova, feedback],
-            conditional_function: function(instructions){
-                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-    } else {
-        console.log("La condizione dell'esperimento sarà DIGITALE");
-        var conditional_node = {
-            timeline: [digitale_prova, feedback],
-            conditional_function: function(instructions){
-                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+    var begin_trial_ANALOGICO = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Allora proseguiamo, inziamo con l'esercizio. <br>
+            Adesso vedrà un orologio: <br> dovrà <strong> leggere l’ora indicata,</strong> <br> facendo attenzione alla posizione delle lancette delle ore e dei minuti. </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare']
     };
 
-    
-
-    var instructions1_analogico = {
-        type:jsPsychHtmlButtonResponse,
-        stimulus: `<p style='font-size:30px;'><strong>Ora che ha completato la prova, iniziamo con il vero esercizio.<br> <br>Successivamente le verranno proposte delle immagini ambientate in una di queste stagioni.
-            <br>Dovrà rispondere selezionando con il mouse l'opzione che indica secondo lei la stagioni in cui è ambientata l'immagine proposta.</p>`,
-        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
-        on_finish: function(data){
-            if(data.response == 1){
-                var risposta_prova = 1;
-            } else{
-                var risposta_prova = 0;
-            }
-            data.risposta_prova = risposta_prova
-        }
+    var begin_trial_DIGITALE = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Allora proseguiamo, inziamo con l'esercizio. <br>
+            Adesso vedrà al centro dello schermo un orario. <br> Dovrà leggerlo e decidere <strong> quale tra gli orologi indica lo stesso orario </strong> </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare']
     };
-
-    var instructions1_digitale = {
-        type:jsPsychHtmlButtonResponse,
-        stimulus: `<p style='font-size:30px;'><strong>Ora che ha completato la prova, iniziamo con il vero esercizio.<br> <br>Successivamente le verranno proposte delle immagini ambientate in una di queste stagioni.
-            <br>Dovrà rispondere selezionando con il mouse l'opzione che indica secondo lei la stagioni in cui è ambientata l'immagine proposta.</p>`,
-        button_html: '<button class="jspsych-btn" style="font-size:20px; color:black;">%choice%</button>',
-        choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
-        on_finish: function(data){
-            if(data.response == 1){
-                var risposta_prova = 1;
-            } else{
-                var risposta_prova = 0;
-            }
-            data.risposta_prova = risposta_prova
-        }
-    };
-
-    if (array[0] = "analogico"){
-        var loop_prova = {
-            timeline: [analogico_prova, feedback, instructions1_analogico],
-            loop_function:function(){
-                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-    } else {
-        var loop_prova = {
-            timeline: [digitale_prova, feedback, instructions1_digitale],
-            loop_function: function(){
-                var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
-                if (response_button == 1){
-                    return true;
-                } else {
-                    return false;
-                }
-            }      
-        };
-    };
-    
-
-    var begin_trial = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: "<h1>INIZIAMO!</h1>",
-        choices: "NO_KEYS",
-        trial_duration: 1500
-    };
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    let x = 0; //CORRECT TRIALS
+    <!---: si potrebbe provare a modificare le regole CSS per portare il prompt al di sopra dell immagine -->
 
     var trial1_analogico = {
         type: jsPsychImageButtonResponse,
-        stimulus: ''+ analogico[1].orologio+'',
+        stimulus: '' + analogico[1].orologio + '',
         stimulus_height: 600,
-        choices: ['6:00 - 13:00', '16:00 - 18:00', '20:00 - 23:00', '24:00 - 5:00'],
-        prompt: "<p>A che ora si svolge questa attività?</p>",
-        on_finish: function(data) {
-            if (data.response == 0){
-                var risposta = 'mattina';
-            } if (data.response == 1){
-                var risposta = 'pomeriggio';
-            } if (data.response == 2){
-                var risposta = 'sera';
-            } if (data.response == 3){
-                var risposta = 'notte';
-            }
-            if (risposta == analogico[1].orario){
-                var accuracy = true;
+        choices: ['' + analogico[1].orario + '', '' + analogico[3].orario + '', '' + analogico[2].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 0) {
+                x++; x++;
+                console.log("risposta corretta")
             } else {
-                var accuracy = false;
+                x--; x--;
+                console.log("risposta sbagliata")
             }
-            data.correct = accuracy;
-            console.log("RISPOSTA: "+risposta+"")
+            console.log(x)
         }
     };
 
-   
-    
+    var trial2_analogico = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + analogico[2].orologio + '',
+        stimulus_height: 600,
+        choices: ['' + analogico[1].orario + '', '' + analogico[2].orario + '', '' + analogico[4].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 1) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial3_analogico = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + analogico[3].orologio + '',
+        stimulus_height: 600,
+        choices: ['' + analogico[6].orario + '', '' + analogico[1].orario + '', '' + analogico[3].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 2) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial4_analogico = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + analogico[4].orologio + '',
+        stimulus_height: 600,
+        choices: ['' + analogico[4].orario + '', '' + analogico[8].orario + '', '' + analogico[0].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 0) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial5_analogico = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + analogico[5].orologio + '',
+        stimulus_height: 600,
+        choices: ['' + analogico[10].orario + '', '' + analogico[7].orario + '', '' + analogico[5].orario + ''],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 2) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var trial1_digitale = {
         type: jsPsychImageButtonResponse,
-        stimulus: ''+ digitale[1].orario+'',
-        stimulus_height: 600,
-        choices: ['Primavera', 'Estate', 'Autunno', 'Inverno'],
-        prompt: "<p>Scelga la stagione tra le alternative cliccando sulla casella corrispondente</p>",
-        on_finish: function(data) {
-            if (data.response == 0){
-                var risposta = 'spring';
-            } if (data.response == 1){
-                var risposta = 'summer';
-            } if (data.response == 2){
-                var risposta = 'autumn';
-            } if (data.response == 3){
-                var risposta = 'winter';
-            };
-            if (risposta == digitale[1].orologio){
-                var accuracy = true;
+        stimulus: '' + digitale[1].orologio + '',
+        stimulus_height: 400,
+        choices: [
+            '<img src="'+ digitale[1].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[3].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[2].analogico +'" width="300" height="400" >' ,
+        ],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 0) {
+                x++; x++;
+                console.log("risposta corretta")
             } else {
-                var accuracy = false;
+                x--; x--;
+                console.log("risposta sbagliata")
             }
-            data.correct = accuracy;
-            console.log("RISPOSTA: "+risposta+"")
-        
+            console.log(x)
         }
     };
 
-    
+    var trial2_digitale = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + digitale[2].orologio + '',
+        stimulus_height: 400,
+        choices: [
+            '<img src="'+ digitale[1].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[2].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[4].analogico +'" width="300" height="400" >' ,
+        ],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 1) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
 
-    
-    if (array[0] = "analogico"){
-        var timeline = [instructions_analogico, conditional_node, instructions1_analogico, loop_prova, begin_trial, trial1_analogico]
-    } else {
-        var timeline = [instructions_digitale, conditional_node, instructions1_digitale, loop_prova, begin_trial, trial1_digitale]
-    }
-    
-    jsPsych.run(timeline)
+    var trial3_digitale = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + digitale[3].orologio + '',
+        stimulus_height: 400,
+        choices: [
+            '<img src="'+ digitale[6].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[1].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[3].analogico +'" width="300" height="400" >' ,
+        ],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 2) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial4_digitale = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + digitale[4].orologio + '',
+        stimulus_height: 400,
+        choices: [
+            '<img src="'+ digitale[4].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[8].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[0].analogico +'" width="300" height="400" >' ,
+        ],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 0) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial5_digitale = {
+        type: jsPsychImageButtonResponse,
+        stimulus: '' + digitale[5].orologio + '',
+        stimulus_height: 400,
+        choices: [
+            '<img src="'+ digitale[10].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[7].analogico +'" width="300" height="400" >' ,
+            '<img src="'+ digitale[5].analogico +'" width="300" height="400" >' ,
+        ],
+        button_html: '<button class="jspsych-btn" style="font-size:40px;">%choice%</button>',
+        prompt: "<p style='font-size:34px;'> <strong> ISTRUZIONI </strong> <br> <br> <strong> Che ore e minuti indica l’orologio? </strong> <br> Scelga l’orario corretto cliccando con il mouse su una di queste alternative: </p>",
+        on_finish: function (data) {
+            if (data.response == 2) {
+                x++; x++;
+                console.log("risposta corretta")
+            } else {
+                x--; x--;
+                console.log("risposta sbagliata")
+            }
+            console.log(x)
+        }
+    };
+
+    var trial_ANALOGICO = {
+        timeline: [trial1_analogico, trial2_analogico, trial3_analogico, trial4_analogico, trial5_analogico]
+    };
+
+    var trial_DIGITALE = {
+        timeline: [trial1_digitale, trial2_digitale, trial3_digitale, trial4_digitale, trial5_digitale]
+    };
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    var if_node_ANALOGICO = {
+        timeline: [begin_trial_ANALOGICO, trial_ANALOGICO],
+        conditional_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+            if (response_button == 0) {
+                console.log("prosegui a esercizio");
+                return true;
+            } else {
+                console.log("inizia la prova");
+                jsPsych.addNodeToEndOfTimeline(loop_prova_ANALOGICO)
+                return false;
+            }
+        }
+    };
+
+    var if_node_DIGITALE = {
+        timeline: [begin_trial_DIGITALE, trial_DIGITALE],
+        conditional_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+            if (response_button == 0) {
+                console.log("prosegui a esercizio");
+                return true;
+            } else {
+                console.log("inizia la prova");
+                jsPsych.addNodeToEndOfTimeline(loop_prova_DIGITALE)
+                return false;
+            }
+        }
+    };
+
+    var begin_loop_ANALOGICO = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Va bene facciamo una prova! <br> Adesso vedrà un orologio: <br> dovrà <strong> leggere l’ora indicata,</strong> <br> facendo attenzione alla posizione delle lancette delle ore e dei minuti. </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare la prova'],
+        on_start: function (data) {
+            var response_button = jsPsych.data.get().last(1).values()[0].response;
+            console.log(response_button)
+            if (response_button == 0) {
+                console.log("salta loop");
+                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+            }
+        }
+    };
+
+    var begin_loop_DIGITALE = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Va bene facciamo una prova! <br> Adesso vedrà al centro dello schermo un orario. <br> Dovrà leggerlo e decidere <strong> quale tra gli orologi indica lo stesso orario </strong> </p>`,
+        button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
+        choices: ['Prema qui per iniziare la prova'],
+        on_start: function (data) {
+            var response_button = jsPsych.data.get().last(1).values()[0].response;
+            console.log(response_button)
+            if (response_button == 0) {
+                console.log("salta loop");
+                jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+            }
+        }
+    };
+
+    var end_loop_prova_ANALOGICO = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Ora che ha terminato la prova, inziamo con l'esercizio. <br> <br> 
+        Adesso vedrà un orologio: <br> dovrà <strong> leggere l’ora indicata,</strong> <br> facendo attenzione alla posizione delle lancette delle ore e dei minuti. </p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta = 1;
+            } else {
+                var risposta = 0;
+                console.log("Termine loop prova");
+                jsPsych.addNodeToEndOfTimeline(trial_ANALOGICO);
+            }
+            data.risposta_loop = risposta
+        }
+    };
+
+    var end_loop_prova_DIGITALE = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `<p style="font-size: 34px;"> Ora che ha terminato la prova, inziamo con l'esercizio. <br>
+        Adesso vedrà al centro dello schermo un orario. <br> Dovrà leggerlo e decidere <strong> quale tra gli orologi indica lo stesso orario </strong> </p>`,
+        button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>', '<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+        choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
+        on_finish: function (data) {
+            if (data.response == 1) {
+                var risposta = 1;
+            } else {
+                var risposta = 0;
+                console.log("Termine loop prova");
+                jsPsych.addNodeToEndOfTimeline(trial_DIGITALE);
+            }
+            data.risposta_loop = risposta
+        }
+    };
+
+    var loop_prova_ANALOGICO = {
+        timeline: [begin_loop_ANALOGICO, prova_loop_ANALOGICO, feedback, end_loop_prova_ANALOGICO],
+        loop_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+            if (response_button == 1) {
+                return true;
+            } else {
+                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+            }
+        }
+    };
+
+    var loop_prova_DIGITALE = {
+        timeline: [begin_loop_DIGITALE, prova_loop_DIGITALE, feedback, end_loop_prova_DIGITALE],
+        loop_function: function () {
+            var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+            if (response_button == 1) {
+                return true;
+            } else {
+                return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+            }
+        }
+    };
+
+
+    let num = [1, 2];
+    let y = jsPsych.randomization.shuffle(num);
+    if (y[1] == 2) {
+        var timeline = [pre_if_ANALOGICO, if_node_ANALOGICO];
+        console.log("La condizione dell'esperimento sarà ANALOGICO'");
+    } else if (y[1] == 1) {
+        var timeline = [pre_if_DIGITALE, if_node_DIGITALE];
+        console.log("La condizione dell'esperimento sarà DIGITALE");
+    };
+
+
+    jsPsych.run(timeline) //non è stato possibile inserire la variabile PRELOAD perché altrimenti dà errore "Trial level node is missing the "type" parameter. The parameters for the node are: {}"
 </script>
+
 </html>

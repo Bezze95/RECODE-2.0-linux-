@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GONOGO CARDS LIV.3 </title>
+
+  <script src="./jspsych7.2.3/dist/jspsych.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-survey-html-form.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-keyboard-response.js"></script>
+  <script src="./jspsych7.2.3/dist/plugin-html-button-response.js"></script>
+  <script src="./jspsych-psychophysics-3.3.0/jspsych-psychophysics.js"></script>
+
+  <link href="./jspsych7.2.3/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jatos.js"></script>
+</head>
+<body></body>
+<script>
+
+  jatos.onload(function(){
+    var progress = Math.round((1/jatos.study.Length)*jatos.componentPos*100,0);
+    var progressText="avanzamento" + progress + "%";
+    const updateProgress = progress;
+  });
+
+  var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function() {
+        /*jsPsych.data.displayData();*/
+
+        var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+            if(correct_trials > 0){
+                var feed = 1;
+            } else {
+                var feed = 0;
+            }
+        jatos.studySessionData = feed;
+        var funzioni_esecutive = Number(sessionStorage.getItem('funzioni_esecutive'))+feed;
+        sessionStorage.setItem('funzioni_esecutive', funzioni_esecutive);
+        var Data = {feed: feed, type: 'FUNZIONI_ESECUTIVE_gonogostars_level3', cresp: correct_trials};
+        jatos.startComponentByPos(4,Data); /*PER FAR COMPARIRE FEEDBACK in base a posizione file su jatos */
+    }
+  });
+
+  var cresp = 0;
+
+  var stars = ["\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}", "\u{1F7D0}", "\u{25A0}"];
+  var nogo = ["\u{1F7C6}", "\u{1F7CC}", "\u{1F7CA}", "\u{1F7CC}", "\u{1F7D0}"];
+  var go = ["\u{1F7C6}", "\u{1F7CA}", "\u{1F7CC}", "\u{1F7D0}", "\u{25A0}"];
+
+  var t = ["\u2667", "\u2664", "\u2662", "\u2660", "\u2666"];
+  var nogot = ["\u2667", "\u{1F7CC}", "\u{1F7CC}", "\u2660", "\u2660"];
+  var got = ["\u2667", "\u2664", "\u2662", "\u2660", "\u2666"];
+
+  var square = ["\u{25A0}", "\u{220E}", "\u{25AC}", "\u{25B0}", "\u{1F7D0}"];
+  var nogosquare = ["\u{25A0}", "\u{1F7CC}", "\u{1F7CC}", "\u{25B0}","\u25A0"];
+  var gosquare = ["\u{25A0}", "\u{220E}", "\u{25AC}", "\u{25B0}", "\u{1F7D0}"];
+
+  var l = ["\uD83E\uDC2F", "\uD83E\uDC30", "\uD83E\uDC2D", "\uD83E\uDC2E", "\uD83E\uDC32"];
+  var nogol = ["\uD83E\uDC2F", "\u{1F7CC}", "\u{1F7CC}", "\uD83E\uDC2E", "\uD83E\uDC2E"];
+  var gol = ["\uD83E\uDC2F", "\uD83E\uDC30", "\uD83E\uDC2D", "\uD83E\uDC2E", "\uD83E\uDC32"];
+  var col = ['green', 'red', 'gold', 'black', 'blue'];
+
+  function shuffle(s) {
+    s.sort(function() {
+      return 0.5 - Math.random();
+    });
+    s = String(s.join(''));
+    return s;
+  }
+
+ var go_1 = shuffle(go);
+ var go_2 = shuffle(go);
+ var go_3 = shuffle(go);
+ var go_4 = shuffle(gosquare);
+ var go_5 = shuffle(gosquare);
+ var go_6 = shuffle(gosquare);
+ var go_7 = shuffle(gol);
+ var go_8 = shuffle(gol);
+ var go_9 = shuffle(gol);
+ var go_10 = shuffle(got);
+
+ var nogo_1 = shuffle(nogo);
+ var nogo_2 = shuffle(nogo);
+ var nogo_3 = shuffle(nogo);
+ var nogo_4 = shuffle(nogosquare);
+ var nogo_5 = shuffle(nogosquare);
+ var nogo_6 = shuffle(nogosquare);
+ var nogo_7 = shuffle(nogol);
+ var nogo_8 = shuffle(nogol);
+ var nogo_9 = shuffle(nogol);
+ var nogo_10 = shuffle(nogot);
+ shuffle(col);
+
+
+ var pre_if = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus:
+    `<p style="font-size: 34px; font-weight: normal;"> Sullo schermo compariranno più <b>simboli vicini.</b> <br><br>
+  Prema la barra spaziatrice sulla tastiera <b>SOLO</b> quando, tra i simboli, vede una <b>stella a 6 punte.</b> <br><br>
+  <b>NON PREMA</b> alcun tasto se vede due stelle a 6 punte (o se non ne vede nessuna). </p>`,
+  button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px; 	color:black;">%choice%</button>'],
+  choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+  on_finish: function(data){
+    if(data.response == 1){
+      var risposta_prova = 1;
+    } else{
+      var risposta_prova = 0;
+    }
+    data.risposta_prova = risposta_prova
+  }
+};
+
+var prova_loop = {
+  timeline: [
+      {
+          type: jsPsychPsychophysics,
+          stimuli: [
+            {
+                obj_type: 'text',
+                startX: 'center',
+                startY: 'center',
+                content: '',
+                font: "50px 'Arial'",
+                text_color: 'white',
+                show_start_time: 0, // ms after the start of the trial
+                show_end_time: 500 // ms after the start of the trial
+            },
+            {
+                obj_type: 'text',
+                startX: 'center',
+                startY: 'center',
+                content: jsPsych.timelineVariable('star'),
+                font: "200px 'Arial'",
+                text_color: jsPsych.timelineVariable('color'),
+                show_start_time: 1000, // ms after the start of the trial
+                origin_center: true,
+                response_ends_trial: true,
+            }
+          ],
+          choices: [' ',''], // The participant can respond to the stimuli using the 'y' or 'n' key.
+          canvas_height: 800,
+          background_color: '#FFFFFF', // The HEX color means green.
+          trial_duration: 5000,
+          on_finish: function(data){
+
+            if(jsPsych.timelineVariable('type')=='go'){
+              data.accuracy = (data.key_press === data.cresponse);
+            } else if (jsPsych.timelineVariable('type')=='nogo'){
+                data.accuracy = (data.key_press === null);
+            }
+
+
+          },
+          data: {
+            test_part: 'star',
+            cresponse: jsPsych.timelineVariable('cresponse'),
+            star: jsPsych.timelineVariable('star')
+          }
+      },
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function(){
+          var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
+          if(last_trial_correct){
+            return "<p style='font-size:100px; color:green;'>\u{1F44D}</p>";
+          } else {
+            return "<p style='font-size:100px; color:red;'>\u{1F44E}</p>";
+          }
+        },
+        post_trial_gap: 1000,
+        trial_duration: 1000,
+        response_ends_trial: false,
+      }
+  ],
+  timeline_variables: [
+    {star: go_1, color: col[0], cresponse: ' ', type: 'go'},
+    {star: go_2, color: col[1], cresponse: ' ', type: 'go'},
+    {star: go_3, color: col[2], cresponse: ' ', type: 'go'},
+    {star: nogo_1, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_2, color: col[4], cresponse: '', type: 'nogo'},
+    {star: nogo_3, color: col[0], cresponse: '', type: 'nogo'},
+  ],
+  randomize_order: true,
+  repetitions: 1
+};
+
+var begin_trial = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 34px; font-weight: normal;"> Allora proseguiamo, inziamo con l'esercizio. <br><br> Sullo schermo compariranno più <b>simboli vicini.</b> <br><br>
+Prema la barra spaziatrice sulla tastiera <b>SOLO</b> quando, tra i simboli, vede una <b>stella a 6 punte.</b> <br><br>
+<b>NON PREMA</b> alcun tasto se vede due stelle a 6 punte (o se non ne vede nessuna). </p>`,
+  button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>'],
+  choices: ['Prema qui per iniziare']
+};
+
+let x = 0;
+
+var trial = {
+  timeline: [
+      {
+          type: jsPsychPsychophysics,
+          stimuli: [
+            {
+                obj_type: 'text',
+                startX: 'center',
+                startY: 'center',
+                content: '',
+                font: "50px 'Arial'",
+                text_color: 'white',
+                show_start_time: 0, // ms after the start of the trial
+                show_end_time: 500 // ms after the start of the trial
+            },
+            {
+                obj_type: 'text',
+                startX: 'center',
+                startY: 'center',
+                content: jsPsych.timelineVariable('star'),
+                font: "200px 'Arial'",
+                text_color: jsPsych.timelineVariable('color'),
+                show_start_time: 1000, // ms after the start of the trial
+                origin_center: true,
+                response_ends_trial: true,
+            }
+          ],
+          choices: [' ', ''], // The participant can respond to the stimuli using the 'y' or 'n' key.
+          canvas_height: 800,
+          background_color: '#FFFFFF', // The HEX color means green.
+          trial_duration: 5000,
+          on_finish: function(data){
+
+            if(jsPsych.timelineVariable('type')=='go'){
+              data.risposta = (data.key_press === data.cresponse);
+            } else if (jsPsych.timelineVariable('type')=='nogo'){
+                data.risposta = (data.key_press === null);
+            };
+            if(data.risposta == true){
+              x++;
+              console.log('risposta corretta');
+              console.log(x);
+            } else {
+              x--;
+              console.log('risposta sbagliata');
+              console.log(x);
+            };
+          },
+          data: {
+            test_part: 'star',
+            cresponse: jsPsych.timelineVariable('cresponse'),
+            star: jsPsych.timelineVariable('star')
+          }
+      },
+
+  ],
+  timeline_variables: [
+    {star: go_1, color: col[0], cresponse: ' ', type: 'go'},
+    {star: go_2, color: col[1], cresponse: ' ', type: 'go'},
+    {star: go_3, color: col[2], cresponse: ' ', type: 'go'},
+    {star: go_4, color: col[3], cresponse: ' ', type: 'go'},
+    {star: go_5, color: col[4], cresponse: ' ', type: 'go'},
+    {star: go_6, color: col[0], cresponse: ' ', type: 'go'},
+    {star: go_7, color: col[1], cresponse: ' ', type: 'go'},
+    {star: go_8, color: col[2], cresponse: ' ', type: 'go'},
+    {star: go_9, color: col[3], cresponse: ' ', type: 'go'},
+    {star: go_10, color: col[4], cresponse: ' ', type: 'go'},
+
+    {star: nogo_1, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_2, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_3, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_4, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_5, color: col[4], cresponse: '', type: 'nogo'},
+    {star: nogo_6, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_7, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_8, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_9, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_10, color: col[4], cresponse: '', type: 'nogo'},
+
+    {star: nogo_1, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_2, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_3, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_4, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_5, color: col[4], cresponse: '', type: 'nogo'},
+    {star: nogo_6, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_7, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_8, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_9, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_10, color: col[4], cresponse: '', type: 'nogo'},
+
+    {star: nogo_1, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_2, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_3, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_4, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_5, color: col[4], cresponse: '', type: 'nogo'},
+    {star: nogo_6, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_7, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_8, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_9, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_10, color: col[4], cresponse: '', type: 'nogo'},
+
+    {star: nogo_1, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_2, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_3, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_4, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_5, color: col[4], cresponse: '', type: 'nogo'},
+    {star: nogo_6, color: col[0], cresponse: '', type: 'nogo'},
+    {star: nogo_7, color: col[1], cresponse: '', type: 'nogo'},
+    {star: nogo_8, color: col[2], cresponse: '', type: 'nogo'},
+    {star: nogo_9, color: col[3], cresponse: '', type: 'nogo'},
+    {star: nogo_10, color: col[4], cresponse: '', type: 'nogo'},
+
+  ],
+  randomize_order: true,
+  repetitions: 1,
+  on_finish: function(data) {
+    if (x >= 40) { // in modo da passare come corretto l'esercizio all'80% di risposte corrette
+      data.correct = true;
+    } else {
+      data.correct = false;
+    }
+  }
+};
+
+
+var if_node = {
+  timeline: [begin_trial,trial],
+  conditional_function: function(){
+    var response_button = jsPsych.data.get().last(1).values()[0].risposta_prova;
+    if (response_button == 0){
+      console.log("prosegui a esercizio");
+      return true;
+    } else {
+      console.log("inizia la prova");
+      jsPsych.addNodeToEndOfTimeline(loop_prova)
+      return false;
+    }
+  }
+};
+
+var begin_loop = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 34px; font-weight: normal;"> Va bene facciamo una prova! <br><br> Sullo schermo compariranno più <b>simboli vicini.</b> <br><br>
+Prema la barra spaziatrice sulla tastiera <b>SOLO</b> quando, tra i simboli, vede una <b>stella a 6 punte.</b> <br><br>
+<b>NON PREMA</b> alcun tasto se vede due stelle a 6 punte (o se non ne vede nessuna). </p>`,
+  button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>'],
+  choices: ['Prema qui per iniziare la prova'],
+  on_start: function(data){
+    var response_button = jsPsych.data.get().last(1).values()[0].response;
+    console.log(response_button)
+    if (response_button == 0){
+      console.log("salta loop");
+      jsPsych.endCurrentTimeline(); /*Ends the current timeline. If timelines are nested, then only the timeline that contains the current trial is ended.*/
+    }
+  }
+};
+
+var end_loop_prova = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p style="font-size: 34px; font-weight: normal;"> Ora che ha terminato la prova, inziamo con l'esercizio. <br><br> Sullo schermo compariranno più <b>simboli vicini.</b> <br><br>
+Prema la barra spaziatrice sulla tastiera <b>SOLO</b> quando, tra i simboli, vede una <b>stella a 6 punte.</b> <br><br>
+<b>NON PREMA</b> alcun tasto se vede due stelle a 6 punte (o se non ne vede nessuna). </p>`,
+  button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px; 	color:black;">%choice%</button>'],
+  choices: ['Prema qui per procedere al compito', 'Prema qui per ripetere la prova'],
+  on_finish: function(data){
+    if(data.response == 1){
+      var risposta = 1;
+    } else{
+      var risposta = 0;
+      console.log("Termine loop prova");
+      jsPsych.addNodeToEndOfTimeline(trial);
+    }
+    data.risposta_loop = risposta
+  }
+};
+
+
+var loop_prova = {
+  timeline: [begin_loop, prova_loop, end_loop_prova],
+  loop_function: function(){
+    var response_button = jsPsych.data.get().last(1).values()[0].risposta_loop;
+    if (response_button == 1){
+      return true;
+    } else {
+      return false; /*IMPORTANTE: mantenere l'ordine in cui sono stati inseriti gli elementi*/
+    }
+  }
+};
+
+
+var timeline = [pre_if, if_node];
+
+
+
+
+
+
+jsPsych.run(timeline)
+
+</script>
+
+</html>

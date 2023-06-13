@@ -79,10 +79,10 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
         
         var pre_if = {
             type: jsPsychHtmlButtonResponse,
-            stimulus:  `<p style='font-size:30px;'><strong>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-            choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+            stimulus:  `<p style='font-size:34px;'>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br> <strong> Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato. </strong> </p>`,
+                button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],    
+                choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta_prova = 1;
@@ -97,7 +97,7 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
             type: jsPsychSurveyLikert,
             preamble: '<img src="./TASKS/ATTENZIONE/ricerca_visiva/immagine1.png">',
             questions: [
-                {prompt: "<p style='font-size:30px;'>Quanti “ROMBI” ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:34px;'> <strong> Quanti “ROMBI” ci sono nell’immagine? </strong><br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
                     "<p style='font-size:30px;'>4</p>",
                     "<p style='font-size:30px;'>5</p>", 
@@ -143,17 +143,19 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
 
         var begin_trial = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            stimulus: `<p style="font-size: 34px;"> Allora proseguiamo, inziamo con l'esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br> <strong> Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato. </strong></p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare']
         };
+
+        let x = 0;
 
         var trial = {
             type: jsPsychSurveyLikert,
             preamble: '<img src="./TASKS/ATTENZIONE/ricerca_visiva/immagine2.png">',
             questions: [
-                {prompt: "<p style='font-size:30px;'>Quante FRECCE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:30px;'>Quante <strong> FRECCE </strong> ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
                     "<p style='font-size:30px;'>9</p>",
                     "<p style='font-size:30px;'>2</p>", 
@@ -163,7 +165,7 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
                 ],
                 required: true
                 },
-                {prompt: "<p style='font-size:30px;'>Quanti CUORI ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:30px;'>Quanti <strong> CUORI </strong> ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
                     "<p style='font-size:30px;'>14</p>", //CORRETTA
                     "<p style='font-size:30px;'>7</p>", 
@@ -173,7 +175,7 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
                 ],
                 required: true
                 },
-                {prompt: "<p style='font-size:30px;'>Quante STELLE A CINQUE PUNTE ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
+                {prompt: "<p style='font-size:30px;'>Quante <strong> STELLE A CINQUE PUNTE </strong> ci sono nell’immagine? <br> <br> Selezioni con il mouse il numero corretto </p>", 
                 labels: [
                     "<p style='font-size:30px;'>6</p>",
                     "<p style='font-size:30px;'>2</p>", 
@@ -189,30 +191,50 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
                 if (data.response.Q0 == 3) {
                     var accuracy_Q0 = true;
                     console.log("FRECCE corretto")
+                    x++;
+                    console.log(x)
                 } else {
                     var accuracy_Q0 = false;
+                    console.log("FRECCE sbagliato")
+                    x--;
+                    console.log(x)
                 };
                 if (data.response.Q1 == 0) {
-                    console.log("CUORI corretto")
                     var accuracy_Q1 = true;
+                    console.log("CUORI corretto")
+                    x++;
+                    console.log(x)
                 } else {
                     var accuracy_Q1 = false;
+                    console.log("CUORI sbagliato");
+                    x--;
+                    console.log(x)
                 };
                 if (data.response.Q2 == 3){
-                    console.log("STELLE corretto")
                     var accuracy_Q2 = true;
+                    console.log("STELLE corretto")
+                    x++;
+                    console.log(x);
                 } else {
                     var accuracy_Q2 = false;
+                    console.log("STELLE sbagliato")
+                    x--;
+                    console.log(x);
                 };
-                data.accuracy_Q0 = accuracy_Q0;
+                /*data.accuracy_Q0 = accuracy_Q0;
                 data.accuracy_Q1 = accuracy_Q1;
                 data.accuracy_Q2 = accuracy_Q2;
-                if (data.accuracy_Q0, data.accuracy_Q1, data.accuracy_Q2 == true){ // -----> ci sarebbe da decidere quanti risposte corrette considerare il compito superato 
+                if (data.accuracy_Q0, data.accuracy_Q1, data.accuracy_Q2 == true){  
                     var correct = true;
                 } else {
                     var correct = false;
                 };
-                data.correct = correct;
+                data.correct = correct;*/
+                if (x >= 2){ // in modo da passare come corretto l'esercizio all'80% di risposte corrette
+                    data.correct = true;
+                } else {
+                    data.correct = false;
+                };
             }
             
         };  
@@ -238,9 +260,9 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
 
         var begin_loop = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            stimulus: `<p style="font-size: 34px;"> Va bene facciamo una prova! <br>Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br> <strong> Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato. </strong></p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare la prova'],
             on_start: function(data){
                 var response_button = jsPsych.data.get().last(1).values()[0].response;
@@ -254,10 +276,10 @@ Sotto: Scriva qui il numero corretto (e spazio apposito).
 
         var end_loop_prova = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
-                <br>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
-            choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
+            stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con l'esercizio. <br> Adesso le verranno mostrate delle immagini.<br> <br>In ogni immagine ci sono molte figure geometriche.
+                <br> <strong>Dovrà contare tutte le figure geometriche di uno stesso tipo, che le sarà indicato.</strong></p>`,
+                button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],
+                choices: ['Prema qui per iniziare', 'Prema qui per ripetere la prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta = 1;

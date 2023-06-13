@@ -56,9 +56,9 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
         var jsPsych = initJsPsych({
                 use_webaudio: false,
                 on_finish: function() {
-                    jsPsych.data.displayData();
+                    /*jsPsych.data.displayData();*/
 
-                    /*var correct_trials = jsPsych.data.get().filter({correct: true}).count();
+                    var correct_trials = jsPsych.data.get().filter({correct: true}).count();
                         if(correct_trials > 0){
                             var feed = 1;
                         } else {
@@ -74,10 +74,10 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
         
         var pre_if = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora vedrà una serie di numeri. <br> Ogni volta che vede un certo numero,
+            stimulus: `<p style="font-size: 34px;"> Ora vedrà una <strong> serie di numeri. </strong> <br> <br> Ogni volta che vede un certo numero,
                 dovrà rispondere premendo un determinato tasto; <br> </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black;">%choice%</button>`,
-            choices: ['Prema qui per procedere al compito', 'Prema qui per fare una prova'],
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],            
+            choices: ['Prema qui per iniziare', 'Prema qui per fare una prova'],
             on_finish: function(data){
                 if(data.response == 1){
                     var risposta_prova = 1;
@@ -122,7 +122,7 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
                     return jsPsych.timelineVariable('number', true);
                   },
                   choices: [2,4],
-                  font: "60px 'Arial'",
+                  font: "120px 'Arial'",
                   text_color: 'black',
                   show_start_time: 4000, // ms after the start of the trial
                   show_end_time: 7500,
@@ -195,83 +195,100 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
 
         var begin_trial = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Allora proseguiamo, inziamo con il vero esercizio. <br> Ora vedrà una serie di numeri. 
+            stimulus: `<p style="font-size: 34px;"> Allora proseguiamo, inziamo con l'esercizio. <br> <br> Ora vedrà una serie di numeri. 
                 <br> Ogni volta che vede il numero `+x[0]+`, prema il tasto `+x[1]+`; <br>
             Ogni volta che vede il numero `+x[1]+`, prema il tasto `+x[0]+`. <br> Quando vede un altro numero, non deve fare niente.
-            <br> <br> <br> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            <br> <br> <br> <strong> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </strong> </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare']
         };
 
+        let y = 0;
+
         var trial = {
-            type: jsPsychPsychophysics,
-            stimuli: [
-                {
-                  obj_type: 'text',
-                  startX: 'center', // location of the cross's center in the canvas
-                  startY: 'center',
-                  content: '+',
-                  font: "60px 'Arial'",
-                  line_length: 30,
-                  line_color: 'black', 
-                  show_start_time: 1000, // ms after the start of the trial
-                  show_end_time: 3000,
-                },
-                {
-                  obj_type: 'text',
-                  startX: 'center', // location of the cross's center in the canvas
-                  startY: 'center',
-                  content: function(){
-                    return jsPsych.timelineVariable('number', true);
-                  },
-                  choices: [''+x[0]+'',''+x[1]+''],
-                  font: "60px 'Arial'",
-                  text_color: 'black',
-                  show_start_time: 3000, // ms after the start of the trial
-                  show_end_time: 6500,
+                timeline: [
+                    {
+                        type: jsPsychPsychophysics,
+                        stimuli: [
+                            {
+                                obj_type: 'text',
+                                startX: 'center', // location of the cross's center in the canvas
+                                startY: 'center',
+                                content: '+',
+                                font: "60px 'Arial'",
+                                line_length: 30,
+                                line_color: 'black',
+                                show_start_time: 1000, // ms after the start of the trial
+                                show_end_time: 3000,
+                            },
+                            {
+                                obj_type: 'text',
+                                startX: 'center', // location of the cross's center in the canvas
+                                startY: 'center',
+                                content: function () {
+                                    return jsPsych.timelineVariable('number', true);
+                                },
+                                choices: [ ''+ x[0] + '', '' + x[1] + ''],
+                                font: "120px 'Arial'",
+                                text_color: 'black',
+                                show_start_time: 3000, // ms after the start of the trial
+                                show_end_time: 6500,
+                            }
+                        ],
+                        background_color: 'white',
+                        response_type: 'key',
+                        response_start_time: 500,
+                        response_ends_trial: true,
+                        trial_duration: 6500,
+                        data: {
+                            trial_part: 'trial',
+                            correctResponse: jsPsych.timelineVariable('correctResponse'),
+                            number: jsPsych.timelineVariable('number'),
+                        },
+                        on_finish: function (data) {
+                            console.log(data.response);
+                            console.log(data.correctResponse);
+                            if (data.response == data.correctResponse) { 
+                                var risposta = true;
+                                y++;
+                                console.log("Risposta Corretta");
+                                console.log(y);
+                                
+                            } else {
+                                var risposta = false;
+                                y--;
+                                console.log("Risposta Sbagliata");
+                                console.log(y);
+                            }
+                        }
+
+                    },
+                ],
+                on_finish: function (data) {
+                    if (y >= 20) { // in modo da passare come corretto l'esercizio all'80% di risposte corrette
+                        data.correct = true;
+                    } else {
+                        data.correct = false;
+                    }
                 }
-            ], 
-            background_color: 'white',
-            response_type: 'key',
-            response_start_time: 500,
-            response_ends_trial: true,
-            trial_duration: 6500,
-            data: {
-                trial_part: 'trial',
-                correctResponse: jsPsych.timelineVariable('correctResponse'),
-                number: jsPsych.timelineVariable('number'),
-            },
-            on_finish: function(data) {
-                console.log(data.key_press);
-                if(jsPsych.pluginAPI.compareKeys(data.key_press, data.correctResponse) == true) { <!---: PROBLEMA nel riconoscere risposta corretta o sbagliata -->
-                    var accuracy = true;
-                } else {
-                    var accuracy = false;
-                }
-                data.accuracy = accuracy;
-                if (data.accuracy = true) {
-                    var correct = true;
-                    console.log("Corretto");
-                } else {
-                    var correct = false;
-                    console.log("Sbagliato");
-                };
-                data.correct = correct;
-            }
-            
-        }; 
+            };
+
 
       
 
         var variables = [
             { number: ''+x[0]+'', correctResponse: ''+x[1]+''},
             { number: ''+x[1]+'', correctResponse: ''+x[0]+''},
-            { number: ''+x[2]+'', correctResponse: null}
+            { number: ''+x[2]+'', correctResponse: null},
+            { number: ''+x[3]+'', correctResponse: null},
+            { number: ''+x[4]+'', correctResponse: null},
+            { number: ''+x[5]+'', correctResponse: null},
+            { number: ''+x[6]+'', correctResponse: null}
         ];
 
         var trial_timeline = {
             timeline: [trial],
-            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,15])
+            timeline_variables: jsPsych.randomization.sampleWithReplacement(variables, 25, [5,5,3,3,3,3,3])
         };
 
         var if_node = {
@@ -291,10 +308,10 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
 
         var begin_loop = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Va bene facciamo una prova! <br> Ora vedrà una serie di numeri. <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
+            stimulus: `<p style="font-size: 34px;"> Va bene facciamo una prova! <br> Ora vedrà una serie di numeri. <br> <br> Ogni volta che vede il numero 2, prema il tasto 4; <br>
             Ogni volta che vede il numero 4, prema il tasto 2. <br> Quando vede un altro numero, non deve fare niente.
-            <br> <br> <br> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            <br> <br> <br> <strong> Quindi: se vede 2 Lei prema 4 e se vede 4 Lei prema 2. </strong> </p>`,
+            button_html: `<button class="jspsych-btn" style="position: left; font-size: 30px; color:black; ">%choice%</button>`,
             choices: ['Prema qui per iniziare la prova'],
             on_start: function(data){
                 var response_button = jsPsych.data.get().last(1).values()[0].response;
@@ -308,11 +325,11 @@ Pausa di qualche millisecondi. Bisogna prevedere tante diverse combinazioni di n
 
         var end_loop_prova = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: `<p style="font-size: 24px; font-weight: bold;"> Ora che ha terminato la prova, inziamo con il vero esercizio. <br> Ora vedrà una serie di numeri. 
+            stimulus: `<p style="font-size: 34px; "> Ora che ha terminato la prova, inziamo con l'esercizio. <br> <br> Ora vedrà una serie di numeri. 
                 <br> Ogni volta che vede il numero `+x[0]+`, prema il tasto `+x[1]+`; <br>
             Ogni volta che vede il numero `+x[1]+`, prema il tasto `+x[0]+`. <br> Quando vede un altro numero, non deve fare niente.
-            <br> <br> <br> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </p>`,
-            button_html: `<button class="jspsych-btn" style="position: left; font-size: 20px; color:black; ">%choice%</button>`,
+            <br> <br> <br> <strong> Quindi: se vede `+x[0]+` Lei prema `+x[1]+` e se vede `+x[1]+` Lei prema `+x[0]+`. </strong></p>`,
+            button_html: ['<button class="jspsych-btn" style="font-size:30px; color:green;">%choice%</button>','<button class="jspsych-btn" style="font-size:20px;color:black;">%choice%</button>'],    
             choices: ['Prema qui per proseguire', 'Prema qui per ripetere la prova'],
             on_finish: function(data){
                 if(data.response == 1){
